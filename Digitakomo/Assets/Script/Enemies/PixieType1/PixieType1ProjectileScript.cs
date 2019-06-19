@@ -22,6 +22,7 @@ public class PixieType1ProjectileScript : MonoBehaviour
     {
         // Fall
         myRb2D.MovePosition(myRb2D.position + (Vector2.down * fallSpeed * Time.deltaTime));
+
     }
 
 
