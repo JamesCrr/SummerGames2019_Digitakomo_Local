@@ -21,10 +21,7 @@ public class EnemyManager : MonoBehaviour
         int spawnCounter = 0;
         // Where to spawn the Enemy
         [Header("Spawn Zone")]
-        public SpawnZone spawningZone;
-        // Debug
-        [Header("DEBUG")]
-        public bool renderDebug = false;
+        public SpawnZone spawningZone = null;
 
 
         // Updates the Spawn Timer and when timer reaches 0
@@ -65,11 +62,6 @@ public class EnemyManager : MonoBehaviour
                 return true;
             return false;
         }
-        // Returns if we want to draw the Debug Zone
-        public bool GetRenderDebug()
-        {
-            return renderDebug;
-        }
     }
 
     // List used to contain all the spawning Template
@@ -87,6 +79,8 @@ public class EnemyManager : MonoBehaviour
         Instance = this;
     }
 
+
+
     // Update is called once per frame
     void Update()
     {
@@ -96,22 +90,19 @@ public class EnemyManager : MonoBehaviour
             // have we spawned all enemies?
             if(!listOfSpawns[i].SpawnedAllEnemies())
             {
-                // is it time to spawn and send the RPC call?
+                // is it time to spawn
                 if(listOfSpawns[i].UpdateTimer())
                 {
-                    
-                    // Create new enemy
-                    //GameObject newEnemy = Instantiate(listOfSpawns[i].enemyToSpawn, listOfSpawns[i].GetRandomPositionFromZone(), Quaternion.identity);
+                    // Fetch enemy
+                    GameObject newEnemy = ObjectPooler.Instance.FetchGO(listOfSpawns[i].enemyToSpawn.name);
+                    // Attach SpawnZone and Reset the Enemy before anything
+                    newEnemy.GetComponent<EnemyBaseClass>().ResetEnemy(listOfSpawns[i].spawningZone, listOfSpawns[i].GetRandomPositionFromZone());
 
                     // Get a random path from the zone that you just spawned
                     //newEnemy.gameObject.GetComponent<PixieType1Script>().SetWaypointGroup(listOfSpawns[i].spawningZone.GetRandomPath());
-   
                 }
             }
-                
 
         }        
     }
-
-
 }

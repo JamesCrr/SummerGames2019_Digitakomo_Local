@@ -10,14 +10,13 @@ public class ObjectPooler : MonoBehaviour
     [System.Serializable]
     public class PoolerTemplate
     {
-        
         public GameObject prefabToCreate = null;
         public int amountToCreate = 10;
         public int amountToAdd = 5;
 
-        [System.NonSerialized]
         // Key to identify the Object
-        public string key = "";
+        [System.NonSerialized]
+        public string name = "";
         [System.NonSerialized]
         // Own list to store which objects have been created
         public List<GameObject> listOfCreatedObjects = new List<GameObject>();
@@ -30,6 +29,12 @@ public class ObjectPooler : MonoBehaviour
 
     private void Awake()
     {
+        if(Instance != null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+
         Instance = this;
     }
     // Start is called before the first frame update
@@ -39,17 +44,17 @@ public class ObjectPooler : MonoBehaviour
         foreach (PoolerTemplate item in listOfPools)
         {
             // Set the Key
-            item.key = item.prefabToCreate.name;
+            item.name = item.prefabToCreate.name;
             // Add into Dictionary
-            dictionaryOfPools.Add(item.key, item);
+            dictionaryOfPools.Add(item.name, item);
 
             // Create all the objects
-            for (int i = 0; i < dictionaryOfPools[item.key].amountToCreate; ++i)
+            for (int i = 0; i < dictionaryOfPools[item.name].amountToCreate; ++i)
             {
-                GameObject newObj = Instantiate(dictionaryOfPools[item.key].prefabToCreate);
+                GameObject newObj = Instantiate(dictionaryOfPools[item.name].prefabToCreate);
                 newObj.SetActive(false);
                 // Add to own list to keep track
-                dictionaryOfPools[item.key].listOfCreatedObjects.Add(newObj);
+                dictionaryOfPools[item.name].listOfCreatedObjects.Add(newObj);
             }
         }
     }

@@ -27,6 +27,8 @@ public class SpawnZone : MonoBehaviour
     {
         if (!renderDebugBox)
             return;
+        if (centerPoint == null)
+            centerPoint = this.transform;
 
         // Change the color
         Gizmos.color = new Color(1, 0, 0, 0.5f);
