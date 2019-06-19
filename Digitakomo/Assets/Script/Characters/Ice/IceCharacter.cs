@@ -15,8 +15,19 @@ public class IceCharacter : Character
     protected int latestDirection = 4;
     private float NextSpecialFire;
 
+    // ice platform
+    public IcePlatform icePlatform;
+    private SpriteRenderer iceRender;
+    private Collider2D iceCollider;
+
     void Start()
     {
+        iceRender = icePlatform.GetComponent<SpriteRenderer>();
+        iceCollider = icePlatform.GetComponent<Collider2D>();
+
+        iceRender.enabled = false;
+        iceCollider.enabled = false;
+
         SpecialFireRate = IceMissile.firerate;
         myRb2D = GetComponent<Rigidbody2D>();
         // Calculate how many jumps we can do
@@ -206,6 +217,9 @@ public class IceCharacter : Character
 
     public virtual void CreateIcePlatform()
     {
+        iceRender.enabled = true;
+        iceCollider.enabled = true;
+        icePlatform.transform.position = transform.position - new Vector3(0, 2f, 0);
         // ObjectPooler op = ObjectPooler.Instance;
         // op.FetchGO("IcePlatform").GetComponent<IcePlatform>().recreate(transform.position);
     }
