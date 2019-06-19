@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 7742146412605758494}
   - component: {fileID: 6540502037353988381}
   - component: {fileID: 2847548628325861845}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PixieType1_Proj
-  m_TagString: Untagged
+  m_TagString: EnemyProj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
