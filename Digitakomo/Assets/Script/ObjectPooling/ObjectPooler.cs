@@ -59,6 +59,8 @@ public class ObjectPooler : MonoBehaviour
         }
     }
 
+    // Returns the Game Object that has the same name passed in
+    // With active true
     public GameObject FetchGO(string newKey)
     {
         // Does key exists?
@@ -88,5 +90,17 @@ public class ObjectPooler : MonoBehaviour
         int maxCount = dictionaryOfPools[newKey].listOfCreatedObjects.Count;
         dictionaryOfPools[newKey].listOfCreatedObjects[maxCount - 1].SetActive(true);
         return dictionaryOfPools[newKey].listOfCreatedObjects[maxCount - 1];
+    }
+
+    // Returns the Game Object that has the same name passed in
+    // With active true and sets position
+    public GameObject FetchGO_Pos(string newKey, Vector2 newPos)
+    {
+        GameObject newObj = FetchGO(newKey);
+        newObj.transform.position = newPos;
+        //if (newObj.GetComponent<Rigidbody2D>())
+        //    newObj.GetComponent<Rigidbody2D>().position = newPos;
+
+        return newObj;
     }
 }

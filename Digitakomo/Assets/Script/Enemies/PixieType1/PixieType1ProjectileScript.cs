@@ -33,6 +33,10 @@ public class PixieType1ProjectileScript : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
             return;
 
+        // Spawn new Puddle if hit groud
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            ObjectPooler.Instance.FetchGO_Pos("PixieType1_PuddleProj", transform.position);
+
         gameObject.SetActive(false);
     }
 }
