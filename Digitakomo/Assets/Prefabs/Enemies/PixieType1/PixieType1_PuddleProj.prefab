@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6426018998362606826}
   - component: {fileID: 7962798612493401247}
   - component: {fileID: 923011175342005097}
+  - component: {fileID: 7898491693394778216}
   m_Layer: 11
   m_Name: PixieType1_PuddleProj
   m_TagString: EnemyProj
@@ -114,3 +115,15 @@ PolygonCollider2D:
       - {x: 0.099999994, y: -0.074999996}
       - {x: 0.099999994, y: 0.055}
       - {x: 0.049999997, y: 0.099999994}
+--- !u!114 &7898491693394778216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5482276902031032947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0b70cc386d342b49905859c8119ae5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
