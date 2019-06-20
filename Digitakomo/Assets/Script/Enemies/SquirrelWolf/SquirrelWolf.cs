@@ -22,6 +22,12 @@ public class SquirrelWolf : EnemyBaseClass
     // How far before we use melee to attack
     float minimumMeleeRange = 4.0f;
 
+    [SerializeField]
+    // Ground Cast
+    Transform groundCast = null;
+    [SerializeField]
+    float groundCastLength = 2.0f;
+
 
     // Unity Stuff
     // Get referrence to the target Object
@@ -31,6 +37,7 @@ public class SquirrelWolf : EnemyBaseClass
     // Start is called before the first frame update
     void Start()
     {
+        myRb2D = GetComponent<Rigidbody2D>();
         currentState = STATES.S_WALKTOEGG;
     }
 
@@ -60,6 +67,8 @@ public class SquirrelWolf : EnemyBaseClass
                     // set the position of egg and move there
                     targetPosition = Egg.Instance.transform.position;
 
+                    // Move enemy
+                    Move();
                 }
                 break;
             case STATES.S_WALKTOPLAYER:
@@ -85,6 +94,8 @@ public class SquirrelWolf : EnemyBaseClass
     {
         // Get if we have hit anything, player or egg
         result = Physics2D.OverlapCircle(transform.position, playerDetectionRange, LayerMask.NameToLayer("Player"));
+        if (result == null)
+            return null;
         if (result.gameObject.tag != "Player")
             return null;
 
@@ -99,8 +110,13 @@ public class SquirrelWolf : EnemyBaseClass
         // Check if need to flip enemy
         FlipEnemy();
 
+        Debug.DrawLine(groundCast.position, groundCast.position + (Vector3.down * groundCastLength), Color.red);
         // Check if we can even move
-        
+        if (Physics2D.Linecast(groundCast.position, groundCast.position + (Vector3.down * groundCastLength)))
+        {
+            // Move
+            myRb2D.MovePosition(myRb2D.position + (direction.normalized * moveSpeed * Time.deltaTime));
+        }
     }
     public override void ResetEnemy(SpawnZone newSpawnZone, Vector3 newPos)
     {

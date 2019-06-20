@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerProj
   - EnemyProj
+  - Egg
   layers:
   - Default
   - TransparentFX
