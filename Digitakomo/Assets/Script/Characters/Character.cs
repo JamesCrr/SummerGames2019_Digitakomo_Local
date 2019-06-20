@@ -93,7 +93,7 @@ public class Character : MonoBehaviour
 
     protected virtual void Update()
     {
-        handleInput();
+        HandleInput();
         // Increase gravity if player has jumped and is currently falling
         if (myRb2D.velocity.y < 0)
             myRb2D.velocity += Vector2.up * (Physics2D.gravity.y * fallingMultiplyer) * Time.deltaTime;
@@ -212,7 +212,7 @@ public class Character : MonoBehaviour
         return MP;
     }
 
-    private void handleInput()
+    private void HandleInput()
     {
         float moveLeft = Input.GetAxisRaw("Player" + player + "MoveLeft");
         float moveRight = Input.GetAxisRaw("Player" + player + "MoveRight");
