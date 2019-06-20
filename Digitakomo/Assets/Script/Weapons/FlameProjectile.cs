@@ -21,7 +21,7 @@ public class FlameProjectile : Weapon
         base.FixedUpdate();
         if (isActiveAndEnabled)
         {
-            transform.localScale += new Vector3(0.1f, 0.1f, 0);
+            transform.localScale += new Vector3(0.05f, 0.05f, 0);
         }
     }
 

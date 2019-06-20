@@ -78,9 +78,7 @@ public class Character : MonoBehaviour
     {
         // Get latest Horizontal Input from player
         horizontalInput = Input.GetAxisRaw("Horizontal");
-
-        // rotate please!|!!
-        Debug.Log(horizontalInput);
+        
         if (horizontalInput == -1)
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
