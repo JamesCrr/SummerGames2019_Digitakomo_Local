@@ -25,9 +25,19 @@ public class SquirrelWolf : EnemyBaseClass
     [SerializeField]
     // Minimum attacking Distance for melee
     float meleeAttackDistance = 1.0f;
+    [Header("Shooting")]
+    // What to shoot
     [SerializeField]
-    // Maximum attacking Distance for ranged
-    float maxRangeAttack = 5.0f;
+    GameObject projectilePrefab = null;
+    [SerializeField]
+    Transform shootingPos = null;
+    [SerializeField]
+    // Maximum Attack Range
+    float maxShootingRange = 5.0f;
+    [SerializeField]
+    float timeForProjDrop = 3.0f;   // How long for the projectile to drop
+    [SerializeField]
+    float timeToHitTarget = 1.0f;   // How long for the projectile to hit smth
 
 
     [SerializeField]
@@ -73,13 +83,13 @@ public class SquirrelWolf : EnemyBaseClass
                         return;
                     }
                     // set the position of egg and move there
-                    targetPosition = Egg.Instance.transform.position;
+                    targetObject = Egg.Instance.gameObject;
 
                     // Move enemy
                     if(!MoveWolf())
                     {
                         // check if we can shoot projectile, if not walk back
-                        if ((targetPosition - (Vector2)transform.position).sqrMagnitude < maxRangeAttack)
+                        if ((targetObject.transform.position - transform.position).sqrMagnitude <= (maxShootingRange*maxShootingRange))
                         {
                             currentState = STATES.S_SHOOT;
                             return;
@@ -87,16 +97,17 @@ public class SquirrelWolf : EnemyBaseClass
                         // Walk back
                         currentState = STATES.S_WALKBACK;
                         TurnWolfAround();
+                        return;
                     }
 
                     // Check if we can attack using melee
-                    if ((targetPosition - (Vector2)transform.position).sqrMagnitude < meleeAttackDistance)
+                    if ((targetObject.transform.position - transform.position).sqrMagnitude < meleeAttackDistance)
                         currentState = STATES.S_MELEE;
                 }
                 break;
             case STATES.S_WALKTOPLAYER:
                 {
-                    
+                    // check if we can melee player
                 }
                 break;
             case STATES.S_WALKBACK:
@@ -125,13 +136,28 @@ public class SquirrelWolf : EnemyBaseClass
                 break;
             case STATES.S_SHOOT:
                 {
+                    attackTimer -= Time.deltaTime;
+                    if(attackTimer < 0.0f)
+                    {
+                        Shoot();
+                        // Reset Timer
+                        attackTimer = 100000.0f;//attackTime;
 
+                        // Is a player in range?
+                        //targetObject = IsPlayerInRange();
+                        //if (targetObject != null)    // Found Player
+                        //{
+                        //    currentState = STATES.S_WALKTOPLAYER;
+                        //    return;
+                        //}
+                    }
                 }
                 break;
         }
     }
 
     // Returns the player Object if he is in Range
+    // Does not count EGG as player
     GameObject IsPlayerInRange()
     {
         // Get if we have hit anything, player or egg
@@ -150,6 +176,7 @@ public class SquirrelWolf : EnemyBaseClass
     {
         // set the new direction
         direction = targetPosition - myRb2D.position;
+        direction.y = 0.0f;
         // Check if need to flip enemy
         FlipEnemy();
 
@@ -185,6 +212,19 @@ public class SquirrelWolf : EnemyBaseClass
         direction = -direction;
         targetPosition.Set(transform.position.x + direction.x, targetPosition.y);
     }
+    // Shooting Logic
+    private void Shoot()
+    {
+        GameObject newProj = ObjectPooler.Instance.FetchGO_Pos(projectilePrefab.name, shootingPos.position);
+
+        Vector2 launchVelocity = Vector2.zero;
+        launchVelocity.x = (targetObject.transform.position.x - shootingPos.position.x) / timeToHitTarget;    // Initial velocity in X axis
+        launchVelocity.y = -(targetObject.transform.position.y + (0.5f * Physics2D.gravity.y * timeForProjDrop * timeForProjDrop) - shootingPos.position.y) / timeToHitTarget;
+        //launchVelocity.Set(Mathf.Cos(45.0f) * projectileSpeed, Mathf.Sin(45.0f) * projectileSpeed);
+
+        // Add the velocity to the object
+        newProj.GetComponent<Rigidbody2D>().velocity = launchVelocity;
+    }
 
 
     #region Overriden
@@ -195,11 +235,14 @@ public class SquirrelWolf : EnemyBaseClass
     #endregion
 
 
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.red;
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
 
-    //    Gizmos.DrawLine(groundCast.position, groundCast.position + (Vector3.down * groundCastLength));
-    //    Gizmos.DrawWireSphere(transform.position, playerDetectionRange);
-    //}
+        Gizmos.DrawLine(groundCast.position, groundCast.position + (Vector3.down * groundCastLength));
+        Gizmos.DrawWireSphere(transform.position, playerDetectionRange);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, maxShootingRange);
+    }
 }

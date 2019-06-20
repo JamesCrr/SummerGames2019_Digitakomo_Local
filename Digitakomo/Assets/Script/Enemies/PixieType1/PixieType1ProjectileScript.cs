@@ -35,7 +35,7 @@ public class PixieType1ProjectileScript : MonoBehaviour
 
         // Spawn new Puddle if hit groud
         if(collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
-            ObjectPooler.Instance.FetchGO_Pos("PixieType1_PuddleProj", transform.position);
+            ObjectPooler.Instance.FetchGO_Pos("PT1_PuddleProj", transform.position);
 
         gameObject.SetActive(false);
     }

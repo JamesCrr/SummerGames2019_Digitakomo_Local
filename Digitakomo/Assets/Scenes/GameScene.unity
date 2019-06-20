@@ -250,7 +250,7 @@ MonoBehaviour:
   - enemyToSpawn: {fileID: 788284937499773471, guid: f8c3b997bfbcc194b9bbf2357174a7fa,
       type: 3}
     spawnInterval: 1
-    maxSpawnCount: 2
+    maxSpawnCount: 0
   centerPoint: {fileID: 213845426}
   zoneDimensions: {x: 1, y: 1}
   renderDebugBox: 1
@@ -924,6 +924,10 @@ MonoBehaviour:
     amountToCreate: 5
     amountToAdd: 5
   - prefabToCreate: {fileID: 2947897018553184564, guid: 7e8d961d76bee1e4eb6ddcf2fbd24867,
+      type: 3}
+    amountToCreate: 5
+    amountToAdd: 5
+  - prefabToCreate: {fileID: 7652022669352611591, guid: 0f43bf2a6b1923f4084e9d0d959c5548,
       type: 3}
     amountToCreate: 5
     amountToAdd: 5

@@ -14,7 +14,9 @@ public class PixieType1Script : EnemyBaseClass
     float howLongToStopFor = 2.0f;  // How long each stop is
     float stopTimer = 0.0f; // Countdown until we move again
     bool isStopped = false;   // Have we stopped?
-   
+    // What to shoot
+    [SerializeField]
+    GameObject projectilePrefab = null;
 
     // Used to identify which wayPoint group are we assigned to
     int waypointGroup = -1;
@@ -84,7 +86,7 @@ public class PixieType1Script : EnemyBaseClass
     // Function to encapsulate the Attacking Logic
     void Attack()
     {
-        GameObject go = ObjectPooler.Instance.FetchGO("PixieType1_Proj");
+        GameObject go = ObjectPooler.Instance.FetchGO(projectilePrefab.name);
         go.GetComponent<Rigidbody2D>().position = transform.position;
 
         // reset timer
