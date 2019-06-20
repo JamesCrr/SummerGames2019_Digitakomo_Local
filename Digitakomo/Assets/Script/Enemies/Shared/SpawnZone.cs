@@ -4,6 +4,70 @@ using UnityEngine;
 
 public class SpawnZone : MonoBehaviour
 {
+    // Class used to contain the spawning Template
+    [System.Serializable]
+    class SpawningTemplate
+    {
+        // The Enemy Prefab to spawn when timer reaches 0
+        public GameObject enemyToSpawn = null;
+        // How often to spawn the Enemy
+        [Header("Spawn Intervals")]
+        public float spawnInterval = 0.0f;
+        float spawnTimer = 1.0f;
+        [Header("Max Spawn Count")]
+        public int maxSpawnCount = 1;
+        int spawnCounter = 0;
+        // Where to spawn the Enemy
+        [System.NonSerialized]
+        public SpawnZone spawningZone = null;
+
+
+        // Updates the Spawn Timer and when timer reaches 0
+        // Returns true, if not always returns false
+        public bool UpdateTimer()
+        {
+            // Have we spawned all enemies
+            if (spawnCounter == maxSpawnCount)
+                return false;
+            // Count down Timer
+            spawnTimer -= Time.deltaTime;
+            if (spawnTimer > 0.0f)
+                return false;
+
+            // Increment Counter
+            spawnCounter++;
+            // Reset Timer
+            spawnTimer = spawnInterval;
+            return true;
+        }
+        // Returns a random position from the spawning Zone, if provided.
+        // If not, returns Vector3.zero;
+        public Vector3 GetRandomPositionFromZone()
+        {
+            // If not center point to referrnce from
+            if (spawningZone.centerPoint == null)
+                return Vector3.zero;
+            // Get a random position
+            float xPos = Random.Range(spawningZone.centerPoint.position.x - spawningZone.zoneDimensions.x, spawningZone.centerPoint.position.x + spawningZone.zoneDimensions.x);
+            float yPos = Random.Range(spawningZone.centerPoint.position.y - spawningZone.zoneDimensions.y, spawningZone.centerPoint.position.y + spawningZone.zoneDimensions.y);
+            // Return the new position
+            return new Vector3(xPos, yPos, 1.0f);
+        }
+        // Used to check if we have spawned all the enemies from this template
+        public bool SpawnedAllEnemies()
+        {
+            if (spawnCounter >= maxSpawnCount)
+                return true;
+            return false;
+        }
+    }
+    [Header("Enemies To spawn")]
+    [SerializeField]
+    // The Enemies to spawn
+    List<SpawningTemplate> listOfEnemies = new List<SpawningTemplate>();
+
+
+    // Zone Related Data
     [Header("Zone Width and Height")]
     public Transform centerPoint = null;
     public Vector2 zoneDimensions = Vector2.zero;
@@ -12,7 +76,44 @@ public class SpawnZone : MonoBehaviour
     [Header("Waypoint Groups to use")]
     public List<WaypointGroup> listOfAvaliablePaths = new List<WaypointGroup>();
 
-    
+
+    private void Start()
+    {
+        // Attach this's transform to all the templates
+        foreach (SpawningTemplate item in listOfEnemies)
+        {
+            item.spawningZone = this;
+        }
+    }
+
+
+    private void Update()
+    {
+        // Update the timers for the enemy spawning template
+        foreach (SpawningTemplate spawn in listOfEnemies)
+        {
+            // have we spawned all enemies?
+            if (!spawn.SpawnedAllEnemies())
+            {
+                // is it time to spawn
+                if (spawn.UpdateTimer())
+                {
+                    // Fetch enemy
+                    GameObject newEnemy = ObjectPooler.Instance.FetchGO(spawn.enemyToSpawn.name);
+                    // Attach SpawnZone and Reset the Enemy before anything
+                    newEnemy.GetComponent<EnemyBaseClass>().ResetEnemy(spawn.spawningZone, spawn.GetRandomPositionFromZone());
+
+                    // Get a random path from the zone that you just spawned
+                    //newEnemy.gameObject.GetComponent<PixieType1Script>().SetWaypointGroup(listOfSpawns[i].spawningZone.GetRandomPath());
+                }
+            }
+        }
+
+
+    }
+
+
+
     // Returns you a WaypointGroup ID from this zone
     public int GetRandomPath()
     {
