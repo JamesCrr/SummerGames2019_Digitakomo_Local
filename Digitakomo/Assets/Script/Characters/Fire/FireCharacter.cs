@@ -6,72 +6,10 @@ public class FireCharacter : Character
     public FlameProjectile flameThrower;
     private float SpecialFireRate;
 
-    public float PunchRate = 0.1f;
-    private float NextPunch;
-
-
-    protected bool WPressed = false;
-    protected bool APressed = false;
-    protected bool DPressed = false;
-    protected int latestDirection = 4;
-    private float NextSpecialFire;
-
     // Start is called before the first frame update
     void Start()
     {
         SpecialFireRate = flameThrower.firerate;
-    }
-
-    protected override void Update()
-    {
-        base.Update();
-
-
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            WPressed = true;
-        }
-        else if (Input.GetKeyUp(KeyCode.W))
-        {
-            WPressed = false;
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            APressed = true;
-        }
-        else if (Input.GetKeyUp(KeyCode.A))
-        {
-            APressed = false;
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            DPressed = true;
-        }
-        else if (Input.GetKeyUp(KeyCode.D))
-        {
-            DPressed = false;
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            IsAttacking = true;
-            NextPunch = Time.time;
-            AttackCollider.enabled = true;
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            IsAttacking = false;
-            AttackCollider.enabled = false;
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            IsSpecialAttacking = true;
-            NextSpecialFire = Time.time;
-        }
-        else if (Input.GetMouseButtonUp(1))
-        {
-            IsSpecialAttacking = false;
-        }
     }
 
     protected override void FixedUpdate()

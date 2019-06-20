@@ -56,9 +56,20 @@ public class Character : MonoBehaviour
     protected bool IsAttacking = false;
     protected bool IsSpecialAttacking = false;
     protected Collider2D AttackCollider;
+    public float PunchRate = 0.1f;
+    protected float NextPunch;
+    protected bool WPressed = false;
+    protected bool APressed = false;
+    protected bool DPressed = false;
+    protected int latestDirection = 4;
+    protected float NextSpecialFire;
 
     // Animation
     private Animator Animate;
+
+    public int player = 1;
+
+
 
     // Start is called before the first frame update
     void Awake()
@@ -76,34 +87,10 @@ public class Character : MonoBehaviour
 
     protected virtual void Update()
     {
-        // Get latest Horizontal Input from player
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        
-        if (horizontalInput == -1)
-        {
-            transform.rotation = Quaternion.Euler(0, 180, 0);
-        }
-        else if (horizontalInput == 1)
-        {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
-
+        handleInput();
         // Increase gravity if player has jumped and is currently falling
         if (myRb2D.velocity.y < 0)
             myRb2D.velocity += Vector2.up * (Physics2D.gravity.y * fallingMultiplyer) * Time.deltaTime;
-        // If player wants to jump
-        if (Input.GetButtonDown("Jump"))
-            Jump();
-
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            isLockMovement += 1;
-        }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            isLockMovement -= 1;
-        }
-
         Animate.SetBool("Attacking", IsAttacking);
     }
 
@@ -187,5 +174,91 @@ public class Character : MonoBehaviour
         }
         Energy -= energyToUse;
         return Energy;
+    }
+
+    private void handleInput()
+    {
+        float moveLeft = Input.GetAxisRaw("Player" + player + "MoveLeft");
+        float moveRight = Input.GetAxisRaw("Player" + player + "MoveRight");
+        float defense = Input.GetAxisRaw("Player" + player + "Defense");
+        float attack = Input.GetAxisRaw("Player" + player + "Attack");
+        float specialAttack = Input.GetAxisRaw("Player" + player + "SpecialAttack");
+        float lookUp = Input.GetAxisRaw("Player" + player + "LookUp");
+        bool jump = Input.GetButtonDown("Player" + player + "Jump");
+        bool lockMovementDown = Input.GetButtonDown("Player" + player + "LockMovement");
+        bool lockMovementUp = Input.GetButtonUp("Player" + player + "LockMovement");
+
+        // Get latest Horizontal Input from player
+        horizontalInput = moveRight - moveLeft;
+
+
+        if (horizontalInput == -1)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+        else if (horizontalInput == 1)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+
+        // If player wants to jump
+        if (jump)
+            Jump();
+
+        if (lockMovementDown)
+        {
+            isLockMovement += 1;
+        }
+        if (lockMovementUp)
+        {
+            isLockMovement -= 1;
+        }
+
+        if (Input.GetButtonDown("Player" + player + "LookUp"))
+        {
+            WPressed = true;
+        }
+        else if (Input.GetButtonUp("Player" + player + "LookUp"))
+        {
+            WPressed = false;
+        }
+
+        if (Input.GetButtonDown("Player" + player + "MoveLeft"))
+        {
+            APressed = true;
+        }
+        else if (Input.GetButtonUp("Player" + player + "MoveLeft"))
+        {
+            APressed = false;
+        }
+        if (Input.GetButtonDown("Player" + player + "MoveRight"))
+        {
+            DPressed = true;
+        }
+        else if (Input.GetButtonUp("Player" + player + "MoveRight"))
+        {
+            DPressed = false;
+        }
+
+        if (Input.GetButtonDown("Player" + player + "Attack"))
+        {
+            IsAttacking = true;
+            NextPunch = Time.time;
+            AttackCollider.enabled = true;
+        }
+        else if (Input.GetButtonUp("Player" + player + "Attack"))
+        {
+            IsAttacking = false;
+            AttackCollider.enabled = false;
+        }
+        if (Input.GetButtonDown("Player" + player + "SpecialAttack"))
+        {
+            IsSpecialAttacking = true;
+            NextSpecialFire = Time.time;
+        }
+        else if (Input.GetButtonUp("Player" + player + "SpecialAttack"))
+        {
+            IsSpecialAttacking = false;
+        }
     }
 }

@@ -6,15 +6,6 @@ public class IceCharacter : Character
     public IceMissile IceMissile;
     private float SpecialFireRate;
 
-    public float PunchRate = 0.1f;
-    private float NextPunch;
-
-    protected bool WPressed = false;
-    protected bool APressed = false;
-    protected bool DPressed = false;
-    protected int latestDirection = 4;
-    private float NextSpecialFire;
-
     // ice platform
     public IcePlatform icePlatform;
     private SpriteRenderer iceRender;
@@ -32,59 +23,6 @@ public class IceCharacter : Character
         myRb2D = GetComponent<Rigidbody2D>();
         // Calculate how many jumps we can do
         jumpsLeft = 1 + extraJumps;
-    }
-
-    // Update is called once per frame
-    protected override void Update()
-    {
-        base.Update();
-
-
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            WPressed = true;
-        }
-        else if (Input.GetKeyUp(KeyCode.W))
-        {
-            WPressed = false;
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            APressed = true;
-        }
-        else if (Input.GetKeyUp(KeyCode.A))
-        {
-            APressed = false;
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            DPressed = true;
-        }
-        else if (Input.GetKeyUp(KeyCode.D))
-        {
-            DPressed = false;
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            IsAttacking = true;
-            NextPunch = Time.time;
-            AttackCollider.enabled = true;
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            IsAttacking = false;
-            AttackCollider.enabled = false;
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            IsSpecialAttacking = true;
-            NextSpecialFire = Time.time;
-        }
-        else if (Input.GetMouseButtonUp(1))
-        {
-            IsSpecialAttacking = false;
-        }
     }
 
     // Fixed Update called every physics Update
@@ -220,8 +158,6 @@ public class IceCharacter : Character
         iceRender.enabled = true;
         iceCollider.enabled = true;
         icePlatform.transform.position = transform.position - new Vector3(0, 2f, 0);
-        // ObjectPooler op = ObjectPooler.Instance;
-        // op.FetchGO("IcePlatform").GetComponent<IcePlatform>().recreate(transform.position);
     }
 
     private Vector3 GetCreatePosition()
