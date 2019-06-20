@@ -70,10 +70,12 @@ MonoBehaviour:
   hp: 1
   damage: 1
   moveSpeed: 1
-  playerDetectionRange: 0
+  attackTime: 2
+  playerDetectionRange: 4
   minimumMeleeRange: 4
+  meleeAttackDistance: 5
   groundCast: {fileID: 5099603340387856449}
-  groundCastLength: 2
+  groundCastLength: 0.5
 --- !u!1 &4470796008865141412
 GameObject:
   m_ObjectHideFlags: 0

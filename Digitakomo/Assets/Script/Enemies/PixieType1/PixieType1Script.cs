@@ -14,10 +14,7 @@ public class PixieType1Script : EnemyBaseClass
     float howLongToStopFor = 2.0f;  // How long each stop is
     float stopTimer = 0.0f; // Countdown until we move again
     bool isStopped = false;   // Have we stopped?
-    // Attack
-    [SerializeField]
-    float attackTime = 2.0f;
-    float attackTimer = 0.0f;
+   
 
     // Used to identify which wayPoint group are we assigned to
     int waypointGroup = -1;

@@ -21,6 +21,9 @@ public class SquirrelWolf : EnemyBaseClass
     [SerializeField]
     // How far before we use melee to attack
     float minimumMeleeRange = 4.0f;
+    [SerializeField]
+    // Minimum attacking Distance for melee
+    float meleeAttackDistance = 5.0f;
 
     [SerializeField]
     // Ground Cast
@@ -68,7 +71,14 @@ public class SquirrelWolf : EnemyBaseClass
                     targetPosition = Egg.Instance.transform.position;
 
                     // Move enemy
-                    Move();
+                    if(!MoveWolf())
+                    {
+                        // check if we shoot projectile, if not walk back?
+                    }
+
+                    // Check if we can attack using melee
+                    if ((targetPosition - (Vector2)transform.position).sqrMagnitude < meleeAttackDistance)
+                        currentState = STATES.S_MELEE;
                 }
                 break;
             case STATES.S_WALKTOPLAYER:
@@ -101,25 +111,41 @@ public class SquirrelWolf : EnemyBaseClass
 
         return result.gameObject;
     }
-
-
-    protected override void Move()
+    // Custom Move Function as we need to return a value
+    // Returns false when can no longer move
+    // Returns true if can still move
+    private bool MoveWolf()
     {
         // set the new direction
         direction = targetPosition - myRb2D.position;
         // Check if need to flip enemy
         FlipEnemy();
 
-        Debug.DrawLine(groundCast.position, groundCast.position + (Vector3.down * groundCastLength), Color.red);
         // Check if we can even move
         if (Physics2D.Linecast(groundCast.position, groundCast.position + (Vector3.down * groundCastLength)))
         {
             // Move
             myRb2D.MovePosition(myRb2D.position + (direction.normalized * moveSpeed * Time.deltaTime));
+
+            return true;
         }
+        return false;
     }
+
+
+    #region Overriden
     public override void ResetEnemy(SpawnZone newSpawnZone, Vector3 newPos)
     {
         
     }
+    #endregion
+
+
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.red;
+
+    //    Gizmos.DrawLine(groundCast.position, groundCast.position + (Vector3.down * groundCastLength));
+    //    Gizmos.DrawWireSphere(transform.position, playerDetectionRange);
+    //}
 }

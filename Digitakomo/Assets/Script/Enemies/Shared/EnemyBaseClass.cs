@@ -13,13 +13,17 @@ public abstract class EnemyBaseClass : MonoBehaviour
     protected DIRECTION facingDirection = DIRECTION.D_RIGHT;
 
     // Stats
-    [Header("Stats")]
+    [Header("EnemyBase Class")]
     [SerializeField]
     protected int hp = 1;
     [SerializeField]
     protected int damage = 1;
     [SerializeField]
     protected float moveSpeed = 1.0f;
+    // Attack
+    [SerializeField]
+    protected float attackTime = 2.0f;
+    protected float attackTimer = 0.0f;
 
     // Spawn Zone
     protected SpawnZone spawningZone = null;
