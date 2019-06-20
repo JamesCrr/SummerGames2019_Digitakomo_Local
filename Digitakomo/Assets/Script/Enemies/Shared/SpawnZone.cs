@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpawnZone : MonoBehaviour
 {
+    #region Enemies To Spawn
     // Class used to contain the spawning Template
     [System.Serializable]
     class SpawningTemplate
@@ -65,7 +66,7 @@ public class SpawnZone : MonoBehaviour
     [SerializeField]
     // The Enemies to spawn
     List<SpawningTemplate> listOfEnemies = new List<SpawningTemplate>();
-
+    #endregion  
 
     // Zone Related Data
     [Header("Zone Width and Height")]

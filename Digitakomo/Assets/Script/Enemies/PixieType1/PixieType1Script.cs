@@ -3,10 +3,6 @@ using UnityEngine;
 
 public class PixieType1Script : EnemyBaseClass
 {
-    // Movement Data
-    [Header("Movement Data")]
-    [SerializeField]
-    float moveSpeed = 1.0f;
     // When to stop
     [Header("Stopping Data")]
     [SerializeField]
@@ -56,7 +52,7 @@ public class PixieType1Script : EnemyBaseClass
     }
 
     // Function to encapsulate the Moving Logic
-    void Move()
+    protected override void Move()
     {
         // if no waypoint yet, don't update
         if (waypointGroup == -1)
@@ -70,9 +66,9 @@ public class PixieType1Script : EnemyBaseClass
             if (whenToStopTimer <= 0.0f)
                 StopMovingObject_Timer();
 
-            // Move towards waypoint
-            direction = targetPosition - myRb2D.position;
-            myRb2D.MovePosition(myRb2D.position + (direction.normalized * moveSpeed * Time.deltaTime));
+            // Move towards using baseClass
+            base.Move();
+            
             // Check if we are reaching waypoint
             CheckNextWaypoint();
         }
