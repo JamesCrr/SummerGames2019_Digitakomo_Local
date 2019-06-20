@@ -237,9 +237,15 @@ public class Character : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
+        Animate.SetBool("Walking", horizontalInput == 0);
+
+
         // If player wants to jump
         if (jump)
+        {
+            Animate.SetTrigger("Jump");
             Jump();
+        }
 
         if (lockMovementDown)
         {
