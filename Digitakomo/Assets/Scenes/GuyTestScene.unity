@@ -193,6 +193,10 @@ MonoBehaviour:
       type: 3}
     amountToCreate: 10
     amountToAdd: 5
+  - prefabToCreate: {fileID: 13134480628171646, guid: 83cfcb08460dfcd47b3df5982aec4950,
+      type: 3}
+    amountToCreate: 10
+    amountToAdd: 5
 --- !u!1 &511784577
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,7 +300,7 @@ PrefabInstance:
     - target: {fileID: 6084726351510435941, guid: 20a8386fc65c10649b2ac71f49ec7a8d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3087911422333970231, guid: 20a8386fc65c10649b2ac71f49ec7a8d,
         type: 3}
@@ -476,6 +480,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FireCharacter
       objectReference: {fileID: 0}
+    - target: {fileID: 5324440216470088059, guid: f88ee3a8773118c4fa2448c3bae6c870,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 403571385494849996, guid: f88ee3a8773118c4fa2448c3bae6c870,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -548,7 +557,7 @@ PrefabInstance:
     - target: {fileID: 7883997970962599796, guid: 774623a0001b6e9478d7f2c375c10007,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7883997970962599796, guid: 774623a0001b6e9478d7f2c375c10007,
         type: 3}
@@ -618,7 +627,7 @@ PrefabInstance:
     - target: {fileID: 7883997970372169437, guid: 774623a0001b6e9478d7f2c375c10007,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7883997970372169437, guid: 774623a0001b6e9478d7f2c375c10007,
         type: 3}
@@ -628,7 +637,7 @@ PrefabInstance:
     - target: {fileID: 7883997970771670284, guid: 774623a0001b6e9478d7f2c375c10007,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7883997970771670284, guid: 774623a0001b6e9478d7f2c375c10007,
         type: 3}
@@ -638,7 +647,7 @@ PrefabInstance:
     - target: {fileID: 7883997971229290838, guid: 774623a0001b6e9478d7f2c375c10007,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7883997971229290838, guid: 774623a0001b6e9478d7f2c375c10007,
         type: 3}
@@ -648,7 +657,7 @@ PrefabInstance:
     - target: {fileID: 7883997972166422889, guid: 774623a0001b6e9478d7f2c375c10007,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7883997972166422889, guid: 774623a0001b6e9478d7f2c375c10007,
         type: 3}
