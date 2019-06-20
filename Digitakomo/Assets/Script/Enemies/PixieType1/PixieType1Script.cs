@@ -19,9 +19,6 @@ public class PixieType1Script : EnemyBaseClass
     float stopTimer = 0.0f; // Countdown until we move again
     bool isStopped = false;   // Have we stopped?
     // Attack
-    [Header("Attacking Data")]
-    [SerializeField]
-    GameObject projectilePrefab = null;
     [SerializeField]
     float attackTime = 2.0f;
     float attackTimer = 0.0f;

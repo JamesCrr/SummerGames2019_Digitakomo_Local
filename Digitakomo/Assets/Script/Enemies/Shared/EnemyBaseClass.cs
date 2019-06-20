@@ -21,4 +21,10 @@ public abstract class EnemyBaseClass : MonoBehaviour
 
     // Called after being Fetched
     public abstract void ResetEnemy(SpawnZone newSpawnZone, Vector3 newPos);
+
+    // Called to Flip Sprite
+    public virtual void FlipEnemy()
+    {
+
+    }
 }
