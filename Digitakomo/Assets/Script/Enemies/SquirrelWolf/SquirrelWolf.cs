@@ -9,6 +9,7 @@ public class SquirrelWolf : EnemyBaseClass
     {
         S_WALKTOEGG,
         S_WALKTOPLAYER,
+        S_WALKBACK,
         S_MELEE,
         S_SHOOT,
     }
@@ -23,7 +24,11 @@ public class SquirrelWolf : EnemyBaseClass
     float minimumMeleeRange = 4.0f;
     [SerializeField]
     // Minimum attacking Distance for melee
-    float meleeAttackDistance = 5.0f;
+    float meleeAttackDistance = 1.0f;
+    [SerializeField]
+    // Maximum attacking Distance for ranged
+    float maxRangeAttack = 5.0f;
+
 
     [SerializeField]
     // Ground Cast
@@ -73,7 +78,15 @@ public class SquirrelWolf : EnemyBaseClass
                     // Move enemy
                     if(!MoveWolf())
                     {
-                        // check if we shoot projectile, if not walk back?
+                        // check if we can shoot projectile, if not walk back
+                        if ((targetPosition - (Vector2)transform.position).sqrMagnitude < maxRangeAttack)
+                        {
+                            currentState = STATES.S_SHOOT;
+                            return;
+                        }
+                        // Walk back
+                        currentState = STATES.S_WALKBACK;
+                        TurnWolfAround();
                     }
 
                     // Check if we can attack using melee
@@ -83,7 +96,26 @@ public class SquirrelWolf : EnemyBaseClass
                 break;
             case STATES.S_WALKTOPLAYER:
                 {
+                    
+                }
+                break;
+            case STATES.S_WALKBACK:
+                {
+                    // Is a player in range?
+                    targetObject = IsPlayerInRange();
+                    if (targetObject != null)    // Found Player
+                    {
+                        currentState = STATES.S_WALKTOPLAYER;
+                        return;
+                    }
 
+                    // Move enemy
+                    if (!MoveWolf())
+                    {
+                        TurnWolfAround();
+                    }
+                    // set new target
+                    targetPosition = (Vector2)transform.position + direction;
                 }
                 break;
             case STATES.S_MELEE:
@@ -130,6 +162,28 @@ public class SquirrelWolf : EnemyBaseClass
             return true;
         }
         return false;
+    }
+    // Used to turn the wolf around
+    private void TurnWolfAround()
+    {
+        switch (facingDirection)
+        {
+            case DIRECTION.D_LEFT:
+                facingDirection = DIRECTION.D_RIGHT;
+                // Reverse the Object
+                transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+                break;
+            case DIRECTION.D_RIGHT:
+                facingDirection = DIRECTION.D_LEFT;
+                // Reverse the Object
+                transform.rotation = Quaternion.Euler(new Vector3(0, -180, 0));
+                break;
+        }
+        
+
+        // set new target
+        direction = -direction;
+        targetPosition.Set(transform.position.x + direction.x, targetPosition.y);
     }
 
 
