@@ -38,6 +38,7 @@ public class IceCharacter : Character
                 MoveHorizontal();
             }
         }
+        GetAttackDirection();
     }
 
 
@@ -140,7 +141,6 @@ public class IceCharacter : Character
 
         if (NextSpecialFire <= Time.time)
         {
-            Debug.Log("Special Attack");
             GameObject go = ObjectPooler.Instance.FetchGO("IceMissile");
             IceMissile icems = go.GetComponent<IceMissile>();
             icems.Restart();

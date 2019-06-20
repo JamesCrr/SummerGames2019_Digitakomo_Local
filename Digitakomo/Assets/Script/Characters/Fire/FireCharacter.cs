@@ -24,11 +24,11 @@ public class FireCharacter : Character
                 MoveHorizontal();
             }
         }
+        GetAttackDirection();
     }
 
     public override void MoveHorizontal()
     {
-        Debug.Log("move");
         // Check if we need to change direction
         if (horizontalInput > 0 && !facingRight)
         {
@@ -116,7 +116,6 @@ public class FireCharacter : Character
 
         if (NextSpecialFire <= Time.time)
         {
-            Debug.Log("Special Attack");
             GameObject go = ObjectPooler.Instance.FetchGO("FireProjectile");
             FlameProjectile firep = go.GetComponent<FlameProjectile>();
             firep.Restart();
