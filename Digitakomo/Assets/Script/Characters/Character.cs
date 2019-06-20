@@ -49,8 +49,10 @@ public class Character : MonoBehaviour
     protected Rigidbody2D myRb2D = null;
 
     // health and energy
-    public float HP = 500;
-    public float Energy = 200;
+    public float MaxHP = 500;
+    private float HP;
+    public float MaxEnergy = 200;
+    private float MP;
 
     // Attack
     protected bool IsAttacking = false;
@@ -63,6 +65,7 @@ public class Character : MonoBehaviour
     protected bool DPressed = false;
     protected int latestDirection = 4;
     protected float NextSpecialFire;
+    public float enerygyPerSpecialAttack = 20;
 
     // Animation
     private Animator Animate;
@@ -83,6 +86,9 @@ public class Character : MonoBehaviour
 
         myRb2D = GetComponent<Rigidbody2D>();
         Animate = GetComponent<Animator>();
+
+        HP = MaxHP;
+        MP = MaxEnergy;
     }
 
     protected virtual void Update()
@@ -101,6 +107,11 @@ public class Character : MonoBehaviour
             Attack();
         if (IsSpecialAttacking)
             SpecialAttack();
+
+        if (MP < MaxEnergy)
+        {
+            MP += 0.5f;
+        }
     }
 
     // Moving Horizontal, left and right
@@ -124,6 +135,21 @@ public class Character : MonoBehaviour
     public virtual void SpecialAttack()
     {
         throw new NotImplementedException();
+    }
+
+    protected bool IsHasEnoughEnergy(float energy)
+    {
+        return energy <= MP;
+    }
+
+    protected float ReduceEnergy(float energy)
+    {
+        if (!IsHasEnoughEnergy(energy))
+        {
+            throw new ArgumentException("Call Is has enough energy before reduce!!");
+        }
+        MP -= energy;
+        return MP;
     }
 
     // Check if we are grounded, are we touching the ground?
@@ -163,7 +189,7 @@ public class Character : MonoBehaviour
 
     public bool IsEnergyLeft(float energyToUse)
     {
-        return energyToUse <= Energy;
+        return energyToUse <= MP;
     }
 
     public float UseEnergy(float energyToUse)
@@ -172,8 +198,18 @@ public class Character : MonoBehaviour
         {
             throw new ArgumentException("eneryToUse must be more than energy, check to by IsEnergyLeftFirst");
         }
-        Energy -= energyToUse;
-        return Energy;
+        MP -= energyToUse;
+        return MP;
+    }
+
+    public float GetCurrentHP()
+    {
+        return HP;
+    }
+
+    public float GetCurrentMP()
+    {
+        return MP;
     }
 
     private void handleInput()

@@ -269,7 +269,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &403571385494849996
 Transform:
   m_ObjectHideFlags: 0
@@ -409,9 +409,10 @@ MonoBehaviour:
     m_Bits: 256
   extraJumps: 1
   fallingMultiplyer: 2
-  HP: 500
-  Energy: 200
+  MaxHP: 500
+  MaxEnergy: 200
   PunchRate: 0.1
+  enerygyPerSpecialAttack: 5
   player: 1
   flameThrower: {fileID: 7881657545065886293, guid: 83cfcb08460dfcd47b3df5982aec4950,
     type: 3}

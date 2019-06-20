@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7883997970372169436}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: groundcheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7883997970771670287}
   - component: {fileID: 7883997970771670286}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AttackCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 7883997970894729493}
   - component: {fileID: 7883997970894729495}
   - component: {fileID: 7883997970894729492}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 7883997970962599799}
   - component: {fileID: 7883997970962599787}
   - component: {fileID: 7883997970962599786}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: IceCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,9 +345,10 @@ MonoBehaviour:
   fallingMultiplyer: 2
   HP: 500
   Energy: 200
+  PunchRate: 0.1
+  player: 1
   IceMissile: {fileID: 8374536731700558200, guid: 0bc122d6f0e083c40b283f0e39bb065b,
     type: 3}
-  PunchRate: 0.1
   icePlatform: {fileID: 0}
 --- !u!95 &7883997970962599786
 Animator:
@@ -378,7 +379,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7883997971229290825}
   - component: {fileID: 7883997971229290824}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ShieldController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -422,7 +423,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7883997972166422888}
   - component: {fileID: 7883997972166422891}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}

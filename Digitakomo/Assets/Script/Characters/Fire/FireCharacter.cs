@@ -116,6 +116,12 @@ public class FireCharacter : Character
 
         if (NextSpecialFire <= Time.time)
         {
+            if (!IsHasEnoughEnergy(enerygyPerSpecialAttack))
+            {
+                return;
+            }
+
+            ReduceEnergy(enerygyPerSpecialAttack);
             GameObject go = ObjectPooler.Instance.FetchGO("FireProjectile");
             FlameProjectile firep = go.GetComponent<FlameProjectile>();
             firep.Restart();

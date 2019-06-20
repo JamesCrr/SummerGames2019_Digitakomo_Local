@@ -141,6 +141,12 @@ public class IceCharacter : Character
 
         if (NextSpecialFire <= Time.time)
         {
+            if (!IsHasEnoughEnergy(enerygyPerSpecialAttack))
+            {
+                return;
+            }
+
+            ReduceEnergy(enerygyPerSpecialAttack);
             GameObject go = ObjectPooler.Instance.FetchGO("IceMissile");
             IceMissile icems = go.GetComponent<IceMissile>();
             icems.Restart();
