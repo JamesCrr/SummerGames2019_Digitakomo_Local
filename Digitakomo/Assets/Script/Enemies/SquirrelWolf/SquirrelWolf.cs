@@ -35,8 +35,6 @@ public class SquirrelWolf : EnemyBaseClass
     // Maximum Attack Range
     float maxShootingRange = 5.0f;
     [SerializeField]
-    float timeForProjDrop = 3.0f;   // How long for the projectile to drop
-    [SerializeField]
     float timeToHitTarget = 1.0f;   // How long for the projectile to hit smth
 
 
@@ -57,6 +55,9 @@ public class SquirrelWolf : EnemyBaseClass
     {
         myRb2D = GetComponent<Rigidbody2D>();
         currentState = STATES.S_WALKTOEGG;
+
+        // Convert int to floats for easier calculation
+        timeToHitTarget = 1 / timeToHitTarget;
     }
 
     // Update is called once per frame
@@ -218,8 +219,8 @@ public class SquirrelWolf : EnemyBaseClass
         GameObject newProj = ObjectPooler.Instance.FetchGO_Pos(projectilePrefab.name, shootingPos.position);
 
         Vector2 launchVelocity = Vector2.zero;
-        launchVelocity.x = (targetObject.transform.position.x - shootingPos.position.x) / timeToHitTarget;    // Initial velocity in X axis
-        launchVelocity.y = -(targetObject.transform.position.y + (0.5f * Physics2D.gravity.y * timeForProjDrop * timeForProjDrop) - shootingPos.position.y) / timeToHitTarget;
+        launchVelocity.x = (targetObject.transform.position.x - shootingPos.position.x) * timeToHitTarget;    // Initial velocity in X axis
+        launchVelocity.y = -(-(targetObject.transform.position.y - shootingPos.position.y) + 0.5f * Physics2D.gravity.y * timeToHitTarget * timeToHitTarget) * timeToHitTarget;
         //launchVelocity.Set(Mathf.Cos(45.0f) * projectileSpeed, Mathf.Sin(45.0f) * projectileSpeed);
 
         // Add the velocity to the object
