@@ -71,7 +71,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 1
   damage: 1
-  moveSpeed: 1
+  moveSpeed: 3
   attackTime: 2
   playerDetectionRange: 4
   platformDetectOffset: {x: 1.58, y: 1.51}
@@ -85,7 +85,7 @@ MonoBehaviour:
   maxShootingRange: 3
   timeToHitTarget: 1
   groundCast: {fileID: 5099603340387856449}
-  groundCastLength: 0.5
+  groundCastLength: 0.09
   fleeTime: 5
 --- !u!1 &4008400323398300379
 GameObject:

@@ -13,9 +13,8 @@ public class SquirrelWolf : EnemyBaseClass
         S_WALKBACK,
         S_RUNAWAY,
 
-        S_JUMPING,
         S_MELEE,
-        S_SHOOT,
+        S_SHOOT_EGG,
     }
     STATES currentState;
     #region Data
@@ -60,6 +59,7 @@ public class SquirrelWolf : EnemyBaseClass
     Transform groundCast = null;
     [SerializeField]
     float groundCastLength = 2.0f;
+    RaycastHit2D rayhit2D = new RaycastHit2D();
     [Header("RunAwayTimer")]
     [SerializeField]
     float fleeTime = 5.0f;
@@ -74,7 +74,7 @@ public class SquirrelWolf : EnemyBaseClass
     void Start()
     {
         myRb2D = GetComponent<Rigidbody2D>();
-        currentState = STATES.S_EGG_SIMILARHEIGHT;
+        currentState = STATES.S_EGG_DIFFERENTHEIGHT;
 
         // Convert int to floats for easier calculation
         timeToHitTarget = 1 / timeToHitTarget;
@@ -103,6 +103,10 @@ public class SquirrelWolf : EnemyBaseClass
         {
             case STATES.S_EGG_SIMILARHEIGHT:
                 {
+                    // If not yet grounded, return;
+                    if (!isGrounded)
+                        return;
+
                     // Is a player in range?
                     targetObject = IsPlayerInRange();
                     if(targetObject != null)    // Found Player
@@ -110,9 +114,6 @@ public class SquirrelWolf : EnemyBaseClass
                         currentState = STATES.S_FOUNDPLAYER;
                         return;
                     }
-                    // Check if a change in state has been made
-                    //if (CheckHeightDifference())
-                    //    return;
 
 
                     // set the position of egg and move there
@@ -121,14 +122,13 @@ public class SquirrelWolf : EnemyBaseClass
                     // check if we can shoot projectile at egg
                     if ((moveTargetPos - myRb2D.position).sqrMagnitude <= (maxShootingRange * maxShootingRange))
                     {
-                        currentState = STATES.S_SHOOT;
+                        currentState = STATES.S_SHOOT_EGG;
                         return;
                     }
 
                     // Move enemy
                     if (!MoveWolf())
                     {
-
                         // If we don't find any platforms to jump to, then we turn back
                         Vector2 platformEdgePos = FindNearestPlatform();
                         if (platformEdgePos == Vector2.zero)
@@ -139,8 +139,6 @@ public class SquirrelWolf : EnemyBaseClass
                         }
                         else
                         {
-                            // Jump State
-                            currentState = STATES.S_JUMPING;
                             // Set new target and jump there
                             moveTargetPos = platformEdgePos;
                             JumpWolf(moveTargetPos);
@@ -156,9 +154,6 @@ public class SquirrelWolf : EnemyBaseClass
                 break;
             case STATES.S_EGG_DIFFERENTHEIGHT:
                 {
-                    // Check if a change in state has been made
-                    if (CheckHeightDifference())
-                        return;
                     // If we are not grounded yet, return
                     if (!isGrounded)
                         return;
@@ -170,7 +165,15 @@ public class SquirrelWolf : EnemyBaseClass
                         return;
                     }
 
-                    // the closet point to the egg
+                    // set the target as egg
+                    targetObject = Egg.Instance.gameObject;
+                    moveTargetPos = targetObject.transform.position;
+                    // Move enemy
+                    MoveWolf(false);
+
+                    // Once reached, 
+                    if (myRb2D.position.y <= targetObject.transform.position.y)
+                        currentState = STATES.S_EGG_SIMILARHEIGHT;
                 }
                 break;
             case STATES.S_FOUNDPLAYER:
@@ -216,8 +219,6 @@ public class SquirrelWolf : EnemyBaseClass
                         }
                         else
                         {
-                            // Jump State
-                            currentState = STATES.S_JUMPING;
                             // Set new target and jump there
                             moveTargetPos = platformEdgePos;
                             JumpWolf(moveTargetPos);
@@ -236,20 +237,13 @@ public class SquirrelWolf : EnemyBaseClass
                 break;
 
 
-            case STATES.S_JUMPING:
-                {
-                    // Check if we are reaching the target from jumping
-                    if (isGrounded)
-                        currentState = STATES.S_EGG_DIFFERENTHEIGHT;
-                }
-                break;
 
             case STATES.S_MELEE:
                 {
 
                 }
                 break;
-            case STATES.S_SHOOT:
+            case STATES.S_SHOOT_EGG:
                 {
                     attackTimer -= Time.deltaTime;
                     if(attackTimer < 0.0f)
@@ -348,31 +342,6 @@ public class SquirrelWolf : EnemyBaseClass
 
         return listOfPlatforms[closetIndex].gameObject.transform.position;
     }
-    // Checks the height difference between the egg and this enemy
-    // Returns true if a change in state has been made
-    // Returns false if no change has been made
-    bool CheckHeightDifference()
-    {
-        float diff = myRb2D.position.y - Egg.Instance.GetPosition().y;
-        if (diff <= 2.0f)
-        {
-            if(currentState != STATES.S_EGG_SIMILARHEIGHT)
-            {
-                currentState = STATES.S_EGG_SIMILARHEIGHT;
-                return true;
-            }
-        }
-        else
-        {
-            if(currentState != STATES.S_EGG_DIFFERENTHEIGHT)
-            {
-                currentState = STATES.S_EGG_DIFFERENTHEIGHT;
-                return true;
-            }
-        }
-
-        return false;
-    }
 
 
     // Custom Move Function as we need to return a value
@@ -382,12 +351,16 @@ public class SquirrelWolf : EnemyBaseClass
     {
         // set the new direction
         moveDirection = moveTargetPos - myRb2D.position;
-        moveDirection.y = 0.0f;
+        if (!isGrounded)
+            moveDirection.y = Physics2D.gravity.y;
+        else
+            moveDirection.y = 0.0f;
         moveDirection.Normalize();
 
         // Do we need to check if we can drop down
         if(checkBelow)
         {
+            // Cast below us
             // Check if we can even move
             if (Physics2D.Linecast(groundCast.position, groundCast.position + (Vector3.down * groundCastLength)))
             {
@@ -454,6 +427,11 @@ public class SquirrelWolf : EnemyBaseClass
     {
         isGrounded = true;
     }
+    public void LeftGrounded()
+    {
+        isGrounded = false;
+    }
+
 
     #region Overriden
     public override void ResetEnemy(SpawnZone newSpawnZone, Vector3 newPos)

@@ -6,7 +6,7 @@ public class groundCheck : MonoBehaviour
 {
     public SquirrelWolf attachedObj = null;
     [System.NonSerialized]
-    public bool startCheck = false;
+    public bool startCheck = true;
     public Platforms platformStandingOn = null;
 
 
@@ -23,5 +23,13 @@ public class groundCheck : MonoBehaviour
         // modify data
         attachedObj.SetGrounded();
         startCheck = false;
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer != LayerMask.NameToLayer("Ground"))
+            return;
+
+        attachedObj.LeftGrounded();
+        startCheck = true;
     }
 }
