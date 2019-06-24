@@ -8,23 +8,33 @@ public class SquirrelWolf : EnemyBaseClass
     enum STATES
     {
         S_WALKTOEGG,
-        S_WALKTOPLAYER,
+        S_FOUNDPLAYER,
         S_WALKBACK,
         S_MELEE,
         S_SHOOT,
     }
     STATES currentState;
+    #region Data
     [Header("SquirrelWolf Class")]
     [SerializeField]
     // How far to detect for player
     float playerDetectionRange = 0.0f;
     Collider2D result = null;
     [SerializeField]
+    // How far to detect for jumping platform 
+    Vector2 platformDetectOffset = Vector2.zero;    // The Position Offset of the detecting box
+    [SerializeField]
+    Vector2 platformDetectSize = Vector2.zero;      // Size of detecting box
+    List<Collider2D> listOfPlatforms = new List<Collider2D>();    // Used to store the platforms that we can jump to
+    ContactFilter2D contactFilter = new ContactFilter2D();      // To prevent me calling new everytime
+    [SerializeField]
     // How far before we use melee to attack
     float minimumMeleeRange = 4.0f;
     [SerializeField]
     // Minimum attacking Distance for melee
     float meleeAttackDistance = 1.0f;
+
+
     [Header("Shooting")]
     // What to shoot
     [SerializeField]
@@ -44,10 +54,10 @@ public class SquirrelWolf : EnemyBaseClass
     [SerializeField]
     float groundCastLength = 2.0f;
 
-
     // Unity Stuff
     // Get referrence to the target Object
     GameObject targetObject = null;
+    #endregion
 
 
     // Start is called before the first frame update
@@ -72,8 +82,6 @@ public class SquirrelWolf : EnemyBaseClass
     void UpdateStates()
     {
 
-        Debug.Log(groundCast.position);
-
         switch (currentState)
         {
             case STATES.S_WALKTOEGG:
@@ -82,7 +90,7 @@ public class SquirrelWolf : EnemyBaseClass
                     targetObject = IsPlayerInRange();
                     if(targetObject != null)    // Found Player
                     {
-                        currentState = STATES.S_WALKTOPLAYER;
+                        currentState = STATES.S_FOUNDPLAYER;
                         return;
                     }
                     // set the position of egg and move there
@@ -99,9 +107,9 @@ public class SquirrelWolf : EnemyBaseClass
                     if (!MoveWolf())
                     {
                         // Walk back
-                        currentState = STATES.S_WALKBACK;
-                        TurnWolfAround();
-                        return;
+                        //currentState = STATES.S_WALKBACK;
+                        //TurnWolfAround();
+                        //return;
                     }
 
                     // Check if we can attack using melee
@@ -109,9 +117,11 @@ public class SquirrelWolf : EnemyBaseClass
                         currentState = STATES.S_MELEE;
                 }
                 break;
-            case STATES.S_WALKTOPLAYER:
+            case STATES.S_FOUNDPLAYER:
                 {
                     // check if we can ATTACK player 
+
+
                 }
                 break;
             case STATES.S_WALKBACK:
@@ -120,7 +130,7 @@ public class SquirrelWolf : EnemyBaseClass
                     targetObject = IsPlayerInRange();
                     if (targetObject != null)    // Found Player
                     {
-                        currentState = STATES.S_WALKTOPLAYER;
+                        currentState = STATES.S_FOUNDPLAYER;
                         return;
                     }
 
@@ -150,7 +160,7 @@ public class SquirrelWolf : EnemyBaseClass
                         targetObject = IsPlayerInRange();
                         if (targetObject != null)    // Found Player
                         {
-                            currentState = STATES.S_WALKTOPLAYER;
+                            currentState = STATES.S_FOUNDPLAYER;
                             return;
                         }
                     }
@@ -172,6 +182,13 @@ public class SquirrelWolf : EnemyBaseClass
 
         return result.gameObject;
     }
+    // Fills the list with platforms that are within my Collider
+    void FindNearestPlatform()
+    {
+        int length = Physics2D.OverlapBox(myRb2D.position + (platformDetectOffset * transform.right), platformDetectSize, 0.0f, contactFilter, listOfPlatforms);
+        Debug.Log("Found: " + length);
+    }
+
     // Custom Move Function as we need to return a value
     // Returns false when can no longer move
     // Returns true if can still move
@@ -247,5 +264,8 @@ public class SquirrelWolf : EnemyBaseClass
 
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, maxShootingRange);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube((Vector2)transform.position + (platformDetectOffset * transform.right), platformDetectSize);
     }
 }

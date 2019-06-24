@@ -74,12 +74,14 @@ MonoBehaviour:
   moveSpeed: 1
   attackTime: 2
   playerDetectionRange: 4
+  platformDetectOffset: {x: 1.58, y: 0}
+  platformDetectSize: {x: 2.41, y: 0.5}
   minimumMeleeRange: 4
   meleeAttackDistance: 1
   projectilePrefab: {fileID: 7652022669352611591, guid: 0f43bf2a6b1923f4084e9d0d959c5548,
     type: 3}
   shootingPos: {fileID: 3095036298310143974}
-  maxShootingRange: 5
+  maxShootingRange: 3
   timeToHitTarget: 1
   groundCast: {fileID: 5099603340387856449}
   groundCastLength: 0.5
