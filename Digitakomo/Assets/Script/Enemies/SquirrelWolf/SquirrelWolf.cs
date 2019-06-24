@@ -8,23 +8,34 @@ public class SquirrelWolf : EnemyBaseClass
     enum STATES
     {
         S_WALKTOEGG,
-        S_WALKTOPLAYER,
+        S_FOUNDPLAYER,
         S_WALKBACK,
+        S_JUMPING,
         S_MELEE,
         S_SHOOT,
     }
     STATES currentState;
+    #region Data
     [Header("SquirrelWolf Class")]
     [SerializeField]
     // How far to detect for player
     float playerDetectionRange = 0.0f;
     Collider2D result = null;
     [SerializeField]
+    // How far to detect for jumping platform 
+    Vector2 platformDetectOffset = Vector2.zero;    // The Position Offset of the detecting box
+    [SerializeField]
+    Vector2 platformDetectSize = Vector2.zero;      // Size of detecting box
+    List<Collider2D> listOfPlatforms = new List<Collider2D>();    // Used to store the platforms that we can jump to
+    ContactFilter2D jumpingFilter = new ContactFilter2D();      // To prevent me calling new everytime
+    [SerializeField]
     // How far before we use melee to attack
     float minimumMeleeRange = 4.0f;
     [SerializeField]
     // Minimum attacking Distance for melee
     float meleeAttackDistance = 1.0f;
+
+
     [Header("Shooting")]
     // What to shoot
     [SerializeField]
@@ -44,10 +55,10 @@ public class SquirrelWolf : EnemyBaseClass
     [SerializeField]
     float groundCastLength = 2.0f;
 
-
     // Unity Stuff
     // Get referrence to the target Object
     GameObject targetObject = null;
+    #endregion
 
 
     // Start is called before the first frame update
@@ -58,6 +69,11 @@ public class SquirrelWolf : EnemyBaseClass
 
         // Convert int to floats for easier calculation
         timeToHitTarget = 1 / timeToHitTarget;
+
+        // Set the jumping Filters
+        jumpingFilter.SetLayerMask(LayerMask.GetMask("JumpPointLayer"));
+        jumpingFilter.ClearDepth();
+        jumpingFilter.useTriggers = true;
     }
 
     // Update is called once per frame
@@ -72,8 +88,6 @@ public class SquirrelWolf : EnemyBaseClass
     void UpdateStates()
     {
 
-        Debug.Log(groundCast.position);
-
         switch (currentState)
         {
             case STATES.S_WALKTOEGG:
@@ -82,15 +96,16 @@ public class SquirrelWolf : EnemyBaseClass
                     targetObject = IsPlayerInRange();
                     if(targetObject != null)    // Found Player
                     {
-                        currentState = STATES.S_WALKTOPLAYER;
+                        currentState = STATES.S_FOUNDPLAYER;
                         return;
                     }
                     // set the position of egg and move there
                     targetObject = Egg.Instance.gameObject;
+                    moveTargetPos = targetObject.transform.position;
 
 
                     // check if we can shoot projectile at egg
-                    if (((Vector2)targetObject.transform.position - myRb2D.position).sqrMagnitude <= (maxShootingRange * maxShootingRange))
+                    if ((moveTargetPos - myRb2D.position).sqrMagnitude <= (maxShootingRange * maxShootingRange))
                     {
                         currentState = STATES.S_SHOOT;
                         return;
@@ -98,20 +113,36 @@ public class SquirrelWolf : EnemyBaseClass
                     // Move enemy
                     if (!MoveWolf())
                     {
-                        // Walk back
-                        currentState = STATES.S_WALKBACK;
-                        TurnWolfAround();
+                        // If we don't find any platforms to jump to, then we turn back
+                        Vector2 platformEdgePos = FindNearestPlatform();
+                        if (platformEdgePos == Vector2.zero)
+                        {
+                            // Walk back
+                            //currentState = STATES.S_WALKBACK;
+                            //TurnWolfAround();
+                        }
+                        else
+                        {
+                            // Jump State
+                            currentState = STATES.S_JUMPING;
+                            // Set new target and jump there
+                            moveTargetPos = platformEdgePos;
+                            JumpWolf(moveTargetPos);
+                        }
+
                         return;
                     }
 
                     // Check if we can attack using melee
-                    if (((Vector2)targetObject.transform.position - myRb2D.position).sqrMagnitude < meleeAttackDistance)
+                    if ((moveTargetPos - myRb2D.position).sqrMagnitude < meleeAttackDistance)
                         currentState = STATES.S_MELEE;
                 }
                 break;
-            case STATES.S_WALKTOPLAYER:
+            case STATES.S_FOUNDPLAYER:
                 {
-                    // check if we can ATTACK player 
+                    // check if we can ATTACK player or need to walk there
+
+
                 }
                 break;
             case STATES.S_WALKBACK:
@@ -120,7 +151,7 @@ public class SquirrelWolf : EnemyBaseClass
                     targetObject = IsPlayerInRange();
                     if (targetObject != null)    // Found Player
                     {
-                        currentState = STATES.S_WALKTOPLAYER;
+                        currentState = STATES.S_FOUNDPLAYER;
                         return;
                     }
 
@@ -132,6 +163,14 @@ public class SquirrelWolf : EnemyBaseClass
                     }
                 }
                 break;
+            case STATES.S_JUMPING:
+                {
+                    // Check if we are reaching the target from jumping
+                    if ((moveTargetPos - myRb2D.position).sqrMagnitude < 1.0f)
+                        currentState = STATES.S_WALKTOEGG;
+                }
+                break;
+
             case STATES.S_MELEE:
                 {
 
@@ -149,10 +188,10 @@ public class SquirrelWolf : EnemyBaseClass
                         // Is a player in range?
                         targetObject = IsPlayerInRange();
                         if (targetObject != null)    // Found Player
-                        {
-                            currentState = STATES.S_WALKTOPLAYER;
-                            return;
-                        }
+                            currentState = STATES.S_FOUNDPLAYER;
+                        else
+                            currentState = STATES.S_WALKTOEGG;
+
                     }
                 }
                 break;
@@ -172,21 +211,40 @@ public class SquirrelWolf : EnemyBaseClass
 
         return result.gameObject;
     }
+    // Fills the list with platforms that are within my Collider
+    // Returns Vector2.zero if no Colliders Found
+    // Returns the Position if found at least one Collider
+    Vector2 FindNearestPlatform()
+    {
+        int length = Physics2D.OverlapBox(myRb2D.position + (platformDetectOffset * transform.right), platformDetectSize, 0.0f, jumpingFilter, listOfPlatforms);
+        Debug.Log("Found: " + length);
+        if (length == 0)
+            return Vector2.zero;
+
+        //int minimumIndex = 0;
+        //for(int i = 0; i < listOfPlatforms.Count; ++i)
+        //{
+        //    // find closest platform
+        //}
+
+        return listOfPlatforms[0].gameObject.transform.position;
+    }
+
     // Custom Move Function as we need to return a value
     // Returns false when can no longer move
     // Returns true if can still move
     private bool MoveWolf()
     {
         // set the new direction
-        direction = targetPosition - myRb2D.position;
-        direction.y = 0.0f;
-        direction.Normalize();
+        moveDirection = moveTargetPos - myRb2D.position;
+        moveDirection.y = 0.0f;
+        moveDirection.Normalize();
 
         // Check if we can even move
         if (Physics2D.Linecast(groundCast.position, groundCast.position + (Vector3.down * groundCastLength)))
         {
             // Move
-            myRb2D.MovePosition(myRb2D.position + (direction * moveSpeed * Time.deltaTime));
+            myRb2D.MovePosition(myRb2D.position + (moveDirection * moveSpeed * Time.deltaTime));
 
             return true;
         }
@@ -208,12 +266,10 @@ public class SquirrelWolf : EnemyBaseClass
                 transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
                 break;
         }
-        
-        // set new target
-        direction = -direction;
-        targetPosition.Set(myRb2D.position.x + (direction.x * 100.0f), targetPosition.y);
-        // turn the ground cast pos 
 
+        // set new target
+        moveDirection = -moveDirection;
+        moveTargetPos.Set(myRb2D.position.x + (moveDirection.x * 100.0f), moveTargetPos.y);
     }
     // Shooting Logic
     private void Shoot()
@@ -223,10 +279,20 @@ public class SquirrelWolf : EnemyBaseClass
         Vector2 launchVelocity = Vector2.zero;
         launchVelocity.x = (targetObject.transform.position.x - shootingPos.position.x) * timeToHitTarget;    // Initial velocity in X axis
         launchVelocity.y = -(-(targetObject.transform.position.y - shootingPos.position.y) + 0.5f * Physics2D.gravity.y * timeToHitTarget * timeToHitTarget) * timeToHitTarget;
-        //launchVelocity.Set(Mathf.Cos(45.0f) * projectileSpeed, Mathf.Sin(45.0f) * projectileSpeed);
 
         // Add the velocity to the object
         newProj.GetComponent<Rigidbody2D>().velocity = launchVelocity;
+    }
+    // Jumping Logic
+    private void JumpWolf(Vector2 newTarget)
+    {
+        Vector2 launchVelocity = Vector2.zero;
+        launchVelocity.x = (newTarget.x - shootingPos.position.x) * timeToHitTarget;    // Initial velocity in X axis
+        launchVelocity.y = -(-(newTarget.y - shootingPos.position.y) + 0.5f * Physics2D.gravity.y * timeToHitTarget * timeToHitTarget) * timeToHitTarget;
+
+        // Add the velocity to enemy
+        myRb2D.velocity = Vector2.zero; 
+        myRb2D.velocity = launchVelocity;
     }
 
 
@@ -247,5 +313,8 @@ public class SquirrelWolf : EnemyBaseClass
 
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, maxShootingRange);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube((Vector2)transform.position + (platformDetectOffset * transform.right), platformDetectSize);
     }
 }

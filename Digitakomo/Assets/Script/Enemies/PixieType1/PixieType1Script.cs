@@ -99,12 +99,12 @@ public class PixieType1Script : EnemyBaseClass
     void CheckNextWaypoint()
     {
         // Check if we have reached the waypoint
-        if ((targetPosition - myRb2D.position).sqrMagnitude > 2.0f)
+        if ((moveTargetPos - myRb2D.position).sqrMagnitude > 2.0f)
             return;
 
         // Get the next waypoint
         WaypointGroupManager.WaypointReturnData temp = WaypointGroupManager.instance.GetNextWaypoint_Wrapped(waypointGroup, currentWaypoint);
-        targetPosition = temp.nextPosition;
+        moveTargetPos = temp.nextPosition;
         currentWaypoint = temp.nextWaypointIndex;
     }
     // Sets the object's Waypoint Group
@@ -115,7 +115,7 @@ public class PixieType1Script : EnemyBaseClass
 
         // Get the first waypoint position
         currentWaypoint = 0;
-        targetPosition = WaypointGroupManager.instance.GetWaypoint(waypointGroup, currentWaypoint).position;
+        moveTargetPos = WaypointGroupManager.instance.GetWaypoint(waypointGroup, currentWaypoint).position;
     }
     #endregion
 
