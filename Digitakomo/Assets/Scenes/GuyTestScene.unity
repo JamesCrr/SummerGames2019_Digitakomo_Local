@@ -329,6 +329,10 @@ MonoBehaviour:
       type: 3}
     amountToCreate: 10
     amountToAdd: 5
+  - prefabToCreate: {fileID: 6533305759064648643, guid: 41e0937e6da34f64e9458d5e369919be,
+      type: 3}
+    amountToCreate: 1
+    amountToAdd: 1
 --- !u!1 &215108803
 GameObject:
   m_ObjectHideFlags: 0
@@ -1017,7 +1021,7 @@ PrefabInstance:
     - target: {fileID: 6084726351510435941, guid: 20a8386fc65c10649b2ac71f49ec7a8d,
         type: 3}
       propertyPath: m_Layer
-      value: 13
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6084726351510435941, guid: 20a8386fc65c10649b2ac71f49ec7a8d,
         type: 3}
@@ -1083,6 +1087,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsTrigger
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2524432475247505791, guid: 20a8386fc65c10649b2ac71f49ec7a8d,
+        type: 3}
+      propertyPath: m_AutoTiling
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342788332502284205, guid: 20a8386fc65c10649b2ac71f49ec7a8d,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342788332502284205, guid: 20a8386fc65c10649b2ac71f49ec7a8d,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342788332502284205, guid: 20a8386fc65c10649b2ac71f49ec7a8d,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342788332502284205, guid: 20a8386fc65c10649b2ac71f49ec7a8d,
+        type: 3}
+      propertyPath: m_Mass
+      value: 9999
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342788332502284205, guid: 20a8386fc65c10649b2ac71f49ec7a8d,
+        type: 3}
+      propertyPath: m_Simulated
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20a8386fc65c10649b2ac71f49ec7a8d, type: 3}

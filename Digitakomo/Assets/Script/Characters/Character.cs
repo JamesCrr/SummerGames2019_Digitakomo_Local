@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+
     // Which Character are we using
     //[System.Serializable]
     //public class PlayerType_Template
@@ -53,6 +54,7 @@ public class Character : MonoBehaviour
     private float HP;
     public float MaxEnergy = 200;
     private float MP;
+    public float MPRestore = 0.5f;
 
     // Attack
     protected bool IsAttacking = false;
@@ -113,7 +115,7 @@ public class Character : MonoBehaviour
 
         if (MP < MaxEnergy)
         {
-            MP += 0.5f;
+            MP += MPRestore;
         }
     }
 

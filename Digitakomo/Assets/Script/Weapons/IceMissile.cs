@@ -1,7 +1,25 @@
-﻿public class IceMissile : Weapon
+﻿using UnityEngine;
+
+public class IceMissile : Weapon
 {
     void Start()
     {
-        at = AttackType.ICE;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponent<FlameProjectile>() != null)
+        {
+            // TODO // if player far enough
+
+            // if steam not created
+            if (GameObject.FindGameObjectWithTag("Steam") == null)
+            {
+                // Create Steam
+                GameObject go = ObjectPooler.Instance.FetchGO("Steam");
+                go.transform.position = transform.position;
+            }
+
+        }
     }
 }

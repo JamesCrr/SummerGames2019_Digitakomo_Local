@@ -13,7 +13,6 @@ public class FlameProjectile : Weapon
 
     void Start()
     {
-        at = AttackType.FIRE;
     }
 
     protected override void FixedUpdate()
