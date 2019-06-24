@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Platforms : MonoBehaviour
 {
+    // The Colliders for jumping detection
+    [SerializeField]
+    Collider2D leftCollider = null;
+    [SerializeField]
+    Collider2D rightCollider = null;
     // To Store the platform ending points
     Vector2 leftPoint;
     Vector2 rightPoint;
@@ -23,6 +28,10 @@ public class Platforms : MonoBehaviour
         // Y Axis
         leftPoint.y = gameObject.transform.position.y + (height * transform.localScale.y) + 0.1f;
         rightPoint.y = gameObject.transform.position.y + (height * transform.localScale.y) + 0.1f;
+
+        // set the collider's position
+        leftCollider.gameObject.transform.position = leftPoint;
+        rightCollider.gameObject.transform.position = rightPoint;
     }
 
 
@@ -37,11 +46,11 @@ public class Platforms : MonoBehaviour
     }
 
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.blue;
 
-        Gizmos.DrawWireSphere(leftPoint, 0.3f);
-        Gizmos.DrawWireSphere(rightPoint, 0.3f);
-    }
+    //    Gizmos.DrawWireSphere(leftPoint, 0.3f);
+    //    Gizmos.DrawWireSphere(rightPoint, 0.3f);
+    //}
 }

@@ -10,6 +10,7 @@ public class SquirrelWolf : EnemyBaseClass
         S_WALKTOEGG,
         S_FOUNDPLAYER,
         S_WALKBACK,
+        S_JUMPING,
         S_MELEE,
         S_SHOOT,
     }
@@ -26,7 +27,7 @@ public class SquirrelWolf : EnemyBaseClass
     [SerializeField]
     Vector2 platformDetectSize = Vector2.zero;      // Size of detecting box
     List<Collider2D> listOfPlatforms = new List<Collider2D>();    // Used to store the platforms that we can jump to
-    ContactFilter2D contactFilter = new ContactFilter2D();      // To prevent me calling new everytime
+    ContactFilter2D jumpingFilter = new ContactFilter2D();      // To prevent me calling new everytime
     [SerializeField]
     // How far before we use melee to attack
     float minimumMeleeRange = 4.0f;
@@ -68,6 +69,11 @@ public class SquirrelWolf : EnemyBaseClass
 
         // Convert int to floats for easier calculation
         timeToHitTarget = 1 / timeToHitTarget;
+
+        // Set the jumping Filters
+        jumpingFilter.SetLayerMask(LayerMask.GetMask("JumpPointLayer"));
+        jumpingFilter.ClearDepth();
+        jumpingFilter.useTriggers = true;
     }
 
     // Update is called once per frame
@@ -95,10 +101,11 @@ public class SquirrelWolf : EnemyBaseClass
                     }
                     // set the position of egg and move there
                     targetObject = Egg.Instance.gameObject;
+                    moveTargetPos = targetObject.transform.position;
 
 
                     // check if we can shoot projectile at egg
-                    if (((Vector2)targetObject.transform.position - myRb2D.position).sqrMagnitude <= (maxShootingRange * maxShootingRange))
+                    if ((moveTargetPos - myRb2D.position).sqrMagnitude <= (maxShootingRange * maxShootingRange))
                     {
                         currentState = STATES.S_SHOOT;
                         return;
@@ -106,14 +113,26 @@ public class SquirrelWolf : EnemyBaseClass
                     // Move enemy
                     if (!MoveWolf())
                     {
-                        // Walk back
-                        //currentState = STATES.S_WALKBACK;
-                        //TurnWolfAround();
-                        //return;
+                        // If we don't find any platforms to jump to, then we turn back
+                        Vector2 platformEdgePos = FindNearestPlatform();
+                        if (platformEdgePos == Vector2.zero)
+                        {
+                            // Walk back
+                            //currentState = STATES.S_WALKBACK;
+                            //TurnWolfAround();
+                        }
+                        else
+                        {
+                            // Jump
+                            currentState = STATES.S_JUMPING;
+                            moveTargetPos = platformEdgePos;
+                        }
+
+                        return;
                     }
 
                     // Check if we can attack using melee
-                    if (((Vector2)targetObject.transform.position - myRb2D.position).sqrMagnitude < meleeAttackDistance)
+                    if ((moveTargetPos - myRb2D.position).sqrMagnitude < meleeAttackDistance)
                         currentState = STATES.S_MELEE;
                 }
                 break;
@@ -142,6 +161,12 @@ public class SquirrelWolf : EnemyBaseClass
                     }
                 }
                 break;
+            case STATES.S_JUMPING:
+                {
+
+                }
+                break;
+
             case STATES.S_MELEE:
                 {
 
@@ -183,10 +208,23 @@ public class SquirrelWolf : EnemyBaseClass
         return result.gameObject;
     }
     // Fills the list with platforms that are within my Collider
-    void FindNearestPlatform()
+    // Returns Vector2.zero if no Colliders Found
+    // Returns the Position if found at least one Collider
+    Vector2 FindNearestPlatform()
     {
-        int length = Physics2D.OverlapBox(myRb2D.position + (platformDetectOffset * transform.right), platformDetectSize, 0.0f, contactFilter, listOfPlatforms);
+        int length = Physics2D.OverlapBox(myRb2D.position + (platformDetectOffset * transform.right), platformDetectSize, 0.0f, jumpingFilter, listOfPlatforms);
         Debug.Log("Found: " + length);
+        if (length == 0)
+            return Vector2.zero;
+
+        //int minimumIndex = 0;
+        //for(int i = 0; i < listOfPlatforms.Count; ++i)
+        //{
+        //    // find closest platform
+        //}
+
+
+        return listOfPlatforms[0].gameObject.transform.position;
     }
 
     // Custom Move Function as we need to return a value
@@ -195,15 +233,15 @@ public class SquirrelWolf : EnemyBaseClass
     private bool MoveWolf()
     {
         // set the new direction
-        direction = targetPosition - myRb2D.position;
-        direction.y = 0.0f;
-        direction.Normalize();
+        moveDirection = moveTargetPos - myRb2D.position;
+        moveDirection.y = 0.0f;
+        moveDirection.Normalize();
 
         // Check if we can even move
         if (Physics2D.Linecast(groundCast.position, groundCast.position + (Vector3.down * groundCastLength)))
         {
             // Move
-            myRb2D.MovePosition(myRb2D.position + (direction * moveSpeed * Time.deltaTime));
+            myRb2D.MovePosition(myRb2D.position + (moveDirection * moveSpeed * Time.deltaTime));
 
             return true;
         }
@@ -225,12 +263,10 @@ public class SquirrelWolf : EnemyBaseClass
                 transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
                 break;
         }
-        
-        // set new target
-        direction = -direction;
-        targetPosition.Set(myRb2D.position.x + (direction.x * 100.0f), targetPosition.y);
-        // turn the ground cast pos 
 
+        // set new target
+        moveDirection = -moveDirection;
+        moveTargetPos.Set(myRb2D.position.x + (moveDirection.x * 100.0f), moveTargetPos.y);
     }
     // Shooting Logic
     private void Shoot()
@@ -240,7 +276,6 @@ public class SquirrelWolf : EnemyBaseClass
         Vector2 launchVelocity = Vector2.zero;
         launchVelocity.x = (targetObject.transform.position.x - shootingPos.position.x) * timeToHitTarget;    // Initial velocity in X axis
         launchVelocity.y = -(-(targetObject.transform.position.y - shootingPos.position.y) + 0.5f * Physics2D.gravity.y * timeToHitTarget * timeToHitTarget) * timeToHitTarget;
-        //launchVelocity.Set(Mathf.Cos(45.0f) * projectileSpeed, Mathf.Sin(45.0f) * projectileSpeed);
 
         // Add the velocity to the object
         newProj.GetComponent<Rigidbody2D>().velocity = launchVelocity;
