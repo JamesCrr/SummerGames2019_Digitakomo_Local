@@ -24,7 +24,6 @@ public class IcePlatform : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<IceCharacter>() != null)
         {
-            Debug.Log("add gravity");
             rb.gravityScale = DropSpeed;
         }
     }
