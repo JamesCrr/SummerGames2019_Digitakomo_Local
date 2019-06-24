@@ -49,6 +49,7 @@ public class Character : MonoBehaviour
     // Unity Stuff
     protected Rigidbody2D myRb2D = null;
 
+    [Header("HP and Energy")]
     // health and energy
     public float MaxHP = 500;
     private float HP;
@@ -56,18 +57,21 @@ public class Character : MonoBehaviour
     private float MP;
     public float MPRestore = 0.5f;
 
+
     // Attack
+    [Header("Attack")]
+    public bool electricAttack = false;
+    public float PunchRate = 0.1f;
+    public float enerygyPerSpecialAttack = 20;
     protected bool IsAttacking = false;
     protected bool IsSpecialAttacking = false;
     protected Collider2D AttackCollider;
-    public float PunchRate = 0.1f;
     protected float NextPunch;
     protected bool WPressed = false;
     protected bool APressed = false;
     protected bool DPressed = false;
     protected int latestDirection = 4;
     protected float NextSpecialFire;
-    public float enerygyPerSpecialAttack = 20;
 
     // Animation
     private Animator Animate;

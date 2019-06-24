@@ -40,7 +40,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7883997970771670287}
   - component: {fileID: 7883997970771670286}
-  m_Layer: 10
+  - component: {fileID: 8037968349606569647}
+  m_Layer: 11
   m_Name: AttackCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +56,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7883997970771670284}
   m_LocalRotation: {x: -0, y: 0.09260682, z: -0, w: 0.9957028}
-  m_LocalPosition: {x: -0.02420657, y: 0.056491315, z: 0.8416332}
+  m_LocalPosition: {x: 0.03, y: 0.029, z: 0.74}
   m_LocalScale: {x: 0.13060892, y: 0.05, z: 0.96939105}
   m_Children: []
   m_Father: {fileID: 7883997970962599784}
@@ -68,7 +69,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7883997970771670284}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -87,6 +88,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6656866, y: 1.8119044}
   m_EdgeRadius: 0
+--- !u!114 &8037968349606569647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7883997970771670284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efcf859048d2e7e479dd0d6861216b3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7883997970894729490
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,13 +359,13 @@ MonoBehaviour:
   MaxHP: 500
   MaxEnergy: 200
   MPRestore: 100
+  electricAttack: 0
   PunchRate: 0.1
   enerygyPerSpecialAttack: 20
-  player: 1
+  player: 2
   IceMissile: {fileID: 8374536731700558200, guid: 0bc122d6f0e083c40b283f0e39bb065b,
     type: 3}
-  icePlatform: {fileID: 6189928942897961021, guid: 20a8386fc65c10649b2ac71f49ec7a8d,
-    type: 3}
+  icePlatform: {fileID: 0}
 --- !u!95 &7883997970962599786
 Animator:
   serializedVersion: 3

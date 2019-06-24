@@ -10,6 +10,8 @@ public class Steam : MonoBehaviour
     public float grapTime = 0.3f;
     private float expiredTime;
 
+    public bool isElectric = false;
+
     private Vector3 defaultScale;
     private void Awake()
     {
@@ -59,11 +61,23 @@ public class Steam : MonoBehaviour
             expiredTime = Time.time + grapTime;
             firecount += 1;
         }
+
+        if (collision.gameObject.name == "AttackCollider")
+        {
+            ElectricHand eh = collision.gameObject.GetComponent<ElectricHand>();
+            if (eh.getElectricHand())
+            {
+                Debug.Log("Electric touch");
+                isElectric = true;
+                eh.setElectricHand(false);
+            }
+        }
     }
 
     public void Restart()
     {
         transform.localScale = defaultScale;
         expiredTime = Time.time + grapTime;
+        isElectric = false;
     }
 }
