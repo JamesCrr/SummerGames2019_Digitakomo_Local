@@ -45,6 +45,24 @@ public class Platforms : MonoBehaviour
         return rightPoint;
     }
 
+    // Returns which point on this Platform that is closest 
+    // to the position passed in
+    public Vector2 GetClosestPosition(Vector2 targetPos)
+    {
+        if ((targetPos - leftPoint).sqrMagnitude > (targetPos - rightPoint).sqrMagnitude)
+            return rightPoint;
+        else
+            return leftPoint;
+    }
+    // Returns which point on this Platform that is furtherest 
+    // to the position passed in
+    public Vector2 GetFurtherestPosition(Vector2 targetPos)
+    {
+        if ((targetPos - leftPoint).sqrMagnitude < (targetPos - rightPoint).sqrMagnitude)
+            return rightPoint;
+        else
+            return leftPoint;
+    }
 
     //private void OnDrawGizmos()
     //{

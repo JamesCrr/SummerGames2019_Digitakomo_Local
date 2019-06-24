@@ -86,6 +86,7 @@ MonoBehaviour:
   timeToHitTarget: 1
   groundCast: {fileID: 5099603340387856449}
   groundCastLength: 0.5
+  fleeTime: 5
 --- !u!1 &4008400323398300379
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,6 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attachedObj: {fileID: 6426761079313987168}
+  platformStandingOn: {fileID: 0}
 --- !u!58 &2580754530000158678
 CircleCollider2D:
   m_ObjectHideFlags: 0

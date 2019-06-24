@@ -36,4 +36,9 @@ public class Egg : MonoBehaviour
     {
         HP -= damage;
     }
+
+    public Vector2 GetPosition()
+    {
+        return transform.position;
+    }
 }
