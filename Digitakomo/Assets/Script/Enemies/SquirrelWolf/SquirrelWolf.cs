@@ -28,6 +28,10 @@ public class SquirrelWolf : EnemyBaseClass
     Vector2 platformDetectSize = Vector2.zero;      // Size of detecting box
     List<Collider2D> listOfPlatforms = new List<Collider2D>();    // Used to store the platforms that we can jump to
     ContactFilter2D jumpingFilter = new ContactFilter2D();      // To prevent me calling new everytime
+    [System.NonSerialized]
+    public bool isGrounded = false;     // Used to check if we have reached the ground
+    [SerializeField]
+    groundCheck groundCheckScript = null;   // Script used to check if have reached the ground when jumping
     [SerializeField]
     // How far before we use melee to attack
     float minimumMeleeRange = 4.0f;
@@ -166,7 +170,7 @@ public class SquirrelWolf : EnemyBaseClass
             case STATES.S_JUMPING:
                 {
                     // Check if we are reaching the target from jumping
-                    if ((moveTargetPos - myRb2D.position).sqrMagnitude < 1.0f)
+                    if (isGrounded)
                         currentState = STATES.S_WALKTOEGG;
                 }
                 break;
@@ -216,7 +220,9 @@ public class SquirrelWolf : EnemyBaseClass
     // Returns the Position if found at least one Collider
     Vector2 FindNearestPlatform()
     {
-        int length = Physics2D.OverlapBox(myRb2D.position + (platformDetectOffset * transform.right), platformDetectSize, 0.0f, jumpingFilter, listOfPlatforms);
+        Vector2 newRight = transform.right;
+        newRight.y = 1;
+        int length = Physics2D.OverlapBox(myRb2D.position + (platformDetectOffset * newRight), platformDetectSize, 0.0f, jumpingFilter, listOfPlatforms);
         Debug.Log("Found: " + length);
         if (length == 0)
             return Vector2.zero;
@@ -287,12 +293,15 @@ public class SquirrelWolf : EnemyBaseClass
     private void JumpWolf(Vector2 newTarget)
     {
         Vector2 launchVelocity = Vector2.zero;
-        launchVelocity.x = (newTarget.x - shootingPos.position.x) * timeToHitTarget;    // Initial velocity in X axis
-        launchVelocity.y = -(-(newTarget.y - shootingPos.position.y) + 0.5f * Physics2D.gravity.y * timeToHitTarget * timeToHitTarget) * timeToHitTarget;
+        launchVelocity.x = (newTarget.x - myRb2D.position.x) * timeToHitTarget;    // Initial velocity in X axis
+        launchVelocity.y = -(-(newTarget.y - myRb2D.position.y) + 0.5f * Physics2D.gravity.y * timeToHitTarget * timeToHitTarget) * timeToHitTarget;
 
         // Add the velocity to enemy
         myRb2D.velocity = Vector2.zero; 
         myRb2D.velocity = launchVelocity;
+
+        groundCheckScript.startCheck = true;
+        isGrounded = false;
     }
 
 
@@ -315,6 +324,8 @@ public class SquirrelWolf : EnemyBaseClass
         Gizmos.DrawWireSphere(transform.position, maxShootingRange);
 
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube((Vector2)transform.position + (platformDetectOffset * transform.right), platformDetectSize);
+        Vector3 tempo = transform.right;
+        tempo.y = 1;
+        Gizmos.DrawWireCube((Vector2)transform.position + (platformDetectOffset * tempo), platformDetectSize);
     }
 }
