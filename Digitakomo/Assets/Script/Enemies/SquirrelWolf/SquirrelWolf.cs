@@ -72,6 +72,8 @@ public class SquirrelWolf : EnemyBaseClass
     void UpdateStates()
     {
 
+        Debug.Log(groundCast.position);
+
         switch (currentState)
         {
             case STATES.S_WALKTOEGG:
@@ -86,15 +88,16 @@ public class SquirrelWolf : EnemyBaseClass
                     // set the position of egg and move there
                     targetObject = Egg.Instance.gameObject;
 
-                    // Move enemy
-                    if(!MoveWolf())
+
+                    // check if we can shoot projectile at egg
+                    if (((Vector2)targetObject.transform.position - myRb2D.position).sqrMagnitude <= (maxShootingRange * maxShootingRange))
                     {
-                        // check if we can shoot projectile, if not walk back
-                        if ((targetObject.transform.position - transform.position).sqrMagnitude <= (maxShootingRange*maxShootingRange))
-                        {
-                            currentState = STATES.S_SHOOT;
-                            return;
-                        }
+                        currentState = STATES.S_SHOOT;
+                        return;
+                    }
+                    // Move enemy
+                    if (!MoveWolf())
+                    {
                         // Walk back
                         currentState = STATES.S_WALKBACK;
                         TurnWolfAround();
@@ -102,13 +105,13 @@ public class SquirrelWolf : EnemyBaseClass
                     }
 
                     // Check if we can attack using melee
-                    if ((targetObject.transform.position - transform.position).sqrMagnitude < meleeAttackDistance)
+                    if (((Vector2)targetObject.transform.position - myRb2D.position).sqrMagnitude < meleeAttackDistance)
                         currentState = STATES.S_MELEE;
                 }
                 break;
             case STATES.S_WALKTOPLAYER:
                 {
-                    // check if we can melee player
+                    // check if we can ATTACK player 
                 }
                 break;
             case STATES.S_WALKBACK:
@@ -125,9 +128,8 @@ public class SquirrelWolf : EnemyBaseClass
                     if (!MoveWolf())
                     {
                         TurnWolfAround();
+                        return;
                     }
-                    // set new target
-                    targetPosition = (Vector2)transform.position + direction;
                 }
                 break;
             case STATES.S_MELEE:
@@ -142,15 +144,15 @@ public class SquirrelWolf : EnemyBaseClass
                     {
                         Shoot();
                         // Reset Timer
-                        attackTimer = 100000.0f;//attackTime;
+                        attackTimer = attackTime;
 
                         // Is a player in range?
-                        //targetObject = IsPlayerInRange();
-                        //if (targetObject != null)    // Found Player
-                        //{
-                        //    currentState = STATES.S_WALKTOPLAYER;
-                        //    return;
-                        //}
+                        targetObject = IsPlayerInRange();
+                        if (targetObject != null)    // Found Player
+                        {
+                            currentState = STATES.S_WALKTOPLAYER;
+                            return;
+                        }
                     }
                 }
                 break;
@@ -162,7 +164,7 @@ public class SquirrelWolf : EnemyBaseClass
     GameObject IsPlayerInRange()
     {
         // Get if we have hit anything, player or egg
-        result = Physics2D.OverlapCircle(transform.position, playerDetectionRange, LayerMask.NameToLayer("Player"));
+        result = Physics2D.OverlapCircle(myRb2D.position, playerDetectionRange, LayerMask.NameToLayer("Player"));
         if (result == null)
             return null;
         if (result.gameObject.tag != "Player")
@@ -178,14 +180,13 @@ public class SquirrelWolf : EnemyBaseClass
         // set the new direction
         direction = targetPosition - myRb2D.position;
         direction.y = 0.0f;
-        // Check if need to flip enemy
-        FlipEnemy();
+        direction.Normalize();
 
         // Check if we can even move
         if (Physics2D.Linecast(groundCast.position, groundCast.position + (Vector3.down * groundCastLength)))
         {
             // Move
-            myRb2D.MovePosition(myRb2D.position + (direction.normalized * moveSpeed * Time.deltaTime));
+            myRb2D.MovePosition(myRb2D.position + (direction * moveSpeed * Time.deltaTime));
 
             return true;
         }
@@ -199,19 +200,20 @@ public class SquirrelWolf : EnemyBaseClass
             case DIRECTION.D_LEFT:
                 facingDirection = DIRECTION.D_RIGHT;
                 // Reverse the Object
-                transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+                transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
                 break;
             case DIRECTION.D_RIGHT:
                 facingDirection = DIRECTION.D_LEFT;
                 // Reverse the Object
-                transform.rotation = Quaternion.Euler(new Vector3(0, -180, 0));
+                transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
                 break;
         }
         
-
         // set new target
         direction = -direction;
-        targetPosition.Set(transform.position.x + direction.x, targetPosition.y);
+        targetPosition.Set(myRb2D.position.x + (direction.x * 100.0f), targetPosition.y);
+        // turn the ground cast pos 
+
     }
     // Shooting Logic
     private void Shoot()
