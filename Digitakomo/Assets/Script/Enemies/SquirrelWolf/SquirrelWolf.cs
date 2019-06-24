@@ -74,7 +74,7 @@ public class SquirrelWolf : EnemyBaseClass
     void Start()
     {
         myRb2D = GetComponent<Rigidbody2D>();
-        currentState = STATES.S_EGG_DIFFERENTHEIGHT;
+        currentState = STATES.S_EGG_SIMILARHEIGHT;
 
         // Convert int to floats for easier calculation
         timeToHitTarget = 1 / timeToHitTarget;
@@ -111,8 +111,8 @@ public class SquirrelWolf : EnemyBaseClass
                         return;
                     }
                     // Check if a change in state has been made
-                    if (CheckHeightDifference())
-                        return;
+                    //if (CheckHeightDifference())
+                    //    return;
 
 
                     // set the position of egg and move there
