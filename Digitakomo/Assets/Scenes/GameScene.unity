@@ -458,8 +458,8 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: -0.84385586, y: 2.493887}
-      - {x: -3.9693117, y: 4.3029766}
-      - {x: -7.487941, y: 4.3048077}
+      - {x: -4.689885, y: 2.489922}
+      - {x: -8.115537, y: 2.5382414}
       - {x: -3.8464289, y: 0.91806126}
       - {x: -3.8765497, y: -0.84160423}
       - {x: -3.9417238, y: -2.1124716}
@@ -699,6 +699,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6426761079313987168, guid: 7e8d961d76bee1e4eb6ddcf2fbd24867,
+        type: 3}
+      propertyPath: maxShootingRange
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e8d961d76bee1e4eb6ddcf2fbd24867, type: 3}
