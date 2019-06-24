@@ -23,8 +23,8 @@ public class Platforms : MonoBehaviour
         float height = myCollider.size.y / 2;
 
         // X Axis
-        leftPoint.x = gameObject.transform.position.x - (width * transform.localScale.x) + 0.1f;
-        rightPoint.x = gameObject.transform.position.x + (width * transform.localScale.x) - 0.1f;
+        leftPoint.x = gameObject.transform.position.x - (width * transform.localScale.x) + 0.3f;
+        rightPoint.x = gameObject.transform.position.x + (width * transform.localScale.x) - 0.3f;
         // Y Axis
         leftPoint.y = gameObject.transform.position.y + (height * transform.localScale.y) + 0.1f;
         rightPoint.y = gameObject.transform.position.y + (height * transform.localScale.y) + 0.1f;

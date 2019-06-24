@@ -123,9 +123,11 @@ public class SquirrelWolf : EnemyBaseClass
                         }
                         else
                         {
-                            // Jump
+                            // Jump State
                             currentState = STATES.S_JUMPING;
+                            // Set new target and jump there
                             moveTargetPos = platformEdgePos;
+                            JumpWolf(moveTargetPos);
                         }
 
                         return;
@@ -138,7 +140,7 @@ public class SquirrelWolf : EnemyBaseClass
                 break;
             case STATES.S_FOUNDPLAYER:
                 {
-                    // check if we can ATTACK player 
+                    // check if we can ATTACK player or need to walk there
 
 
                 }
@@ -163,7 +165,9 @@ public class SquirrelWolf : EnemyBaseClass
                 break;
             case STATES.S_JUMPING:
                 {
-
+                    // Check if we are reaching the target from jumping
+                    if ((moveTargetPos - myRb2D.position).sqrMagnitude < 1.0f)
+                        currentState = STATES.S_WALKTOEGG;
                 }
                 break;
 
@@ -184,10 +188,10 @@ public class SquirrelWolf : EnemyBaseClass
                         // Is a player in range?
                         targetObject = IsPlayerInRange();
                         if (targetObject != null)    // Found Player
-                        {
                             currentState = STATES.S_FOUNDPLAYER;
-                            return;
-                        }
+                        else
+                            currentState = STATES.S_WALKTOEGG;
+
                     }
                 }
                 break;
@@ -222,7 +226,6 @@ public class SquirrelWolf : EnemyBaseClass
         //{
         //    // find closest platform
         //}
-
 
         return listOfPlatforms[0].gameObject.transform.position;
     }
@@ -279,6 +282,17 @@ public class SquirrelWolf : EnemyBaseClass
 
         // Add the velocity to the object
         newProj.GetComponent<Rigidbody2D>().velocity = launchVelocity;
+    }
+    // Jumping Logic
+    private void JumpWolf(Vector2 newTarget)
+    {
+        Vector2 launchVelocity = Vector2.zero;
+        launchVelocity.x = (newTarget.x - shootingPos.position.x) * timeToHitTarget;    // Initial velocity in X axis
+        launchVelocity.y = -(-(newTarget.y - shootingPos.position.y) + 0.5f * Physics2D.gravity.y * timeToHitTarget * timeToHitTarget) * timeToHitTarget;
+
+        // Add the velocity to enemy
+        myRb2D.velocity = Vector2.zero; 
+        myRb2D.velocity = launchVelocity;
     }
 
 
