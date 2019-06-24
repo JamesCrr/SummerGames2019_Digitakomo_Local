@@ -44,6 +44,15 @@ public class Platforms : MonoBehaviour
     {
         return rightPoint;
     }
+    public GameObject GetLeftGO()
+    {
+        return leftCollider.gameObject;
+    }
+    public GameObject GetRightGO()
+    {
+        return rightCollider.gameObject;
+    }
+
 
     // Returns which point on this Platform that is closest 
     // to the position passed in
@@ -53,6 +62,19 @@ public class Platforms : MonoBehaviour
             return rightPoint;
         else
             return leftPoint;
+    }
+    // Returns which point on this Platform that is closest 
+    // to the position passed in
+    // WITH AN OFFSET
+    public Vector2 GetClosestPosition_Offset(Vector2 targetPos)
+    {
+        Vector2 finalPos;
+        if ((targetPos - leftPoint).sqrMagnitude > (targetPos - rightPoint).sqrMagnitude)
+            finalPos = rightPoint + Vector2.right;
+        else
+            finalPos = leftPoint - Vector2.right;
+
+        return finalPos;
     }
     // Returns which point on this Platform that is furtherest 
     // to the position passed in

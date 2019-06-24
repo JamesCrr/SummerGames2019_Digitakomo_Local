@@ -9,6 +9,8 @@ public class SquirrelWolf : EnemyBaseClass
     {
         S_EGG_SIMILARHEIGHT,
         S_EGG_DIFFERENTHEIGHT,
+        S_EGG_ONTOP,
+
         S_FOUNDPLAYER,
         S_WALKBACK,
         S_RUNAWAY,
@@ -117,8 +119,7 @@ public class SquirrelWolf : EnemyBaseClass
 
 
                     // set the position of egg and move there
-                    targetObject = Egg.Instance.gameObject;
-                    moveTargetPos = targetObject.transform.position;
+                    SetNewTarget(Egg.Instance.gameObject);
                     // check if we can shoot projectile at egg
                     if ((moveTargetPos - myRb2D.position).sqrMagnitude <= (maxShootingRange * maxShootingRange))
                     {
@@ -166,16 +167,39 @@ public class SquirrelWolf : EnemyBaseClass
                     }
 
                     // set the target as egg
-                    targetObject = Egg.Instance.gameObject;
-                    moveTargetPos = targetObject.transform.position;
+                    SetNewTarget(Egg.Instance.gameObject);
                     // Move enemy
                     MoveWolf(false);
 
+
+
                     // Once reached, 
                     if (myRb2D.position.y <= targetObject.transform.position.y)
+                    {
                         currentState = STATES.S_EGG_SIMILARHEIGHT;
+                        return;
+                    }
+                    // if we are stuck, then we should go to one of the points
+                    float xPosDiff = targetObject.transform.position.x - myRb2D.position.x;
+                    if (xPosDiff < 0.5f && xPosDiff > -0.5f)
+                    {
+                        currentState = STATES.S_EGG_ONTOP;
+                        // Go to the closest position from the egg WITH AN OFFSET
+                        moveTargetPos = groundCheckScript.platformStandingOn.GetClosestPosition(moveTargetPos);
+                        moveDirection = moveTargetPos - myRb2D.position;
+                    }
+                    
                 }
                 break;
+            case STATES.S_EGG_ONTOP:
+                {
+                    // Keep moving until we drop
+                    MoveWolf(false);
+                    if (!isGrounded)
+                        currentState = STATES.S_EGG_DIFFERENTHEIGHT;
+                }
+                break;
+
             case STATES.S_FOUNDPLAYER:
                 {
                     // check if we can ATTACK player or need to walk there
@@ -344,18 +368,29 @@ public class SquirrelWolf : EnemyBaseClass
     }
 
 
+
+    void SetNewTarget(GameObject newtarget)
+    {
+        // set the data
+        targetObject = newtarget;
+        moveTargetPos = newtarget.transform.position;
+        // set the direction
+        moveDirection = moveTargetPos - myRb2D.position;
+    }
     // Custom Move Function as we need to return a value
     // Returns false when can no longer move
     // Returns true if can still move
     private bool MoveWolf(bool checkBelow = true)
     {
         // set the new direction
-        moveDirection = moveTargetPos - myRb2D.position;
+        //moveDirection = moveTargetPos - myRb2D.position;
         if (!isGrounded)
             moveDirection.y = Physics2D.gravity.y;
         else
             moveDirection.y = 0.0f;
         moveDirection.Normalize();
+        // TESTING FLIP
+        FlipEnemy();
 
         // Do we need to check if we can drop down
         if(checkBelow)

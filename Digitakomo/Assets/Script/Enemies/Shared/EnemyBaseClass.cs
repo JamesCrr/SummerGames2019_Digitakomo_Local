@@ -59,12 +59,12 @@ public abstract class EnemyBaseClass : MonoBehaviour
                 case DIRECTION.D_LEFT:
                     facingDirection = DIRECTION.D_RIGHT;
                     // Reverse the Object
-                    transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+                    transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
                     break;
                 case DIRECTION.D_RIGHT:
                     facingDirection = DIRECTION.D_LEFT;
                     // Reverse the Object
-                    transform.rotation = Quaternion.Euler(new Vector3(0, -180, 0));
+                    transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
                     break;
             }
         }

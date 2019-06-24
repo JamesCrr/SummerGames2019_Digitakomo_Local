@@ -32,4 +32,5 @@ public class groundCheck : MonoBehaviour
         attachedObj.LeftGrounded();
         startCheck = true;
     }
+
 }
