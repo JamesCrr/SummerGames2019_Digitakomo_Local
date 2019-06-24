@@ -9,32 +9,34 @@ public class Shield : MonoBehaviour
     private Quaternion DefaultRotation;
 
     Character player;
+    private int noPlayer;
 
     void Awake()
     {
         _Shield = gameObject.GetComponentInChildren<Collider2D>();
         Texture = gameObject.GetComponentInChildren<SpriteRenderer>();
         player = gameObject.GetComponentInParent<Character>();
+        noPlayer = player.player;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetButtonDown("Player" + noPlayer + "Defense"))
         {
             player.isLockMovement += 1;
             isShielding = true;
         }
-        if (Input.GetKeyUp(KeyCode.E))
+        if (Input.GetButtonUp("Player" + noPlayer + "Defense"))
         {
             player.isLockMovement -= 1;
             isShielding = false;
         }
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetButtonDown("Player" + noPlayer + "LookUp"))
         {
             isShieldUp = true;
         }
-        if (Input.GetKeyUp(KeyCode.W))
+        if (Input.GetButtonUp("Player" + noPlayer + "LookUp"))
         {
             isShieldUp = false;
         }
