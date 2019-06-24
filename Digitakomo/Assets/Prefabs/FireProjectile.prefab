@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5927052046128415772}
   m_Layer: 0
   m_Name: FireProjectile
-  m_TagString: Untagged
+  m_TagString: PlayerProj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,7 +111,7 @@ MonoBehaviour:
   MinDamage: 0
   MaxDamage: 0
   speed: 7
-  timeoutDestructor: 0.5
+  timeoutDestructor: 1
   at: 1
   nonAttackTypeDivider: 15
   firerate: 0.1

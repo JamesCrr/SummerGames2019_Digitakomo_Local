@@ -131,8 +131,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MinDamage: 0
   MaxDamage: 0
-  speed: 5
-  timeoutDestructor: 1
+  speed: 7
+  timeoutDestructor: 2
   at: 0
   nonAttackTypeDivider: 15
   firerate: 0.35

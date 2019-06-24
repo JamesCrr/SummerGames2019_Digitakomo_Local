@@ -97,6 +97,9 @@ public class Character : MonoBehaviour
         // Increase gravity if player has jumped and is currently falling
         if (myRb2D.velocity.y < 0)
             myRb2D.velocity += Vector2.up * (Physics2D.gravity.y * fallingMultiplyer) * Time.deltaTime;
+
+        HandleHP();
+
         Animate.SetBool("Attacking", IsAttacking);
     }
 
@@ -237,13 +240,13 @@ public class Character : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
-        Animate.SetBool("Walking", horizontalInput == 0);
+        // Animate.SetBool("Walking", horizontalInput == 0);
 
 
         // If player wants to jump
         if (jump)
         {
-            Animate.SetTrigger("Jump");
+            // Animate.SetTrigger("Jump");
             Jump();
         }
 
@@ -301,6 +304,14 @@ public class Character : MonoBehaviour
         else if (Input.GetButtonUp("Player" + player + "SpecialAttack"))
         {
             IsSpecialAttacking = false;
+        }
+    }
+
+    private void HandleHP()
+    {
+        if (HP <= 0)
+        {
+            throw new NotImplementedException("Character dead");
         }
     }
 }

@@ -8,16 +8,10 @@ public class IceCharacter : Character
 
     // ice platform
     public IcePlatform icePlatform;
-    private SpriteRenderer iceRender;
-    private Collider2D iceCollider;
 
     void Start()
     {
-        iceRender = icePlatform.GetComponent<SpriteRenderer>();
-        iceCollider = icePlatform.GetComponent<Collider2D>();
-
-        iceRender.enabled = false;
-        iceCollider.enabled = false;
+        Instantiate(icePlatform);
 
         SpecialFireRate = IceMissile.firerate;
         myRb2D = GetComponent<Rigidbody2D>();
@@ -161,9 +155,7 @@ public class IceCharacter : Character
 
     public virtual void CreateIcePlatform()
     {
-        iceRender.enabled = true;
-        iceCollider.enabled = true;
-        icePlatform.transform.position = transform.position - new Vector3(0, 2f, 0);
+        icePlatform.Restart(transform.position - new Vector3(0, 2f, 0));
     }
 
     private Vector3 GetCreatePosition()
