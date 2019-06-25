@@ -2,8 +2,8 @@
 
 public class Steam : MonoBehaviour
 {
-    private int firecount = 0;
-    private int icecount = 0;
+    private bool receivedFire = false;
+    private bool receivedIce = false;
 
     public float addSize = 0.1f;
 
@@ -16,9 +16,15 @@ public class Steam : MonoBehaviour
     public bool isElectric = false;
 
     private Vector3 defaultScale;
+    private Color defaultColor;
+    private Material m_Material;
+
+
     private void Awake()
     {
         defaultScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        m_Material = GetComponent<Renderer>().material;
+        defaultColor = m_Material.color;
     }
 
     private void Start()
@@ -29,22 +35,38 @@ public class Steam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        handleElectric();
         if (Time.time > _expiredtime)
         {
             gameObject.SetActive(false);
         }
         else
         {
-            if (firecount > icecount)
+            if (receivedIce && receivedFire)
             {
-                // use icecount as scale
-                transform.localScale = new Vector3(defaultScale.x + (icecount * addSize), defaultScale.y + (icecount * addSize), defaultScale.z);
+                Expand();
             }
-            else
-            {
-                // use firecount as scale
-                transform.localScale = new Vector3(defaultScale.x + (firecount * addSize), defaultScale.y + (firecount * addSize), defaultScale.z);
-            }
+        }
+    }
+
+    private void Expand()
+    {
+        transform.localScale += new Vector3(addSize, addSize, 0);
+        _expiredtime = Time.time + expiredTime;
+        receivedFire = false;
+        receivedIce = false;
+        expiredExpandTime = Time.time + grapTime;
+    }
+
+    private void handleElectric()
+    {
+        if (isElectric)
+        {
+            m_Material.color = Color.blue;
+        }
+        else
+        {
+            m_Material.color = defaultColor;
         }
     }
 
@@ -75,16 +97,12 @@ public class Steam : MonoBehaviour
         }
         if (collision.gameObject.GetComponent<IceMissile>() != null)
         {
-            expiredExpandTime = Time.time + grapTime;
-            icecount += 1;
+            receivedIce = true;
         }
         else if (collision.gameObject.GetComponent<FlameProjectile>() != null)
         {
-            expiredExpandTime = Time.time + grapTime;
-            firecount += 1;
+            receivedFire = true;
         }
-
-
     }
 
     public void Restart()

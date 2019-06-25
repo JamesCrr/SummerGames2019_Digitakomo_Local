@@ -11,7 +11,7 @@ public class IceCharacter : Character
 
     void Start()
     {
-        Instantiate(icePlatform);
+        icePlatform = Instantiate(icePlatform);
 
         SpecialFireRate = IceMissile.firerate;
         enerygyPerSpecialAttack = IceMissile.enerygyPerSpecialAttack;

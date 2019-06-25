@@ -361,11 +361,11 @@ MonoBehaviour:
   MPRestore: 100
   electricAttack: 0
   PunchRate: 0.1
-  enerygyPerSpecialAttack: 20
   player: 2
   IceMissile: {fileID: 8374536731700558200, guid: 0bc122d6f0e083c40b283f0e39bb065b,
     type: 3}
-  icePlatform: {fileID: 0}
+  icePlatform: {fileID: 6189928942897961021, guid: 20a8386fc65c10649b2ac71f49ec7a8d,
+    type: 3}
 --- !u!95 &7883997970962599786
 Animator:
   serializedVersion: 3
