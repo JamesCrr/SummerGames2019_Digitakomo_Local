@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8572160587626400353}
   - component: {fileID: 4355104644337318112}
   - component: {fileID: 6394144962673714315}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Berry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
