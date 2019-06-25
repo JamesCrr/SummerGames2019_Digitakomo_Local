@@ -173,15 +173,16 @@ public class SquirrelWolf : EnemyBaseClass
 
 
 
-                    // Once reached, 
-                    if (myRb2D.position.y <= targetObject.transform.position.y)
+                    // Once close enough Y pos, 
+                    float posDiff = myRb2D.position.y - targetObject.transform.position.y;
+                    if (posDiff < 2.0f)
                     {
                         currentState = STATES.S_EGG_SIMILARHEIGHT;
                         return;
                     }
                     // if we are stuck, then we should go to one of the points
-                    float xPosDiff = targetObject.transform.position.x - myRb2D.position.x;
-                    if (xPosDiff < 0.5f && xPosDiff > -0.5f)
+                    posDiff = targetObject.transform.position.x - myRb2D.position.x;
+                    if (posDiff < 0.5f && posDiff > -0.5f)
                     {
                         currentState = STATES.S_EGG_ONTOP;
                         // Go to the closest position from the egg WITH AN OFFSET
@@ -258,9 +259,8 @@ public class SquirrelWolf : EnemyBaseClass
                             // Set new target and jump there
                             SetNewPosTarget(platformEdgePos);
                             JumpWolf(moveTargetPos);
+                            return;
                         }
-
-                        return;
                     }
 
                     fleeTimer -= Time.deltaTime;
