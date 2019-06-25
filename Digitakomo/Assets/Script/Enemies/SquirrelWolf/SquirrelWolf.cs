@@ -357,6 +357,7 @@ public class SquirrelWolf : EnemyBaseClass
 
                     // check if we can melee the player
 
+
                     // check if we can shoot projectile at player
                     if ((moveTargetPos - myRb2D.position).sqrMagnitude <= (maxShootingRange * maxShootingRange))
                     {
