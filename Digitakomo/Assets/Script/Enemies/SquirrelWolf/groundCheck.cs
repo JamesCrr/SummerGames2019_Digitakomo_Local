@@ -23,6 +23,9 @@ public class groundCheck : MonoBehaviour
         // modify data
         attachedObj.SetGrounded();
         startCheck = false;
+
+        // Call the wolf function reacting function
+        attachedObj.HitGround();
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

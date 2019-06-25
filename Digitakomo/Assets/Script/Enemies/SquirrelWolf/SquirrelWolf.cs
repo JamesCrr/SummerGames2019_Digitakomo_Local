@@ -36,6 +36,13 @@ public class SquirrelWolf : EnemyBaseClass
     bool isGrounded = false;     // Used to check if we have reached the ground
     [SerializeField]
     groundCheck groundCheckScript = null;   // Script used to check if have reached the ground when jumping
+    [Header("GroundCasting")]
+    [SerializeField]
+    // Ground Cast
+    Transform groundCast = null;
+    [SerializeField]
+    float groundCastLength = 0.09f;
+    RaycastHit2D rayhit2D = new RaycastHit2D();
 
     [Header("Melee")]
     [SerializeField]
@@ -55,13 +62,6 @@ public class SquirrelWolf : EnemyBaseClass
     float maxShootingRange = 5.0f;
     [SerializeField]
     float timeToHitTarget = 1.0f;   // How long for the projectile to hit smth
-    [Header("GroundCasting")]
-    [SerializeField]
-    // Ground Cast
-    Transform groundCast = null;
-    [SerializeField]
-    float groundCastLength = 2.0f;
-    RaycastHit2D rayhit2D = new RaycastHit2D();
     [Header("RunAwayTimer")]
     [SerializeField]
     float fleeTime = 5.0f;
@@ -119,7 +119,7 @@ public class SquirrelWolf : EnemyBaseClass
 
 
                     // set the position of egg and move there
-                    SetNewTarget(Egg.Instance.gameObject);
+                    SetNewObjectTarget(Egg.Instance.gameObject);
                     // check if we can shoot projectile at egg
                     if ((moveTargetPos - myRb2D.position).sqrMagnitude <= (maxShootingRange * maxShootingRange))
                     {
@@ -167,7 +167,7 @@ public class SquirrelWolf : EnemyBaseClass
                     }
 
                     // set the target as egg
-                    SetNewTarget(Egg.Instance.gameObject);
+                    SetNewObjectTarget(Egg.Instance.gameObject);
                     // Move enemy
                     MoveWolf(false);
 
@@ -193,6 +193,14 @@ public class SquirrelWolf : EnemyBaseClass
                 break;
             case STATES.S_EGG_ONTOP:
                 {
+                    // Is a player in range?
+                    targetObject = IsPlayerInRange();
+                    if (targetObject != null)    // Found Player
+                    {
+                        currentState = STATES.S_FOUNDPLAYER;
+                        return;
+                    }
+
                     // Keep moving until we drop
                     MoveWolf(false);
                     if (!isGrounded)
@@ -203,6 +211,10 @@ public class SquirrelWolf : EnemyBaseClass
             case STATES.S_FOUNDPLAYER:
                 {
                     // check if we can ATTACK player or need to walk there
+
+                    // Flee
+                    currentState = STATES.S_RUNAWAY;
+                    SetNewPosTarget(groundCheckScript.platformStandingOn.GetFurtherestPosition(myRb2D.position));
 
 
                 }
@@ -228,7 +240,7 @@ public class SquirrelWolf : EnemyBaseClass
             case STATES.S_RUNAWAY:
                 {
                     // if grounded, just return
-                    if (isGrounded)
+                    if (!isGrounded)
                         return;
 
                     // Move enemy
@@ -239,24 +251,24 @@ public class SquirrelWolf : EnemyBaseClass
                         if (platformEdgePos == Vector2.zero)
                         {
                             // Go back to finding statew
-                            currentState = STATES.S_EGG_DIFFERENTHEIGHT;
+                            //currentState = STATES.S_EGG_DIFFERENTHEIGHT;
                         }
                         else
                         {
                             // Set new target and jump there
-                            moveTargetPos = platformEdgePos;
+                            SetNewPosTarget(platformEdgePos);
                             JumpWolf(moveTargetPos);
                         }
 
                         return;
                     }
 
-                    //fleeTimer -= Time.deltaTime;
-                    //if(fleeTimer < 0.0f)
-                    //{
-                    //    currentState = STATES.S_EGG_DIFFERENTHEIGHT;
-                    //    fleeTimer = fleeTime;
-                    //}
+                    fleeTimer -= Time.deltaTime;
+                    if (fleeTimer < 0.0f)
+                    {
+                        currentState = STATES.S_EGG_DIFFERENTHEIGHT;
+                        fleeTimer = fleeTime;
+                    }
                 }
                 break;
 
@@ -295,7 +307,7 @@ public class SquirrelWolf : EnemyBaseClass
     GameObject IsPlayerInRange()
     {
         // Get if we have hit anything, player or egg
-        result = Physics2D.OverlapCircle(myRb2D.position, playerDetectionRange, LayerMask.NameToLayer("Player"));
+        result = Physics2D.OverlapCircle(myRb2D.position, playerDetectionRange, LayerMask.GetMask("Player"));
         if (result == null)
             return null;
         if (result.gameObject.tag != "Player")
@@ -337,19 +349,34 @@ public class SquirrelWolf : EnemyBaseClass
     // Except for the furtherest of Closest depending on what you pass in
     Vector2 FilterPlatform(bool closet = true)
     {
-        int closetIndex = 0;
-        float dist = ((Vector2)listOfPlatforms[closetIndex].gameObject.transform.position - myRb2D.position).sqrMagnitude;
+        int selectedIndex = -1;
+        float dist;
+        if (closet) // set differently compare values
+            dist = Mathf.Infinity;
+        else
+            dist = 0.0f;
         float testingDist = 0;
-        for (int i = 1; i < listOfPlatforms.Count; ++i)
+        Vector2 testDirection = Vector2.zero;
+
+
+        for (int i = 0; i < listOfPlatforms.Count; ++i)
         {
-            // get closest platform
-            testingDist = ((Vector2)listOfPlatforms[i].gameObject.transform.position - myRb2D.position).sqrMagnitude;
+            // Can I even jump there? or is it blocked by the platform itself
+            testDirection = (listOfPlatforms[i].gameObject.transform.position - shootingPos.position);
+            rayhit2D = Physics2D.Raycast(shootingPos.position, testDirection.normalized, platformDetectSize.x, LayerMask.GetMask("Ground"));
+            Debug.DrawLine(shootingPos.position, (Vector2)shootingPos.position + testDirection.normalized * platformDetectSize.x, Color.yellow);
+            if (rayhit2D.collider != null)   // We hit smth
+                continue;
+
+
+            // Check if distance is more than currently selected platform
+            testingDist = testDirection.sqrMagnitude;
             // Closest or Furtherest
             if(closet)
             {
                 if (testingDist < dist)
                 {
-                    closetIndex = i;
+                    selectedIndex = i;
                     dist = testingDist;
                 }
             }
@@ -357,23 +384,43 @@ public class SquirrelWolf : EnemyBaseClass
             {
                 if (testingDist > dist)
                 {
-                    closetIndex = i;
+                    selectedIndex = i;
                     dist = testingDist;
                 }
             }
             
         }
 
-        return listOfPlatforms[closetIndex].gameObject.transform.position;
+        // If we found a platform we can jump to
+        if(selectedIndex != -1)
+            return listOfPlatforms[selectedIndex].gameObject.transform.position;
+        return Vector2.zero;
     }
 
 
 
-    void SetNewTarget(GameObject newtarget)
+    // Checks if you are have reached your target
+    bool ReachedTarget()
+    {
+        if ((myRb2D.position - moveTargetPos).sqrMagnitude < 1.0f)
+            return true;
+
+        return false;
+    }
+    // Set a new target to move towards to
+    // Also recalculates the direction for you
+    void SetNewObjectTarget(GameObject newtarget)
     {
         // set the data
         targetObject = newtarget;
         moveTargetPos = newtarget.transform.position;
+        // set the direction
+        moveDirection = moveTargetPos - myRb2D.position;
+    }
+    void SetNewPosTarget(Vector2 newtarget)
+    {
+        // set the data
+        moveTargetPos = newtarget;
         // set the direction
         moveDirection = moveTargetPos - myRb2D.position;
     }
@@ -465,6 +512,19 @@ public class SquirrelWolf : EnemyBaseClass
     public void LeftGrounded()
     {
         isGrounded = false;
+    }
+    // What to do when grounded
+    public void HitGround()
+    {
+        switch (currentState)
+        {
+            case STATES.S_RUNAWAY:
+                {
+                    SetNewPosTarget(groundCheckScript.platformStandingOn.GetFurtherestPosition(myRb2D.position));
+                }
+                break;
+        }
+
     }
 
 

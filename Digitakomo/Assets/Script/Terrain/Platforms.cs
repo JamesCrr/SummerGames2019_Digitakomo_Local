@@ -26,8 +26,8 @@ public class Platforms : MonoBehaviour
         leftPoint.x = gameObject.transform.position.x - (width * transform.localScale.x) + 0.3f;
         rightPoint.x = gameObject.transform.position.x + (width * transform.localScale.x) - 0.3f;
         // Y Axis
-        leftPoint.y = gameObject.transform.position.y + (height * transform.localScale.y) + 0.1f;
-        rightPoint.y = gameObject.transform.position.y + (height * transform.localScale.y) + 0.1f;
+        leftPoint.y = gameObject.transform.position.y + (height * transform.localScale.y) + 0.3f;
+        rightPoint.y = gameObject.transform.position.y + (height * transform.localScale.y) + 0.3f;
 
         // set the collider's position
         leftCollider.gameObject.transform.position = leftPoint;
