@@ -641,7 +641,24 @@ public class SquirrelWolf : EnemyBaseClass
         {
             case STATES.S_RUNAWAY:
                 {
-                    SetNewPosTarget(groundCheckScript.platformStandingOn.GetFurtherestPosition(myRb2D.position));
+                    // Walk to end of platform
+                    if(Random.Range(1,1) == 0) // random chance to turn around
+                        SetNewPosTarget(groundCheckScript.platformStandingOn.GetFurtherestPosition(myRb2D.position));
+                    else    // Turn around
+                    {
+                        TurnWolfAround();
+                        Vector2 platformPos = FindPlatformAbove();
+                        if(platformPos == Vector2.zero)
+                        {
+                            TurnWolfAround();
+                            SetNewPosTarget(groundCheckScript.platformStandingOn.GetFurtherestPosition(myRb2D.position));
+                        }else
+                        {
+                            SetNewPosTarget(platformPos);
+                            JumpWolf(platformPos);
+                        }
+                    }
+
                 }
                 break;
         }
