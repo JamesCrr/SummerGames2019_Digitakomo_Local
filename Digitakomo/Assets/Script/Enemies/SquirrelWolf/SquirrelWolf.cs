@@ -87,6 +87,15 @@ public class SquirrelWolf : EnemyBaseClass
         jumpingFilter.SetLayerMask(LayerMask.GetMask("JumpPointLayer"));
         jumpingFilter.ClearDepth();
         jumpingFilter.useTriggers = true;
+
+        // Multiply ranges with scale
+        // Platform detecting
+        platformDetectOffset *= transform.localScale;
+        platformDetectSize *= transform.localScale;
+        // Player detect
+        playerDetectionRange *= transform.localScale.x;
+        // Shooting
+        maxShootingRange *= transform.localScale.x;
     }
 
     // Update is called once per frame
