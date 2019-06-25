@@ -6,6 +6,7 @@ public class HUDController : MonoBehaviour
     public Character character;
     private Text _HP;
     private Text _SP;
+    private Text Status;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,7 @@ public class HUDController : MonoBehaviour
             {
                 case "HP": _HP = text; break;
                 case "SP": _SP = text; break;
+                case "Status": Status = text; break;
             }
         }
     }
@@ -27,6 +29,19 @@ public class HUDController : MonoBehaviour
     {
         SetHealthText(character.GetCurrentHP().ToString());
         SetEnergyText(character.GetCurrentMP().ToString());
+        SetStatusText(character.electricAttack);
+    }
+
+    private void SetStatusText(bool electricAttack)
+    {
+        if (electricAttack)
+        {
+            Status.text = "Electric";
+        }
+        else
+        {
+            Status.text = "Normal";
+        }
     }
 
     void SetHealthText(string text)
