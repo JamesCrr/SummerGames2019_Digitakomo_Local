@@ -33,13 +33,13 @@ public class ItemManager : MonoBehaviour
     {
         if (Time.time >= NextEnergySpawn)
         {
-            BaseItem item = EnergyItems[EnergyItemSpawned++];
+            BaseItem item = EnergyItems[EnergyItemSpawned++ % EnergyItems.Length];
             SpawnItem(item);
             NextEnergySpawn = Time.time + NextEnergyItemSpawn;
         }
         if (Time.time >= NextHPSpawn)
         {
-            BaseItem item = HPItems[HPItemSpawned++];
+            BaseItem item = HPItems[HPItemSpawned++ % HPItems.Length];
             SpawnItem(item);
             NextHPSpawn = Time.time + NextHPItemSpawn;
         }
@@ -47,12 +47,18 @@ public class ItemManager : MonoBehaviour
 
     private void SpawnItem(BaseItem item)
     {
-        //Get Posible spawnbox
-
         //Random which spawnbox we use
+        int spawnbox_index = Random.Range(0, spawnItemZones.Length);
 
+        SpawnItemZone spawnbox = spawnItemZones[spawnbox_index];
+        
         //Random position in spawnbox
+        float x = Random.Range(0, (int)spawnbox.size.x) - (spawnbox.size.x / 2);
+        float y = Random.Range(0, (int)spawnbox.size.y) - (spawnbox.size.y / 2);
 
+        Vector3 spawnPosition = spawnbox.transform.localPosition + spawnbox.center + new Vector3(x, y, 0);
+        BaseItem i = ObjectPooler.Instance.FetchGO(item.name).GetComponent<BaseItem>();
+        i.transform.position = spawnPosition;
     }
 
     void Reshuffle(BaseItem[] items)
