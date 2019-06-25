@@ -28,7 +28,7 @@ public class Berry : BaseItem
     public BerrySize size;
     public int AddHp;
 
-    protected override void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         Character ch = collision.gameObject.GetComponent<Character>();
         if (ch != null)
@@ -37,6 +37,7 @@ public class Berry : BaseItem
             gameObject.SetActive(false);
         }
     }
+    
 
     public override void Restart()
     {

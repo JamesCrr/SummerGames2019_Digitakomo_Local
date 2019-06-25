@@ -41,6 +41,8 @@ public class Character : MonoBehaviour
     [SerializeField]
     LayerMask whatIsGround;     // What layer to detect as ground
     [SerializeField]
+    LayerMask whatIsItem;
+    [SerializeField]
     protected int extraJumps = 1;       // How many extra jumps we get, not including default
     protected int jumpsLeft = 1;
     [SerializeField]
@@ -79,6 +81,8 @@ public class Character : MonoBehaviour
 
     public int player = 1;
 
+    // Current velocity
+    protected Vector2 currentVelocity;
 
 
     // Start is called before the first frame update
@@ -112,6 +116,7 @@ public class Character : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
+        currentVelocity = myRb2D.velocity;
         CheckGrounded();
         if (IsAttacking)
             Attack();
@@ -343,6 +348,15 @@ public class Character : MonoBehaviour
         else
         {
             this.HP += HP;
+        }
+    }
+
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+        BaseItem item = collision.gameObject.GetComponent<BaseItem>();
+        if (item != null)
+        {
+            myRb2D.velocity = currentVelocity;
         }
     }
 }

@@ -216,4 +216,13 @@ public class IceCharacter : Character
         }
         return true;
     }
+
+    protected override void OnCollisionEnter2D(Collision2D collision)
+    {
+        base.OnCollisionEnter2D(collision);
+        if (collision.gameObject.GetComponent<IcePlatform>() != null)
+        {
+            myRb2D.velocity = currentVelocity;
+        }
+    }
 }

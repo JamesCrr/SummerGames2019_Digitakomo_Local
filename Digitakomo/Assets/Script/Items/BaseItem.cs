@@ -14,15 +14,13 @@ public abstract class BaseItem : MonoBehaviour
         Restart();
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if (Time.time > createdTime + ExpiredTime)
         {
             gameObject.SetActive(false);
         }
     }
-
-    protected abstract void OnTriggerEnter2D(Collider2D collision);
 
     public virtual void Restart()
     {
