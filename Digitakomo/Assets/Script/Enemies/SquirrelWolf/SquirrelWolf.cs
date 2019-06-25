@@ -72,10 +72,13 @@ public class SquirrelWolf : EnemyBaseClass
     #endregion
 
 
+    private void Awake()
+    {
+        myRb2D = GetComponent<Rigidbody2D>();
+    }
     // Start is called before the first frame update
     void Start()
     {
-        myRb2D = GetComponent<Rigidbody2D>();
         currentState = STATES.S_EGG_DIFFERENTHEIGHT;
 
         // Convert int to floats for easier calculation
@@ -540,7 +543,11 @@ public class SquirrelWolf : EnemyBaseClass
     #region Overriden
     public override void ResetEnemy(SpawnZone newSpawnZone, Vector3 newPos)
     {
-        
+        spawningZone = newSpawnZone;
+        // Reset Position and Velocity
+        transform.position = newPos;
+        myRb2D.position = newPos;
+        myRb2D.velocity = Vector2.zero;
     }
     #endregion
 

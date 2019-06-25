@@ -45,9 +45,9 @@ public class SpawnZone : MonoBehaviour
         // If not, returns Vector3.zero;
         public Vector3 GetRandomPositionFromZone()
         {
-            // If not center point to referrnce from
+            // If not center point to referrnce from, then just spawn from me
             if (spawningZone.centerPoint == null)
-                return Vector3.zero;
+                return spawningZone.transform.position;
             // Get a random position
             float xPos = Random.Range(spawningZone.centerPoint.position.x - spawningZone.zoneDimensions.x, spawningZone.centerPoint.position.x + spawningZone.zoneDimensions.x);
             float yPos = Random.Range(spawningZone.centerPoint.position.y - spawningZone.zoneDimensions.y, spawningZone.centerPoint.position.y + spawningZone.zoneDimensions.y);
@@ -80,6 +80,10 @@ public class SpawnZone : MonoBehaviour
 
     private void Start()
     {
+        // If no center point has been referrence yet, use this as referrence
+        if (centerPoint == null)
+            centerPoint = this.transform;
+
         // Attach this's transform to all the templates
         foreach (SpawningTemplate item in listOfEnemies)
         {
