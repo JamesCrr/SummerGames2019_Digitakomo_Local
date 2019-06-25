@@ -1,18 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Tuonela : MonoBehaviour
+public class Tuonela : BaseItem
 {
-    // Start is called before the first frame update
-    void Start()
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        IceCharacter ic = collision.gameObject.GetComponent<IceCharacter>();
+        if (ic != null)
+        {
+            ic.AddEnergy(Energy);
+            gameObject.SetActive(false);
+        }
     }
 }

@@ -321,4 +321,28 @@ public class Character : MonoBehaviour
             throw new NotImplementedException("Character dead");
         }
     }
+
+    public void AddEnergy(float energy)
+    {
+        if (energy + MP > MaxEnergy)
+        {
+            MP = MaxEnergy;
+        }
+        else
+        {
+            MP += energy;
+        }
+    }
+
+    public void AddHP(float HP)
+    {
+        if (HP + this.HP > MaxHP)
+        {
+            this.HP = MaxHP;
+        }
+        else
+        {
+            this.HP += HP;
+        }
+    }
 }
