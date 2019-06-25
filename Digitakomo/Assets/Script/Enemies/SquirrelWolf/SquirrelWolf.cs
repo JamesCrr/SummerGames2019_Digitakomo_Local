@@ -5,7 +5,7 @@ using UnityEngine;
 public class SquirrelWolf : EnemyBaseClass
 {
     // States
-    enum STATES
+    public enum STATES
     {
         S_EGG_SIMILARHEIGHT,
         S_EGG_DIFFERENTHEIGHT,
@@ -18,7 +18,7 @@ public class SquirrelWolf : EnemyBaseClass
         S_MELEE,
         S_SHOOT_EGG,
     }
-    STATES currentState;
+    public STATES currentState;
     #region Data
     [Header("SquirrelWolf Class")]
     [SerializeField]
@@ -225,9 +225,9 @@ public class SquirrelWolf : EnemyBaseClass
                 {
                     // check if we can ATTACK player or need to walk there
 
-                    // Flee
-                    currentState = STATES.S_RUNAWAY;
-                    SetNewPosTarget(groundCheckScript.platformStandingOn.GetFurtherestPosition(myRb2D.position));
+                    // Flee from player
+                    currentState = STATES.S_RUNAWAY;    // get the furtherest Point from the player on the platform we are standing on
+                    SetNewPosTarget(groundCheckScript.platformStandingOn.GetFurtherestPosition(targetObject.transform.position));
 
 
                 }
@@ -256,15 +256,27 @@ public class SquirrelWolf : EnemyBaseClass
                     if (!isGrounded)
                         return;
 
-                    // Move enemy
+                    // Check if we can jump up more
+                    Vector2 platformEdgePos = FindPlatformAbove();
+                    if(platformEdgePos != Vector2.zero)
+                    {
+                        // Set new target and jump there
+                        SetNewPosTarget(platformEdgePos);
+                        JumpWolf(moveTargetPos);
+                        return;
+                    }
+
+
+                    // Move enemy Horizontal
                     if (!MoveWolf())
                     {
                         // If we don't find any platforms to jump to, then we turn back
-                        Vector2 platformEdgePos = FindFurtherestPlatform();
+                        platformEdgePos = FindFurtherestPlatform();
                         if (platformEdgePos == Vector2.zero)
                         {
                             // Go back to finding statew
                             //currentState = STATES.S_EGG_DIFFERENTHEIGHT;
+                            myRb2D.velocity = Vector2.zero;
                         }
                         else
                         {
@@ -315,6 +327,7 @@ public class SquirrelWolf : EnemyBaseClass
     }
 
     // Returns the player Object if he is in Range
+    // Player must be in Player Layer and Tag
     // Does not count EGG as player
     GameObject IsPlayerInRange()
     {
@@ -330,36 +343,73 @@ public class SquirrelWolf : EnemyBaseClass
     // Fills the list with platforms that are within my Collider
     // Returns Vector2.zero if no Colliders Found
     // Returns the Position if found at least one Collider
-    Vector2 FindNearestPlatform()
+    int FindPlatforms()
     {
         Vector2 newRight = transform.right;
         newRight.y = 1;
         int length = Physics2D.OverlapBox(myRb2D.position + (platformDetectOffset * newRight), platformDetectSize, 0.0f, jumpingFilter, listOfPlatforms);
         Debug.Log("Found: " + length);
-        if (length == 0)
+        return length;
+    }
+    // Finds platforms and returns Closest platform
+    Vector2 FindNearestPlatform()
+    {
+        // Find the platforms
+        if (FindPlatforms() == 0)
             return Vector2.zero;
-
         // Return the closest after filtering
-        return FilterPlatform();
+        return FilterPlatformDistance();
+    }
+    // Finds platforms and returns Furtherest platform
+    Vector2 FindFurtherestPlatform()
+    {
+        // Find the platforms
+        if (FindPlatforms() == 0)
+            return Vector2.zero;
+        // Return the closest after filtering
+        return FilterPlatformDistance(false);
     }
     // Fills the list with platforms that are within my Collider
     // Returns Vector2.zero if no Colliders Found
     // Returns the Position if found at least one Collider
-    Vector2 FindFurtherestPlatform()
+    Vector2 FindPlatformAbove()
     {
-        Vector2 newRight = transform.right;
-        newRight.y = 1;
-        int length = Physics2D.OverlapBox(myRb2D.position + (platformDetectOffset * newRight), platformDetectSize, 0.0f, jumpingFilter, listOfPlatforms);
-        Debug.Log("Found: " + length);
-        if (length == 0)
+        // Find the platforms
+        if (FindPlatforms() == 0)
             return Vector2.zero;
 
-        // Return the closest after filtering
-        return FilterPlatform(false);
+        // get the highest platform
+        int selectedIndex = -1;
+        float yPos = 0;
+        Vector2 testDirection = Vector2.zero;
+        Vector3 platformPos;
+        for (int i = 0; i < listOfPlatforms.Count; ++i)
+        {
+            // Set the pos
+            platformPos = listOfPlatforms[i].gameObject.transform.position;
+            // Can I even jump there? or is it blocked by the platform itself
+            testDirection = (platformPos - shootingPos.position);
+            rayhit2D = Physics2D.Raycast(shootingPos.position, testDirection.normalized, platformDetectSize.y, LayerMask.GetMask("Ground"));
+            Debug.DrawLine(shootingPos.position, (Vector2)shootingPos.position + testDirection.normalized * platformDetectSize.y, Color.yellow);
+            if (rayhit2D.collider != null)   // We hit smth
+                continue;
+            if (platformPos.y - myRb2D.position.y < 0.5f) // If we are on the same y
+                continue;
+
+            if(platformPos.y > yPos)
+            {
+                selectedIndex = i;
+                yPos = platformPos.y;
+            }
+        }
+
+        if (selectedIndex == -1)
+            return Vector2.zero;
+        return listOfPlatforms[selectedIndex].gameObject.transform.position;
     }
     // Removes all the platfrom from the list
     // Except for the furtherest of Closest depending on what you pass in
-    Vector2 FilterPlatform(bool closet = true)
+    Vector2 FilterPlatformDistance(bool closet = true)
     {
         int selectedIndex = -1;
         float dist;
