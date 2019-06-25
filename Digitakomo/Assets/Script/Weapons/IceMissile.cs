@@ -12,14 +12,16 @@ public class IceMissile : Weapon
         {
             // TODO // if player far enough
 
-            // if steam not created
-            if (GameObject.FindGameObjectWithTag("Steam") == null)
-            {
-                // Create Steam
-                GameObject go = ObjectPooler.Instance.FetchGO("Steam");
-                go.transform.position = transform.position;
-            }
+            // Create Steam
+            GameObject go = ObjectPooler.Instance.FetchGO("Steam");
+            go.transform.position = transform.position;
 
+        }
+
+        if (collision.gameObject.GetComponent<Steam>() != null)
+        {
+            // hit steam
+            gameObject.SetActive(false);
         }
     }
 }

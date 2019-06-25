@@ -135,4 +135,4 @@ MonoBehaviour:
   timeoutDestructor: 2
   at: 0
   nonAttackTypeDivider: 15
-  firerate: 0.35
+  firerate: 1

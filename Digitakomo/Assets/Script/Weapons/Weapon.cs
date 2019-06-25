@@ -12,7 +12,7 @@ public abstract class Weapon : MonoBehaviour
     private Rigidbody2D rb;
     public AttackType at = AttackType.UNKNOWN;
     public float nonAttackTypeDivider = 15;
-
+    public float enerygyPerSpecialAttack = 1;
     public float firerate;
 
     // Start is called before the first frame update

@@ -55,6 +55,7 @@ public class Character : MonoBehaviour
     private float HP;
     public float MaxEnergy = 200;
     private float MP;
+    [Header("Not using")]
     public float MPRestore = 0.5f;
 
 
@@ -62,7 +63,7 @@ public class Character : MonoBehaviour
     [Header("Attack")]
     public bool electricAttack = false;
     public float PunchRate = 0.1f;
-    public float enerygyPerSpecialAttack = 20;
+    protected float enerygyPerSpecialAttack;
     protected bool IsAttacking = false;
     protected bool IsSpecialAttacking = false;
     protected Collider2D AttackCollider;
@@ -117,10 +118,10 @@ public class Character : MonoBehaviour
         if (IsSpecialAttacking)
             SpecialAttack();
 
-        if (MP < MaxEnergy)
-        {
-            MP += MPRestore;
-        }
+        //if (MP < MaxEnergy)
+        //{
+        //    MP += MPRestore;
+        //}
     }
 
     // Moving Horizontal, left and right

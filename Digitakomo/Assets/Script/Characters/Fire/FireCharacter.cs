@@ -10,6 +10,7 @@ public class FireCharacter : Character
     void Start()
     {
         SpecialFireRate = flameThrower.firerate;
+        enerygyPerSpecialAttack = flameThrower.enerygyPerSpecialAttack;
     }
 
     protected override void FixedUpdate()

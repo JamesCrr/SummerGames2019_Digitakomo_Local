@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 874705176202349680}
   - component: {fileID: 1088873394751800611}
   - component: {fileID: 5449614690293719480}
-  - component: {fileID: 7881657545065886293}
   - component: {fileID: 5927052046128415772}
+  - component: {fileID: 7881657545065886293}
   m_Layer: 11
   m_Name: FireProjectile
   m_TagString: PlayerProj
@@ -96,25 +96,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &7881657545065886293
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 13134480628171646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2801a65b93071cb4d8a0918c8b4b0577, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MinDamage: 0
-  MaxDamage: 0
-  speed: 7
-  timeoutDestructor: 1
-  at: 1
-  nonAttackTypeDivider: 15
-  firerate: 0.1
 --- !u!50 &5927052046128415772
 Rigidbody2D:
   serializedVersion: 4
@@ -136,3 +117,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &7881657545065886293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13134480628171646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2801a65b93071cb4d8a0918c8b4b0577, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinDamage: 0
+  MaxDamage: 0
+  speed: 7
+  timeoutDestructor: 1
+  at: 1
+  nonAttackTypeDivider: 15
+  firerate: 1

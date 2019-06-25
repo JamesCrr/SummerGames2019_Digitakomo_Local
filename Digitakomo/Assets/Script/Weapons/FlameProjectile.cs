@@ -29,4 +29,13 @@ public class FlameProjectile : Weapon
         base.Restart();
         this.transform.localScale = defaultScale;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponent<Steam>() != null)
+        {
+            // hit steam
+            gameObject.SetActive(false);
+        }
+    }
 }

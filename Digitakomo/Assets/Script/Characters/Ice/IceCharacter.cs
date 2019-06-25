@@ -14,6 +14,7 @@ public class IceCharacter : Character
         Instantiate(icePlatform);
 
         SpecialFireRate = IceMissile.firerate;
+        enerygyPerSpecialAttack = IceMissile.enerygyPerSpecialAttack;
         myRb2D = GetComponent<Rigidbody2D>();
         // Calculate how many jumps we can do
         jumpsLeft = 1 + extraJumps;

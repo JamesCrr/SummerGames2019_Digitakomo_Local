@@ -8,7 +8,10 @@ public class Steam : MonoBehaviour
     public float addSize = 0.1f;
 
     public float grapTime = 0.3f;
-    private float expiredTime;
+    private float expiredExpandTime;
+
+    public float expiredTime = 15f;
+    private float _expiredtime;
 
     public bool isElectric = false;
 
@@ -20,48 +23,41 @@ public class Steam : MonoBehaviour
 
     private void Start()
     {
-        expiredTime = Time.time + grapTime;
+        Restart();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Time.time >= expiredTime)
+        if (Time.time > _expiredtime)
         {
-            if (firecount > icecount)
-            {
-                firecount = icecount;
-            }
-            else
-            {
-                icecount = firecount;
-            }
-        }
-        if (firecount > icecount)
-        {
-            // use icecount as scale
-            transform.localScale = new Vector3(defaultScale.x + (icecount * addSize), defaultScale.y + (icecount * addSize), defaultScale.z);
+            gameObject.SetActive(false);
         }
         else
         {
-            // use firecount as scale
-            transform.localScale = new Vector3(defaultScale.x + (firecount * addSize), defaultScale.y + (firecount * addSize), defaultScale.z);
+            if (firecount > icecount)
+            {
+                // use icecount as scale
+                transform.localScale = new Vector3(defaultScale.x + (icecount * addSize), defaultScale.y + (icecount * addSize), defaultScale.z);
+            }
+            else
+            {
+                // use firecount as scale
+                transform.localScale = new Vector3(defaultScale.x + (firecount * addSize), defaultScale.y + (firecount * addSize), defaultScale.z);
+            }
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (Time.time <= _expiredtime)
+        {
+            Debug.Log((int)(_expiredtime - Time.time));
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<IceMissile>() != null)
-        {
-            expiredTime = Time.time + grapTime;
-            icecount += 1;
-        }
-        else if (collision.gameObject.GetComponent<FlameProjectile>() != null)
-        {
-            expiredTime = Time.time + grapTime;
-            firecount += 1;
-        }
-
         if (collision.gameObject.name == "AttackCollider")
         {
             ElectricHand eh = collision.gameObject.GetComponent<ElectricHand>();
@@ -72,12 +68,31 @@ public class Steam : MonoBehaviour
                 eh.setElectricHand(false);
             }
         }
+
+        if (Time.time > expiredExpandTime)
+        {
+            return;
+        }
+        if (collision.gameObject.GetComponent<IceMissile>() != null)
+        {
+            expiredExpandTime = Time.time + grapTime;
+            icecount += 1;
+        }
+        else if (collision.gameObject.GetComponent<FlameProjectile>() != null)
+        {
+            expiredExpandTime = Time.time + grapTime;
+            firecount += 1;
+        }
+
+
     }
 
     public void Restart()
     {
         transform.localScale = defaultScale;
-        expiredTime = Time.time + grapTime;
+        Debug.Log(transform.localScale);
+        expiredExpandTime = Time.time + grapTime;
+        _expiredtime = Time.time + expiredTime;
         isElectric = false;
     }
 }
