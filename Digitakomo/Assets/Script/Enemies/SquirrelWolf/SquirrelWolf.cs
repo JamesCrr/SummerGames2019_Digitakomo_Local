@@ -15,8 +15,10 @@ public class SquirrelWolf : EnemyBaseClass
         S_WALKBACK,
         S_RUNAWAY,
 
-        S_MELEE,
         S_SHOOT_EGG,
+
+        S_SHOOT_PLAYER,
+        S_WALK_PLAYER,
     }
     public STATES currentState;
     [System.Serializable]
@@ -166,8 +168,8 @@ public class SquirrelWolf : EnemyBaseClass
                     }
 
                     // Check if we can attack using melee
-                    if ((moveTargetPos - myRb2D.position).sqrMagnitude < meleeAttackDistance)
-                        currentState = STATES.S_MELEE;
+                    //if ((moveTargetPos - myRb2D.position).sqrMagnitude < meleeAttackDistance)
+                    //    currentState = STATES.S_MELEE;
                 }
                 break;
             case STATES.S_EGG_DIFFERENTHEIGHT:
@@ -236,15 +238,24 @@ public class SquirrelWolf : EnemyBaseClass
                 }
                 break;
 
-            case STATES.S_FOUNDPLAYER:
+            case STATES.S_FOUNDPLAYER:  // Assume that targetObject here will always be player
                 {
                     // check if we can ATTACK player or need to walk there
+                    int chance = Random.Range(1, 1);
 
                     // Flee from player
-                    currentState = STATES.S_RUNAWAY;    // get the furtherest Point from the player on the platform we are standing on
-                    SetNewPosTarget(groundCheckScript.platformStandingOn.GetFurtherestPosition(targetObject.transform.position));
-
-
+                    if(chance == 0)
+                    {
+                        currentState = STATES.S_RUNAWAY;    // get the furtherest Point from the player on the platform we are standing on
+                        SetNewPosTarget(groundCheckScript.platformStandingOn.GetFurtherestPosition(targetObject.transform.position));
+                    }
+                    else
+                    {
+                        // Attack player
+                        currentState = STATES.S_WALK_PLAYER;
+                        SetNewObjectTarget(targetObject);
+                    }
+                    
                 }
                 break;
             case STATES.S_WALKBACK:
@@ -312,12 +323,6 @@ public class SquirrelWolf : EnemyBaseClass
                 break;
 
 
-
-            case STATES.S_MELEE:
-                {
-
-                }
-                break;
             case STATES.S_SHOOT_EGG:
                 {
                     attackTimer -= Time.deltaTime;
@@ -338,6 +343,48 @@ public class SquirrelWolf : EnemyBaseClass
                     }
                 }
                 break;
+
+
+            case STATES.S_WALK_PLAYER:
+                {
+                    // check if target object is out of range
+                    if(((Vector2)targetObject.transform.position - myRb2D.position).sqrMagnitude > (playerDetectionRange * playerDetectionRange))
+                    {
+                        currentState = STATES.S_EGG_DIFFERENTHEIGHT;
+                        return;
+                    }
+
+
+                    // check if we can melee the player
+
+                    // check if we can shoot projectile at player
+                    if ((moveTargetPos - myRb2D.position).sqrMagnitude <= (maxShootingRange * maxShootingRange))
+                    {
+                        currentState = STATES.S_SHOOT_PLAYER;
+                        return;
+                    }
+
+                    // Walk towards player
+                    SetNewObjectTarget(targetObject);
+                    MoveWolf();
+                }
+                break;
+            case STATES.S_SHOOT_PLAYER:
+                {
+                    attackTimer -= Time.deltaTime;
+                    if (attackTimer < 0.0f)
+                    {
+                        // Shoot
+                        Shoot();
+                        // Reset Timer
+                        attackTimer = attackTime;
+
+                        // Is a player in range?
+                        if (!IsPlayerStillInRange())
+                            currentState = STATES.S_EGG_DIFFERENTHEIGHT;
+                    }
+                }
+                break;
         }
     }
 
@@ -355,6 +402,15 @@ public class SquirrelWolf : EnemyBaseClass
 
         return result.gameObject;
     }
+    // Returns if player object is still in range
+    bool IsPlayerStillInRange()
+    {
+        // check if player is still in range
+        if (((Vector2)targetObject.transform.position - myRb2D.position).sqrMagnitude > playerDetectionRange)
+            return false;
+        return true;
+    }
+
     // Fills the list with platforms that are within the sideTopDetect
     // Returns Vector2.zero if no Colliders Found
     // Returns the Position if found at least one Collider
