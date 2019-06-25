@@ -19,6 +19,12 @@ public class SquirrelWolf : EnemyBaseClass
         S_SHOOT_EGG,
     }
     public STATES currentState;
+    [System.Serializable]
+    public class DetectBox
+    {
+        public Vector2 detectOffset;
+        public Vector2 detectSize;
+    }
     #region Data
     [Header("SquirrelWolf Class")]
     [SerializeField]
@@ -27,10 +33,9 @@ public class SquirrelWolf : EnemyBaseClass
     Collider2D result = null;
     [Header("Jumping")]
     [SerializeField]
-    // How far to detect for jumping platform 
-    Vector2 platformDetectOffset = Vector2.zero;    // The Position Offset of the detecting box
+    DetectBox sideTopDetect = new DetectBox();   // How far to detect for jumping platform to our side and top
     [SerializeField]
-    Vector2 platformDetectSize = Vector2.zero;      // Size of detecting box
+    DetectBox bottomDetect = new DetectBox();   // How far to detect for jumping platform for bottom
     List<Collider2D> listOfPlatforms = new List<Collider2D>();    // Used to store the platforms that we can jump to
     ContactFilter2D jumpingFilter = new ContactFilter2D();      // To prevent me calling new everytime
     bool isGrounded = false;     // Used to check if we have reached the ground
@@ -93,8 +98,8 @@ public class SquirrelWolf : EnemyBaseClass
 
         // Multiply ranges with scale
         // Platform detecting
-        platformDetectOffset *= transform.localScale;
-        platformDetectSize *= transform.localScale;
+        sideTopDetect.detectOffset *= transform.localScale;
+        sideTopDetect.detectSize *= transform.localScale;
         // Player detect
         playerDetectionRange *= transform.localScale.x;
         // Shooting
@@ -181,9 +186,19 @@ public class SquirrelWolf : EnemyBaseClass
                     // set the target as egg
                     SetNewObjectTarget(Egg.Instance.gameObject);
                     // Move enemy
-                    MoveWolf(false);
-
-
+                    if(!MoveWolf())
+                    {
+                        Vector2 platformEdgePos = FindPlatformBelow();
+                        if (platformEdgePos != Vector2.zero)
+                        {
+                            // Set new target and jump there
+                            SetNewPosTarget(platformEdgePos);
+                            JumpWolf(moveTargetPos);
+                            return;
+                        }
+                        else
+                            MoveWolf(false);
+                    }
 
                     // Once close enough Y pos, 
                     float posDiff = myRb2D.position.y - targetObject.transform.position.y;
@@ -340,22 +355,33 @@ public class SquirrelWolf : EnemyBaseClass
 
         return result.gameObject;
     }
-    // Fills the list with platforms that are within my Collider
+    // Fills the list with platforms that are within the sideTopDetect
     // Returns Vector2.zero if no Colliders Found
     // Returns the Position if found at least one Collider
-    int FindPlatforms()
+    int SearchPlatforms()
     {
         Vector2 newRight = transform.right;
         newRight.y = 1;
-        int length = Physics2D.OverlapBox(myRb2D.position + (platformDetectOffset * newRight), platformDetectSize, 0.0f, jumpingFilter, listOfPlatforms);
+        int length = Physics2D.OverlapBox(myRb2D.position + (sideTopDetect.detectOffset * newRight), sideTopDetect.detectSize, 0.0f, jumpingFilter, listOfPlatforms);
         Debug.Log("Found: " + length);
+        return length;
+    }
+    // Fills the list with platforms that are within the bottomDetect
+    // Returns Vector2.zero if no Colliders Found
+    // Returns the Position if found at least one Collider
+    int SearchPlatforms_Below()
+    {
+        Vector2 newRight = transform.right;
+        newRight.y = 1;
+        int length = Physics2D.OverlapBox(myRb2D.position + (bottomDetect.detectOffset * newRight), bottomDetect.detectSize, 0.0f, jumpingFilter, listOfPlatforms);
+        Debug.Log("BottomFound: " + length);
         return length;
     }
     // Finds platforms and returns Closest platform
     Vector2 FindNearestPlatform()
     {
         // Find the platforms
-        if (FindPlatforms() == 0)
+        if (SearchPlatforms() == 0)
             return Vector2.zero;
         // Return the closest after filtering
         return FilterPlatformDistance();
@@ -364,18 +390,16 @@ public class SquirrelWolf : EnemyBaseClass
     Vector2 FindFurtherestPlatform()
     {
         // Find the platforms
-        if (FindPlatforms() == 0)
+        if (SearchPlatforms() == 0)
             return Vector2.zero;
         // Return the closest after filtering
         return FilterPlatformDistance(false);
     }
-    // Fills the list with platforms that are within my Collider
-    // Returns Vector2.zero if no Colliders Found
-    // Returns the Position if found at least one Collider
+    // Finds platforms and returns Highest platform
     Vector2 FindPlatformAbove()
     {
         // Find the platforms
-        if (FindPlatforms() == 0)
+        if (SearchPlatforms() == 0)
             return Vector2.zero;
 
         // get the highest platform
@@ -389,14 +413,49 @@ public class SquirrelWolf : EnemyBaseClass
             platformPos = listOfPlatforms[i].gameObject.transform.position;
             // Can I even jump there? or is it blocked by the platform itself
             testDirection = (platformPos - shootingPos.position);
-            rayhit2D = Physics2D.Raycast(shootingPos.position, testDirection.normalized, platformDetectSize.y, LayerMask.GetMask("Ground"));
-            Debug.DrawLine(shootingPos.position, (Vector2)shootingPos.position + testDirection.normalized * platformDetectSize.y, Color.yellow);
+            rayhit2D = Physics2D.Raycast(shootingPos.position, testDirection.normalized, sideTopDetect.detectSize.y, LayerMask.GetMask("Ground"));
+            Debug.DrawLine(shootingPos.position, (Vector2)shootingPos.position + testDirection.normalized * sideTopDetect.detectSize.y, Color.yellow);
             if (rayhit2D.collider != null)   // We hit smth
                 continue;
             if (platformPos.y - myRb2D.position.y < 0.5f) // If we are on the same y
                 continue;
 
             if(platformPos.y > yPos)
+            {
+                selectedIndex = i;
+                yPos = platformPos.y;
+            }
+        }
+
+        if (selectedIndex == -1)
+            return Vector2.zero;
+        return listOfPlatforms[selectedIndex].gameObject.transform.position;
+    }
+    // Finds platforms and returns Lowest platform
+    Vector2 FindPlatformBelow()
+    {
+        // Find the platforms
+        if (SearchPlatforms_Below() == 0)
+            return Vector2.zero;
+
+        // get the highest platform
+        int selectedIndex = -1;
+        float yPos = Mathf.Infinity;
+        Vector3 platformPos;
+        for (int i = 0; i < listOfPlatforms.Count; ++i)
+        {
+            // Set the pos
+            platformPos = listOfPlatforms[i].gameObject.transform.position;
+            // Can I even jump there? or is it blocked by the platform itself
+            //testDirection = (platformPos - shootingPos.position);
+            //rayhit2D = Physics2D.Raycast(shootingPos.position, testDirection.normalized, sideTopDetect.detectSize.y, LayerMask.GetMask("Ground"));
+            //Debug.DrawLine(shootingPos.position, (Vector2)shootingPos.position + testDirection.normalized * sideTopDetect.detectSize.y, Color.yellow);
+            //if (rayhit2D.collider != null)   // We hit smth
+            //    continue;
+            if (myRb2D.position.y - platformPos.y < 0.5f) // If we are on the same y
+                continue;
+
+            if (platformPos.y < yPos)
             {
                 selectedIndex = i;
                 yPos = platformPos.y;
@@ -425,8 +484,8 @@ public class SquirrelWolf : EnemyBaseClass
         {
             // Can I even jump there? or is it blocked by the platform itself
             testDirection = (listOfPlatforms[i].gameObject.transform.position - shootingPos.position);
-            rayhit2D = Physics2D.Raycast(shootingPos.position, testDirection.normalized, platformDetectSize.x, LayerMask.GetMask("Ground"));
-            Debug.DrawLine(shootingPos.position, (Vector2)shootingPos.position + testDirection.normalized * platformDetectSize.x, Color.yellow);
+            rayhit2D = Physics2D.Raycast(shootingPos.position, testDirection.normalized, sideTopDetect.detectSize.x, LayerMask.GetMask("Ground"));
+            Debug.DrawLine(shootingPos.position, (Vector2)shootingPos.position + testDirection.normalized * sideTopDetect.detectSize.x, Color.yellow);
             if (rayhit2D.collider != null)   // We hit smth
                 continue;
 
@@ -615,6 +674,7 @@ public class SquirrelWolf : EnemyBaseClass
         Gizmos.color = Color.blue;
         Vector3 tempo = transform.right;
         tempo.y = 1;
-        Gizmos.DrawWireCube((Vector2)transform.position + (platformDetectOffset * tempo), platformDetectSize);
+        Gizmos.DrawWireCube((Vector2)transform.position + (sideTopDetect.detectOffset * tempo), sideTopDetect.detectSize);
+        Gizmos.DrawWireCube((Vector2)transform.position + (bottomDetect.detectOffset * tempo), bottomDetect.detectSize);
     }
 }
