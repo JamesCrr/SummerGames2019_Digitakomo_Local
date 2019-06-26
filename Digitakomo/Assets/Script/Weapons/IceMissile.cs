@@ -15,7 +15,8 @@ public class IceMissile : Weapon
             // Create Steam
             GameObject go = ObjectPooler.Instance.FetchGO("Steam");
             go.transform.position = transform.position;
-
+            Steam steam = go.GetComponent<Steam>();
+            steam.Restart();
         }
 
         if (collision.gameObject.GetComponent<Steam>() != null)

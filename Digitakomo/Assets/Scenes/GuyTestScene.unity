@@ -240,8 +240,8 @@ MonoBehaviour:
     amountToAdd: 5
   - prefabToCreate: {fileID: 6533305759064648643, guid: 41e0937e6da34f64e9458d5e369919be,
       type: 3}
-    amountToCreate: 1
-    amountToAdd: 1
+    amountToCreate: 5
+    amountToAdd: 2
   - prefabToCreate: {fileID: 6660186377230873711, guid: 26b08987c25ff2349b710bd336d742a3,
       type: 3}
     amountToCreate: 2
@@ -378,7 +378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df10002f98854054284840228fbe2edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeToWin: 300
+  TimeToWin: 60
 --- !u!4 &868005652
 Transform:
   m_ObjectHideFlags: 0
@@ -769,6 +769,10 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 352553400}
+    - target: {fileID: 1249029468, guid: 73e7015d83d3f1b46b78246ab70bf2f1, type: 3}
+      propertyPath: timer
+      value: 
+      objectReference: {fileID: 868005651}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73e7015d83d3f1b46b78246ab70bf2f1, type: 3}
 --- !u!1001 &6970939670788058114

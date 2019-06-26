@@ -108,7 +108,6 @@ public class Steam : MonoBehaviour
     public void Restart()
     {
         transform.localScale = defaultScale;
-        Debug.Log(transform.localScale);
         expiredExpandTime = Time.time + grapTime;
         _expiredtime = Time.time + expiredTime;
         isElectric = false;
