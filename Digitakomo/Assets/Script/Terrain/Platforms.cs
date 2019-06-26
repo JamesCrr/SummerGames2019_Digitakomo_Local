@@ -12,6 +12,8 @@ public class Platforms : MonoBehaviour
     // To Store the platform ending points
     Vector2 leftPoint;
     Vector2 rightPoint;
+    float width;
+    float height;
 
     BoxCollider2D myCollider;
     // Start is called before the first frame update
@@ -19,8 +21,8 @@ public class Platforms : MonoBehaviour
     {
         myCollider = GetComponent<BoxCollider2D>();
 
-        float width = myCollider.size.x / 2;
-        float height = myCollider.size.y / 2;
+        width = myCollider.size.x / 2;
+        height = myCollider.size.y / 2;
 
         // X Axis
         leftPoint.x = gameObject.transform.position.x - (width * transform.localScale.x) + 0.3f;
@@ -51,6 +53,10 @@ public class Platforms : MonoBehaviour
     public GameObject GetRightGO()
     {
         return rightCollider.gameObject;
+    }
+    public float GetPlatformSurface()
+    {
+        return transform.position.y + (height * transform.localScale.y);
     }
 
 
