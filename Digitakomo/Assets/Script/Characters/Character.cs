@@ -323,7 +323,7 @@ public class Character : MonoBehaviour
     {
         if (HP <= 0)
         {
-            throw new NotImplementedException("Character dead");
+            SceneController.LoadEndScene(false);
         }
     }
 
