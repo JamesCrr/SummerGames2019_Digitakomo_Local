@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class PT2Script : EnemyBaseClass
 {
+    // To randomise the data values
+    [System.Serializable]
+    public class RandomRangeValue
+    {
+        public float current = 0.0f;
+        public float min = 0.0f;
+        public float max = 0.0f;
+    }
     // The States of this enemy
     enum STATES
     {
@@ -18,7 +26,7 @@ public class PT2Script : EnemyBaseClass
     float circleRadius = 10.0f;
 
     [SerializeField]    // How often to decrease the radius
-    float radiusDecreaseTime = 1.0f;
+    RandomRangeValue radiusDecreaseTime_Range = new RandomRangeValue();
     float radiusDecreaseTimer = 0.0f;
     [SerializeField]    // How much to decrease the radius
     float radiusDecreaseRate = 1.0f;
@@ -48,7 +56,7 @@ public class PT2Script : EnemyBaseClass
         moveTargetPos.y = centerPoint.y + Mathf.Sin(currentRadAngle) * circleRadius;
         // Reset Timers
         dartingTimer = dartingTime;
-        radiusDecreaseTimer = radiusDecreaseTime;
+        radiusDecreaseTimer = radiusDecreaseTime_Range.current;
     }
 
 
@@ -88,7 +96,7 @@ public class PT2Script : EnemyBaseClass
                             {
                                 circleRadius -= radiusDecreaseRate;
                                 // Reset Timers
-                                radiusDecreaseTimer = radiusDecreaseTime;
+                                radiusDecreaseTimer = radiusDecreaseTime_Range.current;
                             }
                             // Get the next target
                             CalNextCirPos();
@@ -180,16 +188,28 @@ public class PT2Script : EnemyBaseClass
         moveTargetPos.x = centerPoint.x + Mathf.Cos(currentRadAngle) * circleRadius;
         moveTargetPos.y = centerPoint.y + Mathf.Sin(currentRadAngle) * circleRadius;
         // Reset Timers
-        radiusDecreaseTimer = radiusDecreaseTime;
+        radiusDecreaseTimer = radiusDecreaseTime_Range.current;
 
         // Set the new Position
         transform.position = newPos;
         myRb2D.position = newPos;
 
-
         // Hmm maybe can randomise the radius modify rates
+        RandomiseData();        
     }
     #endregion
+    // randomise data values 
+    void RandomiseData()
+    {
+        // Randomise Direction
+        int max = (int)DIRECTION.D_RIGHT;
+        max = Random.Range(0, max);
+        rotatingDir = (DIRECTION)max;
+
+        // Radius Decreasing
+        radiusDecreaseTime_Range.current = Random.Range(radiusDecreaseTime_Range.min, radiusDecreaseTime_Range.max);
+
+    }
     // Own Wrapping Function
     float Wrap(float value, float min, float max)
     {
