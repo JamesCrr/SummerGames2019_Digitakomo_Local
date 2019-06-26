@@ -36,6 +36,11 @@ public class Egg : MonoBehaviour, IDamagable
         {
             Debug.Log("Warning EGG HP LESS THAN " + WarnPercentage + " Percent");
         }
+
+        if (HP <= 0)
+        {
+            SceneController.LoadEndScene(false);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
