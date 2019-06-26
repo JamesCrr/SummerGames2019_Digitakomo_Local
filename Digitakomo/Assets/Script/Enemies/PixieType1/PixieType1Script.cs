@@ -146,6 +146,7 @@ public class PixieType1Script : EnemyBaseClass
 
         gameObject.SetActive(false);
     }
+
     // Reset Function
     public override void ResetEnemy(SpawnZone newSpawnZone, Vector3 newPos)
     {

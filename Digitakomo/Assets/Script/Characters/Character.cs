@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public class Character : MonoBehaviour, IDamagable
 {
 
     // Which Character are we using
@@ -196,10 +196,9 @@ public class Character : MonoBehaviour
         return SelectedType;
     }
 
-    public float TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         HP -= damage;
-        return HP;
     }
 
     public bool IsEnergyLeft(float energyToUse)

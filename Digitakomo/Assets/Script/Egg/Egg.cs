@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Egg : MonoBehaviour
+public class Egg : MonoBehaviour, IDamagable
 {
     public static Egg Instance = null;
     public float MaxHP = 5000;
@@ -32,7 +32,7 @@ public class Egg : MonoBehaviour
         // BEING ATTACK !!!
     }
 
-    public void ReduceHealth(float damage)
+    public void TakeDamage(float damage)
     {
         HP -= damage;
     }

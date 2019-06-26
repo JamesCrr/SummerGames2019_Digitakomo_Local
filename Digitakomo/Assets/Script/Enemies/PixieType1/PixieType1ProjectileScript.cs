@@ -6,6 +6,10 @@ public class PixieType1ProjectileScript : MonoBehaviour
     [Header("Fall Speed")]
     [SerializeField]
     float fallSpeed = 1.0f;
+    [SerializeField]
+    float MinDamage = 15f;
+    [SerializeField]
+    float MaxDamage = 20f;
 
     // Unity Stuff
     Rigidbody2D myRb2D;
@@ -34,9 +38,14 @@ public class PixieType1ProjectileScript : MonoBehaviour
             return;
 
         // Spawn new Puddle if hit groud
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
             ObjectPooler.Instance.FetchGO_Pos("PT1_PuddleProj", transform.position);
 
+        // hit player
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            collision.gameObject.GetComponent<IDamagable>().TakeDamage(Random.Range(MinDamage, MaxDamage));
+        }
         gameObject.SetActive(false);
     }
 }
