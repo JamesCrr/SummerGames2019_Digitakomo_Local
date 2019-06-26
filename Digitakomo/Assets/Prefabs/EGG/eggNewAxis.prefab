@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7131307360111301778}
   - component: {fileID: 1656890101799623726}
+  - component: {fileID: 5564329208149722481}
   m_Layer: 10
   m_Name: eggNewAxis
   m_TagString: Egg
@@ -44,6 +45,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81b2b09e98305f4489801d7b48ed7c38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxHP: 5000
+--- !u!114 &5564329208149722481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264008781282110485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba7ff7df7145263459637fe70f9faf00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderDebug: 0
+  circleRadius: 10
 --- !u!1 &1219323627888301024
 GameObject:
   m_ObjectHideFlags: 0

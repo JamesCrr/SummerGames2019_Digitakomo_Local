@@ -2,9 +2,14 @@
 
 public class Egg : MonoBehaviour, IDamagable
 {
+    // Instance
     public static Egg Instance = null;
+    // Stats
     public float MaxHP = 5000;
     private float HP;
+    // Other Components
+    EggCenterPoint centerPoint = null;
+
 
     // Awake
     private void Awake()
@@ -15,8 +20,11 @@ public class Egg : MonoBehaviour, IDamagable
             return;
         }
         Instance = this;
-
+        // Set the stats
         HP = MaxHP;
+
+        // Get Components
+        centerPoint = GetComponent<EggCenterPoint>();
     }
 
     // Update is called once per frame
@@ -41,4 +49,12 @@ public class Egg : MonoBehaviour, IDamagable
     {
         return transform.position;
     }
+
+    #region Other Components
+    public float GetStartingRadius()
+    {
+        return centerPoint.GetMaxSizeRadius();
+    }
+    #endregion
+
 }

@@ -577,14 +577,6 @@ public class SquirrelWolf : EnemyBaseClass
 
 
 
-    // Checks if you are have reached your target
-    bool ReachedTarget()
-    {
-        if ((myRb2D.position - moveTargetPos).sqrMagnitude < 1.0f)
-            return true;
-
-        return false;
-    }
     // Set a new target to move towards to
     // Also recalculates the direction for you
     void SetNewObjectTarget(GameObject newtarget)
