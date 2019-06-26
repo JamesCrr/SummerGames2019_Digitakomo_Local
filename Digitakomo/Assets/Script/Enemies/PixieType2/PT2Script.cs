@@ -11,9 +11,11 @@ public class PT2Script : EnemyBaseClass
     [SerializeField]    // The Radius of the Circle to start with
     float circleRadius = 10.0f;
     [SerializeField]    // How fast does the radius decrease every frame
-    float radiusReduceRate = 1.0f;
+    float radiusModifyRate = 1.0f;
     [SerializeField]    // The Minimum radius before we change to darting around the egg
     float minRadius = 5.0f;
+    [SerializeField]
+    DIRECTION rotatingDir = DIRECTION.D_LEFT;
 
     // The current Angle of rotation
     float currentAngle = 90.0f;
@@ -45,6 +47,24 @@ public class PT2Script : EnemyBaseClass
     {
         moveTargetPos.x = centerPoint.x + Mathf.Cos(currentAngle) * circleRadius;
         moveTargetPos.y = centerPoint.y + Mathf.Sin(currentAngle) * circleRadius;
+        // Move the Angle
+        ModifyAngle();
+    }
+    // Reduces or Increases the Angle depending on what 
+    // Direction we are moving
+    void ModifyAngle()
+    {
+        switch (rotatingDir)
+        {
+            case DIRECTION.D_LEFT:
+                currentAngle += radiusModifyRate;        
+                break;
+            case DIRECTION.D_RIGHT:
+                currentAngle -= radiusModifyRate;
+                break;
+        }
+
+        currentAngle = Wrap(currentAngle, 0.0f, 360.0f);
     }
 
 
@@ -66,6 +86,16 @@ public class PT2Script : EnemyBaseClass
 
     }
     #endregion
+    // Own Wrapping Function
+    float Wrap(float value, float min, float max)
+    {
+        if (value > max)
+            value = min;
+        if (value < min)
+            value = max;
+        return value;
+    }
+
 
 
     private void OnDrawGizmos()
