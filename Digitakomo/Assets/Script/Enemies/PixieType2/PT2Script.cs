@@ -31,7 +31,7 @@ public class PT2Script : EnemyBaseClass
     [SerializeField]    // How much to decrease the radius
     float radiusDecreaseRate = 1.0f;
     [SerializeField]    // The Minimum radius before we change to darting around the egg
-    float minRadius = 5.0f;
+    RandomRangeValue minRadius_Range = new RandomRangeValue();
 
     [Header("Darting")]
     [SerializeField]    // How often to dart around the egg
@@ -77,7 +77,7 @@ public class PT2Script : EnemyBaseClass
                     Move();
 
                     // Check if we need to change state
-                    if (circleRadius < minRadius)
+                    if (circleRadius < minRadius_Range.current)
                     {
                         // Only change state if we reached final destination
                         if (!ReachedTarget(0.1f))
@@ -203,12 +203,14 @@ public class PT2Script : EnemyBaseClass
     {
         // Randomise Direction
         int max = (int)DIRECTION.D_RIGHT;
-        max = Random.Range(0, max);
+        max = Random.Range(0, max+1);
         rotatingDir = (DIRECTION)max;
 
         // Radius Decreasing
         radiusDecreaseTime_Range.current = Random.Range(radiusDecreaseTime_Range.min, radiusDecreaseTime_Range.max);
 
+        // Minimum Radius before darting
+        minRadius_Range.current = Random.Range(minRadius_Range.min, minRadius_Range.max);
     }
     // Own Wrapping Function
     float Wrap(float value, float min, float max)
