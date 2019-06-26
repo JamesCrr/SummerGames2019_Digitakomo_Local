@@ -47,6 +47,14 @@ public abstract class EnemyBaseClass : MonoBehaviour
         // Move
         myRb2D.MovePosition(myRb2D.position + (moveDirection.normalized * moveSpeed * Time.deltaTime));
     }
+    // Checks if you are have reached your target
+    protected bool ReachedTarget(float magnitudeCheck = 1.0f)
+    {
+        if ((myRb2D.position - moveTargetPos).sqrMagnitude < magnitudeCheck)
+            return true;
+
+        return false;
+    }
     // Called to Flip Sprite
     protected virtual void FlipEnemy()
     {

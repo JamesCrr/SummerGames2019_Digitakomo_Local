@@ -325,6 +325,10 @@ MonoBehaviour:
       type: 3}
     spawnInterval: 1
     maxSpawnCount: 0
+  - enemyToSpawn: {fileID: 686835902066373112, guid: 7924b9bbbceb56e409675054d6a4d533,
+      type: 3}
+    spawnInterval: 1
+    maxSpawnCount: 1
   centerPoint: {fileID: 213845426}
   zoneDimensions: {x: 1, y: 1}
   renderDebugBox: 1
@@ -1185,7 +1189,7 @@ MonoBehaviour:
   - enemyToSpawn: {fileID: 2947897018553184564, guid: 7e8d961d76bee1e4eb6ddcf2fbd24867,
       type: 3}
     spawnInterval: 2
-    maxSpawnCount: 1
+    maxSpawnCount: 0
   centerPoint: {fileID: 1156921200}
   zoneDimensions: {x: 0.2, y: 0.2}
   renderDebugBox: 1
@@ -1553,6 +1557,10 @@ MonoBehaviour:
     amountToCreate: 5
     amountToAdd: 5
   - prefabToCreate: {fileID: 7652022669352611591, guid: 0f43bf2a6b1923f4084e9d0d959c5548,
+      type: 3}
+    amountToCreate: 5
+    amountToAdd: 5
+  - prefabToCreate: {fileID: 686835902066373112, guid: 7924b9bbbceb56e409675054d6a4d533,
       type: 3}
     amountToCreate: 5
     amountToAdd: 5
@@ -1960,7 +1968,7 @@ MonoBehaviour:
   - {fileID: 1338991798}
   - {fileID: 761781845}
   - {fileID: 1799908602}
-  drawDebugLine: 1
+  drawDebugLine: 0
 --- !u!4 &2139123342
 Transform:
   m_ObjectHideFlags: 0
