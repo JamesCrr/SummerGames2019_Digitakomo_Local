@@ -4,16 +4,33 @@ using UnityEngine;
 
 public class PT2Script : EnemyBaseClass
 {
-
+    // The States of this enemy
+    enum STATES
+    {
+        S_NORMAL,
+        S_CLOSE
+    }
+    STATES currentState = STATES.S_NORMAL;
     [Header("Pixie Type 2 Class")]
     [SerializeField]    // The Center point to rotate around 
     Vector2 centerPoint = Vector2.zero;
     [SerializeField]    // The Radius of the Circle to start with
     float circleRadius = 10.0f;
-    [SerializeField]    // How fast does the radius decrease every frame
-    float radiusModifyRate = 0.05f;
+
+    [SerializeField]    // How often to decrease the radius
+    float radiusDecreaseTime = 1.0f;
+    float radiusDecreaseTimer = 0.0f;
+    [SerializeField]    // How much to decrease the radius
+    float radiusDecreaseRate = 1.0f;
     [SerializeField]    // The Minimum radius before we change to darting around the egg
     float minRadius = 5.0f;
+
+    [Header("Darting")]
+    [SerializeField]    // How often to dart around the egg
+    float dartingTime = 1.0f;
+    float dartingTimer = 0.0f;
+    float dartSpeed = 0.0f;
+
     [Header("Direction")]
     [SerializeField]
     DIRECTION rotatingDir = DIRECTION.D_LEFT;
@@ -29,6 +46,9 @@ public class PT2Script : EnemyBaseClass
         // Move to top of Circle first
         moveTargetPos.x = centerPoint.x + Mathf.Cos(currentRadAngle) * circleRadius;
         moveTargetPos.y = centerPoint.y + Mathf.Sin(currentRadAngle) * circleRadius;
+        // Reset Timers
+        dartingTimer = dartingTime;
+        radiusDecreaseTimer = radiusDecreaseTime;
     }
 
 
@@ -36,10 +56,67 @@ public class PT2Script : EnemyBaseClass
     // Update is called once per frame
     void Update()
     {
-        Move();
+        UpdateStates();
+    }
+    // Update our State Machine
+    void UpdateStates()
+    {
+        switch (currentState)
+        {
+            case STATES.S_NORMAL:
+                {
+                    // Move as usual
+                    Move();
 
-        if (ReachedTarget())
-            CalNextCirPos();
+                    // Check if we need to change state
+                    if (circleRadius < minRadius)
+                    {
+                        // Only change state if we reached final destination
+                        if (!ReachedTarget(0.1f))
+                            return;
+
+                        currentState = STATES.S_CLOSE;
+                    }
+                    else
+                    {
+                        // Check if we need to get new target
+                        if (ReachedTarget())
+                        {
+                            // Count down the timer
+                            radiusDecreaseTimer -= Time.deltaTime;
+                            if (radiusDecreaseTimer < 0.0f)
+                            {
+                                circleRadius -= radiusDecreaseRate;
+                                // Reset Timers
+                                radiusDecreaseTimer = radiusDecreaseTime;
+                            }
+                            // Get the next target
+                            CalNextCirPos();
+                        }
+                    }
+                }
+                break;
+            case STATES.S_CLOSE:
+                {
+                    // If haven't reached position, move
+                    if (!ReachedTarget(0.5f))
+                    {
+                        DartToTarget();
+                        return;
+                    }
+                        
+                    // Decrement Timer
+                    dartingTimer -= Time.deltaTime;
+                    if (dartingTimer < 0.0f)
+                    {
+                        // Find new target
+                        SetNewDartTarget();
+                        // Reset Timer
+                        dartingTimer = dartingTime;
+                    }
+                }
+                break;
+        }
     }
 
 
@@ -49,6 +126,7 @@ public class PT2Script : EnemyBaseClass
     // Sets data to moveTargetPos
     void CalNextCirPos()
     {
+        // Calculate next target position
         moveTargetPos.x = centerPoint.x + Mathf.Cos(currentRadAngle) * circleRadius;
         moveTargetPos.y = centerPoint.y + Mathf.Sin(currentRadAngle) * circleRadius;
         // Move the Angle
@@ -61,16 +139,33 @@ public class PT2Script : EnemyBaseClass
         switch (rotatingDir)
         {
             case DIRECTION.D_LEFT:
-                currentRadAngle += radiusModifyRate;        
+                currentRadAngle += 0.1f;        
                 break;
             case DIRECTION.D_RIGHT:
-                currentRadAngle -= radiusModifyRate;
+                currentRadAngle -= 0.1f;
                 break;
         }
-
+        // Wrap angle
         currentRadAngle = Wrap(currentRadAngle, 0.0f, 6.28319f);
     }
 
+
+    // Set a new darting target
+    void SetNewDartTarget()
+    {
+        // Change the angle
+        currentRadAngle += 3.1415f;//Random.Range(2.1f, 4.2f);
+        // Calculate next target position
+        moveTargetPos.x = centerPoint.x + Mathf.Cos(currentRadAngle) * circleRadius;
+        moveTargetPos.y = centerPoint.y + Mathf.Sin(currentRadAngle) * circleRadius;
+        // set the new speed
+        dartSpeed = (moveTargetPos - myRb2D.position).sqrMagnitude * 0.45f;
+    }
+    // Move towards the dart target
+    void DartToTarget()
+    {
+        myRb2D.MovePosition(myRb2D.position + (moveTargetPos - myRb2D.position).normalized * dartSpeed * Time.deltaTime);
+    }
 
 
 
@@ -84,11 +179,15 @@ public class PT2Script : EnemyBaseClass
         // Move to top of Circle again
         moveTargetPos.x = centerPoint.x + Mathf.Cos(currentRadAngle) * circleRadius;
         moveTargetPos.y = centerPoint.y + Mathf.Sin(currentRadAngle) * circleRadius;
+        // Reset Timers
+        radiusDecreaseTimer = radiusDecreaseTime;
 
         // Set the new Position
         transform.position = newPos;
         myRb2D.position = newPos;
 
+
+        // Hmm maybe can randomise the radius modify rates
     }
     #endregion
     // Own Wrapping Function

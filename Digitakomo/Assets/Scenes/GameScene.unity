@@ -1564,6 +1564,10 @@ MonoBehaviour:
       type: 3}
     amountToCreate: 5
     amountToAdd: 5
+  - prefabToCreate: {fileID: 6871317847090861856, guid: 6aaa4fec8d50cdb42a13d9c8e28f7b08,
+      type: 3}
+    amountToCreate: 5
+    amountToAdd: 5
 --- !u!4 &1589825958
 Transform:
   m_ObjectHideFlags: 0
