@@ -120,3 +120,7 @@ MonoBehaviour:
   attackTime: 2
   centerPoint: {x: 0, y: 0}
   circleRadius: 10
+  radiusModifyRate: 0.05
+  minRadius: 5
+  rotatingDir: 0
+  currentRadAngle: 1.5708

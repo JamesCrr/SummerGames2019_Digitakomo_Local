@@ -11,20 +11,24 @@ public class PT2Script : EnemyBaseClass
     [SerializeField]    // The Radius of the Circle to start with
     float circleRadius = 10.0f;
     [SerializeField]    // How fast does the radius decrease every frame
-    float radiusModifyRate = 1.0f;
+    float radiusModifyRate = 0.05f;
     [SerializeField]    // The Minimum radius before we change to darting around the egg
     float minRadius = 5.0f;
+    [Header("Direction")]
     [SerializeField]
     DIRECTION rotatingDir = DIRECTION.D_LEFT;
 
     // The current Angle of rotation
-    float currentAngle = 90.0f;
+    public float currentRadAngle = 1.5708f;
 
 
     // Awake
     void Awake()
     {
         myRb2D = GetComponent<Rigidbody2D>();
+        // Move to top of Circle first
+        moveTargetPos.x = centerPoint.x + Mathf.Cos(currentRadAngle) * circleRadius;
+        moveTargetPos.y = centerPoint.y + Mathf.Sin(currentRadAngle) * circleRadius;
     }
 
 
@@ -45,8 +49,8 @@ public class PT2Script : EnemyBaseClass
     // Sets data to moveTargetPos
     void CalNextCirPos()
     {
-        moveTargetPos.x = centerPoint.x + Mathf.Cos(currentAngle) * circleRadius;
-        moveTargetPos.y = centerPoint.y + Mathf.Sin(currentAngle) * circleRadius;
+        moveTargetPos.x = centerPoint.x + Mathf.Cos(currentRadAngle) * circleRadius;
+        moveTargetPos.y = centerPoint.y + Mathf.Sin(currentRadAngle) * circleRadius;
         // Move the Angle
         ModifyAngle();
     }
@@ -57,14 +61,14 @@ public class PT2Script : EnemyBaseClass
         switch (rotatingDir)
         {
             case DIRECTION.D_LEFT:
-                currentAngle += radiusModifyRate;        
+                currentRadAngle += radiusModifyRate;        
                 break;
             case DIRECTION.D_RIGHT:
-                currentAngle -= radiusModifyRate;
+                currentRadAngle -= radiusModifyRate;
                 break;
         }
 
-        currentAngle = Wrap(currentAngle, 0.0f, 360.0f);
+        currentRadAngle = Wrap(currentRadAngle, 0.0f, 6.28319f);
     }
 
 
@@ -76,9 +80,10 @@ public class PT2Script : EnemyBaseClass
         // Get the data from the center point
         centerPoint = Egg.Instance.GetPosition();
         circleRadius = Egg.Instance.GetStartingRadius();
-        currentAngle = 90.0f;
-        // Recalculate the starting circular Position
-        CalNextCirPos();
+        currentRadAngle = 1.5708f;
+        // Move to top of Circle again
+        moveTargetPos.x = centerPoint.x + Mathf.Cos(currentRadAngle) * circleRadius;
+        moveTargetPos.y = centerPoint.y + Mathf.Sin(currentRadAngle) * circleRadius;
 
         // Set the new Position
         transform.position = newPos;
@@ -102,5 +107,9 @@ public class PT2Script : EnemyBaseClass
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(centerPoint, circleRadius);
+
+        moveTargetPos.x = centerPoint.x + Mathf.Cos(currentRadAngle) * circleRadius;
+        moveTargetPos.y = centerPoint.y + Mathf.Sin(currentRadAngle) * circleRadius;
+        Gizmos.DrawLine(centerPoint, moveTargetPos);
     }
 }
