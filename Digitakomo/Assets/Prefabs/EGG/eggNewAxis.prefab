@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81b2b09e98305f4489801d7b48ed7c38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 5000
+  MaxHP: 1000
+  WarnPercentage: 30
 --- !u!114 &5564329208149722481
 MonoBehaviour:
   m_ObjectHideFlags: 0

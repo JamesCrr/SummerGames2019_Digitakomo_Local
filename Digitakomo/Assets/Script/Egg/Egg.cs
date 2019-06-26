@@ -10,6 +10,8 @@ public class Egg : MonoBehaviour, IDamagable
     // Other Components
     EggCenterPoint centerPoint = null;
 
+    // 
+    public int WarnPercentage = 30;
 
     // Awake
     private void Awake()
@@ -30,7 +32,10 @@ public class Egg : MonoBehaviour, IDamagable
     // Update is called once per frame
     void Update()
     {
-
+        if (MaxHP * WarnPercentage / 100 >= HP)
+        {
+            Debug.Log("Warning EGG HP LESS THAN " + WarnPercentage + " Percent");
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

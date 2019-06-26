@@ -51,7 +51,7 @@ public class ItemManager : MonoBehaviour
         int spawnbox_index = Random.Range(0, spawnItemZones.Length);
 
         SpawnItemZone spawnbox = spawnItemZones[spawnbox_index];
-        
+
         //Random position in spawnbox
         float x = Random.Range(0, (int)spawnbox.size.x) - (spawnbox.size.x / 2);
         float y = Random.Range(0, (int)spawnbox.size.y) - (spawnbox.size.y / 2);
@@ -59,6 +59,7 @@ public class ItemManager : MonoBehaviour
         Vector3 spawnPosition = spawnbox.transform.localPosition + spawnbox.center + new Vector3(x, y, 0);
         BaseItem i = ObjectPooler.Instance.FetchGO(item.name).GetComponent<BaseItem>();
         i.transform.position = spawnPosition;
+        i.Restart();
     }
 
     void Reshuffle(BaseItem[] items)
