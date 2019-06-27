@@ -186,7 +186,7 @@ GameObject:
   - component: {fileID: 5324440216470088061}
   m_Layer: 10
   m_Name: FireCharacter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

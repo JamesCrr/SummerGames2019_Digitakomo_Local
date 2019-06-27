@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SquirrelWolf : EnemyBaseClass
 {
-    // States
+    #region Classes and Enums
+    // States for StateMachine
     public enum STATES
     {
         S_EGG_SIMILARHEIGHT,
@@ -18,21 +19,31 @@ public class SquirrelWolf : EnemyBaseClass
         S_SHOOT_EGG,
 
         S_SHOOT_PLAYER,
+        S_MELEE_PLAYER,
         S_WALK_PLAYER,
     }
     public STATES currentState;
-    [System.Serializable]
+    // Which way of attacking are we using
+    public enum ATTACK
+    {
+        A_MELEE,
+        A_SHOOT
+    }
+    public ATTACK attackMethod = ATTACK.A_SHOOT;
+    [System.Serializable]   // Used for platform detection
     public class DetectBox
     {
         public Vector2 detectOffset;
         public Vector2 detectSize;
     }
-    #region Data
+    #endregion
+
     [Header("SquirrelWolf Class")]
     [SerializeField]
     // How far to detect for player
     float playerDetectionRange = 0.0f;
     Collider2D result = null;
+    #region Jumping
     [Header("Jumping")]
     [SerializeField]
     DetectBox sideTopDetect = new DetectBox();   // How far to detect for jumping platform to our side and top
@@ -41,6 +52,7 @@ public class SquirrelWolf : EnemyBaseClass
     List<Collider2D> listOfPlatforms = new List<Collider2D>();    // Used to store the platforms that we can jump to
     ContactFilter2D jumpingFilter = new ContactFilter2D();      // To prevent me calling new everytime
     bool isGrounded = false;     // Used to check if we have reached the ground
+    static float YPosDifference = 5.0f; // The difference to check before we change state
     [SerializeField]
     groundCheck groundCheckScript = null;   // Script used to check if have reached the ground when jumping
     [Header("GroundCasting")]
@@ -50,14 +62,15 @@ public class SquirrelWolf : EnemyBaseClass
     [SerializeField]
     float groundCastLength = 0.09f;
     RaycastHit2D rayhit2D = new RaycastHit2D();
+    #endregion
 
+    #region Melee
     [Header("Melee")]
-    [SerializeField]
-    // How far before we use melee to attack
-    float minimumMeleeRange = 4.0f;
     [SerializeField]
     // Minimum attacking Distance for melee
     float meleeAttackDistance = 1.0f;
+    #endregion
+    #region Shooting
     [Header("Shooting")]
     // What to shoot
     [SerializeField]
@@ -69,6 +82,8 @@ public class SquirrelWolf : EnemyBaseClass
     float maxShootingRange = 5.0f;
     [SerializeField]
     float timeToHitTarget = 1.0f;   // How long for the projectile to hit smth
+    #endregion
+    #region RunAway
     [Header("RunAwayTimer")]
     [SerializeField]
     float fleeTime = 5.0f;
@@ -98,14 +113,20 @@ public class SquirrelWolf : EnemyBaseClass
         jumpingFilter.ClearDepth();
         jumpingFilter.useTriggers = true;
 
+        // Calculate the percentage difference to scale the colliders
+        Vector2 percentageDifference = Vector2.zero;
+        percentageDifference.x = transform.localScale.x / 3.25f;
+        percentageDifference.y = transform.localScale.y / 7.0975f;
         // Multiply ranges with scale
         // Platform detecting
-        sideTopDetect.detectOffset *= transform.localScale;
-        sideTopDetect.detectSize *= transform.localScale;
+        sideTopDetect.detectOffset *= percentageDifference;
+        sideTopDetect.detectSize *= percentageDifference;
+        bottomDetect.detectOffset *= percentageDifference;
+        bottomDetect.detectSize *= percentageDifference;
         // Player detect
-        playerDetectionRange *= transform.localScale.x;
+        playerDetectionRange *= percentageDifference.x;
         // Shooting
-        maxShootingRange *= transform.localScale.x;
+        maxShootingRange *= percentageDifference.x;
     }
 
     // Update is called once per frame
@@ -143,6 +164,7 @@ public class SquirrelWolf : EnemyBaseClass
                     if ((moveTargetPos - myRb2D.position).sqrMagnitude <= (maxShootingRange * maxShootingRange))
                     {
                         currentState = STATES.S_SHOOT_EGG;
+                        myRb2D.velocity = Vector2.zero;
                         return;
                     }
 
@@ -204,7 +226,7 @@ public class SquirrelWolf : EnemyBaseClass
 
                     // Once close enough Y pos, 
                     float posDiff = myRb2D.position.y - targetObject.transform.position.y;
-                    if (posDiff < 2.0f)
+                    if (posDiff < YPosDifference)
                     {
                         currentState = STATES.S_EGG_SIMILARHEIGHT;
                         return;
@@ -221,7 +243,7 @@ public class SquirrelWolf : EnemyBaseClass
                     
                 }
                 break;
-            case STATES.S_EGG_ONTOP:
+            case STATES.S_EGG_ONTOP:    // When we enter this state, we should already have a target to move to
                 {
                     // Is a player in range?
                     targetObject = IsPlayerInRange();
@@ -254,8 +276,11 @@ public class SquirrelWolf : EnemyBaseClass
                         // Attack player
                         currentState = STATES.S_WALK_PLAYER;
                         SetNewObjectTarget(targetObject);
+                        // Randomise way of attacking
+                        //attackMethod = (ATTACK)Random.Range((int)ATTACK.A_MELEE, (int)ATTACK.A_SHOOT+1);
                     }
                     
+
                 }
                 break;
             case STATES.S_WALKBACK:
@@ -347,27 +372,47 @@ public class SquirrelWolf : EnemyBaseClass
 
             case STATES.S_WALK_PLAYER:
                 {
-                    // check if target object is out of range
+                    // check if player object is out of range
                     if(((Vector2)targetObject.transform.position - myRb2D.position).sqrMagnitude > (playerDetectionRange * playerDetectionRange))
                     {
-                        currentState = STATES.S_EGG_DIFFERENTHEIGHT;
+                        float posDiff = myRb2D.position.y - targetObject.transform.position.y;
+                        if (posDiff < YPosDifference)
+                            currentState = STATES.S_EGG_SIMILARHEIGHT;
+                        else
+                            currentState = STATES.S_EGG_DIFFERENTHEIGHT;
                         return;
                     }
 
-
-                    // check if we can melee the player
-
-
-                    // check if we can shoot projectile at player
-                    if ((moveTargetPos - myRb2D.position).sqrMagnitude <= (maxShootingRange * maxShootingRange))
+                    float distance = (moveTargetPos - myRb2D.position).sqrMagnitude;
+                    // What attack type are we using
+                    switch (attackMethod)
                     {
-                        currentState = STATES.S_SHOOT_PLAYER;
-                        return;
+                        case ATTACK.A_MELEE:
+                            {
+                                // check if we can melee the player
+                                if(distance <= (meleeAttackDistance * meleeAttackDistance))
+                                {
+                                    currentState = STATES.S_MELEE_PLAYER;
+                                    return;
+                                }
+                            }
+                            break;
+                        case ATTACK.A_SHOOT:
+                            {
+                                // check if we can shoot projectile at player
+                                if (distance <= (maxShootingRange * maxShootingRange))
+                                {
+                                    currentState = STATES.S_SHOOT_PLAYER;
+                                    return;
+                                }
+                            }
+                            break;
                     }
 
-                    // Walk towards player
+                    // Walk towards player but stop if we reach platform's end
                     SetNewObjectTarget(targetObject);
-                    MoveWolf();
+                    if(!MoveWolf())
+                        currentState = STATES.S_EGG_DIFFERENTHEIGHT;
                 }
                 break;
             case STATES.S_SHOOT_PLAYER:
@@ -386,6 +431,11 @@ public class SquirrelWolf : EnemyBaseClass
                     }
                 }
                 break;
+            case STATES.S_MELEE_PLAYER:
+                {
+                    currentState = STATES.S_EGG_DIFFERENTHEIGHT;
+                }
+                break;
         }
     }
 
@@ -400,6 +450,18 @@ public class SquirrelWolf : EnemyBaseClass
             return null;
         if (result.gameObject.tag != "Player")
             return null;
+        // raycast to check if we can actually go to player
+        Vector2 testDirection = (Vector2)result.gameObject.transform.position - myRb2D.position;
+        rayhit2D = Physics2D.Raycast(shootingPos.position, testDirection.normalized, sideTopDetect.detectSize.x, LayerMask.GetMask("Ground"));
+        
+        if (rayhit2D.collider != null)  // If we hit smth, return null
+        {
+            Debug.DrawLine(shootingPos.position, (Vector2)shootingPos.position + testDirection.normalized * sideTopDetect.detectSize.y, Color.yellow);
+            return null;
+        }
+        else
+            Debug.DrawLine(shootingPos.position, (Vector2)shootingPos.position + testDirection.normalized * sideTopDetect.detectSize.y, Color.red);
+
 
         return result.gameObject;
     }
@@ -474,7 +536,7 @@ public class SquirrelWolf : EnemyBaseClass
             Debug.DrawLine(shootingPos.position, (Vector2)shootingPos.position + testDirection.normalized * sideTopDetect.detectSize.y, Color.yellow);
             if (rayhit2D.collider != null)   // We hit smth
                 continue;
-            if (platformPos.y - myRb2D.position.y < 0.5f) // If we are on the same y
+            if (platformPos.y - myRb2D.position.y < YPosDifference) // If we are on the same y
                 continue;
 
             if(platformPos.y > yPos)
@@ -509,7 +571,7 @@ public class SquirrelWolf : EnemyBaseClass
             //Debug.DrawLine(shootingPos.position, (Vector2)shootingPos.position + testDirection.normalized * sideTopDetect.detectSize.y, Color.yellow);
             //if (rayhit2D.collider != null)   // We hit smth
             //    continue;
-            if (myRb2D.position.y - platformPos.y < 0.5f) // If we are on the same y
+            if (myRb2D.position.y - platformPos.y < YPosDifference) // If we are on the same y
                 continue;
 
             if (platformPos.y < yPos)

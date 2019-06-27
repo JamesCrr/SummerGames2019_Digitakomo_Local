@@ -12,6 +12,7 @@ public abstract class EnemyBaseClass : MonoBehaviour
     }
     protected DIRECTION facingDirection = DIRECTION.D_RIGHT;
 
+
     // Stats
     [Header("EnemyBase Class")]
     [SerializeField]

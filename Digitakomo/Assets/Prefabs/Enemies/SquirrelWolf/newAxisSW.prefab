@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6043983711087427848}
-  - component: {fileID: 1399574802883955119}
-  - component: {fileID: 6426761079313987168}
   m_Layer: 9
   m_Name: newAxisSW
   m_TagString: Enemy
@@ -30,68 +28,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 315774103488503322}
-  - {fileID: 5099603340387856449}
-  - {fileID: 3095036298310143974}
-  - {fileID: 3669175944790797464}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &1399574802883955119
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2947897018553184564}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!114 &6426761079313987168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2947897018553184564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f98e9c2e052470144ab7265f8e7fdc76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 1
-  damage: 1
-  moveSpeed: 3
-  attackTime: 2
-  currentState: 0
-  playerDetectionRange: 4
-  sideTopDetect:
-    detectOffset: {x: 1.58, y: 1.59}
-    detectSize: {x: 2.41, y: 4.06}
-  bottomDetect:
-    detectOffset: {x: 2.57, y: -1.76}
-    detectSize: {x: 3.03, y: 2.4}
-  groundCheckScript: {fileID: 1943111310814048899}
-  groundCast: {fileID: 5099603340387856449}
-  groundCastLength: 0.09
-  minimumMeleeRange: 4
-  meleeAttackDistance: 1
-  projectilePrefab: {fileID: 7652022669352611591, guid: 0f43bf2a6b1923f4084e9d0d959c5548,
-    type: 3}
-  shootingPos: {fileID: 3095036298310143974}
-  maxShootingRange: 3
-  timeToHitTarget: 1
-  fleeTime: 5
 --- !u!1 &4008400323398300379
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,12 +54,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4008400323398300379}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.866, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.05128566, z: 0}
+  m_LocalScale: {x: 0.3076923, y: 0.14089467, z: 0.25}
   m_Children: []
-  m_Father: {fileID: 6043983711087427848}
-  m_RootOrder: 2
+  m_Father: {fileID: 315774103488503322}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4470796008865141412
 GameObject:
@@ -147,12 +86,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4470796008865141412}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.213, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.06553846, y: -0.07072912, z: 0}
+  m_LocalScale: {x: 0.3076923, y: 0.14089467, z: 0.25}
   m_Children: []
-  m_Father: {fileID: 6043983711087427848}
-  m_RootOrder: 1
+  m_Father: {fileID: 315774103488503322}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1943111310814048899
 MonoBehaviour:
@@ -166,8 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d080f9b410c51f943a6ae3bad3aa2b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attachedObj: {fileID: 6426761079313987168}
-  platformStandingOn: {fileID: 0}
+  attachedObj: {fileID: 2747537408611581317}
 --- !u!58 &2580754530000158678
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -196,6 +134,8 @@ GameObject:
   - component: {fileID: 514250174652034293}
   - component: {fileID: 2588650812942329243}
   - component: {fileID: 4768417024878522501}
+  - component: {fileID: 7788000115729783697}
+  - component: {fileID: 2747537408611581317}
   m_Layer: 9
   m_Name: SquirrelWolf
   m_TagString: Enemy
@@ -212,8 +152,11 @@ Transform:
   m_GameObject: {fileID: 5715473147962047044}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.502, z: 0}
-  m_LocalScale: {x: 3.25, y: 7.0975003, z: 4}
-  m_Children: []
+  m_LocalScale: {x: 7.7581472, y: 16.942602, z: 9.54849}
+  m_Children:
+  - {fileID: 5099603340387856449}
+  - {fileID: 3095036298310143974}
+  - {fileID: 3669175944790797464}
   m_Father: {fileID: 6043983711087427848}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -300,6 +243,62 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.004291877}
   m_Size: {x: 0.13425669, y: 0.15141632}
   m_Direction: 0
+--- !u!50 &7788000115729783697
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5715473147962047044}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!114 &2747537408611581317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5715473147962047044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f98e9c2e052470144ab7265f8e7fdc76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 1
+  damage: 1
+  moveSpeed: 3
+  attackTime: 2
+  currentState: 0
+  attackMethod: 0
+  playerDetectionRange: 4
+  sideTopDetect:
+    detectOffset: {x: 1.58, y: 0.84}
+    detectSize: {x: 2.41, y: 6.88}
+  bottomDetect:
+    detectOffset: {x: 2.57, y: -2.59}
+    detectSize: {x: 3.03, y: 4.17}
+  groundCheckScript: {fileID: 1943111310814048899}
+  groundCast: {fileID: 5099603340387856449}
+  groundCastLength: 0.09
+  meleeAttackDistance: 1
+  projectilePrefab: {fileID: 7652022669352611591, guid: 0f43bf2a6b1923f4084e9d0d959c5548,
+    type: 3}
+  shootingPos: {fileID: 3095036298310143974}
+  maxShootingRange: 3
+  timeToHitTarget: 1
+  fleeTime: 5
 --- !u!1 &7135106560075558477
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,12 +323,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7135106560075558477}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.174, y: 0.758, z: 0}
-  m_LocalScale: {x: 5.0859, y: 5.0859, z: 5.0859}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.053538457, y: 0.03606904, z: 0}
+  m_LocalScale: {x: 1.5648922, y: 0.71657616, z: 1.271475}
   m_Children: []
-  m_Father: {fileID: 6043983711087427848}
-  m_RootOrder: 3
+  m_Father: {fileID: 315774103488503322}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2523429680328423751
 SpriteRenderer:

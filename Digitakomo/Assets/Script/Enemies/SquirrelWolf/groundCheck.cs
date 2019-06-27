@@ -7,6 +7,7 @@ public class groundCheck : MonoBehaviour
     public SquirrelWolf attachedObj = null;
     [System.NonSerialized]
     public bool startCheck = true;
+    [System.NonSerialized]
     public Platforms platformStandingOn = null;
 
 

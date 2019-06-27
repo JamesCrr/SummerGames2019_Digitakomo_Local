@@ -117,7 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 1
   damage: 1
-  moveSpeed: 1
+  moveSpeed: 10
   attackTime: 2
   centerPoint: {x: 0, y: 0}
   circleRadius: 10

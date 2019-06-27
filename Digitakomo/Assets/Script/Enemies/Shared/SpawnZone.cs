@@ -106,10 +106,13 @@ public class SpawnZone : MonoBehaviour
                     // Fetch enemy
                     GameObject newEnemy = ObjectPooler.Instance.FetchGO(spawn.enemyToSpawn.name);
                     // Attach SpawnZone and Reset the Enemy before anything
-                    newEnemy.GetComponent<EnemyBaseClass>().ResetEnemy(spawn.spawningZone, spawn.GetRandomPositionFromZone());
+                    //newEnemy.GetComponent<EnemyBaseClass>().ResetEnemy(spawn.spawningZone, spawn.GetRandomPositionFromZone());
 
-                    // Get a random path from the zone that you just spawned
-                    //newEnemy.gameObject.GetComponent<PixieType1Script>().SetWaypointGroup(listOfSpawns[i].spawningZone.GetRandomPath());
+                    EnemyBaseClass baseClass = newEnemy.GetComponent<EnemyBaseClass>();
+                    if (baseClass == null)
+                        baseClass = newEnemy.GetComponentInChildren<EnemyBaseClass>();
+
+                    baseClass.ResetEnemy(spawn.spawningZone, spawn.GetRandomPositionFromZone());
                 }
             }
         }
