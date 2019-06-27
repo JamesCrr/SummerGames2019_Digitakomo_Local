@@ -66,9 +66,8 @@ public class SquirrelWolf : EnemyBaseClass
 
     #region Melee
     [Header("Melee")]
-    [SerializeField]
-    // Minimum attacking Distance for melee
-    float meleeAttackDistance = 1.0f;
+    [SerializeField]    // The Collider to detect melee
+    Collider2D meleeColliderBox = null;
     #endregion
     #region Shooting
     [Header("Shooting")]
@@ -373,9 +372,9 @@ public class SquirrelWolf : EnemyBaseClass
             case STATES.S_WALK_PLAYER:
                 {
                     // check if player object is out of range
-                    if(((Vector2)targetObject.transform.position - myRb2D.position).sqrMagnitude > (playerDetectionRange * playerDetectionRange))
+                    if(!IsPlayerStillInRange()/*((Vector2)targetObject.transform.position - myRb2D.position).sqrMagnitude > (playerDetectionRange * playerDetectionRange)*/)
                     {
-                        float posDiff = myRb2D.position.y - targetObject.transform.position.y;
+                        float posDiff = myRb2D.position.y - Egg.Instance.transform.position.y;
                         if (posDiff < YPosDifference)
                             currentState = STATES.S_EGG_SIMILARHEIGHT;
                         else
@@ -383,14 +382,14 @@ public class SquirrelWolf : EnemyBaseClass
                         return;
                     }
 
-                    float distance = (moveTargetPos - myRb2D.position).sqrMagnitude;
+                    
                     // What attack type are we using
                     switch (attackMethod)
                     {
                         case ATTACK.A_MELEE:
                             {
                                 // check if we can melee the player
-                                if(distance <= (meleeAttackDistance * meleeAttackDistance))
+                                if(meleeColliderBox.bounds.Contains(targetObject.transform.position))
                                 {
                                     currentState = STATES.S_MELEE_PLAYER;
                                     return;
@@ -399,6 +398,7 @@ public class SquirrelWolf : EnemyBaseClass
                             break;
                         case ATTACK.A_SHOOT:
                             {
+                                float distance = (moveTargetPos - myRb2D.position).sqrMagnitude;
                                 // check if we can shoot projectile at player
                                 if (distance <= (maxShootingRange * maxShootingRange))
                                 {
@@ -450,6 +450,9 @@ public class SquirrelWolf : EnemyBaseClass
             return null;
         if (result.gameObject.tag != "Player")
             return null;
+        // check are we actually in range or we just hit the collider
+        if (((Vector2)result.gameObject.transform.position - myRb2D.position).sqrMagnitude > (playerDetectionRange * playerDetectionRange))
+            return null;
         // raycast to check if we can actually go to player
         Vector2 testDirection = (Vector2)result.gameObject.transform.position - myRb2D.position;
         rayhit2D = Physics2D.Raycast(shootingPos.position, testDirection.normalized, sideTopDetect.detectSize.x, LayerMask.GetMask("Ground"));
@@ -469,10 +472,11 @@ public class SquirrelWolf : EnemyBaseClass
     bool IsPlayerStillInRange()
     {
         // check if player is still in range
-        if (((Vector2)targetObject.transform.position - myRb2D.position).sqrMagnitude > playerDetectionRange)
+        if (((Vector2)targetObject.transform.position - myRb2D.position).sqrMagnitude > (playerDetectionRange * playerDetectionRange))
             return false;
         return true;
     }
+
 
     // Fills the list with platforms that are within the sideTopDetect
     // Returns Vector2.zero if no Colliders Found
@@ -792,17 +796,19 @@ public class SquirrelWolf : EnemyBaseClass
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-
+        // Player detect range
         Gizmos.DrawLine(groundCast.position, groundCast.position + (Vector3.down * groundCastLength));
         Gizmos.DrawWireSphere(transform.position, playerDetectionRange);
-
+        // Shooting range
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, maxShootingRange);
 
+
+        // Platform detecting
         Gizmos.color = Color.blue;
-        Vector3 tempo = transform.right;
-        tempo.y = 1;
-        Gizmos.DrawWireCube((Vector2)transform.position + (sideTopDetect.detectOffset * tempo), sideTopDetect.detectSize);
-        Gizmos.DrawWireCube((Vector2)transform.position + (bottomDetect.detectOffset * tempo), bottomDetect.detectSize);
+        Vector3 tempoDir = transform.right;
+        tempoDir.y = 1;
+        Gizmos.DrawWireCube((Vector2)transform.position + (sideTopDetect.detectOffset * tempoDir), sideTopDetect.detectSize);
+        Gizmos.DrawWireCube((Vector2)transform.position + (bottomDetect.detectOffset * tempoDir), bottomDetect.detectSize);
     }
 }
