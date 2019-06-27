@@ -52,7 +52,7 @@ public class SquirrelWolf : EnemyBaseClass
     List<Collider2D> listOfPlatforms = new List<Collider2D>();    // Used to store the platforms that we can jump to
     ContactFilter2D jumpingFilter = new ContactFilter2D();      // To prevent me calling new everytime
     bool isGrounded = false;     // Used to check if we have reached the ground
-    static float YPosDifference = 5.0f; // The difference to check before we change state
+    static float YPosDifference = 2.0f; // The difference to check before we change state
     [SerializeField]
     groundCheck groundCheckScript = null;   // Script used to check if have reached the ground when jumping
     [Header("GroundCasting")]
