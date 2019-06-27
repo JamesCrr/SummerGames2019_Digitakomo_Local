@@ -412,7 +412,22 @@ public class SquirrelWolf : EnemyBaseClass
                     // Walk towards player but stop if we reach platform's end
                     SetNewObjectTarget(targetObject);
                     if(!MoveWolf())
+                    {
+                        Vector2 nextPos = FindNearestPlatform();
+                        if(nextPos != Vector2.zero)
+                        {
+                            // Is the next platform very close, then just jump there
+                            if ((myRb2D.position - nextPos).sqrMagnitude < 5.0f)
+                            {
+                                SetNewPosTarget(nextPos);
+                                JumpWolf(nextPos);
+                                return;
+                            }
+                        }
+                        // maybe can check the distance if very small then can follow
                         currentState = STATES.S_EGG_DIFFERENTHEIGHT;
+                    }
+                    
                 }
                 break;
             case STATES.S_SHOOT_PLAYER:
@@ -660,18 +675,17 @@ public class SquirrelWolf : EnemyBaseClass
         // set the direction
         moveDirection = moveTargetPos - myRb2D.position;
     }
-    // Custom Move Function as we need to return a value
+    // Moves in the direction set
     // Returns false when can no longer move
     // Returns true if can still move
     private bool MoveWolf(bool checkBelow = true)
     {
         // set the new direction
-        //moveDirection = moveTargetPos - myRb2D.position;
+        moveDirection.Normalize();
         if (!isGrounded)
             moveDirection.y = Physics2D.gravity.y;
         else
             moveDirection.y = 0.0f;
-        moveDirection.Normalize();
         // TESTING FLIP
         FlipEnemy();
 

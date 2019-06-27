@@ -336,7 +336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 1
   damage: 1
-  moveSpeed: 3
+  moveSpeed: 5
   attackTime: 2
   currentState: 0
   attackMethod: 0
@@ -349,7 +349,7 @@ MonoBehaviour:
     detectSize: {x: 3.03, y: 4.17}
   groundCheckScript: {fileID: 1943111310814048899}
   groundCast: {fileID: 5099603340387856449}
-  groundCastLength: 0.09
+  groundCastLength: 0.22
   meleeColliderBox: {fileID: 5791985250915319894}
   projectilePrefab: {fileID: 7652022669352611591, guid: 0f43bf2a6b1923f4084e9d0d959c5548,
     type: 3}

@@ -1056,7 +1056,7 @@ GameObject:
   m_Component:
   - component: {fileID: 749457353}
   - component: {fileID: 749457354}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Animate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1192,7 +1192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 827248631}
   - component: {fileID: 827248632}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Animate (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
