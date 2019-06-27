@@ -2298,6 +2298,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: newAxisSW
       objectReference: {fileID: 0}
+    - target: {fileID: 2947897018553184564, guid: 7e8d961d76bee1e4eb6ddcf2fbd24867,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6043983711087427848, guid: 7e8d961d76bee1e4eb6ddcf2fbd24867,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2709,7 +2714,7 @@ PrefabInstance:
     - target: {fileID: 403571385494849996, guid: f88ee3a8773118c4fa2448c3bae6c870,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.47
+      value: -5.9
       objectReference: {fileID: 0}
     - target: {fileID: 403571385494849996, guid: f88ee3a8773118c4fa2448c3bae6c870,
         type: 3}

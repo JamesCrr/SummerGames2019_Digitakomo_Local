@@ -264,13 +264,24 @@ public class SquirrelWolf : EnemyBaseClass
             case STATES.S_FOUNDPLAYER:  // Assume that targetObject here will always be player
                 {
                     // check if we can ATTACK player or need to walk there
-                    int chance = Random.Range(1, 1);
+                    int chance = Random.Range(0, 0);
 
                     // Flee from player
                     if(chance == 0)
                     {
                         currentState = STATES.S_RUNAWAY;    // get the furtherest Point from the player on the platform we are standing on
-                        SetNewPosTarget(groundCheckScript.platformStandingOn.GetFurtherestPosition(targetObject.transform.position));
+                        // SetNewPosTarget(groundCheckScript.platformStandingOn.GetFurtherestPosition(targetObject.transform.position));
+
+                        TurnWolfAround();
+                        switch (facingDirection)
+                        {
+                            case DIRECTION.D_LEFT:
+                                SetNewPosTarget(groundCheckScript.platformStandingOn.GetLeftPoint());
+                                break;
+                            case DIRECTION.D_RIGHT:
+                                SetNewPosTarget(groundCheckScript.platformStandingOn.GetRightsPoint());
+                                break;
+                        }
                     }
                     else
                     {
@@ -317,6 +328,18 @@ public class SquirrelWolf : EnemyBaseClass
                         JumpWolf(moveTargetPos);
                         return;
                     }
+                    //else
+                    //{
+                    //    // No higher platforms so we take the nearest one
+                    //    platformEdgePos = FindNearestPlatform();
+                    //    if (platformEdgePos != Vector2.zero)
+                    //    {
+                    //        // Set new target and jump there
+                    //        SetNewPosTarget(platformEdgePos);
+                    //        JumpWolf(moveTargetPos);
+                    //        return;
+                    //    }
+                    //}
 
 
                     // Move enemy Horizontal
@@ -688,11 +711,17 @@ public class SquirrelWolf : EnemyBaseClass
     private bool MoveWolf(bool checkBelow = true)
     {
         // set the new direction
-        moveDirection.Normalize();
         if (!isGrounded)
+        {
+            moveDirection.Normalize();
             moveDirection.y = Physics2D.gravity.y;
+        }
         else
+        {
             moveDirection.y = 0.0f;
+            moveDirection.Normalize();
+        }
+            
         // TESTING FLIP
         FlipEnemy();
 
