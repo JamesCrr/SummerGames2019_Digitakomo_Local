@@ -47,5 +47,6 @@ public class IcePlatform : MonoBehaviour
         transform.position = position;
         render.enabled = true;
         _collider.enabled = true;
+        rb.isKinematic = true;
     }
 }
