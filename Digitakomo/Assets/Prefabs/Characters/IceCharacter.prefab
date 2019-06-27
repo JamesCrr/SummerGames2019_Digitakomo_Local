@@ -329,7 +329,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &7883997970962599787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,6 +354,9 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
+  whatIsItem:
+    serializedVersion: 2
+    m_Bits: 0
   extraJumps: 1
   fallingMultiplyer: 2
   MaxHP: 500

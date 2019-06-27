@@ -16,6 +16,7 @@ public class IcePlatform : MonoBehaviour
         render = GetComponent<SpriteRenderer>();
         _collider = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
+        rb.isKinematic = true;
         render.enabled = false;
         _collider.enabled = false;
     }
@@ -24,6 +25,7 @@ public class IcePlatform : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<IceCharacter>() != null)
         {
+            rb.isKinematic = false;
             rb.gravityScale = DropSpeed;
         }
     }

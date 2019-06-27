@@ -302,7 +302,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &8518456384201068771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,13 +327,16 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
+  whatIsItem:
+    serializedVersion: 2
+    m_Bits: 0
   extraJumps: 1
   fallingMultiplyer: 2
   MaxHP: 500
   MaxEnergy: 200
   MPRestore: 0.5
+  electricAttack: 0
   PunchRate: 0.1
-  enerygyPerSpecialAttack: 5
   player: 1
   flameThrower: {fileID: 7881657545065886293, guid: 83cfcb08460dfcd47b3df5982aec4950,
     type: 3}
