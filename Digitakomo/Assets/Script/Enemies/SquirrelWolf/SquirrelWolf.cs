@@ -66,8 +66,8 @@ public class SquirrelWolf : EnemyBaseClass
 
     #region Melee
     [Header("Melee")]
-    [SerializeField]    // The Collider to detect melee
-    Collider2D meleeColliderBox = null;
+    [SerializeField]    // The minimum range before start to melee
+    float meleeDistance = 2.0f;
     #endregion
     #region Shooting
     [Header("Shooting")]
@@ -126,6 +126,8 @@ public class SquirrelWolf : EnemyBaseClass
         playerDetectionRange *= percentageDifference.x;
         // Shooting
         maxShootingRange *= percentageDifference.x;
+        // Melee
+        meleeDistance *= percentageDifference.x;
     }
 
     // Update is called once per frame
@@ -372,7 +374,8 @@ public class SquirrelWolf : EnemyBaseClass
             case STATES.S_WALK_PLAYER:
                 {
                     // check if player object is out of range
-                    if(!IsPlayerStillInRange()/*((Vector2)targetObject.transform.position - myRb2D.position).sqrMagnitude > (playerDetectionRange * playerDetectionRange)*/)
+                    float playerDist = 0.0f;
+                    if(!IsPlayerStillInRange(ref playerDist))
                     {
                         float posDiff = myRb2D.position.y - Egg.Instance.transform.position.y;
                         if (posDiff < YPosDifference)
@@ -389,20 +392,22 @@ public class SquirrelWolf : EnemyBaseClass
                         case ATTACK.A_MELEE:
                             {
                                 // check if we can melee the player
-                                if(meleeColliderBox.bounds.Contains(targetObject.transform.position))
+                                if(playerDist < (meleeDistance * meleeDistance))
                                 {
                                     currentState = STATES.S_MELEE_PLAYER;
+                                    myRb2D.velocity = Vector2.zero;
                                     return;
                                 }
                             }
                             break;
                         case ATTACK.A_SHOOT:
                             {
-                                float distance = (moveTargetPos - myRb2D.position).sqrMagnitude;
+                                //float distance = (moveTargetPos - myRb2D.position).sqrMagnitude;
                                 // check if we can shoot projectile at player
-                                if (distance <= (maxShootingRange * maxShootingRange))
+                                if (playerDist <= (maxShootingRange * maxShootingRange))
                                 {
                                     currentState = STATES.S_SHOOT_PLAYER;
+                                    myRb2D.velocity = Vector2.zero;
                                     return;
                                 }
                             }
@@ -441,14 +446,15 @@ public class SquirrelWolf : EnemyBaseClass
                         attackTimer = attackTime;
 
                         // Is a player in range?
-                        if (!IsPlayerStillInRange())
+                        float temp = 0.0f;
+                        if (!IsPlayerStillInRange(ref temp))
                             currentState = STATES.S_EGG_DIFFERENTHEIGHT;
                     }
                 }
                 break;
             case STATES.S_MELEE_PLAYER:
                 {
-                    currentState = STATES.S_EGG_DIFFERENTHEIGHT;
+                    //currentState = STATES.S_EGG_DIFFERENTHEIGHT;
                 }
                 break;
         }
@@ -484,10 +490,11 @@ public class SquirrelWolf : EnemyBaseClass
         return result.gameObject;
     }
     // Returns if player object is still in range
-    bool IsPlayerStillInRange()
+    bool IsPlayerStillInRange(ref float distanceReturned)
     {
         // check if player is still in range
-        if (((Vector2)targetObject.transform.position - myRb2D.position).sqrMagnitude > (playerDetectionRange * playerDetectionRange))
+        distanceReturned = ((Vector2)targetObject.transform.position - myRb2D.position).sqrMagnitude;
+        if (distanceReturned > (playerDetectionRange * playerDetectionRange))
             return false;
         return true;
     }
@@ -816,6 +823,8 @@ public class SquirrelWolf : EnemyBaseClass
         // Shooting range
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, maxShootingRange);
+        // Melee Range
+        Gizmos.DrawWireSphere(transform.position, meleeDistance);
 
 
         // Platform detecting

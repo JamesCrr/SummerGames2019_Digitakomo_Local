@@ -28,6 +28,23 @@ public class groundCheck : MonoBehaviour
         // Call the wolf function reacting function
         attachedObj.HitGround();
     }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (startCheck == false)
+            return;
+        if (collision.gameObject.layer != LayerMask.NameToLayer("Ground"))
+            return;
+
+        // attach platform if have
+        if (collision.GetComponent<Platforms>())
+            platformStandingOn = collision.GetComponent<Platforms>();
+        // modify data
+        attachedObj.SetGrounded();
+        startCheck = false;
+
+        // Call the wolf function reacting function
+        attachedObj.HitGround();
+    }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.layer != LayerMask.NameToLayer("Ground"))
