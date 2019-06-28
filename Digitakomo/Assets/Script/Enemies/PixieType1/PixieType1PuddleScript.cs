@@ -20,12 +20,12 @@ public class PixieType1PuddleScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //hit player
+        // hit player
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             collision.gameObject.GetComponent<IDamagable>().TakeDamage(Random.Range(MinDamage, MaxDamage));
         }
 
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 }

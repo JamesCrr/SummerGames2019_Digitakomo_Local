@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1178721961773036515}
   - component: {fileID: 6855439048683128711}
   - component: {fileID: 8132193966910583592}
+  - component: {fileID: 4641043061969283806}
   m_Layer: 9
   m_Name: PT2
   m_TagString: Enemy
@@ -133,6 +134,22 @@ MonoBehaviour:
   dartingTime: 2
   rotatingDir: 0
   currentRadAngle: 1.5708
+--- !u!58 &4641043061969283806
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 686835902066373112}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.17}
+  serializedVersion: 2
+  m_Radius: 1.14255
 --- !u!1 &4339752723275940234
 GameObject:
   m_ObjectHideFlags: 0
