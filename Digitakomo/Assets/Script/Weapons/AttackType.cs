@@ -1,6 +1,8 @@
 ﻿public enum AttackType
 {
-    UNKNOWN = -1,
-    ICE = 0,
-    FIRE = 1
+    UNKNOWN,
+    ICE,
+    ICE_JUMP,
+    FIRE,
+    FIRE_JUMP
 }

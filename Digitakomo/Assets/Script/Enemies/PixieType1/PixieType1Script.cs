@@ -142,7 +142,8 @@ public class PixieType1Script : EnemyBaseClass
         if (collision.gameObject.tag != "PlayerProj")
             return;
 
-        // check type..
+        // check type.. fire water or steam
+
 
         gameObject.SetActive(false);
     }
