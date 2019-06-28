@@ -78,4 +78,15 @@ public abstract class EnemyBaseClass : MonoBehaviour
             }
         }
     }
+
+
+    // Called to modify the HP
+    // Can be decrease or Increase
+    // When HP reaches 0, gameObject is deactivated
+    protected virtual void ModifyHealth(int modifyAmt)
+    {
+        hp += modifyAmt;
+        if (hp < 1)
+            gameObject.SetActive(false);
+    }
 }

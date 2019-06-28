@@ -63,4 +63,28 @@ public abstract class Weapon : MonoBehaviour
         currentTime = Time.time;
         actualDamage = Random.Range(MinDamage, MaxDamage);
     }
+
+
+    // Condenses attack types into
+    // FIRE, WATER or UNKNOWN for easier comparision
+    public AttackType GetMainType()
+    {
+        switch (at)
+        {
+            // Unknown
+            case AttackType.UNKNOWN:
+                return AttackType.UNKNOWN;
+            // Ice
+            case AttackType.ICE:
+                return AttackType.ICE;
+            case AttackType.ICE_JUMP:
+                return AttackType.ICE;
+            // Fire
+            case AttackType.FIRE:
+                return AttackType.FIRE;
+            case AttackType.FIRE_JUMP:
+                return AttackType.FIRE;
+        }
+        return AttackType.UNKNOWN;
+    }
 }
