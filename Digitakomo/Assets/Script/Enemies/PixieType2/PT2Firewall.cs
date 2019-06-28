@@ -9,10 +9,11 @@ public class PT2Firewall : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("PlayerProj"))
+        if (collision.gameObject.tag == "PlayerProj")
         {
             // if hit by fire projectile
             Weapon weapon = collision.gameObject.GetComponent<Weapon>();
+            Debug.Log(weapon.at);
             if (weapon.at == AttackType.ICE)
             {
                 gameObject.SetActive(false);
