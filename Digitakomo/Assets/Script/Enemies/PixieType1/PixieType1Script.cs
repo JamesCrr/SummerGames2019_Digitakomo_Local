@@ -67,7 +67,7 @@ public class PixieType1Script : EnemyBaseClass
 
             // Move towards using baseClass
             base.Move();
-            
+
             // Check if we are reaching waypoint
             CheckNextWaypoint();
         }
@@ -143,7 +143,8 @@ public class PixieType1Script : EnemyBaseClass
             return;
 
         // if Ice
-        if (collision.gameObject.GetComponent<Weapon>().GetMainType() == AttackType.ICE)
+        AttackType type = collision.gameObject.GetComponent<Weapon>().GetMainType();
+        if (type == AttackType.ICE || type == AttackType.ICE_JUMP || type == AttackType.Normal)
             return;
 
         // One Hit Kill

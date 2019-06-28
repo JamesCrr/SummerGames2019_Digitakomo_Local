@@ -1,11 +1,7 @@
 ﻿using UnityEngine;
 
-public class IceMissile : Weapon
+public class IceMissile : RangeWeapon
 {
-    void Start()
-    {
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<FlameProjectile>() != null)

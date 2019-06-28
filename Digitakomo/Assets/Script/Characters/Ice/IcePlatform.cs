@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class IcePlatform : MonoBehaviour
+public class IcePlatform : Weapon
 {
     [SerializeField]
     LayerMask whatIsGround;
@@ -8,15 +8,15 @@ public class IcePlatform : MonoBehaviour
     private Collider2D _collider;
 
     public float DropSpeed = 0.2f;
-    Rigidbody2D rb;
+    Rigidbody2D ice_rb;
 
     // Start is called before the first frame update
     void Start()
     {
         render = GetComponent<SpriteRenderer>();
         _collider = GetComponent<BoxCollider2D>();
-        rb = GetComponent<Rigidbody2D>();
-        rb.isKinematic = true;
+        ice_rb = GetComponent<Rigidbody2D>();
+        ice_rb.isKinematic = true;
         render.enabled = false;
         _collider.enabled = false;
     }
@@ -25,8 +25,8 @@ public class IcePlatform : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<IceCharacter>() != null)
         {
-            rb.isKinematic = false;
-            rb.gravityScale = DropSpeed;
+            ice_rb.isKinematic = false;
+            ice_rb.gravityScale = DropSpeed;
         }
     }
 
@@ -36,17 +36,17 @@ public class IcePlatform : MonoBehaviour
         {
             render.enabled = false;
             _collider.enabled = false;
-            rb.gravityScale = 0;
+            ice_rb.gravityScale = 0;
         }
     }
 
     public void Restart(Vector3 position)
     {
-        rb.gravityScale = 0;
-        rb.velocity = new Vector3(0, 0, 0);
+        ice_rb.gravityScale = 0;
+        ice_rb.velocity = new Vector3(0, 0, 0);
         transform.position = position;
         render.enabled = true;
         _collider.enabled = true;
-        rb.isKinematic = true;
+        ice_rb.isKinematic = true;
     }
 }

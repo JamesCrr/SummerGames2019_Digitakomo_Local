@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 
-public class FlameProjectile : Weapon
+public class FlameProjectile : RangeWeapon
 {
     private Vector3 defaultScale;
 

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ElectricHand : MonoBehaviour
+public class ElectricHand : Weapon
 {
     private Character character;
     private bool isElectricHand = false;
@@ -24,6 +24,14 @@ public class ElectricHand : MonoBehaviour
     {
         isElectricHand = active;
         character.electricAttack = active;
+        if (active)
+        {
+            at = AttackType.Electric;
+        }
+        else
+        {
+            at = AttackType.Normal;
+        }
     }
 
     public bool getElectricHand()

@@ -92,7 +92,9 @@ public class Character : MonoBehaviour, IDamagable
         foreach (Collider2D collider in colliders)
         {
             if (collider.name == "AttackCollider")
+            {
                 AttackCollider = collider;
+            }
         }
 
         myRb2D = GetComponent<Rigidbody2D>();

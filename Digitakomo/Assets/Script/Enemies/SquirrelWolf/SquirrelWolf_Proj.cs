@@ -4,6 +4,7 @@ public class SquirrelWolf_Proj : MonoBehaviour
 {
     [SerializeField]
     float MinDamage = 20f;
+    [SerializeField]
     float MaxDamage = 30f;
 
     // Start is called before the first frame update
