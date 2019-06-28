@@ -376,6 +376,7 @@ public class SquirrelWolf : EnemyBaseClass
 
             case STATES.S_MELEE_EGG:
                 {
+                   // Did the player attack me?
 
                 }
                 break;
@@ -404,7 +405,7 @@ public class SquirrelWolf : EnemyBaseClass
             case STATES.S_FOUNDPLAYER:  // Assume that targetObject here will always be player
                 {
                     // check if we can ATTACK player or need to walk there
-                    int chance = Random.Range(0, 0);
+                    int chance = Random.Range(1, 1);
 
                     // Flee from player
                     if (chance == 0)
@@ -519,6 +520,11 @@ public class SquirrelWolf : EnemyBaseClass
             case STATES.S_MELEE_PLAYER:
                 {
                     //currentState = STATES.S_EGG_DIFFERENTHEIGHT;
+
+                    // Is a player in range?
+                    float temp = 0.0f;
+                    if (!IsPlayerStillInRange(ref temp))
+                        currentState = STATES.S_EGG_DIFFERENTHEIGHT;
                 }
                 break;
         }
@@ -553,7 +559,7 @@ public class SquirrelWolf : EnemyBaseClass
 
         return result.gameObject;
     }
-    // Returns if player object is still in range
+    // Returns if target object is still in range
     bool IsPlayerStillInRange(ref float distanceReturned)
     {
         // check if player is still in range
