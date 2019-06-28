@@ -730,7 +730,7 @@ public class SquirrelWolf : EnemyBaseClass
         {
             // Cast below us
             // Check if we can even move
-            if (Physics2D.Linecast(groundCast.position, groundCast.position + (Vector3.down * groundCastLength)))
+            if (Physics2D.Linecast(groundCast.position, groundCast.position + (Vector3.down * groundCastLength), LayerMask.GetMask("Ground")))
             {
                 // Move
                 myRb2D.MovePosition(myRb2D.position + (moveDirection * moveSpeed * Time.deltaTime));

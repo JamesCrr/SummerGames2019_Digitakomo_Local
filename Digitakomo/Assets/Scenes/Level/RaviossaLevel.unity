@@ -1665,12 +1665,12 @@ PrefabInstance:
     - target: {fileID: 7883997970962599784, guid: 774623a0001b6e9478d7f2c375c10007,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 30.3
       objectReference: {fileID: 0}
     - target: {fileID: 7883997970962599784, guid: 774623a0001b6e9478d7f2c375c10007,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.1
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7883997970962599784, guid: 774623a0001b6e9478d7f2c375c10007,
         type: 3}
@@ -3081,11 +3081,11 @@ MonoBehaviour:
   - enemyToSpawn: {fileID: 788284937499773471, guid: f8c3b997bfbcc194b9bbf2357174a7fa,
       type: 3}
     spawnInterval: 1
-    maxSpawnCount: 10
+    maxSpawnCount: 0
   - enemyToSpawn: {fileID: 686835902066373112, guid: 7924b9bbbceb56e409675054d6a4d533,
       type: 3}
     spawnInterval: 0.5
-    maxSpawnCount: 0
+    maxSpawnCount: 10
   centerPoint: {fileID: 2088970239}
   zoneDimensions: {x: 1, y: 1}
   renderDebugBox: 1
