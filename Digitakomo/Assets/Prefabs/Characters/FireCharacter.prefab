@@ -314,7 +314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad333e3791a90dc40bb46a4d394c08de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelectedType: 3
+  SelectedType: 5
   moveAcceleration: 1500
   maxMoveSpeed: 30
   horizontalInput: 0

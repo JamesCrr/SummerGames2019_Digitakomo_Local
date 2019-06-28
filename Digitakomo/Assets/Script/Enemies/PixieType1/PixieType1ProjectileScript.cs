@@ -29,8 +29,6 @@ public class PixieType1ProjectileScript : MonoBehaviour
 
     }
 
-
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // If we are colliding with enemy, don't anyting

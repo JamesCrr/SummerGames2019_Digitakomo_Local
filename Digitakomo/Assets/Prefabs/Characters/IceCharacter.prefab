@@ -243,6 +243,8 @@ MonoBehaviour:
   MinDamage: 0
   MaxDamage: 0
   at: 1
+  MinElectricDamage: 10
+  MaxElectricDamage: 15
 --- !u!1 &7883997970962599796
 GameObject:
   m_ObjectHideFlags: 0
@@ -387,7 +389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4f16ca472e39ca41b83d9368d0cb0a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelectedType: 1
+  SelectedType: 3
   moveAcceleration: 700
   maxMoveSpeed: 5
   horizontalInput: 0
