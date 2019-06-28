@@ -240,8 +240,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efcf859048d2e7e479dd0d6861216b3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinDamage: 0
-  MaxDamage: 0
+  MinDamage: 10
+  MaxDamage: 15
   at: 1
   MinElectricDamage: 10
   MaxElectricDamage: 15

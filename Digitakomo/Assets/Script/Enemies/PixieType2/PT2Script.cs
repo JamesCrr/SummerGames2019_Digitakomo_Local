@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PT2Script : EnemyBaseClass
 {
@@ -112,7 +110,7 @@ public class PT2Script : EnemyBaseClass
                         DartToTarget();
                         return;
                     }
-                        
+
                     // Decrement Timer
                     dartingTimer -= Time.deltaTime;
                     if (dartingTimer < 0.0f)
@@ -147,7 +145,7 @@ public class PT2Script : EnemyBaseClass
         switch (rotatingDir)
         {
             case DIRECTION.D_LEFT:
-                currentRadAngle += 0.1f;        
+                currentRadAngle += 0.1f;
                 break;
             case DIRECTION.D_RIGHT:
                 currentRadAngle -= 0.1f;
@@ -193,7 +191,7 @@ public class PT2Script : EnemyBaseClass
         radiusDecreaseTimer = radiusDecreaseTime_Range.current;
 
         // Hmm maybe can randomise the radius modify rates
-        RandomiseData();        
+        RandomiseData();
     }
     #endregion
     // randomise data values 
@@ -201,7 +199,7 @@ public class PT2Script : EnemyBaseClass
     {
         // Randomise Direction
         int max = (int)DIRECTION.D_RIGHT;
-        max = Random.Range(0, max+1);
+        max = Random.Range(0, max + 1);
         rotatingDir = (DIRECTION)max;
 
         // Radius Decreasing
@@ -228,12 +226,14 @@ public class PT2Script : EnemyBaseClass
         if (collision.gameObject.tag != "PlayerProj")
             return;
 
+        Weapon weapon = collision.gameObject.GetComponent<Weapon>();
+        AttackType type = weapon.at;
         // if Fire
-        if (collision.gameObject.GetComponent<Weapon>().GetMainType() == AttackType.FIRE)
+        if (type == AttackType.FIRE || type == AttackType.FIRE_JUMP)
             return;
 
         // One Hit Kill
-        ModifyHealth(-hp);
+        ModifyHealth(-weapon.GetActualDamage());
     }
 
 
