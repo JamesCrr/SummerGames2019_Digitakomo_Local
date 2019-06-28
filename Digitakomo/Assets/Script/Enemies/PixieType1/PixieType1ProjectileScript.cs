@@ -44,6 +44,7 @@ public class PixieType1ProjectileScript : MonoBehaviour
         // hit player
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
+            Debug.Log(collision.gameObject.name);
             collision.gameObject.GetComponent<IDamagable>().TakeDamage(Random.Range(MinDamage, MaxDamage));
         }
         gameObject.SetActive(false);

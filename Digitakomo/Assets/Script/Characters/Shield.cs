@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Shield : MonoBehaviour
+public class Shield : MonoBehaviour, IDamagable
 {
     private Collider2D _Shield;
     private SpriteRenderer Texture;
@@ -64,5 +64,10 @@ public class Shield : MonoBehaviour
     {
         _Shield.enabled = enable;
         Texture.enabled = enable;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        // Not taking any damage
     }
 }

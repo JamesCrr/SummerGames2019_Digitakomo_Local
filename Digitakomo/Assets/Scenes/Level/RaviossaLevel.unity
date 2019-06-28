@@ -3081,7 +3081,7 @@ MonoBehaviour:
   - enemyToSpawn: {fileID: 788284937499773471, guid: f8c3b997bfbcc194b9bbf2357174a7fa,
       type: 3}
     spawnInterval: 1
-    maxSpawnCount: 0
+    maxSpawnCount: 10
   - enemyToSpawn: {fileID: 686835902066373112, guid: 7924b9bbbceb56e409675054d6a4d533,
       type: 3}
     spawnInterval: 0.5
