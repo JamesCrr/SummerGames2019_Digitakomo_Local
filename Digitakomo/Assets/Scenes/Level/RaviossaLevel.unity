@@ -1452,6 +1452,11 @@ PrefabInstance:
       propertyPath: timer
       value: 
       objectReference: {fileID: 372869764}
+    - target: {fileID: 6434007184110231924, guid: 73e7015d83d3f1b46b78246ab70bf2f1,
+        type: 3}
+      propertyPath: stone
+      value: 
+      objectReference: {fileID: 1731334274}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73e7015d83d3f1b46b78246ab70bf2f1, type: 3}
 --- !u!4 &944298035 stripped
@@ -2695,7 +2700,7 @@ PrefabInstance:
     - target: {fileID: 7131307360111301778, guid: 72569fce1f8af5b49873ac020eb6257e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9.35
+      value: -6.9
       objectReference: {fileID: 0}
     - target: {fileID: 7131307360111301778, guid: 72569fce1f8af5b49873ac020eb6257e,
         type: 3}
@@ -2745,17 +2750,17 @@ PrefabInstance:
     - target: {fileID: 7131307360111301778, guid: 72569fce1f8af5b49873ac020eb6257e,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.8818
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7131307360111301778, guid: 72569fce1f8af5b49873ac020eb6257e,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.8818
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7131307360111301778, guid: 72569fce1f8af5b49873ac020eb6257e,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.8818
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5564329208149722481, guid: 72569fce1f8af5b49873ac020eb6257e,
         type: 3}
@@ -2769,6 +2774,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72569fce1f8af5b49873ac020eb6257e, type: 3}
+--- !u!114 &1731334274 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1656890101799623726, guid: 72569fce1f8af5b49873ac020eb6257e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1731334273}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81b2b09e98305f4489801d7b48ed7c38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1800744421
 PrefabInstance:
   m_ObjectHideFlags: 0
