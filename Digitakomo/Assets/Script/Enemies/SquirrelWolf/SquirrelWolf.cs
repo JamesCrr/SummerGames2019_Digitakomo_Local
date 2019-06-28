@@ -135,6 +135,9 @@ public class SquirrelWolf : EnemyBaseClass
     // Update is called once per frame
     void Update()
     {
+        //FindPlatformAbove();
+        //return;
+
         // Update State Machine
         UpdateStates();
     }
@@ -282,10 +285,20 @@ public class SquirrelWolf : EnemyBaseClass
                         return;
                     }
 
-                    // Keep moving until we drop
-                    MoveWolf(false);
-                    if (!isGrounded)
-                        currentState = STATES.S_EGG_DIFFERENTHEIGHT;
+                    // Keep moving until we can't move anymore,
+                    // then jump
+                    if (!MoveWolf())
+                    {
+                        Vector2 platformEdgePos = FindPlatformBelow();
+                        if (platformEdgePos != Vector2.zero)
+                        {
+                            // Set new target and jump there
+                            SetNewPosTarget(platformEdgePos);
+                            JumpWolf(moveTargetPos);
+                            currentState = STATES.S_EGG_DIFFERENTHEIGHT;
+                            return;
+                        }
+                    }
                 }
                 break;
             case STATES.S_WALKBACK:
@@ -609,10 +622,21 @@ public class SquirrelWolf : EnemyBaseClass
             platformPos = listOfPlatforms[i].gameObject.transform.position;
             // Can I even jump there? or is it blocked by the platform itself
             testDirection = (platformPos - shootingPos.position);
+           
+            // Check dot product
+            Vector2 horizontal = testDirection.normalized;
+            horizontal.y = 0.0f;
+            float top = Vector2.Dot(testDirection.normalized, horizontal);
+            float angle = Mathf.Acos(top / 1);
+            Debug.LogWarning("Angle: " + (90 - (Mathf.Rad2Deg * angle)));
+            if (1.5708f - angle <= 0.139626f)   // 1.5708 = 90.0Deg, 0.139626 = 8.0Deg
+                continue;
+            // Check Ray cast
             rayhit2D = Physics2D.Raycast(shootingPos.position, testDirection.normalized, sideTopDetect.detectSize.y, LayerMask.GetMask("Ground"));
             Debug.DrawLine(shootingPos.position, (Vector2)shootingPos.position + testDirection.normalized * sideTopDetect.detectSize.y, Color.yellow);
             if (rayhit2D.collider != null)   // We hit smth
                 continue;
+
             if (platformPos.y - myRb2D.position.y < YPosDifference) // If we are on the same y
                 continue;
 
