@@ -60,6 +60,11 @@ public class Egg : MonoBehaviour, IDamagable
         return transform.position;
     }
 
+    public float GetCurrentHP()
+    {
+        return HP;
+    }
+
     #region Other Components
     public float GetStartingRadius()
     {
