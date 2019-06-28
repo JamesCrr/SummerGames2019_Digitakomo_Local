@@ -628,7 +628,7 @@ public class SquirrelWolf : EnemyBaseClass
             horizontal.y = 0.0f;
             float top = Vector2.Dot(testDirection.normalized, horizontal);
             float angle = Mathf.Acos(top / 1);
-            Debug.LogWarning("Angle: " + (90 - (Mathf.Rad2Deg * angle)));
+            //Debug.LogWarning("Angle: " + (90 - (Mathf.Rad2Deg * angle)));
             if (1.5708f - angle <= 0.139626f)   // 1.5708 = 90.0Deg, 0.139626 = 8.0Deg
                 continue;
             // Check Ray cast
