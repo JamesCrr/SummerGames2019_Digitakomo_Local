@@ -7,6 +7,7 @@ public abstract class BaseItem : MonoBehaviour
     public float ExpiredTime = 15f;
     public float WarnningTime = 5f;
     private float createdTime;
+    private Color defaultColor;
 
     private Animator animate;
 
@@ -15,6 +16,7 @@ public abstract class BaseItem : MonoBehaviour
     {
         Restart();
         animate = GetComponent<Animator>();
+        defaultColor = GetComponent<SpriteRenderer>().color;
     }
 
     protected virtual void FixedUpdate()
@@ -25,6 +27,7 @@ public abstract class BaseItem : MonoBehaviour
         }
         if (Time.time > createdTime + ExpiredTime)
         {
+            GetComponent<SpriteRenderer>().color = defaultColor;
             animate.SetBool("Blink", false);
             gameObject.SetActive(false);
         }
