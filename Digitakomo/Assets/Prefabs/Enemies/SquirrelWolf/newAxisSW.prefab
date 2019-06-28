@@ -287,7 +287,7 @@ MonoBehaviour:
     detectOffset: {x: 1.58, y: 0.84}
     detectSize: {x: 2.41, y: 6.88}
   bottomDetect:
-    detectOffset: {x: 2.57, y: -2.59}
+    detectOffset: {x: 2.57, y: -2.96}
     detectSize: {x: 3.03, y: 4.17}
   groundCheckScript: {fileID: 1943111310814048899}
   groundCast: {fileID: 5099603340387856449}

@@ -5,16 +5,16 @@ using UnityEngine;
 public class groundCheck : MonoBehaviour
 {
     public SquirrelWolf attachedObj = null;
-    [System.NonSerialized]
-    public bool startCheck = true;
+    //[System.NonSerialized]
+    //public bool startCheck = true;
     [System.NonSerialized]
     public Platforms platformStandingOn = null;
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (startCheck == false)
-            return;
+        //if (startCheck == false)
+        //    return;
         if (collision.gameObject.layer != LayerMask.NameToLayer("Ground"))
             return;
 
@@ -23,35 +23,37 @@ public class groundCheck : MonoBehaviour
             platformStandingOn = collision.GetComponent<Platforms>();
         // modify data
         attachedObj.SetGrounded();
-        startCheck = false;
+        //startCheck = false;
 
         // Call the wolf function reacting function
         attachedObj.HitGround();
     }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (startCheck == false)
-            return;
-        if (collision.gameObject.layer != LayerMask.NameToLayer("Ground"))
-            return;
+    //private void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    // if we just jumped, then don't check
 
-        // attach platform if have
-        if (collision.GetComponent<Platforms>())
-            platformStandingOn = collision.GetComponent<Platforms>();
-        // modify data
-        attachedObj.SetGrounded();
-        startCheck = false;
+    //    if (startCheck == false)
+    //        return;
+    //    if (collision.gameObject.layer != LayerMask.NameToLayer("Ground"))
+    //        return;
 
-        // Call the wolf function reacting function
-        attachedObj.HitGround();
-    }
+    //    // attach platform if have
+    //    if (collision.GetComponent<Platforms>())
+    //        platformStandingOn = collision.GetComponent<Platforms>();
+    //    // modify data
+    //    attachedObj.SetGrounded();
+    //    startCheck = false;
+
+    //    // Call the wolf function reacting function
+    //    attachedObj.HitGround();
+    //}
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.layer != LayerMask.NameToLayer("Ground"))
             return;
 
         attachedObj.LeftGrounded();
-        startCheck = true;
+        //startCheck = true;
     }
 
 }

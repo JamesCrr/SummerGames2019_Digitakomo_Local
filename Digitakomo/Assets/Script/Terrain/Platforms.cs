@@ -24,7 +24,7 @@ public class Platforms : MonoBehaviour
         width = myCollider.size.x / 2;
         height = myCollider.size.y / 2;
 
-        float xRatio = (1.5f * (transform.localScale.x / 39.788f));
+        float xRatio = (0.8f * (transform.localScale.x / 39.788f));
         float yRatio = (0.5f * (transform.localScale.y / 4.1565f));
         // X Axis
         leftPoint.x = gameObject.transform.position.x - (width * transform.localScale.x) + xRatio;

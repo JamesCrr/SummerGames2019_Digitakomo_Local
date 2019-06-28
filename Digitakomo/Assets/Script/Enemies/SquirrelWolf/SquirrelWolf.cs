@@ -52,7 +52,9 @@ public class SquirrelWolf : EnemyBaseClass
     List<Collider2D> listOfPlatforms = new List<Collider2D>();    // Used to store the platforms that we can jump to
     ContactFilter2D jumpingFilter = new ContactFilter2D();      // To prevent me calling new everytime
     bool isGrounded = false;     // Used to check if we have reached the ground
+    bool isJumped = false;       // Used to check if we are jumping
     static float YPosDifference = 2.0f; // The difference to check before we change state
+    float oldXVelocity = 0.0f;  // Used to store the old velocity
     [SerializeField]
     groundCheck groundCheckScript = null;   // Script used to check if have reached the ground when jumping
     [Header("GroundCasting")]
@@ -141,6 +143,10 @@ public class SquirrelWolf : EnemyBaseClass
     // Used to define this AI's logic
     void UpdateStates()
     {
+        // if we are jumping, then don't do anything
+        if (!isGrounded || isJumped)
+            return;
+
 
         switch (currentState)
         {
@@ -152,7 +158,7 @@ public class SquirrelWolf : EnemyBaseClass
 
                     // Is a player in range?
                     targetObject = IsPlayerInRange();
-                    if(targetObject != null)    // Found Player
+                    if (targetObject != null)    // Found Player
                     {
                         currentState = STATES.S_FOUNDPLAYER;
                         return;
@@ -167,7 +173,7 @@ public class SquirrelWolf : EnemyBaseClass
                     {
                         case ATTACK.A_MELEE:
                             {
-                                if(distance <= (meleeDistance * meleeDistance))
+                                if (distance <= (meleeDistance * meleeDistance))
                                 {
                                     currentState = STATES.S_MELEE_EGG;
                                     myRb2D.velocity = Vector2.zero;
@@ -187,7 +193,7 @@ public class SquirrelWolf : EnemyBaseClass
                             }
                             break;
                     }
-                    
+
 
 
                     // Move enemy
@@ -220,9 +226,6 @@ public class SquirrelWolf : EnemyBaseClass
                 break;
             case STATES.S_EGG_DIFFERENTHEIGHT:
                 {
-                    // If we are not grounded yet, return
-                    if (!isGrounded)
-                        return;
                     // Is a player in range?
                     targetObject = IsPlayerInRange();
                     if (targetObject != null)    // Found Player
@@ -305,10 +308,6 @@ public class SquirrelWolf : EnemyBaseClass
                 break;
             case STATES.S_RUNAWAY:
                 {
-                    // if grounded, just return
-                    if (!isGrounded)
-                        return;
-
                     // Check if we can jump up more
                     Vector2 platformEdgePos = FindPlatformAbove();
                     if (platformEdgePos != Vector2.zero)
@@ -639,14 +638,16 @@ public class SquirrelWolf : EnemyBaseClass
         int selectedIndex = -1;
         float yPos = Mathf.Infinity;
         Vector3 platformPos;
+        Vector2 testDirection;
+
         for (int i = 0; i < listOfPlatforms.Count; ++i)
         {
             // Set the pos
             platformPos = listOfPlatforms[i].gameObject.transform.position;
             // Can I even jump there? or is it blocked by the platform itself
-            //testDirection = (platformPos - shootingPos.position);
-            //rayhit2D = Physics2D.Raycast(shootingPos.position, testDirection.normalized, sideTopDetect.detectSize.y, LayerMask.GetMask("Ground"));
-            //Debug.DrawLine(shootingPos.position, (Vector2)shootingPos.position + testDirection.normalized * sideTopDetect.detectSize.y, Color.yellow);
+            testDirection = (platformPos - shootingPos.position);
+            rayhit2D = Physics2D.Raycast(shootingPos.position, testDirection.normalized, sideTopDetect.detectSize.y, LayerMask.GetMask("Ground"));
+            Debug.DrawLine(shootingPos.position, (Vector2)shootingPos.position + testDirection.normalized * sideTopDetect.detectSize.y, Color.yellow);
             //if (rayhit2D.collider != null)   // We hit smth
             //    continue;
             if (myRb2D.position.y - platformPos.y < YPosDifference) // If we are on the same y
@@ -816,13 +817,15 @@ public class SquirrelWolf : EnemyBaseClass
         myRb2D.velocity = Vector2.zero; 
         myRb2D.velocity = launchVelocity;
 
-        groundCheckScript.startCheck = true;
-        isGrounded = false;
+        //groundCheckScript.startCheck = true;
+        //isGrounded = false;
+        isJumped = true;
     }
     // Grounded Logic
     public void SetGrounded()
     {
         isGrounded = true;
+        isJumped = false;
     }
     public void LeftGrounded()
     {
