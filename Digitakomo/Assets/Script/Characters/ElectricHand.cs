@@ -5,6 +5,9 @@ public class ElectricHand : Weapon
     private Character character;
     private bool isElectricHand = false;
 
+    public float MinElectricDamage = 10f;
+    public float MaxElectricDamage = 15f;
+
     private void Start()
     {
         character = GetComponentInParent<Character>();
@@ -37,5 +40,18 @@ public class ElectricHand : Weapon
     public bool getElectricHand()
     {
         return isElectricHand;
+    }
+
+    public override float GetActualDamage()
+    {
+        if (isElectricHand)
+        {
+            setElectricHand(false);
+            return Random.Range(MinElectricDamage, MaxElectricDamage);
+        }
+        else
+        {
+            return base.GetActualDamage();
+        }
     }
 }

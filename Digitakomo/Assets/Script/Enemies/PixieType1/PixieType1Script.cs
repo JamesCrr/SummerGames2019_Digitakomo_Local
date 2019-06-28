@@ -141,14 +141,14 @@ public class PixieType1Script : EnemyBaseClass
         // Only accepts projectiles from players
         if (collision.gameObject.tag != "PlayerProj")
             return;
-
-        // if Ice
-        AttackType type = collision.gameObject.GetComponent<Weapon>().GetMainType();
+        Weapon weapon = collision.gameObject.GetComponent<Weapon>();
+        AttackType type = weapon.at;
+        // if immune
         if (type == AttackType.ICE || type == AttackType.ICE_JUMP || type == AttackType.Normal)
             return;
 
         // One Hit Kill
-        ModifyHealth(-hp);
+        ModifyHealth(-weapon.GetActualDamage());
     }
 
     // Reset Function

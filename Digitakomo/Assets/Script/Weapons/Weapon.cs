@@ -7,6 +7,11 @@ public abstract class Weapon : MonoBehaviour
     public float MaxDamage;
     public AttackType at = AttackType.UNKNOWN;
 
+    public virtual float GetActualDamage()
+    {
+        return Random.Range(MinDamage, MaxDamage);
+    }
+
     // Condenses attack types into
     // FIRE, WATER or UNKNOWN for easier comparision
     public AttackType GetMainType()

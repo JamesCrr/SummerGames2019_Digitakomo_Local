@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Steam : MonoBehaviour
+public class Steam : Weapon
 {
     private bool receivedFire = false;
     private bool receivedIce = false;
