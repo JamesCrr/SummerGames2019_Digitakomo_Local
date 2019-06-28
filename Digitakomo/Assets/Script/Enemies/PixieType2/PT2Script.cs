@@ -180,6 +180,8 @@ public class PT2Script : EnemyBaseClass
     #region Overriden
     public override void ResetEnemy(SpawnZone newSpawnZone, Vector3 newPos)
     {
+        // Reset Shared Data
+        base.ResetEnemy(newSpawnZone, newPos);
         // Get the data from the center point
         centerPoint = Egg.Instance.GetPosition();
         circleRadius = Egg.Instance.GetStartingRadius();
@@ -189,10 +191,6 @@ public class PT2Script : EnemyBaseClass
         moveTargetPos.y = centerPoint.y + Mathf.Sin(currentRadAngle) * circleRadius;
         // Reset Timers
         radiusDecreaseTimer = radiusDecreaseTime_Range.current;
-
-        // Set the new Position
-        transform.position = newPos;
-        myRb2D.position = newPos;
 
         // Hmm maybe can randomise the radius modify rates
         RandomiseData();        

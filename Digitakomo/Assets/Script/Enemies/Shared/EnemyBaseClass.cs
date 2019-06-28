@@ -17,6 +17,7 @@ public abstract class EnemyBaseClass : MonoBehaviour
     [Header("EnemyBase Class")]
     [SerializeField]
     protected int hp = 1;
+    protected int originalHp = 1;
     [SerializeField]
     protected int damage = 1;
     [SerializeField]
@@ -35,8 +36,24 @@ public abstract class EnemyBaseClass : MonoBehaviour
     protected Vector2 moveDirection = Vector2.zero;
 
 
+    // Start Function
+    private void Start()
+    {
+        originalHp = hp;
+    }
+
+
     // Called after being Fetched
-    public abstract void ResetEnemy(SpawnZone newSpawnZone, Vector3 newPos);
+    public virtual void ResetEnemy(SpawnZone newSpawnZone, Vector3 newPos)
+    {
+        // reset Hp
+        hp = originalHp;
+        // Attach new spawn zone
+        spawningZone = newSpawnZone;
+        // Reset Position
+        myRb2D.position = newPos;
+        transform.position = newPos;
+    }
 
     // Called to move 
     protected virtual void Move()

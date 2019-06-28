@@ -3085,7 +3085,7 @@ MonoBehaviour:
   - enemyToSpawn: {fileID: 686835902066373112, guid: 7924b9bbbceb56e409675054d6a4d533,
       type: 3}
     spawnInterval: 0.5
-    maxSpawnCount: 10
+    maxSpawnCount: 0
   centerPoint: {fileID: 2088970239}
   zoneDimensions: {x: 1, y: 1}
   renderDebugBox: 1
