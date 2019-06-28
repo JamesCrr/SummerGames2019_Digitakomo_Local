@@ -242,12 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MinDamage: 0
   MaxDamage: 0
-  speed: 5
-  timeoutDestructor: 1
   at: 1
-  nonAttackTypeDivider: 15
-  enerygyPerSpecialAttack: 1
-  firerate: 0
 --- !u!1 &7883997970962599796
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,7 +256,6 @@ GameObject:
   - component: {fileID: 7883997970962599799}
   - component: {fileID: 7883997970962599798}
   - component: {fileID: 7883997970962599787}
-  - component: {fileID: 7883997970962599786}
   m_Layer: 10
   m_Name: IceCharacter
   m_TagString: Player
@@ -420,22 +414,3 @@ MonoBehaviour:
     type: 3}
   icePlatform: {fileID: 6189928942897961021, guid: 20a8386fc65c10649b2ac71f49ec7a8d,
     type: 3}
---- !u!95 &7883997970962599786
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7883997970962599796}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4b6015dc6fb121b4c89ba95510fa6849, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0

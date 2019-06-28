@@ -183,7 +183,6 @@ GameObject:
   - component: {fileID: 5889246350433142837}
   - component: {fileID: 987093061474634049}
   - component: {fileID: 8518456384201068771}
-  - component: {fileID: 5324440216470088061}
   m_Layer: 10
   m_Name: FireCharacter
   m_TagString: Player
@@ -340,25 +339,6 @@ MonoBehaviour:
   player: 1
   flameThrower: {fileID: 7881657545065886293, guid: 83cfcb08460dfcd47b3df5982aec4950,
     type: 3}
---- !u!95 &5324440216470088061
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5324440216470088059}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 512d66d47379b6041a7e6b6f8a20b9e0, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6389970456044040348
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,7 +378,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6389970456044040348}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -431,9 +411,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MinDamage: 0
   MaxDamage: 0
-  speed: 5
-  timeoutDestructor: 1
   at: 1
-  nonAttackTypeDivider: 15
-  enerygyPerSpecialAttack: 1
-  firerate: 0

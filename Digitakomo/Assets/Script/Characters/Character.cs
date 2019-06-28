@@ -112,8 +112,6 @@ public class Character : MonoBehaviour, IDamagable
             myRb2D.velocity += Vector2.up * (Physics2D.gravity.y * fallingMultiplyer) * Time.deltaTime;
 
         HandleHP();
-
-        Animate.SetBool("Attacking", IsAttacking);
     }
 
     protected virtual void FixedUpdate()
