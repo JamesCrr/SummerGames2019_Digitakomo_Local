@@ -11,13 +11,13 @@ public class SquirrelWolf : EnemyBaseClass
         S_EGG_SIMILARHEIGHT,
         S_EGG_DIFFERENTHEIGHT,
         S_EGG_ONTOP,
-
-        S_FOUNDPLAYER,
         S_WALKBACK,
         S_RUNAWAY,
 
         S_SHOOT_EGG,
+        S_MELEE_EGG,
 
+        S_FOUNDPLAYER,
         S_SHOOT_PLAYER,
         S_MELEE_PLAYER,
         S_WALK_PLAYER,
@@ -161,13 +161,34 @@ public class SquirrelWolf : EnemyBaseClass
 
                     // set the position of egg and move there
                     SetNewObjectTarget(Egg.Instance.gameObject);
-                    // check if we can shoot projectile at egg
-                    if ((moveTargetPos - myRb2D.position).sqrMagnitude <= (maxShootingRange * maxShootingRange))
+                    // Check if we can attack depending on what attacking method
+                    float distance = (moveTargetPos - myRb2D.position).sqrMagnitude;
+                    switch (attackMethod)
                     {
-                        currentState = STATES.S_SHOOT_EGG;
-                        myRb2D.velocity = Vector2.zero;
-                        return;
+                        case ATTACK.A_MELEE:
+                            {
+                                if(distance <= (meleeDistance * meleeDistance))
+                                {
+                                    currentState = STATES.S_MELEE_EGG;
+                                    myRb2D.velocity = Vector2.zero;
+                                    return;
+                                }
+                            }
+                            break;
+                        case ATTACK.A_SHOOT:
+                            {
+                                // check if we can shoot projectile at egg
+                                if (distance <= (maxShootingRange * maxShootingRange))
+                                {
+                                    currentState = STATES.S_SHOOT_EGG;
+                                    myRb2D.velocity = Vector2.zero;
+                                    return;
+                                }
+                            }
+                            break;
                     }
+                    
+
 
                     // Move enemy
                     if (!MoveWolf())
@@ -179,6 +200,8 @@ public class SquirrelWolf : EnemyBaseClass
                             // Walk back
                             //currentState = STATES.S_WALKBACK;
                             //TurnWolfAround();
+
+                            // Check if we can attack using range
                         }
                         else
                         {
@@ -230,6 +253,8 @@ public class SquirrelWolf : EnemyBaseClass
                     if (posDiff < YPosDifference)
                     {
                         currentState = STATES.S_EGG_SIMILARHEIGHT;
+                        // Randomise the attacking method
+                        //attackMethod = (ATTACK)Random.Range((int)ATTACK.A_MELEE, (int)ATTACK.A_SHOOT + 1);
                         return;
                     }
                     // if we are stuck, then we should go to one of the points
@@ -260,41 +285,6 @@ public class SquirrelWolf : EnemyBaseClass
                         currentState = STATES.S_EGG_DIFFERENTHEIGHT;
                 }
                 break;
-
-            case STATES.S_FOUNDPLAYER:  // Assume that targetObject here will always be player
-                {
-                    // check if we can ATTACK player or need to walk there
-                    int chance = Random.Range(0, 0);
-
-                    // Flee from player
-                    if(chance == 0)
-                    {
-                        currentState = STATES.S_RUNAWAY;    // get the furtherest Point from the player on the platform we are standing on
-                        // SetNewPosTarget(groundCheckScript.platformStandingOn.GetFurtherestPosition(targetObject.transform.position));
-
-                        TurnWolfAround();
-                        switch (facingDirection)
-                        {
-                            case DIRECTION.D_LEFT:
-                                SetNewPosTarget(groundCheckScript.platformStandingOn.GetLeftPoint());
-                                break;
-                            case DIRECTION.D_RIGHT:
-                                SetNewPosTarget(groundCheckScript.platformStandingOn.GetRightsPoint());
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        // Attack player
-                        currentState = STATES.S_WALK_PLAYER;
-                        SetNewObjectTarget(targetObject);
-                        // Randomise way of attacking
-                        //attackMethod = (ATTACK)Random.Range((int)ATTACK.A_MELEE, (int)ATTACK.A_SHOOT+1);
-                    }
-                    
-
-                }
-                break;
             case STATES.S_WALKBACK:
                 {
                     // Is a player in range?
@@ -321,7 +311,7 @@ public class SquirrelWolf : EnemyBaseClass
 
                     // Check if we can jump up more
                     Vector2 platformEdgePos = FindPlatformAbove();
-                    if(platformEdgePos != Vector2.zero)
+                    if (platformEdgePos != Vector2.zero)
                     {
                         // Set new target and jump there
                         SetNewPosTarget(platformEdgePos);
@@ -345,7 +335,7 @@ public class SquirrelWolf : EnemyBaseClass
                     // Move enemy Horizontal
                     if (!MoveWolf())
                     {
-                        // If we don't find any platforms to jump to, then we turn back
+                        // If we don't find any platforms to jump to, then we just stay put
                         platformEdgePos = FindFurtherestPlatform();
                         if (platformEdgePos == Vector2.zero)
                         {
@@ -372,6 +362,11 @@ public class SquirrelWolf : EnemyBaseClass
                 break;
 
 
+            case STATES.S_MELEE_EGG:
+                {
+
+                }
+                break;
             case STATES.S_SHOOT_EGG:
                 {
                     attackTimer -= Time.deltaTime;
@@ -394,6 +389,40 @@ public class SquirrelWolf : EnemyBaseClass
                 break;
 
 
+            case STATES.S_FOUNDPLAYER:  // Assume that targetObject here will always be player
+                {
+                    // check if we can ATTACK player or need to walk there
+                    int chance = Random.Range(0, 0);
+
+                    // Flee from player
+                    if (chance == 0)
+                    {
+                        currentState = STATES.S_RUNAWAY;    // get the furtherest Point from the player on the platform we are standing on
+                        // SetNewPosTarget(groundCheckScript.platformStandingOn.GetFurtherestPosition(targetObject.transform.position));
+
+                        TurnWolfAround();
+                        switch (facingDirection)
+                        {
+                            case DIRECTION.D_LEFT:
+                                SetNewPosTarget(groundCheckScript.platformStandingOn.GetLeftPoint());
+                                break;
+                            case DIRECTION.D_RIGHT:
+                                SetNewPosTarget(groundCheckScript.platformStandingOn.GetRightsPoint());
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        // Attack player
+                        currentState = STATES.S_WALK_PLAYER;
+                        SetNewObjectTarget(targetObject);
+                        // Randomise way of attacking
+                        //attackMethod = (ATTACK)Random.Range((int)ATTACK.A_MELEE, (int)ATTACK.A_SHOOT+1);
+                    }
+
+
+                }
+                break;
             case STATES.S_WALK_PLAYER:
                 {
                     // check if player object is out of range
