@@ -153,11 +153,8 @@ public class PixieType1Script : EnemyBaseClass
     // Reset Function
     public override void ResetEnemy(SpawnZone newSpawnZone, Vector3 newPos)
     {
-        // Attach new spawn zone
-        spawningZone = newSpawnZone;
-        // Reset Position
-        myRb2D.position = newPos;
-        transform.position = newPos;
+        // Reset Shared Data
+        base.ResetEnemy(newSpawnZone, newPos);
 
         // Get your new waypoint here..
         SetWaypointGroup(newSpawnZone.GetComponent<SpawnZone>().GetRandomPath());

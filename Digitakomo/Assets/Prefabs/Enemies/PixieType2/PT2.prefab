@@ -118,7 +118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 1
   damage: 1
-  moveSpeed: 1
+  moveSpeed: 10
   attackTime: 2
   radiusDecreaseTime_Range:
     current: 0.5
