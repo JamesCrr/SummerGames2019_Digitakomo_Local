@@ -133,6 +133,7 @@ MonoBehaviour:
   MaxDamage: 0
   speed: 7
   timeoutDestructor: 1
-  at: 1
+  at: 3
   nonAttackTypeDivider: 15
+  enerygyPerSpecialAttack: 1
   firerate: 1

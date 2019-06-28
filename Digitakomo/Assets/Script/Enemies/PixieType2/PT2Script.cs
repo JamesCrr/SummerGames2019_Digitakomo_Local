@@ -20,9 +20,9 @@ public class PT2Script : EnemyBaseClass
     }
     STATES currentState = STATES.S_NORMAL;
     [Header("Pixie Type 2 Class")]
-    [SerializeField]    // The Center point to rotate around 
+    //[SerializeField]    // The Center point to rotate around 
     Vector2 centerPoint = Vector2.zero;
-    [SerializeField]    // The Radius of the Circle to start with
+    //[SerializeField]    // The Radius of the Circle to start with
     float circleRadius = 10.0f;
 
     [SerializeField]    // How often to decrease the radius
@@ -222,6 +222,21 @@ public class PT2Script : EnemyBaseClass
         return value;
     }
 
+
+    // Collision
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // Only accepts projectiles from players
+        if (collision.gameObject.tag != "PlayerProj")
+            return;
+
+        // if Fire
+        if (collision.gameObject.GetComponent<Weapon>().GetMainType() == AttackType.FIRE)
+            return;
+
+        // One Hit Kill
+        ModifyHealth(-hp);
+    }
 
 
     private void OnDrawGizmos()

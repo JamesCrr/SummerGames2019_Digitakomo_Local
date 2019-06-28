@@ -142,10 +142,12 @@ public class PixieType1Script : EnemyBaseClass
         if (collision.gameObject.tag != "PlayerProj")
             return;
 
-        // check type.. fire water or steam
+        // if Ice
+        if (collision.gameObject.GetComponent<Weapon>().GetMainType() == AttackType.ICE)
+            return;
 
-
-        gameObject.SetActive(false);
+        // One Hit Kill
+        ModifyHealth(-hp);
     }
 
     // Reset Function
