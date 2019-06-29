@@ -453,6 +453,7 @@ public class SquirrelWolf : EnemyBaseClass
                                 {
                                     currentState = STATES.S_MELEE_PLAYER;
                                     StopVel();
+                                    myAnimator.SetBool("mb_Melee", true);
                                     return;
                                 }
                             }
@@ -521,7 +522,11 @@ public class SquirrelWolf : EnemyBaseClass
                     // Is a player in range?
                     float temp = 0.0f;
                     if (!IsPlayerStillInRange(ref temp))
+                    {
                         currentState = STATES.S_EGG_DIFFERENTHEIGHT;
+                        myAnimator.SetBool("mb_Melee", false);
+                    }
+                        
                 }
                 break;
         }
