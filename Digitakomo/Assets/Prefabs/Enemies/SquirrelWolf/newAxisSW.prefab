@@ -218,7 +218,7 @@ Animator:
   m_GameObject: {fileID: 5715473147962047044}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 88f7b64ef969359458193b11bcc056e3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -281,7 +281,7 @@ MonoBehaviour:
   moveSpeed: 5
   attackTime: 2
   currentState: 0
-  attackMethod: 0
+  attackMethod: 1
   playerDetectionRange: 4
   sideTopDetect:
     detectOffset: {x: 1.58, y: 0.84}

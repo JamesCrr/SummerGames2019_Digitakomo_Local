@@ -95,13 +95,12 @@ public class SquirrelWolf : EnemyBaseClass
     #endregion
 
 
-    private void Awake()
-    {
-        myRb2D = GetComponent<Rigidbody2D>();
-    }
     // Start is called before the first frame update
     void Start()
     {
+        // Call baseClass's Init
+        Init();
+
         currentState = STATES.S_EGG_DIFFERENTHEIGHT;
 
         // Convert int to floats for easier calculation
@@ -148,7 +147,17 @@ public class SquirrelWolf : EnemyBaseClass
     {
         // if we are jumping, then don't do anything
         if (!isGrounded || isJumped)
+        {
+            // Are we falling?
+            if (myRb2D.velocity.y < 0.0f)
+            {
+                isJumped = false;
+                myAnimator.SetBool("mb_Fall", true);
+            }
+                
             return;
+        }
+            
 
 
         switch (currentState)
@@ -179,7 +188,7 @@ public class SquirrelWolf : EnemyBaseClass
                                 if (distance <= (meleeDistance * meleeDistance))
                                 {
                                     currentState = STATES.S_MELEE_EGG;
-                                    myRb2D.velocity = Vector2.zero;
+                                    StopVel();
                                     return;
                                 }
                             }
@@ -190,13 +199,13 @@ public class SquirrelWolf : EnemyBaseClass
                                 if (distance <= (maxShootingRange * maxShootingRange))
                                 {
                                     currentState = STATES.S_SHOOT_EGG;
-                                    myRb2D.velocity = Vector2.zero;
+                                    StopVel();
+                                    myAnimator.SetBool("mb_Shoot", true);
                                     return;
                                 }
                             }
                             break;
                     }
-
 
 
                     // Move enemy
@@ -221,10 +230,6 @@ public class SquirrelWolf : EnemyBaseClass
 
                         return;
                     }
-
-                    // Check if we can attack using melee
-                    //if ((moveTargetPos - myRb2D.position).sqrMagnitude < meleeAttackDistance)
-                    //    currentState = STATES.S_MELEE;
                 }
                 break;
             case STATES.S_EGG_DIFFERENTHEIGHT:
@@ -330,19 +335,6 @@ public class SquirrelWolf : EnemyBaseClass
                         JumpWolf(moveTargetPos);
                         return;
                     }
-                    //else
-                    //{
-                    //    // No higher platforms so we take the nearest one
-                    //    platformEdgePos = FindNearestPlatform();
-                    //    if (platformEdgePos != Vector2.zero)
-                    //    {
-                    //        // Set new target and jump there
-                    //        SetNewPosTarget(platformEdgePos);
-                    //        JumpWolf(moveTargetPos);
-                    //        return;
-                    //    }
-                    //}
-
 
                     // Move enemy Horizontal
                     if (!MoveWolf())
@@ -353,7 +345,7 @@ public class SquirrelWolf : EnemyBaseClass
                         {
                             // Go back to finding statew
                             //currentState = STATES.S_EGG_DIFFERENTHEIGHT;
-                            myRb2D.velocity = Vector2.zero;
+                            StopVel();
                         }
                         else
                         {
@@ -392,11 +384,11 @@ public class SquirrelWolf : EnemyBaseClass
 
                         // Is a player in range?
                         targetObject = IsPlayerInRange();
-                        if (targetObject != null)    // Found Player
+                        if (targetObject != null)   // Found Player
+                        {
                             currentState = STATES.S_FOUNDPLAYER;
-                        else
-                            currentState = STATES.S_EGG_SIMILARHEIGHT;
-
+                            myAnimator.SetBool("mb_Shoot", false);
+                        }
                     }
                 }
                 break;
@@ -460,7 +452,7 @@ public class SquirrelWolf : EnemyBaseClass
                                 if(playerDist < (meleeDistance * meleeDistance))
                                 {
                                     currentState = STATES.S_MELEE_PLAYER;
-                                    myRb2D.velocity = Vector2.zero;
+                                    StopVel();
                                     return;
                                 }
                             }
@@ -472,7 +464,8 @@ public class SquirrelWolf : EnemyBaseClass
                                 if (playerDist <= (maxShootingRange * maxShootingRange))
                                 {
                                     currentState = STATES.S_SHOOT_PLAYER;
-                                    myRb2D.velocity = Vector2.zero;
+                                    StopVel();
+                                    myAnimator.SetBool("mb_Shoot", true);
                                     return;
                                 }
                             }
@@ -513,7 +506,11 @@ public class SquirrelWolf : EnemyBaseClass
                         // Is a player in range?
                         float temp = 0.0f;
                         if (!IsPlayerStillInRange(ref temp))
+                        {
                             currentState = STATES.S_EGG_DIFFERENTHEIGHT;
+                            myAnimator.SetBool("mb_Shoot", false);
+                        }
+                            
                     }
                 }
                 break;
@@ -794,13 +791,16 @@ public class SquirrelWolf : EnemyBaseClass
             {
                 // Move
                 myRb2D.MovePosition(myRb2D.position + (moveDirection * moveSpeed * Time.deltaTime));
+                myAnimator.SetBool("mb_Move", true);
                 return true;
             }
+            myAnimator.SetBool("mb_Move", false);
             return false;
         }
 
         // Move
         myRb2D.MovePosition(myRb2D.position + (moveDirection * moveSpeed * Time.deltaTime));
+        myAnimator.SetBool("mb_Move", true);
         return true;
     }
     // Used to turn the wolf around
@@ -847,15 +847,15 @@ public class SquirrelWolf : EnemyBaseClass
         myRb2D.velocity = Vector2.zero; 
         myRb2D.velocity = launchVelocity;
 
-        //groundCheckScript.startCheck = true;
-        //isGrounded = false;
+
         isJumped = true;
+        myAnimator.SetTrigger("mt_Jump");
+        myAnimator.ResetTrigger("mt_Fall2Idle");
     }
     // Grounded Logic
     public void SetGrounded()
     {
         isGrounded = true;
-        isJumped = false;
     }
     public void LeftGrounded()
     {
@@ -890,6 +890,10 @@ public class SquirrelWolf : EnemyBaseClass
                 break;
         }
 
+        // Reset Falling Bool and go back to Idle
+        myAnimator.SetBool("mb_Fall", false);
+        if(!isJumped)
+            myAnimator.SetTrigger("mt_Fall2Idle");
     }
 
 
@@ -900,7 +904,14 @@ public class SquirrelWolf : EnemyBaseClass
         // Reset Position and Velocity
         transform.position = newPos;
         myRb2D.position = newPos;
-        myRb2D.velocity = Vector2.zero;
+        StopVel();
+    }
+    protected override void StopVel()   // Call wolf's own Animation
+    {
+        base.StopVel();
+        // Idle Animation
+        myAnimator.SetBool("mb_Move", false);
+        myAnimator.SetBool("mb_Shoot", false);
     }
     #endregion
 

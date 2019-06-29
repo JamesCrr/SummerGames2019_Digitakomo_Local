@@ -32,14 +32,18 @@ public abstract class EnemyBaseClass : MonoBehaviour
 
     // Unity Stuff
     protected Rigidbody2D myRb2D = null;
+    protected Animator myAnimator = null; // Animator
     protected Vector2 moveTargetPos = Vector2.zero;
     protected Vector2 moveDirection = Vector2.zero;
 
 
-    // Start Function
-    private void Start()
+    // Init Function for general components
+    protected void Init()
     {
         originalHp = hp;
+
+        myRb2D = GetComponent<Rigidbody2D>();
+        myAnimator = GetComponent<Animator>();
     }
 
 
@@ -64,6 +68,12 @@ public abstract class EnemyBaseClass : MonoBehaviour
 
         // Move
         myRb2D.MovePosition(myRb2D.position + (moveDirection.normalized * moveSpeed * Time.deltaTime));
+    }
+    // Called to stop all velocities of the RigidBody2D
+    protected virtual void StopVel()
+    {
+        myRb2D.velocity = Vector2.zero;
+        myRb2D.angularVelocity = 0.0f;
     }
     // Checks if you are have reached your target
     protected bool ReachedTarget(float magnitudeCheck = 1.0f)

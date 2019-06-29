@@ -26,7 +26,7 @@ public class PixieType1Script : EnemyBaseClass
     // Start is called before the first frame
     void Awake()
     {
-        myRb2D = GetComponent<Rigidbody2D>();
+        Init();
 
         // Get how long to wait before next stop
         SetNewRandomStopTimer();

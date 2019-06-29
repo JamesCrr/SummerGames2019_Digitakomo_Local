@@ -48,7 +48,8 @@ public class PT2Script : EnemyBaseClass
     // Awake
     void Awake()
     {
-        myRb2D = GetComponent<Rigidbody2D>();
+        Init();
+
         // Move to top of Circle first
         moveTargetPos.x = centerPoint.x + Mathf.Cos(currentRadAngle) * circleRadius;
         moveTargetPos.y = centerPoint.y + Mathf.Sin(currentRadAngle) * circleRadius;

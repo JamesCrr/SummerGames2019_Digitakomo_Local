@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: squirrelWolf_Idle
+  m_Name: squirrelWolf_Run
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -22,7 +22,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.6037736
+        value: 0.30141628
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -41,7 +41,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.093983635
+        value: 0.8490566
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -60,7 +60,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.093983635
+        value: 0.10012458
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -156,7 +156,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.6037736
+        value: 0.30141628
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -175,7 +175,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.093983635
+        value: 0.8490566
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -194,7 +194,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.093983635
+        value: 0.10012458
         inSlope: 0
         outSlope: 0
         tangentMode: 136
