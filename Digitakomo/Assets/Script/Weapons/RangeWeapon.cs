@@ -37,11 +37,6 @@ public class RangeWeapon : Weapon
         transform.rotation = Quaternion.Euler(0, 0, rotation);
     }
 
-    public float GetActualDamage()
-    {
-        return Random.Range(MinDamage, MaxDamage);
-    }
-
     public virtual void Restart()
     {
         currentTime = Time.time;

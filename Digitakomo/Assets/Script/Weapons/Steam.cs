@@ -85,6 +85,7 @@ public class Steam : Weapon
             ElectricHand eh = collision.gameObject.GetComponent<ElectricHand>();
             if (eh.getElectricHand())
             {
+                // touched by electric.
                 Debug.Log("Electric touch");
                 isElectric = true;
                 eh.setElectricHand(false);

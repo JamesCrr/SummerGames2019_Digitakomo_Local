@@ -110,7 +110,7 @@ MonoBehaviour:
   MinDamage: 10
   MaxDamage: 15
   at: 0
-  addSize: 0.1
+  addSize: 1
   grapTime: 3
   expiredTime: 15
   isElectric: 0
