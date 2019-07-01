@@ -23,12 +23,10 @@ public abstract class Weapon : MonoBehaviour
                 return AttackType.UNKNOWN;
             // Ice
             case AttackType.ICE:
-                return AttackType.ICE;
             case AttackType.ICE_JUMP:
                 return AttackType.ICE;
             // Fire
             case AttackType.FIRE:
-                return AttackType.FIRE;
             case AttackType.FIRE_JUMP:
                 return AttackType.FIRE;
         }

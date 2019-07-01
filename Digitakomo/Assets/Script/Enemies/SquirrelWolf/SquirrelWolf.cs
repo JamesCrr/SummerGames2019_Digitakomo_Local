@@ -344,46 +344,7 @@ public class SquirrelWolf : EnemyBaseClass
                     }
                 }
                 break;
-            case STATES.S_RUNAWAY:
-                {
-                    // Check if we can jump up more
-                    Vector2 platformEdgePos = FindPlatformAbove();
-                    if (platformEdgePos != Vector2.zero)
-                    {
-                        // Set new target and jump there
-                        SetNewPosTarget(platformEdgePos);
-                        JumpWolf(moveTargetPos);
-                        return;
-                    }
-
-                    // Move enemy Horizontal
-                    if (!MoveWolf())
-                    {
-                        // If we don't find any platforms to jump to, then we just stay put
-                        platformEdgePos = FindFurtherestPlatform();
-                        if (platformEdgePos == Vector2.zero)
-                        {
-                            // Go back to finding statew
-                            //currentState = STATES.S_EGG_DIFFERENTHEIGHT;
-                            StopVel();
-                        }
-                        else
-                        {
-                            // Set new target and jump there
-                            SetNewPosTarget(platformEdgePos);
-                            JumpWolf(moveTargetPos);
-                            return;
-                        }
-                    }
-
-                    fleeTimer -= Time.deltaTime;
-                    if (fleeTimer < 0.0f)
-                    {
-                        currentState = STATES.S_EGG_DIFFERENTHEIGHT;
-                        fleeTimer = fleeTime;
-                    }
-                }
-                break;
+            
 
 
             case STATES.S_MELEE_EGG:
@@ -446,6 +407,46 @@ public class SquirrelWolf : EnemyBaseClass
                     }
 
 
+                }
+                break;
+            case STATES.S_RUNAWAY:
+                {
+                    // Check if we can jump up more
+                    Vector2 platformEdgePos = FindPlatformAbove();
+                    if (platformEdgePos != Vector2.zero)
+                    {
+                        // Set new target and jump there
+                        SetNewPosTarget(platformEdgePos);
+                        JumpWolf(moveTargetPos);
+                        return;
+                    }
+
+                    // Move enemy Horizontal
+                    if (!MoveWolf())
+                    {
+                        // If we don't find any platforms to jump to, then we just stay put
+                        platformEdgePos = FindFurtherestPlatform();
+                        if (platformEdgePos == Vector2.zero)
+                        {
+                            // Go back to finding statew
+                            //currentState = STATES.S_EGG_DIFFERENTHEIGHT;
+                            StopVel();
+                        }
+                        else
+                        {
+                            // Set new target and jump there
+                            SetNewPosTarget(platformEdgePos);
+                            JumpWolf(moveTargetPos);
+                            return;
+                        }
+                    }
+
+                    fleeTimer -= Time.deltaTime;
+                    if (fleeTimer < 0.0f)
+                    {
+                        currentState = STATES.S_EGG_DIFFERENTHEIGHT;
+                        fleeTimer = fleeTime;
+                    }
                 }
                 break;
             case STATES.S_WALK_PLAYER:
@@ -523,18 +524,29 @@ public class SquirrelWolf : EnemyBaseClass
                         //Shoot();
                         // Reset Timer
                         attackTimer = attackTime;
-                        
+
 
                         // Is a player in range?
-                        float temp = 0.0f;
-                        if (!IsPlayerStillInRange(ref temp))
+                        //float temp = 0.0f;
+                        //if (!IsPlayerStillInRange(ref temp))
+                        //{
+                        //    currentState = STATES.S_EGG_DIFFERENTHEIGHT;
+                        //    myAnimator.SetBool("mb_Shoot", false);
+                        //}
+
+                        currentState = STATES.S_RUNAWAY;
+                        myAnimator.SetBool("mb_Shoot", false);
+                        TurnWolfAround();
+                        switch (facingDirection)
                         {
-                            currentState = STATES.S_EGG_DIFFERENTHEIGHT;
-                            myAnimator.SetBool("mb_Shoot", false);
+                            case DIRECTION.D_LEFT:
+                                SetNewPosTarget(groundCheckScript.platformStandingOn.GetLeftPoint());
+                                break;
+                            case DIRECTION.D_RIGHT:
+                                SetNewPosTarget(groundCheckScript.platformStandingOn.GetRightsPoint());
+                                break;
                         }
-                            
                     }
-                    Debug.LogWarning("TIMER DONW: " + attackTimer);
                 }
                 break;
             case STATES.S_MELEE_PLAYER:
@@ -543,12 +555,25 @@ public class SquirrelWolf : EnemyBaseClass
                     // Check timer
                     if (meleeTimer < 0.0f)
                     {
-                        // Is a player in range?
-                        float temp = 0.0f;
-                        if (!IsPlayerStillInRange(ref temp))
+                        //// Is a player in range?
+                        //float temp = 0.0f;
+                        //if (!IsPlayerStillInRange(ref temp))
+                        //{
+                        //    currentState = STATES.S_EGG_DIFFERENTHEIGHT;
+                        //    myAnimator.SetBool("mb_Melee", false);
+                        //}
+
+                        currentState = STATES.S_RUNAWAY;
+                        myAnimator.SetBool("mb_Melee", false);
+                        TurnWolfAround();
+                        switch (facingDirection)
                         {
-                            currentState = STATES.S_EGG_DIFFERENTHEIGHT;
-                            myAnimator.SetBool("mb_Melee", false);
+                            case DIRECTION.D_LEFT:
+                                SetNewPosTarget(groundCheckScript.platformStandingOn.GetLeftPoint());
+                                break;
+                            case DIRECTION.D_RIGHT:
+                                SetNewPosTarget(groundCheckScript.platformStandingOn.GetRightsPoint());
+                                break;
                         }
                         // Reset timer
                         meleeTimer = meleeTime;
@@ -933,6 +958,8 @@ public class SquirrelWolf : EnemyBaseClass
         if(!isJumped)
             myAnimator.SetTrigger("mt_Fall2Idle");
     }
+    // What to do when the player hits me
+    
 
 
     #region Overriden
@@ -954,6 +981,22 @@ public class SquirrelWolf : EnemyBaseClass
     }
     #endregion
 
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Only accepts projectiles from players
+        if (collision.gameObject.tag != "PlayerProj")
+            return;
+
+        Weapon weapon = collision.gameObject.GetComponent<Weapon>();
+        AttackType type = weapon.at;
+        //// if immune
+        //if (type == AttackType.ICE || type == AttackType.ICE_JUMP || type == AttackType.Normal)
+        //    return;
+
+        // Damage
+        ModifyHealth(-weapon.GetActualDamage());
+    }
 
     private void OnDrawGizmos()
     {
