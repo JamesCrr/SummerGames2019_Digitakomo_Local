@@ -123,6 +123,10 @@ public class Steam : Weapon
             {
                 // touched by electric.
                 Debug.Log("Electric touch");
+                // do the exposion here
+
+                gameObject.SetActive(false);
+
                 isElectric = true;
                 eh.setElectricHand(false);
             }
