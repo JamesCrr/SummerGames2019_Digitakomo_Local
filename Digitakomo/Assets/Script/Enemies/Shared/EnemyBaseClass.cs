@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class EnemyBaseClass : MonoBehaviour
 {
@@ -115,5 +113,10 @@ public abstract class EnemyBaseClass : MonoBehaviour
         hp += modifyAmt;
         if (hp < 1)
             gameObject.SetActive(false);
+    }
+
+    public float GetCurrentHP()
+    {
+        return hp;
     }
 }
