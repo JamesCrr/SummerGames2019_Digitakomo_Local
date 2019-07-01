@@ -5,8 +5,8 @@ public class ElectricHand : Weapon
     private Character character;
     private bool isElectricHand = false;
 
-    public float MinElectricDamage = 10f;
-    public float MaxElectricDamage = 15f;
+    public int MinElectricDamage = 10;
+    public int MaxElectricDamage = 15;
 
     private void Start()
     {
@@ -42,7 +42,7 @@ public class ElectricHand : Weapon
         return isElectricHand;
     }
 
-    public override float GetActualDamage()
+    public override int GetActualDamage()
     {
         if (isElectricHand)
         {

@@ -14,10 +14,12 @@ public abstract class EnemyBaseClass : MonoBehaviour
     // Stats
     [Header("EnemyBase Class")]
     [SerializeField]
-    protected float hp = 1;
-    protected float originalHp = 1;
+    protected int hp = 1;
+    protected int originalHp = 1;
     [SerializeField]
     protected int damage = 1;
+    [SerializeField]
+    protected int defense = 0;
     [SerializeField]
     protected float moveSpeed = 1.0f;
     // Attack
@@ -106,22 +108,17 @@ public abstract class EnemyBaseClass : MonoBehaviour
 
 
     // Called to modify the HP
-    // Can be decrease or Increase
+    // Can be Decrease or Increase
     // When HP reaches 0, gameObject is deactivated
-    protected virtual void ModifyHealth(float modifyAmt)
+    public virtual void ModifyHealth(int modifyAmt)
     {
+        // if we are taking damage, then reduce damage with defense
+        if (modifyAmt < 0)
+            modifyAmt += defense;
+
         hp += modifyAmt;
         if (hp < 1)
             gameObject.SetActive(false);
-    }
-
-    public void TakeDamage(float damage)
-    {
-        hp -= damage;
-        if (hp <= 0)
-        {
-            gameObject.SetActive(false);
-        }
     }
 
     public float GetCurrentHP()

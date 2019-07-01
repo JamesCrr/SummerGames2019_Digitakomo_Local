@@ -99,8 +99,8 @@ public class Steam : Weapon
             // deal damage
             if (Time.time > nextDamageTime)
             {
-                float damage = GetActualDamage();
-                enemy.TakeDamage(damage);
+                int damage = GetActualDamage();
+                enemy.ModifyHealth(-damage);
                 nextDamageTime = Time.time + dealDamageEvery;
                 StayEnemies[go] = nextDamageTime;
             }
@@ -124,6 +124,8 @@ public class Steam : Weapon
                 // touched by electric.
                 Debug.Log("Electric touch");
                 // do the exposion here
+
+
 
                 gameObject.SetActive(false);
 

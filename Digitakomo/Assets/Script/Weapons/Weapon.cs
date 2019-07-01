@@ -3,11 +3,11 @@
 public abstract class Weapon : MonoBehaviour
 {
     [Range(0, 50)]
-    public float MinDamage;
-    public float MaxDamage;
+    public int MinDamage;
+    public int MaxDamage;
     public AttackType at = AttackType.UNKNOWN;
 
-    public virtual float GetActualDamage()
+    public virtual int GetActualDamage()
     {
         return Random.Range(MinDamage, MaxDamage);
     }
