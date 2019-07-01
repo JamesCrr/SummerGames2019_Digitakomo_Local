@@ -1702,11 +1702,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: IceCharacter
       objectReference: {fileID: 0}
-    - target: {fileID: 7883997970962599787, guid: 774623a0001b6e9478d7f2c375c10007,
-        type: 3}
-      propertyPath: maxMoveSpeed
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 7883997970962599784, guid: 774623a0001b6e9478d7f2c375c10007,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1761,6 +1756,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7883997970962599787, guid: 774623a0001b6e9478d7f2c375c10007,
+        type: 3}
+      propertyPath: maxMoveSpeed
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 774623a0001b6e9478d7f2c375c10007, type: 3}
@@ -2488,6 +2488,11 @@ PrefabInstance:
       propertyPath: attackMethod
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2747537408611581317, guid: 7e8d961d76bee1e4eb6ddcf2fbd24867,
+        type: 3}
+      propertyPath: hp
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e8d961d76bee1e4eb6ddcf2fbd24867, type: 3}
 --- !u!1001 &1643087619
@@ -2866,7 +2871,7 @@ PrefabInstance:
     - target: {fileID: 403571385494849996, guid: f88ee3a8773118c4fa2448c3bae6c870,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.8
+      value: -36.17
       objectReference: {fileID: 0}
     - target: {fileID: 403571385494849996, guid: f88ee3a8773118c4fa2448c3bae6c870,
         type: 3}

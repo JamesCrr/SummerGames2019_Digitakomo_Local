@@ -69,8 +69,7 @@ public class SquirrelWolf : EnemyBaseClass
     [Header("Melee")]
     [SerializeField]    // The minimum range before start to melee
     float meleeDistance = 2.0f;
-    float meleeTime = 0.0f;         // To track the melee timer
-    float meleeTimer = 0.0f;        // How long does the animation take for Melee
+    bool meleeDoneAnimation = false;    // Used to check if we have finished the Attack Animations
     #endregion
     #region Shooting
     [Header("Shooting")]
@@ -84,17 +83,19 @@ public class SquirrelWolf : EnemyBaseClass
     float maxShootingRange = 5.0f;
     [SerializeField]
     float timeToHitTarget = 1.0f;   // How long for the projectile to hit smth
-    // Shooting uses the EnemyBaseClass attackTimer for shooting
+    bool shootingDoneAnimation = false;    // Used to check if we have finished the Attack Animations
     #endregion
     #region RunAway
     [Header("RunAwayTimer")]
     [SerializeField]
     float fleeTime = 5.0f;
     float fleeTimer = 0.0f;
+    // have we been attacked?
+    bool playerAttackedWolf = false;
+    #endregion
     // Unity Stuff
     // Get referrence to the target Object
     GameObject targetObject = null;
-    #endregion
 
 
     // Start is called before the first frame update
@@ -132,23 +133,6 @@ public class SquirrelWolf : EnemyBaseClass
         // Melee
         meleeDistance *= percentageDifference.x;
 
-        // Get Attacking Timers
-        Animator anim = GetComponent<Animator>();
-        AnimationClip[] clips = anim.runtimeAnimatorController.animationClips;
-        foreach (AnimationClip clip in clips)
-        {
-            switch (clip.name)
-            {
-                case "squirrelWolf_Melee":
-                    meleeTime = clip.length;
-                    meleeTimer = meleeTime;
-                    break;
-                case "squirrelWolf_Shoot":
-                    attackTime = clip.length;
-                    attackTimer = attackTime;
-                    break;
-            }
-        }
     }
 
     // Update is called once per frame
@@ -349,27 +333,81 @@ public class SquirrelWolf : EnemyBaseClass
 
             case STATES.S_MELEE_EGG:
                 {
-                   // Did the player attack me?
+                    // Check if done animation
+                    if (meleeDoneAnimation)
+                    {
+                        // Reset bool
+                        meleeDoneAnimation = false;
 
+                        // if we were hit by player
+                        if (playerAttackedWolf)
+                        {
+                            // Is a player in range?
+                            targetObject = IsPlayerInRange();
+                            // Is any player in range?
+                            if (targetObject != null)   // We found a player in range, Might not be the one who fired the shot
+                            {
+                                currentState = STATES.S_FOUNDPLAYER;
+                                SetNewObjectTarget(targetObject);
+                            }
+                            else
+                            {
+                                // Run to nearest platform edge, since no player
+                                currentState = STATES.S_RUNAWAY;
+                                SetNewPosTarget(groundCheckScript.platformStandingOn.GetFurtherestPosition(myRb2D.position));
+                            }
+                            myAnimator.SetBool("mb_Melee", false);
+                            playerAttackedWolf = false; // Reset attecked bool
+                        }
+                        //else
+                        //{
+                        //    // Found Player
+                        //    if (targetObject != null)
+                        //    {
+                        //        currentState = STATES.S_FOUNDPLAYER;
+                        //        myAnimator.SetBool("mb_Melee", false);
+                        //    }
+                        //}
+                        
+                    }
                 }
                 break;
             case STATES.S_SHOOT_EGG:
                 {
-                    attackTimer -= Time.deltaTime;
-                    if(attackTimer < 0.0f)
+                    if(shootingDoneAnimation)
                     {
-                        // Shoot
-                        //Shoot();
-                        // Reset Timer
-                        attackTimer = attackTime;
+                        // Reset Bool
+                        shootingDoneAnimation = false;
 
-                        // Is a player in range?
-                        targetObject = IsPlayerInRange();
-                        if (targetObject != null)   // Found Player
+                        // if we were hit by player
+                        if (playerAttackedWolf)
                         {
-                            currentState = STATES.S_FOUNDPLAYER;
+                            // Is a player in range?
+                            targetObject = IsPlayerInRange();
+                            // Is any player in range?
+                            if (targetObject != null)   // We found a player in range, Might not be the one who fired the shot
+                            {
+                                currentState = STATES.S_FOUNDPLAYER;
+                                SetNewObjectTarget(targetObject);
+                            }
+                            else
+                            {
+                                // Run to nearest platform edge, since no player
+                                currentState = STATES.S_RUNAWAY;
+                                SetNewPosTarget(groundCheckScript.platformStandingOn.GetClosestPosition(myRb2D.position));
+                            }
                             myAnimator.SetBool("mb_Shoot", false);
+                            playerAttackedWolf = false; // Reset attecked bool
                         }
+                        //else
+                        //{
+                        //    // Found Player
+                        //    if (targetObject != null)   
+                        //    {
+                        //        currentState = STATES.S_FOUNDPLAYER;
+                        //        myAnimator.SetBool("mb_Shoot", false);
+                        //    }
+                        //}
                     }
                 }
                 break;
@@ -517,13 +555,10 @@ public class SquirrelWolf : EnemyBaseClass
                 break;
             case STATES.S_SHOOT_PLAYER:
                 {
-                    attackTimer -= Time.deltaTime;
-                    if (attackTimer < 0.0f)
+                    if (shootingDoneAnimation)
                     {
-                        // Shoot
-                        //Shoot();
-                        // Reset Timer
-                        attackTimer = attackTime;
+                        // Reset Bool
+                        shootingDoneAnimation = false;
 
 
                         // Is a player in range?
@@ -551,10 +586,12 @@ public class SquirrelWolf : EnemyBaseClass
                 break;
             case STATES.S_MELEE_PLAYER:
                 {
-                    meleeTimer -= Time.deltaTime;
-                    // Check timer
-                    if (meleeTimer < 0.0f)
+                    // Check done animation
+                    if (meleeDoneAnimation)
                     {
+                        // Reset bool
+                        meleeDoneAnimation = false;
+
                         //// Is a player in range?
                         //float temp = 0.0f;
                         //if (!IsPlayerStillInRange(ref temp))
@@ -575,8 +612,7 @@ public class SquirrelWolf : EnemyBaseClass
                                 SetNewPosTarget(groundCheckScript.platformStandingOn.GetRightsPoint());
                                 break;
                         }
-                        // Reset timer
-                        meleeTimer = meleeTime;
+                        
                     }
                 }
                 break;
@@ -892,12 +928,20 @@ public class SquirrelWolf : EnemyBaseClass
         // Add the velocity to the object
         newProj.GetComponent<Rigidbody2D>().velocity = launchVelocity;
     }
+    public void DoneShoot()
+    {
+        shootingDoneAnimation = true;
+    }
     // Melee Logic
     public void Melee()
     {
         // Check distance here again, then if player too far, then don't do damge..
 
         Debug.LogWarning("Hit Player");
+    }
+    public void DoneMelee()
+    {
+        meleeDoneAnimation = true;
     }
     // Jumping Logic
     private void JumpWolf(Vector2 newTarget)
@@ -982,7 +1026,7 @@ public class SquirrelWolf : EnemyBaseClass
     #endregion
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         // Only accepts projectiles from players
         if (collision.gameObject.tag != "PlayerProj")
@@ -996,6 +1040,15 @@ public class SquirrelWolf : EnemyBaseClass
 
         // Damage
         ModifyHealth(-weapon.GetActualDamage());
+
+
+        // set attacked bool, if we are attacking the egg
+        if(currentState == STATES.S_SHOOT_EGG || currentState == STATES.S_MELEE_EGG
+             /*|| currentState == STATES.S_MELEE_PLAYER || currentState == STATES.S_SHOOT_PLAYER*/)
+        {
+            playerAttackedWolf = true;
+        }
+        
     }
 
     private void OnDrawGizmos()
