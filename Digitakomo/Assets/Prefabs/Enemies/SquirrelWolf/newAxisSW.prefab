@@ -276,7 +276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f98e9c2e052470144ab7265f8e7fdc76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 1
+  hp: 2
   damage: 1
   moveSpeed: 5
   attackTime: 2
