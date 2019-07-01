@@ -115,6 +115,15 @@ public abstract class EnemyBaseClass : MonoBehaviour
             gameObject.SetActive(false);
     }
 
+    public void TakeDamage(float damage)
+    {
+        hp -= damage;
+        if (hp <= 0)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
     public float GetCurrentHP()
     {
         return hp;

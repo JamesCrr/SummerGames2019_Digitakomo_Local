@@ -107,10 +107,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ce894fba31887a4d9a2d7a649ea1a1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinDamage: 10
-  MaxDamage: 15
+  MinDamage: 4
+  MaxDamage: 5
   at: 0
-  addSize: 1
+  addSize: 0.5
   grapTime: 3
   expiredTime: 15
   isElectric: 0
+  dealDamageEvery: 1

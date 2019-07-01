@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 public class Steam : Weapon
 {
@@ -19,6 +21,9 @@ public class Steam : Weapon
     private Color defaultColor;
     private Material m_Material;
 
+    // Game object map with next damage time
+    private Dictionary<GameObject, float> StayEnemies = new Dictionary<GameObject, float>();
+    public float dealDamageEvery = 1f;
 
     private void Awake()
     {
@@ -74,12 +79,43 @@ public class Steam : Weapon
     {
         if (Time.time <= _expiredtime)
         {
-            Debug.Log((int)(_expiredtime - Time.time));
+            //Debug.Log((int)(_expiredtime - Time.time));
+        }
+
+        // deal damage every deal damage interval
+        for (int index = 0; index < StayEnemies.Count; index++)
+        {
+            var item = StayEnemies.ElementAt(index);
+            GameObject go = item.Key;
+            float nextDamageTime = item.Value;
+
+            EnemyBaseClass enemy = go.GetComponent<EnemyBaseClass>();
+            // if the enemy already dead remove from the list
+            if (enemy.GetCurrentHP() <= 0)
+            {
+                StayEnemies.Remove(go);
+            }
+
+            // deal damage
+            if (Time.time > nextDamageTime)
+            {
+                float damage = GetActualDamage();
+                enemy.TakeDamage(damage);
+                nextDamageTime = Time.time + dealDamageEvery;
+                StayEnemies[go] = nextDamageTime;
+            }
+
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // Track which enemy we need to deal the damage
+        if (collision.gameObject.tag == "Enemy")
+        {
+            StayEnemies.Add(collision.gameObject, Time.time);
+        }
+
         if (collision.gameObject.name == "AttackCollider")
         {
             ElectricHand eh = collision.gameObject.GetComponent<ElectricHand>();
@@ -105,6 +141,15 @@ public class Steam : Weapon
             receivedFire = true;
         }
     }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            StayEnemies.Remove(collision.gameObject);
+        }
+    }
+
 
     public void Restart()
     {
