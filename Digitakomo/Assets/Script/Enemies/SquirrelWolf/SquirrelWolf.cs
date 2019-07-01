@@ -98,12 +98,14 @@ public class SquirrelWolf : EnemyBaseClass
     GameObject targetObject = null;
 
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         // Call baseClass's Init
         Init();
-
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
         currentState = STATES.S_EGG_DIFFERENTHEIGHT;
 
         // Convert int to floats for easier calculation
@@ -193,6 +195,7 @@ public class SquirrelWolf : EnemyBaseClass
                                 {
                                     currentState = STATES.S_MELEE_EGG;
                                     StopVel();
+                                    myAnimator.SetBool("mb_Melee", true);
                                     return;
                                 }
                             }
