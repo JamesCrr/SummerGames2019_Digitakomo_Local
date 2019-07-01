@@ -467,7 +467,8 @@ MonoBehaviour:
   characters:
   - {fileID: 699349989}
   - {fileID: 1943152033}
-  characterOffset: {x: 10, y: 10, z: 10}
+  characterOffset: {x: 25, y: 20, z: 10}
+  smoothing: 0.2
 --- !u!1 &699349989 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5324440216470088059, guid: f88ee3a8773118c4fa2448c3bae6c870,
