@@ -7,6 +7,9 @@ public class IcePlatform : Weapon
     private SpriteRenderer render;
     private Collider2D _collider;
 
+    private float createdTime;
+    private float preventFallTime = 1f;
+
     public float DropSpeed = 0.2f;
     Rigidbody2D ice_rb;
 
@@ -19,10 +22,15 @@ public class IcePlatform : Weapon
         ice_rb.isKinematic = true;
         render.enabled = false;
         _collider.enabled = false;
+        createdTime = Time.time;
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
+        if (Time.time < createdTime + preventFallTime)
+        {
+            return;
+        }
         if (collision.gameObject.GetComponent<IceCharacter>() != null)
         {
             ice_rb.isKinematic = false;
@@ -30,9 +38,9 @@ public class IcePlatform : Weapon
         }
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == Mathf.Log(whatIsGround.value, 2))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             render.enabled = false;
             _collider.enabled = false;
@@ -48,5 +56,6 @@ public class IcePlatform : Weapon
         render.enabled = true;
         _collider.enabled = true;
         ice_rb.isKinematic = true;
+        createdTime = Time.time;
     }
 }
