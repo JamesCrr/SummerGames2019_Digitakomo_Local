@@ -523,6 +523,7 @@ public class SquirrelWolf : EnemyBaseClass
                         //Shoot();
                         // Reset Timer
                         attackTimer = attackTime;
+                        
 
                         // Is a player in range?
                         float temp = 0.0f;
@@ -533,6 +534,7 @@ public class SquirrelWolf : EnemyBaseClass
                         }
                             
                     }
+                    Debug.LogWarning("TIMER DONW: " + attackTimer);
                 }
                 break;
             case STATES.S_MELEE_PLAYER:
@@ -948,6 +950,7 @@ public class SquirrelWolf : EnemyBaseClass
         // Idle Animation
         myAnimator.SetBool("mb_Move", false);
         myAnimator.SetBool("mb_Shoot", false);
+        myAnimator.SetBool("mb_Melee", false);
     }
     #endregion
 
