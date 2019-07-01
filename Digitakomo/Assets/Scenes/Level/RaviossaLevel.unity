@@ -2463,16 +2463,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2588650812942329243, guid: 7e8d961d76bee1e4eb6ddcf2fbd24867,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2747537408611581317, guid: 7e8d961d76bee1e4eb6ddcf2fbd24867,
-        type: 3}
-      propertyPath: fleeTime
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 2747537408611581317, guid: 7e8d961d76bee1e4eb6ddcf2fbd24867,
         type: 3}
       propertyPath: attackMethod
