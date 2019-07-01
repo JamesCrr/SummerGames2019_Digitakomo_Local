@@ -66,7 +66,7 @@ public class Platforms : MonoBehaviour
     // to the position passed in
     public Vector2 GetClosestPosition(Vector2 targetPos)
     {
-        if ((targetPos - leftPoint).sqrMagnitude > (targetPos - rightPoint).sqrMagnitude)
+        if (Mathf.Abs((targetPos - leftPoint).sqrMagnitude) > Mathf.Abs((targetPos - rightPoint).sqrMagnitude))
             return rightPoint;
         else
             return leftPoint;
