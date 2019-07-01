@@ -322,7 +322,7 @@ public class Character : MonoBehaviour, IDamagable
     {
         if (HP <= 0)
         {
-            SceneController.LoadEndScene(false);
+            //SceneController.LoadEndScene(false);
         }
     }
 

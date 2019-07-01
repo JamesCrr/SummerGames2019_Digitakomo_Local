@@ -7,13 +7,13 @@ public class EndScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (SceneController.IsWin)
-        {
-            endText.text = "Win";
-        }
-        else
-        {
-            endText.text = "Lose";
-        }
+        //if (SceneController.IsWin)
+        //{
+        //    endText.text = "Win";
+        //}
+        //else
+        //{
+        //    endText.text = "Lose";
+        //}
     }
 }

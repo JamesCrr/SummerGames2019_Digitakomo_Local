@@ -16,7 +16,7 @@ public class Timer : MonoBehaviour
     {
         if (Time.time >= winTime)
         {
-            SceneController.LoadEndScene(true);
+            //SceneController.LoadEndScene(true);
         }
     }
 
