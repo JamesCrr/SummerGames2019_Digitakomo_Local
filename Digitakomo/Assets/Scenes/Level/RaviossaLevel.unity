@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 53598697}
   - component: {fileID: 53598696}
   - component: {fileID: 53598695}
+  - component: {fileID: 53598698}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -299,6 +300,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &53598698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53598694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e48e1795b23f7748bbf8840975e3de2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterOffset: {x: 50, y: 20, z: 10}
+  smoothing: 0.2
 --- !u!1 &105386547
 GameObject:
   m_ObjectHideFlags: 0
@@ -1686,6 +1701,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: IceCharacter
+      objectReference: {fileID: 0}
+    - target: {fileID: 7883997970962599787, guid: 774623a0001b6e9478d7f2c375c10007,
+        type: 3}
+      propertyPath: maxMoveSpeed
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7883997970962599784, guid: 774623a0001b6e9478d7f2c375c10007,
         type: 3}
