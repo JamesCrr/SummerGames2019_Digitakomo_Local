@@ -180,7 +180,7 @@ MonoBehaviour:
   timeToHitTarget: 1
   meleeRange: 1
   chargingRange: 15
-  chargingSpeed: 8
+  chargingSpeed: 15
   roaringRange: 11
 --- !u!1 &4988021697694273116
 GameObject:

@@ -114,6 +114,9 @@ public class AWScript : EnemyBaseClass
                     targetObject = IsPlayerInRange();
                     if (targetObject == null)       // If not, set the egg as the target
                         SetNewTargetObject(Egg.Instance.gameObject);
+                    else
+                        SetNewTargetObject(targetObject);
+
 
                     // check whether we can attack
                     if (CheckAttack())
@@ -175,6 +178,8 @@ public class AWScript : EnemyBaseClass
     // Function to move and return whether we can continue to move
     bool MoveApe()
     {
+        FlipEnemy();
+
         // Cast below us
         // Check if we can even move
         if (Physics2D.Linecast(groundCast.position, groundCast.position + (Vector3.down * groundCastLength), LayerMask.GetMask("Ground")))
@@ -274,7 +279,7 @@ public class AWScript : EnemyBaseClass
         // set new target
         Vector2 newtarget = targetObject.transform.position;
         Vector2 direction = newtarget - myRb2D.position;
-        newtarget += direction * 3.0f;
+        newtarget += direction * 1.5f;
         SetNewTarget(newtarget);
     }
     void StopCharge()
