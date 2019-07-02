@@ -145,7 +145,7 @@ public class SquirrelWolf : EnemyBaseClass
     {
         // Status Effects
         seManager.Update();
-        return;
+        //return;
         // if I am frozen, return
         if (isFrozen)
             return;
@@ -500,7 +500,7 @@ public class SquirrelWolf : EnemyBaseClass
                 {
                     // check if player object is out of range
                     float playerDist = 0.0f;
-                    if(!IsPlayerStillInRange(ref playerDist))
+                    if(!IsTargetObjStillInRange(ref playerDist))
                     {
                         float posDiff = myRb2D.position.y - Egg.Instance.transform.position.y;
                         if (posDiff < YPosDifference)
@@ -658,7 +658,7 @@ public class SquirrelWolf : EnemyBaseClass
         return result.gameObject;
     }
     // Returns if target object is still in range
-    bool IsPlayerStillInRange(ref float distanceReturned)
+    bool IsTargetObjStillInRange(ref float distanceReturned)
     {
         // check if player is still in range
         distanceReturned = ((Vector2)targetObject.transform.position - myRb2D.position).sqrMagnitude;
@@ -945,8 +945,10 @@ public class SquirrelWolf : EnemyBaseClass
     public void Melee()
     {
         // Check distance here again, then if player too far, then don't do damge..
+        if (((Vector2)targetObject.gameObject.transform.position - myRb2D.position).sqrMagnitude > (meleeDistance * meleeDistance))
+            return;
 
-        Debug.LogWarning("Hit Player");
+         Debug.LogWarning("Hit Player");
     }
     public void DoneMelee()
     {
