@@ -145,7 +145,7 @@ public class SquirrelWolf : EnemyBaseClass
     {
         // Status Effects
         seManager.Update();
-
+        return;
         // if I am frozen, return
         if (isFrozen)
             return;

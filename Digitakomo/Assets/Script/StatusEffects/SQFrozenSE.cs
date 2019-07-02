@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class SQFrozenSE : BaseStatusEffect
 {
+    [SerializeField]
+    float slideFactor = 2.5f;
+    // Is the ice currently moving?
     bool isMoving = false;
 
+    
     public override void onApply(EnemyBaseClass newEnemy)
     {
         base.onApply(newEnemy);
@@ -47,16 +51,22 @@ public class SQFrozenSE : BaseStatusEffect
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         // If we are not moving yet, then wait for player collision
-        if(!isMoving)
+        if (!isMoving)
         {
             // collide with player?
             if (collision.gameObject.layer != LayerMask.NameToLayer("Player") && collision.gameObject.tag != "Player")
                 return;
-            
+
             // Add velocity??
+            Vector2 newVel = Vector2.zero;
+            newVel = GetComponent<Rigidbody2D>().velocity;
+            newVel.x *= slideFactor;
+            GetComponent<Rigidbody2D>().velocity = newVel;
+
+            isMoving = true;
         }
 
         // Only accepts collision from other wolfs
