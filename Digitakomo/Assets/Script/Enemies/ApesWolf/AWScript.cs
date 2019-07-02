@@ -14,7 +14,7 @@ public class AWScript : EnemyBaseClass
         S_MELEE,
         S_ROAR,
     }
-    public STATES currentState;
+    public STATES currentState = STATES.S_WALK;
     // Attack Method
     public enum ATTACK
     {
@@ -27,7 +27,7 @@ public class AWScript : EnemyBaseClass
     #endregion
     [Header("Ape Wolf Class")]
     [SerializeField]
-    float playerDetectRange = 1.0f;     // The maximum range that we can detect the player
+    Vector2 detectSize = new Vector2(5, 2);     // The maximum range that we can detect the player
     GameObject targetObject = null;     // Used to store the Targeted Object, can be player or egg
     Collider2D result = null;       // To store the overlap circle cast
     #region GroundCasting
@@ -53,16 +53,21 @@ public class AWScript : EnemyBaseClass
     bool shootingDoneAnimation = false;    // Used to check if we have finished the Shooting Animation
     #endregion
     #region Melee
+    [Header("Melee")]
     [SerializeField]        // The maximum range for melee
     float meleeRange = 1.0f;
     bool meleeDoneAnimation = false;    // Used to check if we have finished the Melee Animation
     #endregion
     #region Charging
+    [Header("Charging")]
     [SerializeField]        // The maximum range for charging
     float chargingRange = 1.0f;
-    bool chargingDoneAnimation = false;    // Used to check if we have finished the Charging Animation
+    bool startCharge = false;       // Have we started charging
+    [SerializeField]
+    float chargingSpeed = 4.0f;     // The speed we charge at
     #endregion
     #region Roaring
+    [Header("Roaring")]
     [SerializeField]        // The maximum range for roaring
     float roaringRange = 1.0f;
     bool roaringDoneAnimation = false;    // Used to check if we have finished the Roaring Animation
@@ -70,10 +75,25 @@ public class AWScript : EnemyBaseClass
 
 
 
-    // Start is called before the first frame update
-    void Start()
+    // Awake 
+    void Awake()
     {
-        
+        base.Init();
+
+        // Calculate the percentage difference to scale the colliders
+        Vector2 percentageDifference = Vector2.zero;
+        percentageDifference.x = transform.localScale.x / 1.0f;
+        percentageDifference.y = transform.localScale.y / 1.0f;
+        // Multiply ranges with scale
+        // Platform detecting
+        detectSize.x *= percentageDifference.x;
+        detectSize.y *= percentageDifference.y;
+        // Charging 
+        chargingRange *= percentageDifference.x;
+        // roaring
+        roaringRange *= percentageDifference.x;
+        // Shooting
+        maxShootingRange *= percentageDifference.x;
     }
 
     // Update is called once per frame
@@ -98,16 +118,35 @@ public class AWScript : EnemyBaseClass
                     // check whether we can attack
                     if (CheckAttack())
                     {
-                        RandomiseAttack();  // Randomise a new attacking method
+                        //RandomiseAttack();  // Randomise a new attacking method
                         return;
                     }
-                        
+
+                    // Move towards target
+                    if(!MoveApe())
+                    {
+                        // set to idle
+                    }
+                    // set to moving
+                    
                 }
                 break;
             case STATES.S_CHARGE:
                 {
-                    if (chargingDoneAnimation)
-                        currentState = STATES.S_WALK;
+                    // Wait for animation
+                    if (!startCharge)
+                        return;
+
+                    // Charge towards the target
+                    if(!ChargeApe())  // if we can't move anymore, then go back to egg
+                    {
+                        StopCharge();
+                        return;
+                    }
+
+                    // check distance, if reached destiantion, stop charge
+                    if (Mathf.Abs((moveTargetPos.x - myRb2D.position.x)) < 1.0f)
+                        StopCharge();
                 }
                 break;
             case STATES.S_SHOOT:
@@ -133,19 +172,56 @@ public class AWScript : EnemyBaseClass
 
 
 
+    // Function to move and return whether we can continue to move
+    bool MoveApe()
+    {
+        // Cast below us
+        // Check if we can even move
+        if (Physics2D.Linecast(groundCast.position, groundCast.position + (Vector3.down * groundCastLength), LayerMask.GetMask("Ground")))
+        {
+            // Move
+            myRb2D.MovePosition(myRb2D.position + (moveDirection * moveSpeed * Time.deltaTime));
+            return true;
+        }
+
+        return false;
+    }
+    // Function to charge the ape
+    bool ChargeApe()
+    {
+        // Cast below us
+        // Check if we can even move
+        if (Physics2D.Linecast(groundCast.position, groundCast.position + (Vector3.down * groundCastLength), LayerMask.GetMask("Ground")))
+        {
+            // Move
+            myRb2D.MovePosition(myRb2D.position + (moveDirection * chargingSpeed * Time.deltaTime));
+            return true;
+        }
+
+        return false;
+    }
+    void StopApe()
+    {
+        myRb2D.velocity = Vector2.zero;
+        myAnimator.SetBool("mb_Move", false);
+        myAnimator.SetBool("mb_Charge", false);
+        myAnimator.SetBool("mb_Roar", false);
+        myAnimator.SetBool("mb_Melee", false);
+        myAnimator.SetBool("mb_Shoot", false);
+    }
     // Returns the player Object if he is in Range
     // Player must be in Player Layer and Tag
     // Does not count EGG as player
     GameObject IsPlayerInRange()
     {
         // Get if we have hit anything, player or egg
-        result = Physics2D.OverlapCircle(myRb2D.position, playerDetectRange, LayerMask.GetMask("Player"));
+        result = Physics2D.OverlapBox(myRb2D.position, detectSize, LayerMask.GetMask("Player"));
         if (result == null)
             return null;
         if (result.gameObject.tag != "Player")
             return null;
         // check are we actually in range or we just hit the collider
-        if (((Vector2)result.gameObject.transform.position - myRb2D.position).sqrMagnitude > (playerDetectRange * playerDetectRange))
+        if (((Vector2)result.gameObject.transform.position - myRb2D.position).sqrMagnitude > (detectSize.x * detectSize.x))
             return null;
 
         return result.gameObject;
@@ -191,13 +267,22 @@ public class AWScript : EnemyBaseClass
         meleeDoneAnimation = true;
     }
     // Charging Logic
-    public void Charge()
+    public void StartCharge()
     {
+        startCharge = true;
 
+        // set new target
+        Vector2 newtarget = targetObject.transform.position;
+        Vector2 direction = newtarget - myRb2D.position;
+        newtarget += direction * 3.0f;
+        SetNewTarget(newtarget);
     }
-    public void DoneCharge()
+    void StopCharge()
     {
-        chargingDoneAnimation = true;
+        currentState = STATES.S_WALK;
+        startCharge = false;
+        // go back to idle
+        myAnimator.SetBool("mb_Charge", false);
     }
     // Roaring Logic
     public void Roar()
@@ -206,9 +291,8 @@ public class AWScript : EnemyBaseClass
     }
     public void DoneRoar()
     {
-        chargingDoneAnimation = true;
+        roaringDoneAnimation = true;
     }
-
     // Function to encapsulate all of the attack detection
     // Returns true if a change in state was made
     // Returns false if no change in state was made
@@ -224,6 +308,9 @@ public class AWScript : EnemyBaseClass
                     if(distance < (chargingRange * chargingRange))
                     {
                         currentState = STATES.S_CHARGE;
+                        // set to charge ani
+                        StopApe();
+                        myAnimator.SetBool("mb_Charge", true);
                         return true;
                     }
                 }
@@ -282,12 +369,20 @@ public class AWScript : EnemyBaseClass
     {
         // Player Detect Range
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, playerDetectRange);
+        Gizmos.DrawWireCube(transform.position, detectSize);
         // Shooting range
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, maxShootingRange);
+        // Charging range
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, chargingRange);
+        // Roaring range
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, roaringRange);
         // Ground Cast
         Gizmos.color = Color.red;
         Gizmos.DrawLine(groundCast.position, groundCast.position + (Vector3.down * groundCastLength));
     }
+
+   
 }
