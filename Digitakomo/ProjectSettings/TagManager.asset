@@ -9,6 +9,7 @@ TagManager:
   - Egg
   - Enemy
   - Steam
+  - frozenWolf
   layers:
   - Default
   - TransparentFX

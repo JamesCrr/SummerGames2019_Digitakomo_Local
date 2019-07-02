@@ -26,6 +26,8 @@ public abstract class EnemyBaseClass : MonoBehaviour
     [SerializeField]
     protected float attackTime = 2.0f;
     protected float attackTimer = 0.0f;
+    // Status Effects
+    protected StatusEffectManager seManager = null;
 
     // Spawn Zone
     protected SpawnZone spawningZone = null;
@@ -44,6 +46,8 @@ public abstract class EnemyBaseClass : MonoBehaviour
 
         myRb2D = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
+
+        seManager = new StatusEffectManager(this.gameObject);
     }
 
 

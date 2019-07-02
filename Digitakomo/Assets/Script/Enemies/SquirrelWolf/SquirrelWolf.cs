@@ -140,8 +140,9 @@ public class SquirrelWolf : EnemyBaseClass
     // Update is called once per frame
     void Update()
     {
-        //FindPlatformAbove();
-        //return;
+        // Status Effects
+        seManager.Update();
+        return;
 
         // Update State Machine
         UpdateStates();
@@ -1037,9 +1038,16 @@ public class SquirrelWolf : EnemyBaseClass
 
         Weapon weapon = collision.gameObject.GetComponent<Weapon>();
         AttackType type = weapon.at;
-        //// if immune
-        //if (type == AttackType.ICE || type == AttackType.ICE_JUMP || type == AttackType.Normal)
-        //    return;
+        
+        // if special Ice attack
+        if (type == AttackType.ICE )
+        {
+            // Are we already frozen?
+            if (seManager.EffectAlreadyIn("SW_FrozenSE"))
+                return;
+            // Add new status effect
+            seManager.AddEffect("SW_FrozenSE", ObjectPooler.Instance.FetchGO_Pos("SW_FrozenSE", myRb2D.position).GetComponent<BaseStatusEffect>(), this);
+        }
 
         // Damage
         ModifyHealth(-weapon.GetActualDamage());

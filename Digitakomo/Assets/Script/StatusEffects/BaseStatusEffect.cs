@@ -4,27 +4,35 @@ using UnityEngine;
 
 public abstract class BaseStatusEffect : MonoBehaviour
 {
-    float effectTimer = 0.0f;
+    [SerializeField]
     float effectDuration = 1.0f;
-    EnemyBaseClass enemyClass = null;
+    float effectTimer = 0.0f;
+    protected EnemyBaseClass enemyClass = null;
 
 
-    protected virtual void onApply(EnemyBaseClass newEnemy)
+    public virtual void onApply(EnemyBaseClass newEnemy)
     {
-
+        enemyClass = newEnemy;
+        effectTimer = effectDuration;
     }
 
-    protected virtual void UpdateEffect()
+    public virtual bool UpdateEffect()      // Count down Timer
     {
         if (effectTimer < 0.0f)
-            return;
+            return false;
 
         effectTimer -= Time.deltaTime;
+
+        return true;
     }
-    protected virtual void onLeave()
+
+    public virtual void onLeave()   // Reset Timer
     {
         effectTimer = effectDuration;
     }
 
-
+    public virtual void onReApply()  // Reset Timer
+    {
+        effectTimer = effectDuration;
+    }
 }
