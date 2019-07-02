@@ -60,6 +60,11 @@ public class InputManager : MonoBehaviour
             {
                 continue;
             }
+            if(keymaps.ContainsKey(actions[i]))
+            {
+                // prevent same intialize;
+                continue;
+            }
             KeyCode[] keycodes = new KeyCode[2] { keys[i, 0], keys[i, 1] };
             keymaps.Add(actions[i], keycodes);
         }
@@ -92,10 +97,15 @@ public class InputManager : MonoBehaviour
 
     public static void SetKey(string action, KeyCode[] newKey)
     {
-        if(!keymaps.ContainsKey(action))
+        if (!keymaps.ContainsKey(action))
         {
             throw new Exception("Key does not contain action " + action);
         }
         keymaps[action] = newKey;
+    }
+
+    public static Dictionary<string, KeyCode[]> GetKeys()
+    {
+        return keymaps;
     }
 }

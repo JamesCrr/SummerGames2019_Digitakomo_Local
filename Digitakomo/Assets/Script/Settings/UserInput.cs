@@ -1,16 +1,28 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class UserInput : MonoBehaviour
 {
-    string filename = "/Resources/Settings/Users/UserSetting.txt";
+    InputDatabaseManager idm;
     // Start is called before the first frame update
     void Start()
     {
-        //string PATH = Application.dataPath;
-        //StreamWriter writer = new StreamWriter(PATH + filename, true);
+        idm = new InputDatabaseManager(Application.dataPath);
 
-        //InputManager
-        //writer.WriteLine("Test");
-        //writer.Close();
+        Dictionary<string, KeyCode[]> keymaps = InputManager.GetKeys();
+
+        string saved = "";
+        foreach (string key in keymaps.Keys)
+        {
+            string value1 = keymaps[key][0].ToString();
+            string value2 = keymaps[key][1].ToString();
+
+            saved += key + "=" + value1 + "," + value2 + "\n";
+            //Debug.Log(key);
+            //Debug.Log((KeyCode)System.Enum.Parse(typeof(KeyCode), keymaps[key][0].ToString()));
+        }
+
+        idm.WriteLine(saved);
+        //Debug.Log(saved);
     }
 }

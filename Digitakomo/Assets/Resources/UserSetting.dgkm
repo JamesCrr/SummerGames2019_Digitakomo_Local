@@ -1,0 +1,17 @@
+Player1ChangeCharcter=X,None
+Player1LookUp=W,None
+Player1Jump=U,I
+Player1Attack=H,None
+Player1SpecialAttack=J,None
+Player1Defense=E,None
+Player1LockMovement=LeftShift,None
+Player1MoveLeft=A,None
+Player1MoveRight=D,None
+Player2LookUp=UpArrow,None
+Player2Jump=Keypad8,Keypad9
+Player2Attack=Keypad4,None
+Player2SpecialAttack=Keypad5,Keypad6
+Player2Defense=Keypad7,None
+Player2LockMovement=RightControl,None
+Player2MoveLeft=LeftArrow,None
+Player2MoveRight=RightArrow,None
