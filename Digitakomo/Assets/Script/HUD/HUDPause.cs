@@ -46,7 +46,7 @@ public class HUDPause : MonoBehaviour
     public void Restart()
     {
         Resume();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneController._LoadSceneWithLoadingScreen(SceneManager.GetActiveScene().name);
     }
 
     public void Quit()

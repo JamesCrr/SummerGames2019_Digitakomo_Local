@@ -20,4 +20,10 @@ public class SceneController : MonoBehaviour
         SceneToLoad = sceneName;
         SceneManager.LoadScene("LoadingScene");
     }
+
+    public static void _LoadSceneWithLoadingScreen(string sceneName)
+    {
+        SceneToLoad = sceneName;
+        SceneManager.LoadScene("LoadingScene");
+    }
 }
