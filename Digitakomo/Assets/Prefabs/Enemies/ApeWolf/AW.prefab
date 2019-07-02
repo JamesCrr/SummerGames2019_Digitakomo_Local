@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5361162089265866992}
   - component: {fileID: 6242723550740004439}
   - component: {fileID: 1513449076862413582}
+  - component: {fileID: 4129559589016272594}
   m_Layer: 0
   m_Name: AW
   m_TagString: Untagged
@@ -97,6 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 10
   damage: 1
+  defense: 0
   moveSpeed: 1
   attackTime: 2
   currentState: 0
@@ -108,6 +110,28 @@ MonoBehaviour:
   shootingPos: {fileID: 278269064420423184}
   maxShootingRange: 15
   timeToHitTarget: 1
+  meleeRange: 1
+  chargingRange: 1
+  roaringRange: 1
+--- !u!95 &4129559589016272594
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532834790551978396}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d3470d4124c0c874a8e5fd18f4060e98, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4988021697694273116
 GameObject:
   m_ObjectHideFlags: 0

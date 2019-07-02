@@ -29,6 +29,7 @@ public class AWScript : EnemyBaseClass
     [SerializeField]
     float playerDetectRange = 1.0f;     // The maximum range that we can detect the player
     GameObject targetObject = null;     // Used to store the Targeted Object, can be player or egg
+    Collider2D result = null;       // To store the overlap circle cast
     #region GroundCasting
     [Header("GroundCasting")]
     [SerializeField]
@@ -45,23 +46,25 @@ public class AWScript : EnemyBaseClass
     GameObject projectilePrefab = null;
     [SerializeField]
     Transform shootingPos = null;
-    [SerializeField]
-    // Maximum Attack Range
+    [SerializeField]        // Maximum Attack Range
     float maxShootingRange = 5.0f;
     [SerializeField]
     float timeToHitTarget = 1.0f;   // How long for the projectile to hit smth
     bool shootingDoneAnimation = false;    // Used to check if we have finished the Shooting Animation
     #endregion
     #region Melee
-
+    [SerializeField]        // The maximum range for melee
+    float meleeRange = 1.0f;
     bool meleeDoneAnimation = false;    // Used to check if we have finished the Melee Animation
     #endregion
     #region Charging
-
+    [SerializeField]        // The maximum range for charging
+    float chargingRange = 1.0f;
     bool chargingDoneAnimation = false;    // Used to check if we have finished the Charging Animation
     #endregion
     #region Roaring
-    
+    [SerializeField]        // The maximum range for roaring
+    float roaringRange = 1.0f;
     bool roaringDoneAnimation = false;    // Used to check if we have finished the Roaring Animation
     #endregion
 
@@ -87,32 +90,79 @@ public class AWScript : EnemyBaseClass
         {
             case STATES.S_WALK:
                 {
+                    // Is a player in range?
+                    targetObject = IsPlayerInRange();
+                    if (targetObject == null)       // If not, set the egg as the target
+                        SetNewTargetObject(Egg.Instance.gameObject);
 
+                    // check whether we can attack
+                    if (CheckAttack())
+                    {
+                        RandomiseAttack();  // Randomise a new attacking method
+                        return;
+                    }
+                        
                 }
                 break;
             case STATES.S_CHARGE:
                 {
-
+                    if (chargingDoneAnimation)
+                        currentState = STATES.S_WALK;
                 }
                 break;
             case STATES.S_SHOOT:
                 {
-
+                    if (shootingDoneAnimation)
+                        currentState = STATES.S_WALK;
                 }
                 break;
             case STATES.S_MELEE:
                 {
-                    
+                    if (meleeDoneAnimation)
+                        currentState = STATES.S_WALK;
                 }
                 break;
             case STATES.S_ROAR:
                 {
-
+                    if (roaringDoneAnimation)
+                        currentState = STATES.S_WALK;
                 }
                 break;
         }
     }
 
+
+
+    // Returns the player Object if he is in Range
+    // Player must be in Player Layer and Tag
+    // Does not count EGG as player
+    GameObject IsPlayerInRange()
+    {
+        // Get if we have hit anything, player or egg
+        result = Physics2D.OverlapCircle(myRb2D.position, playerDetectRange, LayerMask.GetMask("Player"));
+        if (result == null)
+            return null;
+        if (result.gameObject.tag != "Player")
+            return null;
+        // check are we actually in range or we just hit the collider
+        if (((Vector2)result.gameObject.transform.position - myRb2D.position).sqrMagnitude > (playerDetectRange * playerDetectRange))
+            return null;
+
+        return result.gameObject;
+    }
+
+    // Set new target for direction
+    public void SetNewTarget(Vector2 newTarget)
+    {
+        moveTargetPos = newTarget;
+        moveDirection = (newTarget - myRb2D.position).normalized;
+    }
+    // Set new target object as target
+    public void SetNewTargetObject(GameObject newtargetObj)
+    {
+        targetObject = newtargetObj;
+        SetNewTarget(newtargetObj.transform.position);
+    }
 
 
     // Shooting Logic
@@ -159,6 +209,64 @@ public class AWScript : EnemyBaseClass
         chargingDoneAnimation = true;
     }
 
+    // Function to encapsulate all of the attack detection
+    // Returns true if a change in state was made
+    // Returns false if no change in state was made
+    bool CheckAttack()
+    {
+        float distance = ((Vector2)targetObject.transform.position - myRb2D.position).sqrMagnitude;
+
+        switch (currentAttack)
+        {
+            case ATTACK.A_CHARGE:
+                {
+                    // Can we charge?
+                    if(distance < (chargingRange * chargingRange))
+                    {
+                        currentState = STATES.S_CHARGE;
+                        return true;
+                    }
+                }
+                break;
+            case ATTACK.A_SHOOT:
+                {
+                    // Can we shoot?
+                    if (distance < (maxShootingRange * maxShootingRange))
+                    {
+                        currentState = STATES.S_SHOOT;
+                        return true;
+                    }
+                }
+                break;
+            case ATTACK.A_MELEE:
+                {
+                    // Can we melee?
+                    if (distance < (meleeRange * meleeRange))
+                    {
+                        currentState = STATES.S_MELEE;
+                        return true;
+                    }
+                }
+                break;
+            case ATTACK.A_ROAR:
+                {
+                    // Can we roar?
+                    if (distance < (roaringRange * roaringRange))
+                    {
+                        currentState = STATES.S_ROAR;
+                        return true;
+                    }
+                }
+                break;
+        }
+
+        return false;
+    }
+    // Randomise attacking method
+    void RandomiseAttack()
+    {
+        currentAttack = (ATTACK)Random.Range((int)ATTACK.A_CHARGE, (int)ATTACK.A_ROAR+1);
+    }
 
     #region Overriden
     public override void ResetEnemy(SpawnZone newSpawnZone, Vector3 newPos)
