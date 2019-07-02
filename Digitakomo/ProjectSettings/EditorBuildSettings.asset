@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level/RaviossaLevel.unity
     guid: 8fb1cc21d806e7b4a85069436ec56fc3
+  - enabled: 1
+    path: Assets/Scenes/LoadingScene.unity
+    guid: 026f64e5109020a4e8c818fb81ef085b
   m_configObjects: {}

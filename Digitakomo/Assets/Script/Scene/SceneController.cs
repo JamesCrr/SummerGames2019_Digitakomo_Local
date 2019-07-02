@@ -13,4 +13,11 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene(sceneIndex);
     }
 
+    public static string SceneToLoad = "MainMenu";
+
+    public void LoadSceneWithLoadingScreen(string sceneName)
+    {
+        SceneToLoad = sceneName;
+        SceneManager.LoadScene("LoadingScene");
+    }
 }
