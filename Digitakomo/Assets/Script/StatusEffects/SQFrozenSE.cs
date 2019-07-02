@@ -14,9 +14,13 @@ public class SQFrozenSE : BaseStatusEffect
         // Disable the Enemy's collider and rigidbody
         enemyClass.gameObject.GetComponent<Collider2D>().enabled = false;
         enemyClass.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+        enemyClass.SetAnimatorSpeed(0.0f);
         // parent the enemy 
         enemyClass.gameObject.transform.parent = transform;
 
+        // Class Specific
+        if (newEnemy.gameObject.GetComponent<SquirrelWolf>())
+            newEnemy.gameObject.GetComponent<SquirrelWolf>().SetFrozen(true);
         // Reset Status Effects Data
         isMoving = false;
     }
@@ -81,5 +85,10 @@ public class SQFrozenSE : BaseStatusEffect
         // Reenable the Enemy's collider and rigidbody
         enemyClass.gameObject.GetComponent<Collider2D>().enabled = true;
         enemyClass.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+        enemyClass.SetAnimatorSpeed(1.0f);
+
+        // Class Specific
+        if (enemyClass.gameObject.GetComponent<SquirrelWolf>())
+            enemyClass.gameObject.GetComponent<SquirrelWolf>().SetFrozen(false);
     }
 }

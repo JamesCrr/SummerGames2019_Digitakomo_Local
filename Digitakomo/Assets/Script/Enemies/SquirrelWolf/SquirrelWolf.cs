@@ -93,6 +93,9 @@ public class SquirrelWolf : EnemyBaseClass
     // have we been attacked?
     bool playerAttackedWolf = false;
     #endregion
+    #region Frozen
+    bool isFrozen = false;
+    #endregion
     // Unity Stuff
     // Get referrence to the target Object
     GameObject targetObject = null;
@@ -142,8 +145,10 @@ public class SquirrelWolf : EnemyBaseClass
     {
         // Status Effects
         seManager.Update();
-        return;
 
+        // if I am frozen, return
+        if (isFrozen)
+            return;
         // Update State Machine
         UpdateStates();
     }
@@ -1006,7 +1011,11 @@ public class SquirrelWolf : EnemyBaseClass
         if(!isJumped)
             myAnimator.SetTrigger("mt_Fall2Idle");
     }
-    // What to do when the player hits me
+    // Frozen Logix
+    public void SetFrozen(bool frozen)
+    {
+        isFrozen = frozen;
+    }
     
 
 

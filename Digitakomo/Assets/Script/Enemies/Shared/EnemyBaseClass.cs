@@ -124,9 +124,15 @@ public abstract class EnemyBaseClass : MonoBehaviour
         if (hp < 1)
             gameObject.SetActive(false);
     }
-
+    // Returns Hp
     public float GetCurrentHP()
     {
         return hp;
+    }
+
+    // Modify the Animator's Speed
+    public void SetAnimatorSpeed(float newSpeed)
+    {
+        myAnimator.speed = newSpeed;
     }
 }

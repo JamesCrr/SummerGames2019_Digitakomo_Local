@@ -141,4 +141,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c4d9c3cce4c384d8a558bef416795b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectDuration: 1
+  effectDuration: 3

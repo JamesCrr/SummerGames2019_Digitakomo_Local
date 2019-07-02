@@ -160,7 +160,7 @@ MonoBehaviour:
   moveSpeed: 5
   attackTime: 2
   currentState: 0
-  attackMethod: 0
+  attackMethod: 1
   playerDetectionRange: 4
   sideTopDetect:
     detectOffset: {x: 1.58, y: 0.84}
