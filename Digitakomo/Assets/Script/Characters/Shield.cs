@@ -22,21 +22,21 @@ public class Shield : MonoBehaviour, IDamagable
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Player" + noPlayer + "Defense"))
+        if (InputManager.GetButtonDown("Player" + noPlayer + "Defense"))
         {
             player.isLockMovement += 1;
             isShielding = true;
         }
-        if (Input.GetButtonUp("Player" + noPlayer + "Defense"))
+        if (InputManager.GetButtonUp("Player" + noPlayer + "Defense"))
         {
             player.isLockMovement -= 1;
             isShielding = false;
         }
-        if (Input.GetButtonDown("Player" + noPlayer + "LookUp"))
+        if (InputManager.GetButtonDown("Player" + noPlayer + "LookUp"))
         {
             isShieldUp = true;
         }
-        if (Input.GetButtonUp("Player" + noPlayer + "LookUp"))
+        if (InputManager.GetButtonUp("Player" + noPlayer + "LookUp"))
         {
             isShieldUp = false;
         }

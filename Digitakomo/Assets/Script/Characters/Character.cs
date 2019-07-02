@@ -88,6 +88,9 @@ public class Character : MonoBehaviour, IDamagable
     // Start is called before the first frame update
     void Awake()
     {
+        // initialize the keybinding
+        InputManager.Initialize(player);
+
         Collider2D[] colliders = (GetComponentsInChildren<BoxCollider2D>());
         foreach (Collider2D collider in colliders)
         {
@@ -228,15 +231,12 @@ public class Character : MonoBehaviour, IDamagable
 
     private void HandleInput()
     {
-        float moveLeft = Input.GetAxisRaw("Player" + player + "MoveLeft");
-        float moveRight = Input.GetAxisRaw("Player" + player + "MoveRight");
-        float defense = Input.GetAxisRaw("Player" + player + "Defense");
-        float attack = Input.GetAxisRaw("Player" + player + "Attack");
-        float specialAttack = Input.GetAxisRaw("Player" + player + "SpecialAttack");
-        float lookUp = Input.GetAxisRaw("Player" + player + "LookUp");
-        bool jump = Input.GetButtonDown("Player" + player + "Jump");
-        bool lockMovementDown = Input.GetButtonDown("Player" + player + "LockMovement");
-        bool lockMovementUp = Input.GetButtonUp("Player" + player + "LockMovement");
+        ;
+        float moveLeft = InputManager.GetAxisRaw("Player" + player + "MoveLeft");
+        float moveRight = InputManager.GetAxisRaw("Player" + player + "MoveRight");
+        bool jump = InputManager.GetButtonDown("Player" + player + "Jump");
+        bool lockMovementDown = InputManager.GetButtonDown("Player" + player + "LockMovement");
+        bool lockMovementUp = InputManager.GetButtonUp("Player" + player + "LockMovement");
 
         // Get latest Horizontal Input from player
         horizontalInput = moveRight - moveLeft;
@@ -270,49 +270,49 @@ public class Character : MonoBehaviour, IDamagable
             isLockMovement -= 1;
         }
 
-        if (Input.GetButtonDown("Player" + player + "LookUp"))
+        if (InputManager.GetButtonDown("Player" + player + "LookUp"))
         {
             WPressed = true;
         }
-        else if (Input.GetButtonUp("Player" + player + "LookUp"))
+        else if (InputManager.GetButtonUp("Player" + player + "LookUp"))
         {
             WPressed = false;
         }
 
-        if (Input.GetButtonDown("Player" + player + "MoveLeft"))
+        if (InputManager.GetButtonDown("Player" + player + "MoveLeft"))
         {
             APressed = true;
         }
-        else if (Input.GetButtonUp("Player" + player + "MoveLeft"))
+        else if (InputManager.GetButtonUp("Player" + player + "MoveLeft"))
         {
             APressed = false;
         }
-        if (Input.GetButtonDown("Player" + player + "MoveRight"))
+        if (InputManager.GetButtonDown("Player" + player + "MoveRight"))
         {
             DPressed = true;
         }
-        else if (Input.GetButtonUp("Player" + player + "MoveRight"))
+        else if (InputManager.GetButtonUp("Player" + player + "MoveRight"))
         {
             DPressed = false;
         }
 
-        if (Input.GetButtonDown("Player" + player + "Attack"))
+        if (InputManager.GetButtonDown("Player" + player + "Attack"))
         {
             IsAttacking = true;
             NextPunch = Time.time;
             AttackCollider.enabled = true;
         }
-        else if (Input.GetButtonUp("Player" + player + "Attack"))
+        else if (InputManager.GetButtonUp("Player" + player + "Attack"))
         {
             IsAttacking = false;
             AttackCollider.enabled = false;
         }
-        if (Input.GetButtonDown("Player" + player + "SpecialAttack"))
+        if (InputManager.GetButtonDown("Player" + player + "SpecialAttack"))
         {
             IsSpecialAttacking = true;
             NextSpecialFire = Time.time;
         }
-        else if (Input.GetButtonUp("Player" + player + "SpecialAttack"))
+        else if (InputManager.GetButtonUp("Player" + player + "SpecialAttack"))
         {
             IsSpecialAttacking = false;
         }
