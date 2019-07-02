@@ -53,4 +53,10 @@ public class HUDPause : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void MainMenu()
+    {
+        Resume();
+        SceneController._LoadSceneWithLoadingScreen("MainMenu");
+    }
 }
