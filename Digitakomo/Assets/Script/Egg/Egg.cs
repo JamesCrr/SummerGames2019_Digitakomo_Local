@@ -2,6 +2,17 @@
 
 public class Egg : MonoBehaviour, IDamagable
 {
+    // animation stuff
+    protected enum Damaged
+    {
+        Normal,
+        Level1,
+        Level2,
+        Level3,
+        Level4
+    }
+    protected Damaged damaged = Damaged.Normal;
+
     // Instance
     public static Egg Instance = null;
     // Stats
@@ -43,14 +54,18 @@ public class Egg : MonoBehaviour, IDamagable
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        // BEING ATTACK !!!
-    }
-
     public void TakeDamage(float damage)
     {
         HP -= damage;
+        if (GetHPPercentage() <= 50) damaged = Damaged.Level1;
+        if (GetHPPercentage() <= 40) damaged = Damaged.Level2;
+        if (GetHPPercentage() <= 20) damaged = Damaged.Level3;
+        if (GetHPPercentage() <= 10) damaged = Damaged.Level4;
+    }
+
+    public float GetHPPercentage()
+    {
+        return HP / MaxHP * 100;
     }
 
     public Vector2 GetPosition()

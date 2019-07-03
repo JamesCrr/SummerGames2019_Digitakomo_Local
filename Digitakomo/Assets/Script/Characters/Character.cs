@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour, IDamagable
 {
+    // Animation stuff
     protected enum JumpState
     {
         Normal,
@@ -10,10 +11,25 @@ public class Character : MonoBehaviour, IDamagable
         Falling
     }
 
+    // Animation stuff
     protected enum RunState
     {
         Normal,
         Running
+    }
+
+    // Animation stuff
+    protected enum AttackState
+    {
+        Normal,
+        Attacking
+    }
+
+    // Animation stuff
+    protected enum SpecialAttackState
+    {
+        Normal,
+        Attacking
     }
 
     // What type are we using
@@ -48,8 +64,6 @@ public class Character : MonoBehaviour, IDamagable
     [SerializeField]
     protected float fallingMultiplyer = 2.0f;   // How much fast should this character fall
 
-    protected JumpState jumpState = JumpState.Normal;
-    protected RunState runState = RunState.Normal;
     // Unity Stuff
     protected Rigidbody2D myRb2D = null;
 
@@ -59,9 +73,6 @@ public class Character : MonoBehaviour, IDamagable
     private float HP;
     public float MaxEnergy = 200;
     private float MP;
-    [Header("Not using")]
-    public float MPRestore = 0.5f;
-
 
     // Attack
     [Header("Attack")]
@@ -80,6 +91,10 @@ public class Character : MonoBehaviour, IDamagable
 
     // Animation
     private Animator Animate;
+    protected JumpState jumpState = JumpState.Normal;
+    protected RunState runState = RunState.Normal;
+    protected AttackState attackState = AttackState.Normal;
+    protected SpecialAttackState specialAttackState = SpecialAttackState.Normal;
 
     public int player = 1;
 
@@ -117,6 +132,7 @@ public class Character : MonoBehaviour, IDamagable
             myRb2D.velocity += Vector2.up * (Physics2D.gravity.y * fallingMultiplyer) * Time.deltaTime;
 
         HandleHP();
+
         if (isGrounded)
         {
             jumpState = JumpState.Normal;
@@ -134,6 +150,24 @@ public class Character : MonoBehaviour, IDamagable
         {
             runState = RunState.Normal;
         }
+
+        if (IsAttacking)
+        {
+            attackState = AttackState.Attacking;
+        }
+        else
+        {
+            attackState = AttackState.Normal;
+        }
+
+        if (IsSpecialAttacking)
+        {
+            specialAttackState = SpecialAttackState.Attacking;
+        }
+        else
+        {
+            specialAttackState = SpecialAttackState.Normal;
+        }
     }
 
     protected virtual void FixedUpdate()
@@ -144,11 +178,6 @@ public class Character : MonoBehaviour, IDamagable
             Attack();
         if (IsSpecialAttacking)
             SpecialAttack();
-
-        //if (MP < MaxEnergy)
-        //{
-        //    MP += MPRestore;
-        //}
     }
 
     // Moving Horizontal, left and right
