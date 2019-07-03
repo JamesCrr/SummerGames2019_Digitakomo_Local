@@ -38,6 +38,7 @@ public class AWScript : EnemyBaseClass
     [SerializeField]
     float groundCastLength = 0.09f;
     RaycastHit2D rayhit2D = new RaycastHit2D();
+    bool isGrounded = false;
     #endregion
     #region Shooting
     [Header("Shooting")]
@@ -113,6 +114,9 @@ public class AWScript : EnemyBaseClass
     // Update is called once per frame
     void Update()
     {
+        if (!isGrounded)
+            return;
+
         UpdateStates();
     }
 
@@ -173,7 +177,7 @@ public class AWScript : EnemyBaseClass
                     if (shootingDoneAnimation)
                     {
                         currentState = STATES.S_WALK;
-                        shootingDoneAnimation = false;  
+                        shootingDoneAnimation = false;
                     }
                         
                 }
@@ -240,6 +244,14 @@ public class AWScript : EnemyBaseClass
         myAnimator.SetBool("mb_Roar", false);
         myAnimator.SetBool("mb_Melee", false);
         myAnimator.SetBool("mb_Shoot", false);
+    }
+    public void LandedGround()
+    {
+        isGrounded = true;
+    }
+    public void LeftGround()
+    {
+        isGrounded = false; 
     }
     // Returns the player Object if he is in Range
     // Player must be in Player Layer and Tag
