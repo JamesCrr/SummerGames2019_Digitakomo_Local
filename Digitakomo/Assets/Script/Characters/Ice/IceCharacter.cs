@@ -78,6 +78,7 @@ public class IceCharacter : Character
         // if ice character enable this
         else if (GetAttackType() == AttackType.ICE && jumpsLeft == 1 && !isGrounded)
         {
+            myRb2D.velocity = new Vector2(myRb2D.velocity.x, 0);
             CreateIcePlatform();
             jumpsLeft--;
             return;
