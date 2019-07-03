@@ -37,31 +37,6 @@ public class FireCharacter : Character
         }
     }
 
-    public override void MoveHorizontal()
-    {
-        // Check if we need to change direction
-        if (horizontalInput > 0 && !facingRight)
-        {
-            facingRight = true;
-            Flip();
-        }
-        else if (horizontalInput < 0 && facingRight)
-        {
-            facingRight = false;
-            Flip();
-        }
-
-        // Check if we can continue to accelerate
-        if (horizontalInput * myRb2D.velocity.x < maxMoveSpeed)
-        {
-            myRb2D.AddForce(Vector2.right * horizontalInput * moveAcceleration * Time.deltaTime);
-        }
-
-        // Clamp the speed within the maxMoveSpeed
-        if (Mathf.Abs(myRb2D.velocity.x) > maxMoveSpeed)
-            myRb2D.velocity = new Vector2(Mathf.Sign(myRb2D.velocity.x) * maxMoveSpeed, myRb2D.velocity.y);
-    }
-
     public override void Jump()
     {
         // No more jumps left and still not grounded

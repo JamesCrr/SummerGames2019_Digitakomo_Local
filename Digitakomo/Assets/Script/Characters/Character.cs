@@ -135,7 +135,27 @@ public class Character : MonoBehaviour, IDamagable
     // Moving Horizontal, left and right
     public virtual void MoveHorizontal()
     {
-        throw new NotImplementedException();
+        // Check if we need to change direction
+        if (horizontalInput > 0 && !facingRight)
+        {
+            facingRight = true;
+            Flip();
+        }
+        else if (horizontalInput < 0 && facingRight)
+        {
+            facingRight = false;
+            Flip();
+        }
+
+        // Check if we can continue to accelerate
+        if (horizontalInput * myRb2D.velocity.x < maxMoveSpeed)
+        {
+            myRb2D.AddForce(Vector2.right * horizontalInput * moveAcceleration * Time.deltaTime);
+        }
+
+        // Clamp the speed within the maxMoveSpeed
+        if (Mathf.Abs(myRb2D.velocity.x) > maxMoveSpeed)
+            myRb2D.velocity = new Vector2(Mathf.Sign(myRb2D.velocity.x) * maxMoveSpeed, myRb2D.velocity.y);
     }
 
     // Flip Player when changing direction
