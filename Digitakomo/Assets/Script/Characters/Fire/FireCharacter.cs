@@ -39,6 +39,7 @@ public class FireCharacter : Character
 
     public override void Jump()
     {
+        base.Jump();
         // No more jumps left and still not grounded
         if (jumpsLeft <= 0 && !isGrounded)
             return;

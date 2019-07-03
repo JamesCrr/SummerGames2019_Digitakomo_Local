@@ -3,19 +3,13 @@ using UnityEngine;
 
 public class Character : MonoBehaviour, IDamagable
 {
+    protected enum JumpState
+    {
+        Normal,
+        Jumping,
+        Falling
+    }
 
-    // Which Character are we using
-    //[System.Serializable]
-    //public class PlayerType_Template
-    //{
-    //    // The Animator to use for this character
-    //    public RuntimeAnimatorController characterAnimator = null;
-    //    // The Sprite to use for this character
-    //    public Sprite characterSprite = null;
-    //}
-    //// Used to store the options for both states
-    //[SerializeField]
-    //PlayerType_Template iceTemplate;
     // What type are we using
     [SerializeField]
     protected AttackType SelectedType = AttackType.UNKNOWN;
@@ -45,6 +39,7 @@ public class Character : MonoBehaviour, IDamagable
     [SerializeField]
     protected int extraJumps = 1;       // How many extra jumps we get, not including default
     protected int jumpsLeft = 1;
+    protected JumpState jumpState = JumpState.Normal;
     [SerializeField]
     protected float fallingMultiplyer = 2.0f;   // How much fast should this character fall
 
@@ -115,6 +110,14 @@ public class Character : MonoBehaviour, IDamagable
             myRb2D.velocity += Vector2.up * (Physics2D.gravity.y * fallingMultiplyer) * Time.deltaTime;
 
         HandleHP();
+        if (isGrounded)
+        {
+            jumpState = JumpState.Normal;
+        }
+        else if (myRb2D.velocity.y < 0)
+        {
+            jumpState = JumpState.Falling;
+        }
     }
 
     protected virtual void FixedUpdate()
@@ -168,7 +171,7 @@ public class Character : MonoBehaviour, IDamagable
     // Jumping
     public virtual void Jump()
     {
-        throw new NotImplementedException();
+        jumpState = JumpState.Jumping;
     }
 
     // Attack (punch)
