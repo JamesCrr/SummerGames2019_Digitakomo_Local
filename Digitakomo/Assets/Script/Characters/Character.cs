@@ -10,6 +10,12 @@ public class Character : MonoBehaviour, IDamagable
         Falling
     }
 
+    protected enum RunState
+    {
+        Normal,
+        Running
+    }
+
     // What type are we using
     [SerializeField]
     protected AttackType SelectedType = AttackType.UNKNOWN;
@@ -39,10 +45,11 @@ public class Character : MonoBehaviour, IDamagable
     [SerializeField]
     protected int extraJumps = 1;       // How many extra jumps we get, not including default
     protected int jumpsLeft = 1;
-    protected JumpState jumpState = JumpState.Normal;
     [SerializeField]
     protected float fallingMultiplyer = 2.0f;   // How much fast should this character fall
 
+    protected JumpState jumpState = JumpState.Normal;
+    protected RunState runState = RunState.Normal;
     // Unity Stuff
     protected Rigidbody2D myRb2D = null;
 
@@ -117,6 +124,15 @@ public class Character : MonoBehaviour, IDamagable
         else if (myRb2D.velocity.y < 0)
         {
             jumpState = JumpState.Falling;
+        }
+
+        if (myRb2D.velocity.x != 0)
+        {
+            runState = RunState.Running;
+        }
+        else
+        {
+            runState = RunState.Normal;
         }
     }
 
