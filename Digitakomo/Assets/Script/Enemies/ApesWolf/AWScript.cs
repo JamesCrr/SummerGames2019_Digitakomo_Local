@@ -76,6 +76,8 @@ public class AWScript : EnemyBaseClass
     [SerializeField]        // The maximum range for roaring
     float roaringRange = 1.0f;
     bool roaringDoneAnimation = false;    // Used to check if we have finished the Roaring Animation
+    List<Collider2D> listOfPlayers = new List<Collider2D>();    // Used to store the platforms that we can jump to
+    ContactFilter2D contactFilter = new ContactFilter2D();      // To prevent me calling new everytime
     #endregion
 
 
@@ -103,9 +105,9 @@ public class AWScript : EnemyBaseClass
         meleeAttackRange *= percentageDifference.x;
 
 
-        // Set up the melee hitbox
-        //meleeHitBox.center = transform.position + (Vector3)(meleeBoxOffset * transform.right);
-        //meleeHitBox.size = meleeBoxSize;
+        // Set up the contact filter
+        contactFilter.SetLayerMask(LayerMask.GetMask("Player"));
+        contactFilter.ClearDepth();
     }
 
     // Update is called once per frame
@@ -180,6 +182,7 @@ public class AWScript : EnemyBaseClass
                 {
                     if (meleeDoneAnimation)
                     {
+                        // Are we still in range? or do we need to change state
                         currentState = STATES.S_WALK;
                         meleeDoneAnimation = false;
                     }
@@ -322,7 +325,16 @@ public class AWScript : EnemyBaseClass
     // Roaring Logic
     public void Roar()
     {
+        Physics2D.OverlapCircle(myRb2D.position, roaringRange, contactFilter, listOfPlayers);
 
+        for (int i = 0; i < listOfPlayers.Count; ++i)
+        {
+            // check if position is really in range, or just collider
+            if (((Vector2)listOfPlayers[i].transform.position - myRb2D.position).sqrMagnitude > (roaringRange * roaringRange))
+                continue;
+
+            Debug.LogWarning("ROAAR DAMAGED");
+        }
     }
     public void DoneRoar()
     {
@@ -356,6 +368,9 @@ public class AWScript : EnemyBaseClass
                     if (distance < (maxShootingRange * maxShootingRange))
                     {
                         currentState = STATES.S_SHOOT;
+                        // set to charge ani
+                        StopApe();
+                        myAnimator.SetBool("mb_Shoot", true);
                         return true;
                     }
                 }
@@ -379,6 +394,9 @@ public class AWScript : EnemyBaseClass
                     if (distance < (roaringRange * roaringRange))
                     {
                         currentState = STATES.S_ROAR;
+                        // set to charge ani
+                        StopApe();
+                        myAnimator.SetBool("mb_Roar", true);
                         return true;
                     }
                 }
