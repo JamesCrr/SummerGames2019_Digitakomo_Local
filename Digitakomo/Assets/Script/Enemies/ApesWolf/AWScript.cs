@@ -54,8 +54,13 @@ public class AWScript : EnemyBaseClass
     #endregion
     #region Melee
     [Header("Melee")]
-    [SerializeField]        // The maximum range for melee
-    float meleeRange = 1.0f;
+    //[SerializeField]        // How much to offset the hitbox for melee
+    //Vector2 meleeBoxOffset = Vector2.zero;
+    //[SerializeField]        // The size of the hitbox
+    //Vector2 meleeBoxSize = Vector2.zero;
+    //Bounds meleeHitBox = new Bounds();
+    [SerializeField]         // The maximum range for melee
+    float meleeAttackRange = 1.0f;      
     bool meleeDoneAnimation = false;    // Used to check if we have finished the Melee Animation
     #endregion
     #region Charging
@@ -94,6 +99,13 @@ public class AWScript : EnemyBaseClass
         roaringRange *= percentageDifference.x;
         // Shooting
         maxShootingRange *= percentageDifference.x;
+        // Melee
+        meleeAttackRange *= percentageDifference.x;
+
+
+        // Set up the melee hitbox
+        //meleeHitBox.center = transform.position + (Vector3)(meleeBoxOffset * transform.right);
+        //meleeHitBox.size = meleeBoxSize;
     }
 
     // Update is called once per frame
@@ -129,9 +141,11 @@ public class AWScript : EnemyBaseClass
                     if(!MoveApe())
                     {
                         // set to idle
+                        StopApe();
+                        return;
                     }
                     // set to moving
-                    
+                    myAnimator.SetBool("mb_Move", true);
                 }
                 break;
             case STATES.S_CHARGE:
@@ -155,19 +169,29 @@ public class AWScript : EnemyBaseClass
             case STATES.S_SHOOT:
                 {
                     if (shootingDoneAnimation)
+                    {
                         currentState = STATES.S_WALK;
+                        shootingDoneAnimation = false;  
+                    }
+                        
                 }
                 break;
             case STATES.S_MELEE:
                 {
                     if (meleeDoneAnimation)
+                    {
                         currentState = STATES.S_WALK;
+                        meleeDoneAnimation = false;
+                    }
                 }
                 break;
             case STATES.S_ROAR:
                 {
                     if (roaringDoneAnimation)
+                    {
                         currentState = STATES.S_WALK;
+                        roaringDoneAnimation = false;   
+                    }
                 }
                 break;
         }
@@ -220,7 +244,7 @@ public class AWScript : EnemyBaseClass
     GameObject IsPlayerInRange()
     {
         // Get if we have hit anything, player or egg
-        result = Physics2D.OverlapBox(myRb2D.position, detectSize, LayerMask.GetMask("Player"));
+        result = Physics2D.OverlapBox(myRb2D.position, detectSize, 0.0f, LayerMask.GetMask("Player"));
         if (result == null)
             return null;
         if (result.gameObject.tag != "Player")
@@ -228,6 +252,16 @@ public class AWScript : EnemyBaseClass
         // check are we actually in range or we just hit the collider
         if (((Vector2)result.gameObject.transform.position - myRb2D.position).sqrMagnitude > (detectSize.x * detectSize.x))
             return null;
+        // raycast to check if we can actually go to player
+        Vector2 testDirection = (Vector2)result.gameObject.transform.position - myRb2D.position;
+        rayhit2D = Physics2D.Raycast(shootingPos.position, testDirection.normalized, 5, LayerMask.GetMask("Ground"));
+        if (rayhit2D.collider != null)  // If we hit smth, return null
+        {
+            Debug.DrawLine(shootingPos.position, (Vector2)shootingPos.position + testDirection.normalized * 5, Color.yellow);
+            return null;
+        }
+        else
+            Debug.DrawLine(shootingPos.position, (Vector2)shootingPos.position + testDirection.normalized * 5, Color.red);
 
         return result.gameObject;
     }
@@ -263,10 +297,6 @@ public class AWScript : EnemyBaseClass
         shootingDoneAnimation = true;
     }
     // Melee Logic
-    public void Melee()
-    {
-
-    }
     public void DoneMelee()
     {
         meleeDoneAnimation = true;
@@ -333,9 +363,12 @@ public class AWScript : EnemyBaseClass
             case ATTACK.A_MELEE:
                 {
                     // Can we melee?
-                    if (distance < (meleeRange * meleeRange))
+                    if (distance < (meleeAttackRange*meleeAttackRange))
                     {
                         currentState = STATES.S_MELEE;
+                        // set to charge ani
+                        StopApe();
+                        myAnimator.SetBool("mb_Melee", true);
                         return true;
                     }
                 }
@@ -378,6 +411,8 @@ public class AWScript : EnemyBaseClass
         // Shooting range
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, maxShootingRange);
+        // Melee range
+        Gizmos.DrawWireSphere(transform.position, meleeAttackRange);
         // Charging range
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, chargingRange);
@@ -387,6 +422,14 @@ public class AWScript : EnemyBaseClass
         // Ground Cast
         Gizmos.color = Color.red;
         Gizmos.DrawLine(groundCast.position, groundCast.position + (Vector3.down * groundCastLength));
+
+
+        // Melee box
+        //Vector2 newRight = transform.right;
+        //newRight.y = 1;
+        //meleeHitBox.center = transform.position + (Vector3)(meleeBoxOffset * newRight);
+        //meleeHitBox.size = meleeBoxSize;
+        //Gizmos.DrawWireCube(meleeHitBox.center, meleeHitBox.size);
     }
 
    
