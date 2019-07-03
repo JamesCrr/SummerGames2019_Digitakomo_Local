@@ -60,10 +60,10 @@ public class Egg : MonoBehaviour, IDamagable
             //SceneController.LoadEndScene(false);
         }
 
-        HandleSpriteChanged();
+        HandleStateChanged();
     }
 
-    private void HandleSpriteChanged()
+    private void HandleStateChanged()
     {
         if (oldState != damaged)
         {
