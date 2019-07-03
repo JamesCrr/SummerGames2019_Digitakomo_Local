@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -211,6 +211,10 @@ MonoBehaviour:
     amountToCreate: 5
     amountToAdd: 5
   - prefabToCreate: {fileID: 4254367193607916069, guid: a56e84186e280e7418cdb4288a2f78f8,
+      type: 3}
+    amountToCreate: 5
+    amountToAdd: 5
+  - prefabToCreate: {fileID: 5645620476696550345, guid: 9b06199f5708d434a907ffe0d0aa068b,
       type: 3}
     amountToCreate: 5
     amountToAdd: 5
@@ -434,7 +438,7 @@ MonoBehaviour:
   - enemyToSpawn: {fileID: 587125289932397903, guid: 3ac46f4e189741a4fa43831f6f59ca8e,
       type: 3}
     spawnInterval: 2
-    maxSpawnCount: 1
+    maxSpawnCount: 0
   - enemyToSpawn: {fileID: 532834790551978396, guid: aa0f83b1c4a68504b81b3b8079266c1b,
       type: 3}
     spawnInterval: 2
@@ -1088,17 +1092,17 @@ PrefabInstance:
     - target: {fileID: 587125289932397903, guid: 3ac46f4e189741a4fa43831f6f59ca8e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4833850053245090065, guid: 3ac46f4e189741a4fa43831f6f59ca8e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -47.24
+      value: 1.45
       objectReference: {fileID: 0}
     - target: {fileID: 4833850053245090065, guid: 3ac46f4e189741a4fa43831f6f59ca8e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.47
+      value: 1.87
       objectReference: {fileID: 0}
     - target: {fileID: 4833850053245090065, guid: 3ac46f4e189741a4fa43831f6f59ca8e,
         type: 3}

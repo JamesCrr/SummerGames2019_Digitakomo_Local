@@ -49,6 +49,7 @@ public class StatusEffectManager
         if (activeStatus.ContainsKey(key))
         {
             activeStatus[key].onReApply();
+            newEffect.gameObject.SetActive(false);
             return false;
         }
         // Not in dictionary, so add
@@ -61,5 +62,22 @@ public class StatusEffectManager
     public bool EffectAlreadyIn(string key)
     {
         return activeStatus.ContainsKey(key);
+    }
+
+
+    // Function to remove all status effects in the next update
+    public void RemoveAllStatusEffects()
+    {
+        // Update each status
+        foreach (KeyValuePair<string, BaseStatusEffect> item in activeStatus)
+        {
+            // Call onLeaves
+            item.Value.onLeave();
+            // Set the timer to -1, so onLeave won't be called second time
+            item.Value.SetToDone();
+
+            // Remove from the Dictionary by adding to list of toBeRemoved
+            toBeRemoved.Add(item.Key);
+        }
     }
 }

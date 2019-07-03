@@ -37,6 +37,8 @@ public abstract class EnemyBaseClass : MonoBehaviour
     protected Animator myAnimator = null; // Animator
     protected Vector2 moveTargetPos = Vector2.zero;
     protected Vector2 moveDirection = Vector2.zero;
+    [SerializeField]
+    Transform feetPosition = null;
 
 
     // Init Function for general components
@@ -122,17 +124,34 @@ public abstract class EnemyBaseClass : MonoBehaviour
 
         hp += modifyAmt;
         if (hp < 1)
+        {
+            // Remove all status effects
+            seManager.RemoveAllStatusEffects();
             gameObject.SetActive(false);
+        }
     }
     // Returns Hp
     public float GetCurrentHP()
     {
         return hp;
     }
+    // Returns Bool if enemy has died
+    public bool IsDead()
+    {
+        if (hp <= 0)
+            return true;
+        return false;
+    }
 
     // Modify the Animator's Speed
     public void SetAnimatorSpeed(float newSpeed)
     {
         myAnimator.speed = newSpeed;
+    }
+
+    // Returns the Feet Position
+    public Vector3 GetFeetPosition()
+    {
+        return feetPosition.position;
     }
 }

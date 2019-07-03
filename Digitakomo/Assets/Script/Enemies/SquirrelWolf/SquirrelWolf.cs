@@ -145,7 +145,7 @@ public class SquirrelWolf : EnemyBaseClass
     {
         // Status Effects
         seManager.Update();
-        //return;
+        return;
         // if I am frozen, return
         if (isFrozen)
             return;
@@ -1013,7 +1013,7 @@ public class SquirrelWolf : EnemyBaseClass
         if(!isJumped)
             myAnimator.SetTrigger("mt_Fall2Idle");
     }
-    // Frozen Logix
+    // Frozen Logic
     public void SetFrozen(bool frozen)
     {
         isFrozen = frozen;
@@ -1058,6 +1058,12 @@ public class SquirrelWolf : EnemyBaseClass
                 return;
             // Add new status effect
             seManager.AddEffect("SW_FrozenSE", ObjectPooler.Instance.FetchGO_Pos("SW_FrozenSE", myRb2D.position).GetComponent<BaseStatusEffect>(), this);
+        }
+        // if special Fire attack
+        else if(type == AttackType.FIRE)
+        {
+            // Add new status effect
+            seManager.AddEffect("SW_BurningSE", ObjectPooler.Instance.FetchGO_Pos("SW_BurningSE", myRb2D.position).GetComponent<BaseStatusEffect>(), this);
         }
 
         // Damage
