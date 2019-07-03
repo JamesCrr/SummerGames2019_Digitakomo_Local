@@ -163,8 +163,8 @@ MonoBehaviour:
   attackMethod: 1
   playerDetectionRange: 4
   sideTopDetect:
-    detectOffset: {x: 1.58, y: 0.84}
-    detectSize: {x: 2.41, y: 6.88}
+    detectOffset: {x: 2.34, y: 0.84}
+    detectSize: {x: 3.4, y: 6.88}
   bottomDetect:
     detectOffset: {x: 2.57, y: -2.96}
     detectSize: {x: 3.03, y: 4.17}

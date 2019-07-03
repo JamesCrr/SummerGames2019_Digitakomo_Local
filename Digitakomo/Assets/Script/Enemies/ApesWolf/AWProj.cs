@@ -28,9 +28,10 @@ public class AWProj : MonoBehaviour
                     frozen = true;
                 }
             }
-            if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+            else if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
             {
                 collision.gameObject.GetComponent<IDamagable>().TakeDamage(1);
+                gameObject.SetActive(false);
             }
             return;
         }
