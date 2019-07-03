@@ -36,15 +36,6 @@ public class IceCharacter : Character
         GetAttackDirection();
     }
 
-
-    // Flip Player when changing direction
-    void Flip()
-    {
-        // Clear the existing Velocity
-        myRb2D.velocity = myRb2D.velocity * 0.4f;
-    }
-
-
     // Player moving
     public override void MoveHorizontal()
     {

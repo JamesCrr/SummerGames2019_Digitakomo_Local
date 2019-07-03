@@ -137,6 +137,14 @@ public class Character : MonoBehaviour, IDamagable
     {
         throw new NotImplementedException();
     }
+
+    // Flip Player when changing direction
+    protected void Flip()
+    {
+        // Clear the existing Velocity
+        myRb2D.velocity = new Vector2(myRb2D.velocity.x * 0.4f, myRb2D.velocity.y);
+    }
+
     // Jumping
     public virtual void Jump()
     {

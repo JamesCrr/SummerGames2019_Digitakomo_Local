@@ -44,18 +44,13 @@ public class FireCharacter : Character
 
         // Check if we can continue to accelerate
         if (horizontalInput * myRb2D.velocity.x < maxMoveSpeed)
+        {
             myRb2D.AddForce(Vector2.right * horizontalInput * moveAcceleration * Time.deltaTime);
+        }
 
         // Clamp the speed within the maxMoveSpeed
         if (Mathf.Abs(myRb2D.velocity.x) > maxMoveSpeed)
             myRb2D.velocity = new Vector2(Mathf.Sign(myRb2D.velocity.x) * maxMoveSpeed, myRb2D.velocity.y);
-    }
-
-    // Flip Player when changing direction
-    void Flip()
-    {
-        // Clear the existing Velocity
-        myRb2D.velocity = myRb2D.velocity * 0.4f;
     }
 
     public override void Jump()
