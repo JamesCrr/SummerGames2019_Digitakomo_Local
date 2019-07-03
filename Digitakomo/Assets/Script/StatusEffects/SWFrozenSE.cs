@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SQFrozenSE : BaseStatusEffect
+public class SWFrozenSE : BaseStatusEffect
 {
+    [Header("SWFrozenSE")]
     [SerializeField]
     float slideFactor = 2.5f;
     // Is the ice currently moving?
@@ -88,9 +89,8 @@ public class SQFrozenSE : BaseStatusEffect
     {
         // remove enemy from child list
         enemyClass.gameObject.transform.parent = null;
-        // Deactive self
+        // Disable Collider
         GetComponent<Collider2D>().enabled = false;
-        transform.gameObject.SetActive(false);
             
         // Reenable the Enemy's collider and rigidbody
         enemyClass.gameObject.GetComponent<Collider2D>().enabled = true;

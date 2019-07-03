@@ -26,13 +26,19 @@ public abstract class BaseStatusEffect : MonoBehaviour
         return true;
     }
 
-    public virtual void onLeave()   // Reset Timer
+    public virtual void onLeave()   // Reset Timer and Disable GameObject
     {
         effectTimer = effectDuration;
+        gameObject.SetActive(false);
     }
 
     public virtual void onReApply()  // Reset Timer
     {
         effectTimer = effectDuration;
+    }
+
+    public void SetToDone()     // Sets the Timer to -1, so won't update anymore
+    {
+        effectTimer = -1.0f;
     }
 }
