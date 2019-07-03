@@ -6,9 +6,12 @@ public class FireCharacter : Character
     public FlameProjectile flameThrower;
     private float SpecialFireRate;
 
+    private Color defaultColor;
+
     // Start is called before the first frame update
     void Start()
     {
+        defaultColor = GetComponent<SpriteRenderer>().color;
         SpecialFireRate = flameThrower.firerate;
         enerygyPerSpecialAttack = flameThrower.enerygyPerSpecialAttack;
     }
@@ -26,6 +29,12 @@ public class FireCharacter : Character
             }
         }
         GetAttackDirection();
+
+        if (myRb2D.velocity.y < 0)
+        {
+            GetComponent<SpriteRenderer>().color = defaultColor;
+            GetComponentInChildren<FireRocket>().SetEnabled(false);
+        }
     }
 
     public override void MoveHorizontal()
@@ -61,6 +70,11 @@ public class FireCharacter : Character
         else if (jumpsLeft >= 0 && isGrounded)  // Grounded, so reset jumps
             jumpsLeft = extraJumps + 1;
 
+        if (GetAttackType() == AttackType.FIRE && jumpsLeft == 1)
+        {
+            GetComponentInChildren<FireRocket>().SetEnabled(true);
+            GetComponent<SpriteRenderer>().color = Color.red;
+        }
         // Jump
         myRb2D.velocity = Vector2.up * jumpAcceleration;
 
@@ -185,5 +199,15 @@ public class FireCharacter : Character
             return false;
         }
         return true;
+    }
+
+    protected override void OnCollisionEnter2D(Collision2D collision)
+    {
+        base.OnCollisionEnter2D(collision);
+
+        if(collision.gameObject.GetComponent<IcePlatform>() != null)
+        {
+            jumpsLeft = extraJumps + 1;
+        }
     }
 }
