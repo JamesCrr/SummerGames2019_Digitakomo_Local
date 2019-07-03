@@ -172,11 +172,12 @@ MonoBehaviour:
   moveSpeed: 1
   attackTime: 2
   currentState: 0
-  currentAttack: 3
+  currentAttack: 1
   detectSize: {x: 31.16, y: 5.4}
   groundCast: {fileID: 8961677134733221825}
   groundCastLength: 0.11
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 4049318814418281169, guid: 80c7819747c5fd74292373cd0b850ae8,
+    type: 3}
   shootingPos: {fileID: 278269064420423184}
   maxShootingRange: 15
   timeToHitTarget: 1
@@ -209,7 +210,7 @@ GameObject:
   - component: {fileID: 4636596406295913658}
   - component: {fileID: 7542204532930828163}
   - component: {fileID: 6308687988076008720}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: mc1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -307,7 +308,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6539410108309887325}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: MeleeColliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}

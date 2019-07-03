@@ -7,27 +7,23 @@ public class SquirrelWolf_Proj : MonoBehaviour
     [SerializeField]
     float MaxDamage = 30f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // If we are colliding with enemy, don't anyting
         if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyProj")
             return;
 
-        // If we collide with fire projectile, then destroy self
+        // If collide with playerProjectiles
+        if (collision.gameObject.tag == "PlayerProj")
+        {
+            // If we collide with fire projectile, then destroy 
+            Weapon weapon = collision.gameObject.GetComponent<Weapon>();
+            if (weapon.at == AttackType.FIRE)
+            {
+                gameObject.SetActive(false);
+            }
+        }
+
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {

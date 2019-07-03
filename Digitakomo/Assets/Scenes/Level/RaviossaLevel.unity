@@ -472,7 +472,7 @@ PrefabInstance:
     - target: {fileID: 5361162089265866992, guid: aa0f83b1c4a68504b81b3b8079266c1b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.91
+      value: -17.95
       objectReference: {fileID: 0}
     - target: {fileID: 5361162089265866992, guid: aa0f83b1c4a68504b81b3b8079266c1b,
         type: 3}
@@ -523,21 +523,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6242723550740004439, guid: aa0f83b1c4a68504b81b3b8079266c1b,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6242723550740004439, guid: aa0f83b1c4a68504b81b3b8079266c1b,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6242723550740004439, guid: aa0f83b1c4a68504b81b3b8079266c1b,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa0f83b1c4a68504b81b3b8079266c1b, type: 3}
@@ -1932,11 +1917,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: IceCharacter
       objectReference: {fileID: 0}
-    - target: {fileID: 7883997970962599787, guid: 774623a0001b6e9478d7f2c375c10007,
-        type: 3}
-      propertyPath: maxMoveSpeed
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 7883997970962599784, guid: 774623a0001b6e9478d7f2c375c10007,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1991,6 +1971,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7883997970962599787, guid: 774623a0001b6e9478d7f2c375c10007,
+        type: 3}
+      propertyPath: maxMoveSpeed
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 774623a0001b6e9478d7f2c375c10007, type: 3}
@@ -2452,10 +2437,10 @@ Transform:
   - {fileID: 457317642}
   - {fileID: 1326020340}
   - {fileID: 414257393}
-  - {fileID: 1114693136}
+  - {fileID: 350637641}
   - {fileID: 1168143948}
   - {fileID: 1973210596}
-  - {fileID: 350637641}
+  - {fileID: 1114693136}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
