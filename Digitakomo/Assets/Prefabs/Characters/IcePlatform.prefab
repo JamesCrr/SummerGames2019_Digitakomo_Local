@@ -126,7 +126,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
-  DropSpeed: 0.2
+  DropSpeed: 1
 --- !u!50 &5342788332502284205
 Rigidbody2D:
   serializedVersion: 4
