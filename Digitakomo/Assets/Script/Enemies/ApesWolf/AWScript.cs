@@ -102,6 +102,7 @@ public class AWScript : EnemyBaseClass
         roaringRange *= percentageDifference.x;
         // Shooting
         maxShootingRange *= percentageDifference.x;
+        timeToHitTarget = 1 / timeToHitTarget;
         // Melee
         meleeAttackRange *= percentageDifference.x;
 

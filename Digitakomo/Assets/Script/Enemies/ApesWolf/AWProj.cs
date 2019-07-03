@@ -4,28 +4,43 @@ using UnityEngine;
 
 public class AWProj : MonoBehaviour
 {
+    bool frozen = false;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // If we are colliding with enemy, don't anyting
         if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyProj")
             return;
 
-        // If collide with playerProjectiles
-        if (collision.gameObject.tag == "PlayerProj")
+        if (!frozen)
         {
-            // If we collide with Ice projectile, then Freeze and drop 
-            Weapon weapon = collision.gameObject.GetComponent<Weapon>();
-            if (weapon.at == AttackType.ICE)
+            // If collide with playerProjectiles
+            if (collision.gameObject.tag == "PlayerProj")
             {
-                gameObject.SetActive(false);
+                // If we collide with Ice projectile, then Freeze and drop 
+                Weapon weapon = collision.gameObject.GetComponent<Weapon>();
+                if (weapon.at == AttackType.ICE)
+                {
+                    //gameObject.SetActive(false);
+
+                    GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                    GetComponent<Rigidbody2D>().isKinematic = false;
+                    frozen = true;
+                }
             }
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+            {
+                collision.gameObject.GetComponent<IDamagable>().TakeDamage(1);
+            }
+            return;
         }
 
-
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        // if we hit the ground
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            collision.gameObject.GetComponent<IDamagable>().TakeDamage(1);
+            GetComponent<Rigidbody2D>().isKinematic = true;
+            gameObject.SetActive(false);
+            frozen = false;
         }
-        gameObject.SetActive(false);
     }
 }
