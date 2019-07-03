@@ -12,6 +12,13 @@ public class Egg : MonoBehaviour, IDamagable
         Level4
     }
     protected Damaged damaged = Damaged.Normal;
+    protected Damaged oldState = Damaged.Normal;
+
+    public Sprite Normal;
+    public Sprite Level1;
+    public Sprite Level2;
+    public Sprite Level3;
+    public Sprite Level4;
 
     // Instance
     public static Egg Instance = null;
@@ -52,15 +59,45 @@ public class Egg : MonoBehaviour, IDamagable
         {
             //SceneController.LoadEndScene(false);
         }
+
+        HandleSpriteChanged();
+    }
+
+    private void HandleSpriteChanged()
+    {
+        if (oldState != damaged)
+        {
+            switch (damaged)
+            {
+                case Damaged.Normal: GetComponentInChildren<SpriteRenderer>().sprite = Normal; break;
+                case Damaged.Level1: GetComponentInChildren<SpriteRenderer>().sprite = Level1; break;
+                case Damaged.Level2: GetComponentInChildren<SpriteRenderer>().sprite = Level2; break;
+                case Damaged.Level3: GetComponentInChildren<SpriteRenderer>().sprite = Level3; break;
+                case Damaged.Level4: GetComponentInChildren<SpriteRenderer>().sprite = Level4; break;
+            }
+            oldState = damaged;
+        }
     }
 
     public void TakeDamage(float damage)
     {
         HP -= damage;
-        if (GetHPPercentage() <= 50) damaged = Damaged.Level1;
-        if (GetHPPercentage() <= 40) damaged = Damaged.Level2;
-        if (GetHPPercentage() <= 20) damaged = Damaged.Level3;
-        if (GetHPPercentage() <= 10) damaged = Damaged.Level4;
+        if (GetHPPercentage() <= 50)
+        {
+            damaged = Damaged.Level1;
+        }
+        if (GetHPPercentage() <= 40)
+        {
+            damaged = Damaged.Level2;
+        }
+        if (GetHPPercentage() <= 20)
+        {
+            damaged = Damaged.Level3;
+        }
+        if (GetHPPercentage() <= 10)
+        {
+            damaged = Damaged.Level4;
+        }
     }
 
     public float GetHPPercentage()

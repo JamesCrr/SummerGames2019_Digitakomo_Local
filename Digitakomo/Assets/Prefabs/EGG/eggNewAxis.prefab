@@ -47,6 +47,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81b2b09e98305f4489801d7b48ed7c38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Normal: {fileID: 21300000, guid: 8286dd2cfebd5ba45b9de9479bdd1778, type: 3}
+  Level1: {fileID: 21300000, guid: 9aadc865ade365b498ab158d02898b71, type: 3}
+  Level2: {fileID: 21300000, guid: 7e2dfa4d2929d0145afeefbc6fcb57cc, type: 3}
+  Level3: {fileID: 21300000, guid: d9c8332ac3214ed418251a9a9c501205, type: 3}
+  Level4: {fileID: 21300000, guid: 09d95f9aade952a4ea02b634d9018c90, type: 3}
   MaxHP: 1000
   WarnPercentage: 30
 --- !u!114 &5564329208149722481
@@ -207,7 +212,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.78, y: 3.3}
+    oldSize: {x: 3.79, y: 3.3}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
