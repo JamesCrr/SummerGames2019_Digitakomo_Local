@@ -404,7 +404,7 @@ MonoBehaviour:
   whatIsItem:
     serializedVersion: 2
     m_Bits: 8192
-  extraJumps: 1
+  extraJumps: 2
   fallingMultiplyer: 2
   MaxHP: 500
   MaxEnergy: 200
