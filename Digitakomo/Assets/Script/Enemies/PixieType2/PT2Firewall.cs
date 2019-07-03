@@ -13,8 +13,7 @@ public class PT2Firewall : MonoBehaviour
         {
             // if hit by fire projectile
             Weapon weapon = collision.gameObject.GetComponent<Weapon>();
-            Debug.Log(weapon.at);
-            if (weapon.at == AttackType.ICE)
+            if (weapon.GetMainType() == AttackType.ICE)
             {
                 gameObject.SetActive(false);
             }
