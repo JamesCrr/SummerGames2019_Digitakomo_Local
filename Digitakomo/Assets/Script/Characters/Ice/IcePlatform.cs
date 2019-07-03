@@ -8,7 +8,6 @@ public class IcePlatform : Weapon
     private Collider2D _collider;
 
     private float createdTime;
-    private float preventFallTime = 0f;
 
     public float DropSpeed = 0.2f;
     Rigidbody2D ice_rb;
@@ -27,10 +26,6 @@ public class IcePlatform : Weapon
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (Time.time < createdTime + preventFallTime)
-        {
-            return;
-        }
         if (collision.gameObject.GetComponent<IceCharacter>() != null)
         {
             ice_rb.isKinematic = false;
