@@ -9,6 +9,8 @@ public class AWScript : EnemyBaseClass
     public enum STATES
     {
         S_WALK,
+        S_WALKRAND,
+
         S_CHARGE,
         S_SHOOT,
         S_MELEE,
@@ -153,6 +155,17 @@ public class AWScript : EnemyBaseClass
                     }
                     // set to moving
                     myAnimator.SetBool("mb_Move", true);
+                }
+                break;
+            case STATES.S_WALKRAND:
+                {
+                    // Found a random position before here
+
+                    // Walk towards it
+
+                    // Check player
+
+                    // Once reach, walk back to egg.
                 }
                 break;
             case STATES.S_CHARGE:
