@@ -6,12 +6,9 @@ public class FireCharacter : Character
     public FlameProjectile flameThrower;
     private float SpecialFireRate;
 
-    private Color defaultColor;
-
     // Start is called before the first frame update
     void Start()
     {
-        defaultColor = GetComponent<SpriteRenderer>().color;
         SpecialFireRate = flameThrower.firerate;
         enerygyPerSpecialAttack = flameThrower.enerygyPerSpecialAttack;
     }
@@ -29,10 +26,20 @@ public class FireCharacter : Character
             }
         }
         GetAttackDirection();
-
-        if (myRb2D.velocity.y < 0)
+        
+        if (isGrounded)
         {
-            GetComponent<SpriteRenderer>().color = defaultColor;
+            if (jumpState == JumpState.Falling)
+            {
+                Animate.SetBool("f_Falling", false);
+                Animate.SetTrigger("f_Fall2Idle");
+            }
+            jumpState = JumpState.Normal;
+        }
+        else if (myRb2D.velocity.y < 0)
+        {
+            jumpState = JumpState.Falling;
+            Animate.SetBool("f_Falling", true);
             GetComponentInChildren<FireRocket>().SetEnabled(false);
         }
     }
@@ -40,6 +47,7 @@ public class FireCharacter : Character
     public override void Jump()
     {
         base.Jump();
+        Animate.SetTrigger("f_Jump");
         // No more jumps left and still not grounded
         if (jumpsLeft <= 0 && !isGrounded)
             return;
@@ -49,7 +57,6 @@ public class FireCharacter : Character
         if (GetAttackType() == AttackType.FIRE && jumpsLeft == 1)
         {
             GetComponentInChildren<FireRocket>().SetEnabled(true);
-            GetComponent<SpriteRenderer>().color = Color.red;
         }
         // Jump
         myRb2D.velocity = Vector2.up * jumpAcceleration;

@@ -256,6 +256,7 @@ GameObject:
   - component: {fileID: 5889246350433142837}
   - component: {fileID: 987093061474634049}
   - component: {fileID: 8518456384201068771}
+  - component: {fileID: 872955862779810576}
   m_Layer: 10
   m_Name: FireCharacter
   m_TagString: Player
@@ -407,12 +408,30 @@ MonoBehaviour:
   fallingMultiplyer: 2
   MaxHP: 500
   MaxEnergy: 200
-  MPRestore: 0.5
   electricAttack: 0
   PunchRate: 0.1
   player: 1
   flameThrower: {fileID: 7881657545065886293, guid: 83cfcb08460dfcd47b3df5982aec4950,
     type: 3}
+--- !u!95 &872955862779810576
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5324440216470088059}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0f20f6d1c7c0fbb4c93a320816c7f376, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6389970456044040348
 GameObject:
   m_ObjectHideFlags: 0

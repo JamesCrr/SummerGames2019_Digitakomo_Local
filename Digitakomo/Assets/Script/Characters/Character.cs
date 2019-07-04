@@ -90,7 +90,7 @@ public class Character : MonoBehaviour, IDamagable
     protected float NextSpecialFire;
 
     // Animation
-    private Animator Animate;
+    protected Animator Animate;
     protected JumpState jumpState = JumpState.Normal;
     protected RunState runState = RunState.Normal;
     protected AttackState attackState = AttackState.Normal;
@@ -100,7 +100,6 @@ public class Character : MonoBehaviour, IDamagable
 
     // Current velocity
     protected Vector2 currentVelocity;
-
 
     // Start is called before the first frame update
     void Awake()
@@ -133,14 +132,7 @@ public class Character : MonoBehaviour, IDamagable
 
         HandleHP();
 
-        if (isGrounded)
-        {
-            jumpState = JumpState.Normal;
-        }
-        else if (myRb2D.velocity.y < 0)
-        {
-            jumpState = JumpState.Falling;
-        }
+        
 
         if (myRb2D.velocity.x != 0)
         {
