@@ -26,7 +26,7 @@ public class FireCharacter : Character
             }
         }
         GetAttackDirection();
-        
+
         if (isGrounded)
         {
             if (jumpState == JumpState.Falling)
@@ -67,14 +67,19 @@ public class FireCharacter : Character
 
     public override void Attack()
     {
-        if (NextPunch <= Time.time)
-        {
-            NextPunch = Time.time + PunchRate;
-        }
+        attackState = AttackState.Attacking;
+        Animate.SetBool("f_MaleeAttack", true);
+    }
+
+    protected override void DoneAttack()
+    {
+        attackState = AttackState.Attacked;
+        Animate.SetBool("f_MaleeAttack", false);
     }
 
     public override void SpecialAttack()
     {
+        Animate.SetBool("f_SpecialAttack", true);
         int direction = GetAttackDirection();
         Vector3 createdPositon = GetCreatePosition();
         bool isCreated = GetIsCreated();
@@ -124,6 +129,11 @@ public class FireCharacter : Character
             NextSpecialFire = Time.time + SpecialFireRate;
         }
 
+    }
+
+    protected override void DoneSpecialAttack()
+    {
+        Animate.SetBool("f_SpecialAttack", false);
     }
 
     private Vector3 GetCreatePosition()
@@ -188,7 +198,7 @@ public class FireCharacter : Character
     {
         base.OnCollisionEnter2D(collision);
 
-        if(collision.gameObject.GetComponent<IcePlatform>() != null)
+        if (collision.gameObject.GetComponent<IcePlatform>() != null)
         {
             jumpsLeft = extraJumps + 1;
         }

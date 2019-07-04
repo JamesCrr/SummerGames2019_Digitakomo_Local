@@ -21,15 +21,15 @@ public class Character : MonoBehaviour, IDamagable
     // Animation stuff
     protected enum AttackState
     {
-        Normal,
-        Attacking
+        Attacking,
+        Attacked
     }
 
     // Animation stuff
     protected enum SpecialAttackState
     {
-        Normal,
-        Attacking
+        Attacking,
+        Attacked
     }
 
     // What type are we using
@@ -93,8 +93,8 @@ public class Character : MonoBehaviour, IDamagable
     protected Animator Animate;
     protected JumpState jumpState = JumpState.Normal;
     protected RunState runState = RunState.Normal;
-    protected AttackState attackState = AttackState.Normal;
-    protected SpecialAttackState specialAttackState = SpecialAttackState.Normal;
+    protected AttackState attackState = AttackState.Attacked;
+    protected SpecialAttackState specialAttackState = SpecialAttackState.Attacked;
 
     public int player = 1;
 
@@ -132,7 +132,7 @@ public class Character : MonoBehaviour, IDamagable
 
         HandleHP();
 
-        
+
 
         if (myRb2D.velocity.x != 0)
         {
@@ -143,22 +143,13 @@ public class Character : MonoBehaviour, IDamagable
             runState = RunState.Normal;
         }
 
-        if (IsAttacking)
-        {
-            attackState = AttackState.Attacking;
-        }
-        else
-        {
-            attackState = AttackState.Normal;
-        }
-
         if (IsSpecialAttacking)
         {
             specialAttackState = SpecialAttackState.Attacking;
         }
         else
         {
-            specialAttackState = SpecialAttackState.Normal;
+            specialAttackState = SpecialAttackState.Attacked;
         }
     }
 
@@ -167,7 +158,9 @@ public class Character : MonoBehaviour, IDamagable
         currentVelocity = myRb2D.velocity;
         CheckGrounded();
         if (IsAttacking)
+        {
             Attack();
+        }
         if (IsSpecialAttacking)
             SpecialAttack();
     }
@@ -366,24 +359,32 @@ public class Character : MonoBehaviour, IDamagable
 
         if (InputManager.GetButtonDown("Player" + player + "Attack"))
         {
-            IsAttacking = true;
-            NextPunch = Time.time;
-            AttackCollider.enabled = true;
+            Attack();
         }
         else if (InputManager.GetButtonUp("Player" + player + "Attack"))
         {
-            IsAttacking = false;
-            AttackCollider.enabled = false;
+            DoneAttack();
         }
         if (InputManager.GetButtonDown("Player" + player + "SpecialAttack"))
         {
-            IsSpecialAttacking = true;
+            SpecialAttack();
             NextSpecialFire = Time.time;
         }
         else if (InputManager.GetButtonUp("Player" + player + "SpecialAttack"))
         {
+            DoneSpecialAttack();
             IsSpecialAttacking = false;
         }
+    }
+
+    protected virtual void DoneAttack()
+    {
+        throw new NotImplementedException();
+    }
+
+    protected virtual void DoneSpecialAttack()
+    {
+        throw new NotImplementedException();
     }
 
     private void HandleHP()
