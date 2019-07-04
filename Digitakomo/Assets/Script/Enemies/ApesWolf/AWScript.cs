@@ -496,6 +496,30 @@ public class AWScript : EnemyBaseClass
 
 
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // Only accepts projectiles from players
+        if (collision.gameObject.tag != "PlayerProj")
+            return;
+
+        Weapon weapon = collision.gameObject.GetComponent<Weapon>();
+        AttackType type = weapon.at;
+
+        // if special Ice attack
+        if (type == AttackType.ICE)
+        {
+           
+        }
+        // if special Fire attack
+        else if (type == AttackType.FIRE)
+        {
+            
+        }
+
+        // Damage
+        ModifyHealth(-weapon.GetActualDamage());
+    }
+
     private void OnDrawGizmos()
     {
         // Player Detect Range
