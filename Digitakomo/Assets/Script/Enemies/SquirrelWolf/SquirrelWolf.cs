@@ -185,12 +185,8 @@ public class SquirrelWolf : EnemyBaseClass
                         return;
 
                     // Is a player in range?
-                    targetObject = IsPlayerInRange();
-                    if (targetObject != null)    // Found Player
-                    {
-                        currentState = STATES.S_FOUNDPLAYER;
+                    if (IsPlayerInRange())
                         return;
-                    }
 
 
                     // set the position of egg and move there
@@ -252,12 +248,8 @@ public class SquirrelWolf : EnemyBaseClass
             case STATES.S_EGG_DIFFERENTHEIGHT:
                 {
                     // Is a player in range?
-                    targetObject = IsPlayerInRange();
-                    if (targetObject != null)    // Found Player
-                    {
-                        currentState = STATES.S_FOUNDPLAYER;
+                    if (IsPlayerInRange())
                         return;
-                    }
 
                     // set the target as egg
                     SetNewObjectTarget(Egg.Instance.gameObject);
@@ -300,12 +292,8 @@ public class SquirrelWolf : EnemyBaseClass
             case STATES.S_EGG_ONTOP:    // When we enter this state, we should already have a target to move to
                 {
                     // Is a player in range?
-                    targetObject = IsPlayerInRange();
-                    if (targetObject != null)    // Found Player
-                    {
-                        currentState = STATES.S_FOUNDPLAYER;
+                    if (IsPlayerInRange())
                         return;
-                    }
 
                     // Keep moving until we can't move anymore,
                     // then jump
@@ -326,12 +314,8 @@ public class SquirrelWolf : EnemyBaseClass
             case STATES.S_WALKBACK:
                 {
                     // Is a player in range?
-                    targetObject = IsPlayerInRange();
-                    if (targetObject != null)    // Found Player
-                    {
-                        currentState = STATES.S_FOUNDPLAYER;
+                    if (IsPlayerInRange())
                         return;
-                    }
 
                     // Move enemy
                     if (!MoveWolf())
@@ -356,11 +340,8 @@ public class SquirrelWolf : EnemyBaseClass
                         if (playerAttackedWolf)
                         {
                             // Is a player in range?
-                            targetObject = IsPlayerInRange();
-                            // Is any player in range?
-                            if (targetObject != null)   // We found a player in range, Might not be the one who fired the shot
-                            {
-                                currentState = STATES.S_FOUNDPLAYER;
+                            if (IsPlayerInRange())
+                            { 
                                 SetNewObjectTarget(targetObject);
                             }
                             else
@@ -396,11 +377,8 @@ public class SquirrelWolf : EnemyBaseClass
                         if (playerAttackedWolf)
                         {
                             // Is a player in range?
-                            targetObject = IsPlayerInRange();
-                            // Is any player in range?
-                            if (targetObject != null)   // We found a player in range, Might not be the one who fired the shot
+                            if (IsPlayerInRange())  // We found a player in range, Might not be the one who fired the shot
                             {
-                                currentState = STATES.S_FOUNDPLAYER;
                                 SetNewObjectTarget(targetObject);
                             }
                             else
@@ -641,10 +619,11 @@ public class SquirrelWolf : EnemyBaseClass
         }
     }
 
-    // Returns the player Object if he is in Range
+    // Returns bool if player is in Range
     // Player must be in Player Layer and Tag
     // Does not count EGG as player
-    GameObject IsPlayerInRange()
+    // Also changes state for you
+    bool IsPlayerInRange()
     {
         // Get if we have hit anything, player or egg
         Physics2D.OverlapCircle(myRb2D.position, playerDetectionRange, playerFilter, listOfPlayers);
@@ -671,10 +650,13 @@ public class SquirrelWolf : EnemyBaseClass
                 Debug.DrawLine(shootingPos.position, (Vector2)shootingPos.position + testDirection.normalized * sideTopDetect.detectSize.y, Color.red);
 
 
-            return result.gameObject;
+            targetObject = result.gameObject;
+            currentState = STATES.S_FOUNDPLAYER;
+            StopVel();
+            return true;
         }
 
-        return null;
+        return false;
     }
     // Returns if target object is still in range
     bool IsTargetObjStillInRange(ref float distanceReturned)

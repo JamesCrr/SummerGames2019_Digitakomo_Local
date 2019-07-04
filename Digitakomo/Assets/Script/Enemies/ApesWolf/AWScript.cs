@@ -57,11 +57,6 @@ public class AWScript : EnemyBaseClass
     #endregion
     #region Melee
     [Header("Melee")]
-    //[SerializeField]        // How much to offset the hitbox for melee
-    //Vector2 meleeBoxOffset = Vector2.zero;
-    //[SerializeField]        // The size of the hitbox
-    //Vector2 meleeBoxSize = Vector2.zero;
-    //Bounds meleeHitBox = new Bounds();
     [SerializeField]         // The maximum range for melee
     float meleeAttackRange = 1.0f;      
     bool meleeDoneAnimation = false;    // Used to check if we have finished the Melee Animation
@@ -495,6 +490,30 @@ public class AWScript : EnemyBaseClass
     #endregion
 
 
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // Only accepts projectiles from players
+        if (collision.gameObject.tag != "PlayerProj")
+            return;
+
+        Weapon weapon = collision.gameObject.GetComponent<Weapon>();
+        AttackType type = weapon.at;
+
+        // if special Ice attack
+        if (type == AttackType.ICE)
+        {
+           
+        }
+        // if special Fire attack
+        else if (type == AttackType.FIRE)
+        {
+            
+        }
+
+        // Damage
+        ModifyHealth(-weapon.GetActualDamage());
+    }
 
     private void OnDrawGizmos()
     {
