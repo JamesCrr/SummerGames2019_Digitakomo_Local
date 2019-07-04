@@ -11,12 +11,12 @@ public class PT2Firewall : MonoBehaviour
     {
         if (collision.gameObject.tag == "PlayerProj")
         {
-            // if hit by fire projectile
+            // if hit by fire projectile, do nothing
             Weapon weapon = collision.gameObject.GetComponent<Weapon>();
-            if (weapon.GetMainType() == AttackType.ICE)
-            {
-                gameObject.SetActive(false);
-            }
+            if (weapon.GetMainType() == AttackType.FIRE)
+                return;
+
+            gameObject.SetActive(false);
         }
         // hit player
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))

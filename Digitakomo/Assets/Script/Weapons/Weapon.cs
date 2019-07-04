@@ -21,6 +21,12 @@ public abstract class Weapon : MonoBehaviour
             // Unknown
             case AttackType.UNKNOWN:
                 return AttackType.UNKNOWN;
+            // Normal
+            case AttackType.Normal:
+                return AttackType.Normal;
+            // Electric
+            case AttackType.Electric:
+                return AttackType.Electric;
             // Ice
             case AttackType.ICE:
             case AttackType.ICE_JUMP:

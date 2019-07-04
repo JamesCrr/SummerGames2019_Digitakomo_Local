@@ -229,8 +229,8 @@ public class PT2Script : EnemyBaseClass
 
         Weapon weapon = collision.gameObject.GetComponent<Weapon>();
         AttackType type = weapon.at;
-        // if Fire
-        if (type == AttackType.FIRE || type == AttackType.FIRE_JUMP)
+        // if Fire, eletric or normal
+        if (type == AttackType.FIRE || type == AttackType.FIRE_JUMP || type == AttackType.Electric || type == AttackType.Normal)
             return;
 
         // One Hit Kill

@@ -38,12 +38,22 @@ public class PixieType1ProjectileScript : MonoBehaviour
         // Spawn new Puddle if hit groud
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
             ObjectPooler.Instance.FetchGO_Pos("PT1_PuddleProj", transform.position);
-
         // hit player
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        else if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             collision.gameObject.GetComponent<IDamagable>().TakeDamage(Random.Range(MinDamage, MaxDamage));
+        } 
+        // hit player projectile
+        else if(collision.gameObject.tag != "PlayerProj")
+        {
+            Weapon weapon = collision.gameObject.GetComponent<Weapon>();
+            AttackType type = weapon.at;
+            // if immune
+            if (type == AttackType.ICE || type == AttackType.ICE_JUMP || type == AttackType.Normal)
+                return;
         }
+
+        // Despawn  
         gameObject.SetActive(false);
     }
 }
