@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 196645766587775662}
   - component: {fileID: 3427542595836796962}
   - component: {fileID: 2253231365049386719}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: SW_FrozenSE
   m_TagString: frozenWolf
   m_Icon: {fileID: 0}
