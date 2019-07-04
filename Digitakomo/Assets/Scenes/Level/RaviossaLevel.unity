@@ -538,6 +538,27 @@ PrefabInstance:
       propertyPath: timeToHitTarget
       value: 7.03
       objectReference: {fileID: 0}
+    - target: {fileID: 6242723550740004439, guid: aa0f83b1c4a68504b81b3b8079266c1b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 74cd120c9574ffa4c9a2a3374183acd5,
+        type: 3}
+    - target: {fileID: 6242723550740004439, guid: aa0f83b1c4a68504b81b3b8079266c1b,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 12.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242723550740004439, guid: aa0f83b1c4a68504b81b3b8079266c1b,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 7.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242723550740004439, guid: aa0f83b1c4a68504b81b3b8079266c1b,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa0f83b1c4a68504b81b3b8079266c1b, type: 3}
 --- !u!4 &350637641 stripped
@@ -1092,7 +1113,7 @@ PrefabInstance:
     - target: {fileID: 587125289932397903, guid: 3ac46f4e189741a4fa43831f6f59ca8e,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4833850053245090065, guid: 3ac46f4e189741a4fa43831f6f59ca8e,
         type: 3}
@@ -2719,7 +2740,7 @@ PrefabInstance:
     - target: {fileID: 403571385494849996, guid: f88ee3a8773118c4fa2448c3bae6c870,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.02
+      value: 3.45
       objectReference: {fileID: 0}
     - target: {fileID: 403571385494849996, guid: f88ee3a8773118c4fa2448c3bae6c870,
         type: 3}
@@ -2845,7 +2866,7 @@ MonoBehaviour:
   listOfEnemies:
   - enemyToSpawn: {fileID: 1277917633}
     spawnInterval: 2
-    maxSpawnCount: 1
+    maxSpawnCount: 2
   centerPoint: {fileID: 1854742944}
   zoneDimensions: {x: 1, y: 1}
   renderDebugBox: 1

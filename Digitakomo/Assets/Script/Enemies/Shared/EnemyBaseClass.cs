@@ -2,6 +2,12 @@
 
 public abstract class EnemyBaseClass : MonoBehaviour
 {
+    [System.Serializable]   // Used for platform detection
+    public class DetectBox
+    {
+        public Vector2 detectOffset;
+        public Vector2 detectSize;
+    }
     // Enum for direction
     public enum DIRECTION
     {

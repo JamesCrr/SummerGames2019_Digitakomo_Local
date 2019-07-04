@@ -30,12 +30,6 @@ public class SquirrelWolf : EnemyBaseClass
         A_SHOOT
     }
     public ATTACK attackMethod = ATTACK.A_SHOOT;
-    [System.Serializable]   // Used for platform detection
-    public class DetectBox
-    {
-        public Vector2 detectOffset;
-        public Vector2 detectSize;
-    }
     #endregion
 
     [Header("SquirrelWolf Class")]
@@ -43,7 +37,7 @@ public class SquirrelWolf : EnemyBaseClass
     // How far to detect for player
     float playerDetectionRange = 0.0f;
     List<Collider2D> listOfPlayers = new List<Collider2D>();
-    ContactFilter2D playerFilter = new ContactFilter2D();      // To prevent me calling new everytime
+    static ContactFilter2D playerFilter = new ContactFilter2D();      // To prevent me calling new everytime
     #region Jumping
     [Header("Jumping")]
     [SerializeField]
@@ -51,7 +45,7 @@ public class SquirrelWolf : EnemyBaseClass
     [SerializeField]
     DetectBox bottomDetect = new DetectBox();   // How far to detect for jumping platform for bottom
     List<Collider2D> listOfPlatforms = new List<Collider2D>();    // Used to store the platforms that we can jump to
-    ContactFilter2D jumpingFilter = new ContactFilter2D();      // To prevent me calling new everytime
+    static ContactFilter2D jumpingFilter = new ContactFilter2D();      // To prevent me calling new everytime
     bool isGrounded = false;     // Used to check if we have reached the ground
     bool isJumped = false;       // Used to check if we are jumping
     static float YPosDifference = 2.0f; // The difference to check before we change state

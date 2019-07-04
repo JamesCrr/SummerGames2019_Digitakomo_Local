@@ -305,7 +305,7 @@ public class AWScript : EnemyBaseClass
         SetNewTarget(newtargetObj.transform.position);
     }
 
-
+    #region Attacking Functions
     // Shooting Logic
     public void Shoot()
     {
@@ -480,6 +480,8 @@ public class AWScript : EnemyBaseClass
     {
         currentAttack = (ATTACK)Random.Range((int)ATTACK.A_CHARGE, (int)ATTACK.A_ROAR+1);
     }
+    #endregion
+
 
     #region Overriden
     public override void ResetEnemy(SpawnZone newSpawnZone, Vector3 newPos)
