@@ -397,20 +397,15 @@ MonoBehaviour:
   jumpAcceleration: 10
   isGrounded: 1
   groundCheck: {fileID: 674469736992286390}
-  groundCheckRadius: 0.5
+  groundCheckRadius: 0.69
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
-  whatIsItem:
-    serializedVersion: 2
-    m_Bits: 8192
   extraJumps: 2
   fallingMultiplyer: 2
   MaxHP: 500
   MaxEnergy: 200
-  MPRestore: 100
   electricAttack: 0
-  PunchRate: 0.1
   player: 2
   IceMissile: {fileID: 8374536731700558200, guid: 0bc122d6f0e083c40b283f0e39bb065b,
     type: 3}

@@ -26,22 +26,6 @@ public class FireCharacter : Character
             }
         }
         GetAttackDirection();
-
-        if (isGrounded)
-        {
-            if (jumpState == JumpState.Falling)
-            {
-                Animate.SetBool("f_Falling", false);
-                Animate.SetTrigger("f_Fall2Idle");
-            }
-            jumpState = JumpState.Normal;
-        }
-        else if (myRb2D.velocity.y < 0)
-        {
-            jumpState = JumpState.Falling;
-            Animate.SetBool("f_Falling", true);
-            GetComponentInChildren<FireRocket>().SetEnabled(false);
-        }
     }
 
     public override void Jump()
@@ -53,10 +37,11 @@ public class FireCharacter : Character
         else if (jumpsLeft >= 0 && isGrounded)  // Grounded, so reset jumps
             jumpsLeft = extraJumps + 1;
 
-        Animate.SetTrigger("f_Jump");
         if (GetAttackType() == AttackType.FIRE && jumpsLeft == 1)
         {
-            GetComponentInChildren<FireRocket>().SetEnabled(true);
+            Animate.SetTrigger("specialJump");
+            Animate.SetBool("isFalling", false);
+            // GetComponentInChildren<FireRocket>().SetEnabled(true);
         }
         // Jump
         myRb2D.velocity = Vector2.up * jumpAcceleration;
@@ -67,19 +52,17 @@ public class FireCharacter : Character
 
     public override void Attack()
     {
-        attackState = AttackState.Attacking;
-        Animate.SetBool("f_MaleeAttack", true);
+        // Animate.SetBool("f_MaleeAttack", true);
     }
 
     protected override void DoneAttack()
     {
-        attackState = AttackState.Attacked;
-        Animate.SetBool("f_MaleeAttack", false);
+        // Animate.SetBool("f_MaleeAttack", false);
     }
 
     public override void SpecialAttack()
     {
-        Animate.SetBool("f_SpecialAttack", true);
+        // Animate.SetBool("f_SpecialAttack", true);
         int direction = GetAttackDirection();
         Vector3 createdPositon = GetCreatePosition();
         bool isCreated = GetIsCreated();
@@ -133,7 +116,7 @@ public class FireCharacter : Character
 
     protected override void DoneSpecialAttack()
     {
-        Animate.SetBool("f_SpecialAttack", false);
+        // Animate.SetBool("f_SpecialAttack", false);
     }
 
     private Vector3 GetCreatePosition()

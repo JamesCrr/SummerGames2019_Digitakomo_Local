@@ -63,10 +63,6 @@ public class IceCharacter : Character
 
     public override void Attack()
     {
-        if (NextPunch <= Time.time)
-        {
-            NextPunch = Time.time + PunchRate;
-        }
     }
 
     public override void SpecialAttack()
