@@ -47,13 +47,13 @@ public class FireCharacter : Character
     public override void Jump()
     {
         base.Jump();
-        Animate.SetTrigger("f_Jump");
         // No more jumps left and still not grounded
         if (jumpsLeft <= 0 && !isGrounded)
             return;
         else if (jumpsLeft >= 0 && isGrounded)  // Grounded, so reset jumps
             jumpsLeft = extraJumps + 1;
 
+        Animate.SetTrigger("f_Jump");
         if (GetAttackType() == AttackType.FIRE && jumpsLeft == 1)
         {
             GetComponentInChildren<FireRocket>().SetEnabled(true);
