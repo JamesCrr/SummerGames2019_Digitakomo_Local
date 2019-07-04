@@ -24,14 +24,21 @@ public class Platforms : MonoBehaviour
         width = myCollider.size.x / 2;
         height = myCollider.size.y / 2;
 
-        float xRatio = (0.8f * (transform.localScale.x / 39.788f));
-        float yRatio = (0.5f * (transform.localScale.y / 4.1565f));
-        // X Axis
-        leftPoint.x = gameObject.transform.position.x - (width * transform.localScale.x) + xRatio;
-        rightPoint.x = gameObject.transform.position.x + (width * transform.localScale.x) - xRatio;
-        // Y Axis
-        leftPoint.y = gameObject.transform.position.y + (height * transform.localScale.y) + yRatio;
-        rightPoint.y = gameObject.transform.position.y + (height * transform.localScale.y) + yRatio;
+        // 0.8f, and 0.5f for how much to move 
+        float xRatio = (0.3f * (transform.localScale.x / 1f));
+        float yRatio = (1.2f * (transform.localScale.y / 1f));
+        //// X Axis
+        //leftPoint.x = (gameObject.transform.position.x + myCollider.offset.x) - (width * transform.localScale.x) + xRatio;
+        //rightPoint.x = (gameObject.transform.position.x + myCollider.offset.x) + (width * transform.localScale.x) - xRatio;
+        //// Y Axis
+        //leftPoint.y = (gameObject.transform.position.y + myCollider.offset.y) + (height * transform.localScale.y) + yRatio;
+        //rightPoint.y = (gameObject.transform.position.y + myCollider.offset.y) + (height * transform.localScale.y) + yRatio;
+
+        leftPoint.y = myCollider.bounds.max.y + yRatio;
+        rightPoint.y = myCollider.bounds.max.y + yRatio;
+
+        leftPoint.x = myCollider.bounds.min.x + xRatio;
+        rightPoint.x = myCollider.bounds.max.x - xRatio;
 
         // set the collider's position
         leftCollider.gameObject.transform.position = leftPoint;

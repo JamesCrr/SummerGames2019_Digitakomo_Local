@@ -316,6 +316,7 @@ public class AWScript : EnemyBaseClass
     {
         GameObject newProj = ObjectPooler.Instance.FetchGO_Pos(projectilePrefab.name, shootingPos.position);
 
+        // Get the closest Position to the player if out of range
         Vector2 launchVelocity = Vector2.zero;
         Vector2 newTargetPos = Vector2.zero;
         newTargetPos = (targetObject.transform.position - shootingPos.position).normalized;
