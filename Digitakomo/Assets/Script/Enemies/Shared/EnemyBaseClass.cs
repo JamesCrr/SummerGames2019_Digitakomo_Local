@@ -125,9 +125,16 @@ public abstract class EnemyBaseClass : MonoBehaviour
         hp += modifyAmt;
         if (hp < 1)
         {
+            // damage text
+            FloatingTextController.CreateFloatingText("0", transform.position);
             // Remove all status effects
             seManager.RemoveAllStatusEffects();
             gameObject.SetActive(false);
+        }
+        else
+        {
+            // damage text
+            FloatingTextController.CreateFloatingText(hp.ToString(), transform.position);
         }
     }
     // Returns Hp

@@ -36,6 +36,7 @@ public class ObjectPooler : MonoBehaviour
         }
 
         Instance = this;
+        FloatingTextController.Initialize();
     }
     // Start is called before the first frame update
     void Start()
