@@ -42,7 +42,8 @@ public class SquirrelWolf : EnemyBaseClass
     [SerializeField]
     // How far to detect for player
     float playerDetectionRange = 0.0f;
-    Collider2D result = null;
+    List<Collider2D> listOfPlayers = new List<Collider2D>();
+    ContactFilter2D playerFilter = new ContactFilter2D();      // To prevent me calling new everytime
     #region Jumping
     [Header("Jumping")]
     [SerializeField]
@@ -120,6 +121,9 @@ public class SquirrelWolf : EnemyBaseClass
         jumpingFilter.SetLayerMask(LayerMask.GetMask("JumpPointLayer"));
         jumpingFilter.ClearDepth();
         jumpingFilter.useTriggers = true;
+        // Set the player Filters
+        playerFilter.SetLayerMask(LayerMask.GetMask("Player"));
+        playerFilter.ClearDepth();
 
         // Calculate the percentage difference to scale the colliders
         Vector2 percentageDifference = Vector2.zero;
@@ -510,14 +514,37 @@ public class SquirrelWolf : EnemyBaseClass
                         return;
                     }
 
-                    
+
+                    // Walk towards player
+                    SetNewObjectTarget(targetObject);
                     // What attack type are we using
                     switch (attackMethod)
                     {
                         case ATTACK.A_MELEE:
                             {
+                                // Move until we can't   
+                                if (!MoveWolf())
+                                {
+                                    // Do we need to jump pass a platform?
+                                    Vector2 nextPos = FindNearestPlatform();
+                                    if (nextPos != Vector2.zero)
+                                    {
+                                        // Is the next platform very close, then just jump there
+                                        //if ((myRb2D.position - nextPos).sqrMagnitude < 5.0f)
+                                        //{
+                                            SetNewPosTarget(nextPos);
+                                            JumpWolf(nextPos);
+                                            return;
+                                        //}
+                                    }
+
+
+                                    // maybe can check the distance if very small then can follow
+                                    currentState = STATES.S_EGG_DIFFERENTHEIGHT;
+                                }
+
                                 // check if we can melee the player
-                                if(playerDist < (meleeDistance * meleeDistance))
+                                if (playerDist < (meleeDistance * meleeDistance))
                                 {
                                     currentState = STATES.S_MELEE_PLAYER;
                                     StopVel();
@@ -528,7 +555,6 @@ public class SquirrelWolf : EnemyBaseClass
                             break;
                         case ATTACK.A_SHOOT:
                             {
-                                //float distance = (moveTargetPos - myRb2D.position).sqrMagnitude;
                                 // check if we can shoot projectile at player
                                 if (playerDist <= (maxShootingRange * maxShootingRange))
                                 {
@@ -537,29 +563,16 @@ public class SquirrelWolf : EnemyBaseClass
                                     myAnimator.SetBool("mb_Shoot", true);
                                     return;
                                 }
+
+                                // Move until we can't   
+                                if (!MoveWolf())
+                                {
+                                    // change attack method to melee since we can't shoot the player
+                                    attackMethod = ATTACK.A_MELEE;
+                                }
                             }
                             break;
-                    }
-
-                    // Walk towards player but stop if we reach platform's end
-                    SetNewObjectTarget(targetObject);
-                    if(!MoveWolf())
-                    {
-                        Vector2 nextPos = FindNearestPlatform();
-                        if(nextPos != Vector2.zero)
-                        {
-                            // Is the next platform very close, then just jump there
-                            if ((myRb2D.position - nextPos).sqrMagnitude < 5.0f)
-                            {
-                                SetNewPosTarget(nextPos);
-                                JumpWolf(nextPos);
-                                return;
-                            }
-                        }
-                        // maybe can check the distance if very small then can follow
-                        currentState = STATES.S_EGG_DIFFERENTHEIGHT;
-                    }
-                    
+                    }  
                 }
                 break;
             case STATES.S_SHOOT_PLAYER:
@@ -634,28 +647,34 @@ public class SquirrelWolf : EnemyBaseClass
     GameObject IsPlayerInRange()
     {
         // Get if we have hit anything, player or egg
-        result = Physics2D.OverlapCircle(myRb2D.position, playerDetectionRange, LayerMask.GetMask("Player"));
-        if (result == null)
-            return null;
-        if (result.gameObject.tag != "Player")
-            return null;
-        // check are we actually in range or we just hit the collider
-        if (((Vector2)result.gameObject.transform.position - myRb2D.position).sqrMagnitude > (playerDetectionRange * playerDetectionRange))
-            return null;
-        // raycast to check if we can actually go to player
-        Vector2 testDirection = (Vector2)result.gameObject.transform.position - myRb2D.position;
-        rayhit2D = Physics2D.Raycast(shootingPos.position, testDirection.normalized, sideTopDetect.detectSize.x, LayerMask.GetMask("Ground"));
-        
-        if (rayhit2D.collider != null)  // If we hit smth, return null
+        Physics2D.OverlapCircle(myRb2D.position, playerDetectionRange, playerFilter, listOfPlayers);
+
+        foreach (Collider2D result in listOfPlayers)
         {
-            Debug.DrawLine(shootingPos.position, (Vector2)shootingPos.position + testDirection.normalized * sideTopDetect.detectSize.y, Color.yellow);
-            return null;
+            if (result == null)
+                continue;
+            if (result.gameObject.tag != "Player")
+                continue;
+            // check are we actually in range or we just hit the collider
+            if (((Vector2)result.gameObject.transform.position - myRb2D.position).sqrMagnitude > (playerDetectionRange * playerDetectionRange))
+                continue;
+            // raycast to check if we can actually go to player
+            Vector2 testDirection = (Vector2)result.gameObject.transform.position - myRb2D.position;
+            rayhit2D = Physics2D.Raycast(shootingPos.position, testDirection.normalized, sideTopDetect.detectSize.x, LayerMask.GetMask("Ground"));
+
+            if (rayhit2D.collider != null)  // If we hit smth, return null
+            {
+                Debug.DrawLine(shootingPos.position, (Vector2)shootingPos.position + testDirection.normalized * sideTopDetect.detectSize.y, Color.yellow);
+                continue;
+            }
+            else
+                Debug.DrawLine(shootingPos.position, (Vector2)shootingPos.position + testDirection.normalized * sideTopDetect.detectSize.y, Color.red);
+
+
+            return result.gameObject;
         }
-        else
-            Debug.DrawLine(shootingPos.position, (Vector2)shootingPos.position + testDirection.normalized * sideTopDetect.detectSize.y, Color.red);
 
-
-        return result.gameObject;
+        return null;
     }
     // Returns if target object is still in range
     bool IsTargetObjStillInRange(ref float distanceReturned)
@@ -958,8 +977,8 @@ public class SquirrelWolf : EnemyBaseClass
     private void JumpWolf(Vector2 newTarget)
     {
         Vector2 launchVelocity = Vector2.zero;
-        launchVelocity.x = (newTarget.x - myRb2D.position.x) * timeToHitTarget;    // Initial velocity in X axis
-        launchVelocity.y = -(-(newTarget.y - myRb2D.position.y) + 0.5f * Physics2D.gravity.y * timeToHitTarget * timeToHitTarget) * timeToHitTarget;
+        launchVelocity.x = (newTarget.x - GetFeetPosition().x) * timeToHitTarget;    // Initial velocity in X axis
+        launchVelocity.y = -(-(newTarget.y - GetFeetPosition().y) + 0.5f * Physics2D.gravity.y * timeToHitTarget * timeToHitTarget) * timeToHitTarget;
 
         // Add the velocity to enemy
         myRb2D.velocity = Vector2.zero; 
@@ -987,17 +1006,18 @@ public class SquirrelWolf : EnemyBaseClass
             case STATES.S_RUNAWAY:
                 {
                     // Walk to end of platform
-                    if(Random.Range(1,1) == 0) // random chance to turn around
+                    if(Random.Range(0,2) == 0) // random chance to turn around
                         SetNewPosTarget(groundCheckScript.platformStandingOn.GetFurtherestPosition(myRb2D.position));
                     else    // Turn around
                     {
                         TurnWolfAround();
                         Vector2 platformPos = FindPlatformAbove();
-                        if(platformPos == Vector2.zero)
+                        if(platformPos == Vector2.zero) // Found no platforms, so we turn around again
                         {
                             TurnWolfAround();
                             SetNewPosTarget(groundCheckScript.platformStandingOn.GetFurtherestPosition(myRb2D.position));
-                        }else
+                        }
+                        else
                         {
                             SetNewPosTarget(platformPos);
                             JumpWolf(platformPos);

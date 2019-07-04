@@ -982,7 +982,7 @@ PrefabInstance:
     - target: {fileID: 4333155255902990048, guid: caad8362da55f3349978cd93b0eca731,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 42.5
+      value: 44.63
       objectReference: {fileID: 0}
     - target: {fileID: 4333155255902990048, guid: caad8362da55f3349978cd93b0eca731,
         type: 3}
@@ -1386,7 +1386,7 @@ PrefabInstance:
     - target: {fileID: 3574985739005670468, guid: 73e7015d83d3f1b46b78246ab70bf2f1,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3574985739005670464, guid: 73e7015d83d3f1b46b78246ab70bf2f1,
         type: 3}
@@ -2616,7 +2616,7 @@ PrefabInstance:
     - target: {fileID: 403571385494849996, guid: f88ee3a8773118c4fa2448c3bae6c870,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.9
+      value: 17.61
       objectReference: {fileID: 0}
     - target: {fileID: 403571385494849996, guid: f88ee3a8773118c4fa2448c3bae6c870,
         type: 3}
@@ -2747,7 +2747,7 @@ MonoBehaviour:
   listOfEnemies:
   - enemyToSpawn: {fileID: 1277917633}
     spawnInterval: 2
-    maxSpawnCount: 0
+    maxSpawnCount: 1
   centerPoint: {fileID: 1854742944}
   zoneDimensions: {x: 1, y: 1}
   renderDebugBox: 1
@@ -2979,7 +2979,7 @@ PrefabInstance:
     - target: {fileID: 6584787378532405832, guid: b83351c1bb385e9439f3d0d51a2296c7,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6584787378532405829, guid: b83351c1bb385e9439f3d0d51a2296c7,
         type: 3}
