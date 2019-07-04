@@ -336,6 +336,7 @@ public class Character : MonoBehaviour, IDamagable
         }
         if (InputManager.GetButtonDown("Player" + player + "SpecialAttack"))
         {
+            NextSpecialFire = Time.time;
             SpecialAttack();
         }
         else if (InputManager.GetButtonUp("Player" + player + "SpecialAttack"))
