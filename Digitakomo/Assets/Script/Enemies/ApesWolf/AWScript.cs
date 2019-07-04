@@ -141,10 +141,7 @@ public class AWScript : EnemyBaseClass
 
                     // check whether we can attack
                     if (CheckAttack())
-                    {
-                        //RandomiseAttack();  // Randomise a new attacking method
                         return;
-                    }
 
                     // Move towards target
                     if(!MoveApe())
@@ -190,7 +187,12 @@ public class AWScript : EnemyBaseClass
                 {
                     if (shootingDoneAnimation)
                     {
-                        currentState = STATES.S_WALK;
+                        // Can we still attack?
+                        if (!AttackStillInRange())
+                        {
+                            currentState = STATES.S_WALK;
+                            //RandomiseAttack();  // Randomise a new attacking method
+                        }
                         shootingDoneAnimation = false;
                     }
                         
@@ -315,11 +317,12 @@ public class AWScript : EnemyBaseClass
         GameObject newProj = ObjectPooler.Instance.FetchGO_Pos(projectilePrefab.name, shootingPos.position);
 
         Vector2 launchVelocity = Vector2.zero;
-        //launchVelocity.x = (targetObject.transform.position.x - shootingPos.position.x) * timeToHitTarget;    // Initial velocity in X axis
-        //launchVelocity.y = -(-(targetObject.transform.position.y - shootingPos.position.y) + 0.5f * Physics2D.gravity.y * timeToHitTarget * timeToHitTarget) * timeToHitTarget;
+        Vector2 newTargetPos = Vector2.zero;
+        newTargetPos = (targetObject.transform.position - shootingPos.position).normalized;
+        newTargetPos *= maxShootingRange;
 
-        launchVelocity.x = (targetObject.transform.position.x - shootingPos.position.x) * timeToHitTarget;
-        launchVelocity.y = (targetObject.transform.position.y - shootingPos.position.y) * timeToHitTarget;
+        launchVelocity.x = newTargetPos.x * timeToHitTarget;
+        launchVelocity.y = newTargetPos.y * timeToHitTarget;
 
         // Add the velocity to the object
         newProj.GetComponent<Rigidbody2D>().velocity = launchVelocity;
@@ -372,6 +375,7 @@ public class AWScript : EnemyBaseClass
     // Function to encapsulate all of the attack detection
     // Returns true if a change in state was made
     // Returns false if no change in state was made
+    // Also sets the Respective Animation
     bool CheckAttack()
     {
         float distance = ((Vector2)targetObject.transform.position - myRb2D.position).sqrMagnitude;
@@ -428,6 +432,47 @@ public class AWScript : EnemyBaseClass
                         myAnimator.SetBool("mb_Roar", true);
                         return true;
                     }
+                }
+                break;
+        }
+
+        return false;
+    }
+    // Checks if the attacks are still in range
+    // Returns true if still can attack
+    // Returns false if can no longer attack
+    bool AttackStillInRange()
+    {
+        float distance = ((Vector2)targetObject.transform.position - myRb2D.position).sqrMagnitude;
+
+        switch (currentAttack)
+        {
+            case ATTACK.A_CHARGE:
+                {
+                    // Can we charge?
+                    if (distance < (chargingRange * chargingRange))
+                        return true;
+                }
+                break;
+            case ATTACK.A_SHOOT:
+                {
+                    // Can we shoot?
+                    if (distance < (maxShootingRange * maxShootingRange))
+                        return true;
+                }
+                break;
+            case ATTACK.A_MELEE:
+                {
+                    // Can we melee?
+                    if (distance < (meleeAttackRange * meleeAttackRange))
+                        return true;
+                }
+                break;
+            case ATTACK.A_ROAR:
+                {
+                    // Can we roar?
+                    if (distance < (roaringRange * roaringRange))
+                        return true;
                 }
                 break;
         }
