@@ -28,7 +28,6 @@ public class FloatingText : MonoBehaviour
     private void Update()
     {
         Vector3 healthPosition = Camera.main.WorldToScreenPoint(createdPosition);
-        Debug.Log(healthPosition);
         transform.position = healthPosition;
     }
 
