@@ -456,7 +456,7 @@ MonoBehaviour:
   MaxHP: 500
   MaxEnergy: 200
   electricAttack: 0
-  player: 1
+  player: 2
   IceMissile: {fileID: 8374536731700558200, guid: 0bc122d6f0e083c40b283f0e39bb065b,
     type: 3}
   icePlatform: {fileID: 6189928942897961021, guid: 20a8386fc65c10649b2ac71f49ec7a8d,
