@@ -129,10 +129,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2801a65b93071cb4d8a0918c8b4b0577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinDamage: 10
-  MaxDamage: 15
+  MinDamage: 20
+  MaxDamage: 20
   at: 5
-  speed: 7
-  timeoutDestructor: 1
+  speed: 14
+  timeoutDestructor: 0.5
   enerygyPerSpecialAttack: 1
   firerate: 1

@@ -580,11 +580,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efcf859048d2e7e479dd0d6861216b3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinDamage: 10
-  MaxDamage: 15
+  MinDamage: 30
+  MaxDamage: 30
   at: 1
-  MinElectricDamage: 10
-  MaxElectricDamage: 15
+  MinElectricDamage: 100
+  MaxElectricDamage: 100
 --- !u!1 &6923583304203040893
 GameObject:
   m_ObjectHideFlags: 0
@@ -630,8 +630,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f223bd8125a2f6b4c84aa428f9463769, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinDamage: 1
-  MaxDamage: 1
+  MinDamage: 20
+  MaxDamage: 20
   at: 6
 --- !u!212 &5992789994591707720
 SpriteRenderer:

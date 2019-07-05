@@ -85,7 +85,7 @@ SpriteRenderer:
   m_Size: {x: 5.7506576, y: 5.51}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &6616849937839355093
@@ -166,11 +166,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd94609191924ad4dbf6511788f319cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 10
+  hp: 300
   damage: 1
   defense: 0
   moveSpeed: 1
   attackTime: 2
+  feetPosition: {fileID: 0}
   currentState: 0
   currentAttack: 1
   detectSize: {x: 31.16, y: 5.4}

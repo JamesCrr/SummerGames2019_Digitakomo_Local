@@ -566,6 +566,26 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 118416330225928704, guid: aa0f83b1c4a68504b81b3b8079266c1b,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 9.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 118416330225928704, guid: aa0f83b1c4a68504b81b3b8079266c1b,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 4.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 118416330225928704, guid: aa0f83b1c4a68504b81b3b8079266c1b,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 12.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 118416330225928704, guid: aa0f83b1c4a68504b81b3b8079266c1b,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 7.48
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa0f83b1c4a68504b81b3b8079266c1b, type: 3}
 --- !u!4 &350637641 stripped
@@ -3190,7 +3210,7 @@ PrefabInstance:
     - target: {fileID: 6584787378532405832, guid: b83351c1bb385e9439f3d0d51a2296c7,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6584787378532405829, guid: b83351c1bb385e9439f3d0d51a2296c7,
         type: 3}
@@ -3472,12 +3492,12 @@ MonoBehaviour:
   listOfEnemies:
   - enemyToSpawn: {fileID: 788284937499773471, guid: f8c3b997bfbcc194b9bbf2357174a7fa,
       type: 3}
-    spawnInterval: 1
-    maxSpawnCount: 2
+    spawnInterval: 15
+    maxSpawnCount: 9999
   - enemyToSpawn: {fileID: 686835902066373112, guid: 7924b9bbbceb56e409675054d6a4d533,
       type: 3}
-    spawnInterval: 0.5
-    maxSpawnCount: 2
+    spawnInterval: 30
+    maxSpawnCount: 15
   centerPoint: {fileID: 2088970239}
   zoneDimensions: {x: 1, y: 1}
   renderDebugBox: 1

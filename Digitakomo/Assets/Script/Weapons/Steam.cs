@@ -83,29 +83,29 @@ public class Steam : Weapon
         }
 
         // deal damage every deal damage interval
-        for (int index = 0; index < StayEnemies.Count; index++)
-        {
-            var item = StayEnemies.ElementAt(index);
-            GameObject go = item.Key;
-            float nextDamageTime = item.Value;
+        //for (int index = 0; index < StayEnemies.Count; index++)
+        //{
+        //    var item = StayEnemies.ElementAt(index);
+        //    GameObject go = item.Key;
+        //    float nextDamageTime = item.Value;
 
-            EnemyBaseClass enemy = go.GetComponent<EnemyBaseClass>();
-            // if the enemy already dead remove from the list
-            if (enemy.GetCurrentHP() <= 0)
-            {
-                StayEnemies.Remove(go);
-            }
+        //    EnemyBaseClass enemy = go.GetComponent<EnemyBaseClass>();
+        //    // if the enemy already dead remove from the list
+        //    if (enemy.GetCurrentHP() <= 0)
+        //    {
+        //        StayEnemies.Remove(go);
+        //    }
 
-            // deal damage
-            if (Time.time > nextDamageTime)
-            {
-                int damage = GetActualDamage();
-                enemy.ModifyHealth(-damage);
-                nextDamageTime = Time.time + dealDamageEvery;
-                StayEnemies[go] = nextDamageTime;
-            }
+        //    // deal damage
+        //    if (Time.time > nextDamageTime)
+        //    {
+        //        int damage = GetActualDamage();
+        //        enemy.ModifyHealth(-damage);
+        //        nextDamageTime = Time.time + dealDamageEvery;
+        //        StayEnemies[go] = nextDamageTime;
+        //    }
 
-        }
+        //}
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -124,7 +124,23 @@ public class Steam : Weapon
                 // touched by electric.
                 Debug.Log("Electric touch");
                 // do the exposion here
+                for (int index = 0; index < StayEnemies.Count; index++)
+                {
+                    var item = StayEnemies.ElementAt(index);
+                    GameObject go = item.Key;
+                    float nextDamageTime = item.Value;
 
+                    EnemyBaseClass enemy = go.GetComponent<EnemyBaseClass>();
+                    // if the enemy already dead remove from the list
+                    if (enemy.GetCurrentHP() <= 0)
+                    {
+                        StayEnemies.Remove(go);
+                    }
+
+                    int damage = GetActualDamage();
+                    enemy.ModifyHealth(-damage);
+
+                }
 
 
                 gameObject.SetActive(false);

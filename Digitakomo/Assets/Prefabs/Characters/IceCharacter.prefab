@@ -289,11 +289,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efcf859048d2e7e479dd0d6861216b3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinDamage: 10
-  MaxDamage: 15
+  MinDamage: 30
+  MaxDamage: 30
   at: 1
-  MinElectricDamage: 10
-  MaxElectricDamage: 15
+  MinElectricDamage: 50
+  MaxElectricDamage: 50
 --- !u!1 &7883997970962599796
 GameObject:
   m_ObjectHideFlags: 0

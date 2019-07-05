@@ -2,7 +2,7 @@
 
 public abstract class Weapon : MonoBehaviour
 {
-    [Range(0, 50)]
+    [Range(0, 100)]
     public int MinDamage;
     public int MaxDamage;
     public AttackType at = AttackType.UNKNOWN;
