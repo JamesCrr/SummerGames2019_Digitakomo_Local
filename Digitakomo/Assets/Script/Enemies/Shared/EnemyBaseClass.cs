@@ -144,7 +144,7 @@ public abstract class EnemyBaseClass : MonoBehaviour
         }
     }
     // Returns Hp
-    public float GetCurrentHP()
+    public int GetCurrentHP()
     {
         return hp;
     }
