@@ -323,12 +323,12 @@ public class AWScript : EnemyBaseClass
         // Add the velocity to the object
         newProj.GetComponent<Rigidbody2D>().velocity = launchVelocity;
     }
-    public void DoneShoot()
+    public void DoneShootApe()
     {
         shootingDoneAnimation = true;
     }
     // Melee Logic
-    public void DoneMelee()
+    public void DoneMeleeApe()
     {
         meleeDoneAnimation = true;
     }
