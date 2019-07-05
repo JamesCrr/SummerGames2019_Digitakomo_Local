@@ -4,6 +4,7 @@ using UnityEngine;
 public class FlameProjectile : RangeWeapon
 {
     private Vector3 defaultScale;
+    public float ExpandSize = 0.05f;
 
     protected override void Awake()
     {
@@ -20,7 +21,7 @@ public class FlameProjectile : RangeWeapon
         base.FixedUpdate();
         if (isActiveAndEnabled)
         {
-            transform.localScale += new Vector3(0.05f, 0.05f, 0);
+            transform.localScale += new Vector3(ExpandSize, ExpandSize, 0);
         }
     }
 

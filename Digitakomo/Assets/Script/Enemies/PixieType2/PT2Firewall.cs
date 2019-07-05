@@ -22,7 +22,7 @@ public class PT2Firewall : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             collision.gameObject.GetComponent<IDamagable>().TakeDamage(Random.Range(MinDamage, MaxDamage));
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
         }
     }
 }

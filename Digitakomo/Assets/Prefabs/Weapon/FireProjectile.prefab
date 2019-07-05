@@ -136,3 +136,4 @@ MonoBehaviour:
   timeoutDestructor: 0.5
   enerygyPerSpecialAttack: 1
   firerate: 1
+  ExpandSize: 0.15
