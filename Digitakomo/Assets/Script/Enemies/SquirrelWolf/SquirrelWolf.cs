@@ -177,10 +177,16 @@ public class SquirrelWolf : EnemyBaseClass
                     // If not yet grounded, return;
                     if (!isGrounded)
                         return;
-
                     // Is a player in range?
                     if (IsPlayerInRange())
                         return;
+                    // Once too far, then change state
+                    float posDiff = transform.position.y - targetObject.transform.position.y;
+                    if (posDiff >= YPosDifference)
+                    {
+                        currentState = STATES.S_EGG_DIFFERENTHEIGHT;
+                        return;
+                    }
 
 
                     // set the position of egg and move there
@@ -262,8 +268,10 @@ public class SquirrelWolf : EnemyBaseClass
                             MoveWolf(false);
                     }
 
+                    Debug.LogError("pos:" + transform.position);
+                    Debug.LogError("LocPos:" + transform.localPosition);
                     // Once close enough Y pos, 
-                    float posDiff = myRb2D.position.y - targetObject.transform.position.y;
+                    float posDiff = transform.position.y - targetObject.transform.position.y;
                     if (posDiff < YPosDifference)
                     {
                         currentState = STATES.S_EGG_SIMILARHEIGHT;
