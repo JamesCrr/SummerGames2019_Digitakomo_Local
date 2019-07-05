@@ -120,7 +120,6 @@ public class Character : MonoBehaviour, IDamagable
             {
                 Animate.SetTrigger("maleeAttack");
                 nextPunchTime = Time.time + maleeAttackClipTime;
-                Debug.Log(nextPunchTime);
             }
         }
     }
