@@ -499,7 +499,7 @@ MonoBehaviour:
   - enemyToSpawn: {fileID: 587125289932397903, guid: 3ac46f4e189741a4fa43831f6f59ca8e,
       type: 3}
     spawnInterval: 2
-    maxSpawnCount: 1
+    maxSpawnCount: 0
   - enemyToSpawn: {fileID: 532834790551978396, guid: aa0f83b1c4a68504b81b3b8079266c1b,
       type: 3}
     spawnInterval: 2
@@ -2845,6 +2845,11 @@ PrefabInstance:
       propertyPath: m_BodyType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3753348197358234601, guid: 72569fce1f8af5b49873ac020eb6257e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72569fce1f8af5b49873ac020eb6257e, type: 3}
 --- !u!114 &1731334274 stripped
@@ -3030,7 +3035,7 @@ MonoBehaviour:
   listOfEnemies:
   - enemyToSpawn: {fileID: 1277917633}
     spawnInterval: 2
-    maxSpawnCount: 1
+    maxSpawnCount: 0
   - enemyToSpawn: {fileID: 1316040751}
     spawnInterval: 2
     maxSpawnCount: 0

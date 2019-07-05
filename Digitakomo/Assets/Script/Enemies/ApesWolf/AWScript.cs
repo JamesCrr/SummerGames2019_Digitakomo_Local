@@ -299,6 +299,8 @@ public class AWScript : EnemyBaseClass
     {
         moveTargetPos = newTarget;
         moveDirection = (newTarget - myRb2D.position).normalized;
+        // Do we need to flip the enemy
+        FlipEnemy();
     }
     // Set new target object as target
     public void SetNewTargetObject(GameObject newtargetObj)
