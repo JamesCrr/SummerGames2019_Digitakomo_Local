@@ -11,6 +11,16 @@ public class FireCharacter : Character
     {
         SpecialFireRate = flameThrower.firerate;
         enerygyPerSpecialAttack = flameThrower.enerygyPerSpecialAttack;
+
+        // find malee attack time base on animation
+        AnimationClip[] clips = Animate.runtimeAnimatorController.animationClips;
+        foreach (AnimationClip clip in clips)
+        {
+            if (clip.name == "Fire_MaleeAttack")
+            {
+                maleeAttackClipTime = clip.length;
+            }
+        }
     }
 
     protected override void FixedUpdate()
@@ -47,7 +57,7 @@ public class FireCharacter : Character
         // Check if we can continue to accelerate
         if (horizontalInput * myRb2D.velocity.x < maxMoveSpeed)
         {
-            if(isGrounded)
+            if (isGrounded)
                 myRb2D.AddForce(Vector2.right * horizontalInput * moveAcceleration * Time.deltaTime);
             else
                 myRb2D.AddForce(Vector2.right * horizontalInput * (moveAcceleration * 0.5f) * Time.deltaTime);
@@ -84,12 +94,12 @@ public class FireCharacter : Character
 
     public override void Attack()
     {
-        // Animate.SetBool("f_MaleeAttack", true);
+        base.Attack();
     }
 
     protected override void DoneAttack()
     {
-        // Animate.SetBool("f_MaleeAttack", false);
+        base.DoneAttack();
     }
 
     public override void SpecialAttack()

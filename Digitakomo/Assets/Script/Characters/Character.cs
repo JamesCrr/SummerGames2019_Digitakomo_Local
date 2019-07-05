@@ -45,6 +45,10 @@ public class Character : MonoBehaviour, IDamagable
 
     // Attack
     [Header("Attack")]
+    protected bool isAttacking = false;
+    protected float nextPunchTime;
+    // set in child because of different clip each character
+    protected float maleeAttackClipTime;
     public bool electricAttack = false;
     protected float enerygyPerSpecialAttack;
     protected Collider2D AttackCollider;
@@ -108,22 +112,23 @@ public class Character : MonoBehaviour, IDamagable
 
         // get latest velocity
         currentVelocity = myRb2D.velocity;
+
+        //do the attack
+        if (isAttacking)
+        {
+            if (Time.time >= nextPunchTime)
+            {
+                Animate.SetTrigger("maleeAttack");
+                nextPunchTime = Time.time + maleeAttackClipTime;
+                Debug.Log(nextPunchTime);
+            }
+        }
     }
 
     protected virtual void FixedUpdate()
     {
         // check is it ground ?
         CheckGrounded();
-
-        // if the player firing the attack, special attack key.
-        // if (IsAttacking)
-        // {
-        //     Attack();
-        // }
-        // if (IsSpecialAttacking)
-        // {
-        //     SpecialAttack();
-        // }
 
         handleMovementAnimation();
     }
@@ -173,7 +178,13 @@ public class Character : MonoBehaviour, IDamagable
     // Attack (punch)
     public virtual void Attack()
     {
+        isAttacking = true;
+        nextPunchTime = Time.time;
+    }
 
+    protected virtual void DoneAttack()
+    {
+        isAttacking = false;
     }
 
     // Special Attack
@@ -343,11 +354,6 @@ public class Character : MonoBehaviour, IDamagable
         {
             DoneSpecialAttack();
         }
-    }
-
-    protected virtual void DoneAttack()
-    {
-        throw new NotImplementedException();
     }
 
     protected virtual void DoneSpecialAttack()
