@@ -440,8 +440,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectedType: 3
-  moveAcceleration: 700
-  maxMoveSpeed: 5
+  initialMoveSpeed: 5
+  moveAcceleration: 900
+  maxMoveSpeed: 15
   horizontalInput: 0
   isLockMovement: 0
   jumpAcceleration: 10
@@ -450,7 +451,7 @@ MonoBehaviour:
   groundCheckRadius: 0.69
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 8448
   extraJumps: 2
   fallingMultiplyer: 2
   MaxHP: 500

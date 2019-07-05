@@ -408,18 +408,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectedType: 5
-  startMoveSpeed: 1
-  moveAcceleration: 1500
-  maxMoveSpeed: 20
+  initialMoveSpeed: 5
+  moveAcceleration: 700
+  maxMoveSpeed: 10
   horizontalInput: 0
   isLockMovement: 0
-  jumpAcceleration: 10
+  jumpAcceleration: 12
   isGrounded: 1
   groundCheck: {fileID: 3966814791592898978}
   groundCheckRadius: 0.69
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 8448
   extraJumps: 1
   fallingMultiplyer: 2
   MaxHP: 500
