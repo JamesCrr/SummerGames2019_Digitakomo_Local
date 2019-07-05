@@ -5,6 +5,11 @@ public class MainCamera : MonoBehaviour
     private GameObject[] characters;
     public Vector3 characterOffset;
     public float smoothing = 0.2f;
+
+    public bool bounds;
+    public Vector3 cameraLimit;
+    public Vector3 cameraLimitCenter;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +28,56 @@ public class MainCamera : MonoBehaviour
         Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, CalculateCameraSize(characters), Time.deltaTime / smoothing);
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, CalculateCameraPosition(characters), Time.deltaTime / smoothing);
         transform.position = smoothedPosition;
+
+        //if (bounds)
+        //{
+        //    float height = 2f * Camera.main.orthographicSize;
+        //    float width = height * Camera.main.aspect;
+
+        //}
     }
+
+    //private void LateUpdate()
+    //{
+    //    Vector3 delta = Vector3.zero;
+    //    float boundX = cameraLimit.x;
+    //    float boundY = cameraLimit.y;
+
+    //    Vector3 lookAt = cameraLimitCenter;
+
+    //    float dx = lookAt.x - transform.position.x;
+
+    //    Debug.Log(dx);
+
+    //    if (dx > boundX || dx < -boundX)
+    //    {
+    //        if (transform.position.x < lookAt.x)
+    //        {
+    //            delta.x = dx - boundX;
+    //        }
+    //        else
+    //        {
+    //            delta.x = dx + boundX;
+    //        }
+    //    }
+
+    //    float dy = lookAt.y - transform.position.y;
+
+    //    if (dy > boundY || dx < -boundY)
+    //    {
+    //        if (transform.position.y < lookAt.y)
+    //        {
+    //            delta.y = dy - boundY;
+    //        }
+    //        else
+    //        {
+    //            delta.y = dy + boundY;
+    //        }
+    //    }
+
+    //    Debug.Log(delta);
+    //    transform.position = transform.position + delta;
+    //}
 
     Vector3 CalculateCameraPosition(GameObject[] characters)
     {
@@ -105,5 +159,7 @@ public class MainCamera : MonoBehaviour
         {
             Gizmos.DrawWireCube(character.transform.position, characterOffset);
         }
+
+        Gizmos.DrawWireCube(cameraLimitCenter, cameraLimit);
     }
 }

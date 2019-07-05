@@ -568,6 +568,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterOffset: {x: 25, y: 20, z: 10}
   smoothing: 0.2
+  bounds: 1
+  cameraLimit: {x: 110, y: 50, z: 0}
+  cameraLimitCenter: {x: 0, y: 0, z: 0}
 --- !u!1 &716909503
 GameObject:
   m_ObjectHideFlags: 0
@@ -1686,6 +1689,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5564329208149722481, guid: 72569fce1f8af5b49873ac020eb6257e,
+        type: 3}
+      propertyPath: renderDebug
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5876127299258180572, guid: 72569fce1f8af5b49873ac020eb6257e,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1219323627888301036, guid: 72569fce1f8af5b49873ac020eb6257e,
         type: 3}
