@@ -258,8 +258,9 @@ public class SquirrelWolf : EnemyBaseClass
                     // set the target as egg
                     SetNewObjectTarget(Egg.Instance.gameObject);
                     // Move enemy
-                    if(!MoveWolf())
-                    {
+                    if (!MoveWolf())
+                    { 
+                        // Find platforms below
                         Vector2 platformEdgePos = FindJumpPointBelow();
                         if (platformEdgePos != Vector2.zero)
                         {
@@ -269,7 +270,10 @@ public class SquirrelWolf : EnemyBaseClass
                             return;
                         }
                         else if(IsPlatformBelow())
+                        {
                             MoveWolf(false);
+                        }
+                            
                     }
 
                     // Once close enough Y pos, 
@@ -733,7 +737,7 @@ public class SquirrelWolf : EnemyBaseClass
 
         // get the highest platform
         int selectedIndex = -1;
-        float yPos = YPosDifference;
+        float yPos = -100.0f;
         Vector2 testDirection = Vector2.zero;
         Vector3 platformPos;
         // Dot Product
@@ -966,6 +970,7 @@ public class SquirrelWolf : EnemyBaseClass
     // Shooting Logic
     public void Shoot()
     {
+        //Debug.LogError("SHOOOOT MMEEEEE");
         GameObject newProj = ObjectPooler.Instance.FetchGO_Pos(projectilePrefab.name, shootingPos.position);
 
         Vector2 launchVelocity = Vector2.zero;
@@ -978,6 +983,7 @@ public class SquirrelWolf : EnemyBaseClass
     public void DoneShoot()
     {
         shootingDoneAnimation = true;
+        //Debug.LogError("WHYYYY SHOOT");
     }
     // Melee Logic
     public void Melee()
@@ -1104,10 +1110,12 @@ public class SquirrelWolf : EnemyBaseClass
             // Add new status effect
             seManager.AddEffect("SW_BurningSE", ObjectPooler.Instance.FetchGO_Pos("SW_BurningSE", myRb2D.position).GetComponent<BaseStatusEffect>(), this);
         }
-        else if(type == AttackType.STEAM)
+        // if steam, resist
+        else if (type == AttackType.STEAM)
         {
             return;
         }
+
 
         // Damage
         ModifyHealth(-weapon.GetActualDamage());
