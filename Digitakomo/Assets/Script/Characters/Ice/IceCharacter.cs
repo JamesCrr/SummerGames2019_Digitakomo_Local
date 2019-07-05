@@ -140,6 +140,7 @@ public class IceCharacter : Character
 
     public virtual void CreateIcePlatform()
     {
+        icePlatform.gameObject.SetActive(true);
         icePlatform.Restart(transform.position - new Vector3(0, 2f, 0));
     }
 
