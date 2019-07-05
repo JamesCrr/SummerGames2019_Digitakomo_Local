@@ -187,6 +187,8 @@ public class AWScript : EnemyBaseClass
                         {
                             currentState = STATES.S_WALK;
                             //RandomiseAttack();  // Randomise a new attacking method
+                            myAnimator.SetBool("mb_Shoot", false);
+                            myAnimator.SetBool("mb_Move", true);
                         }
                         shootingDoneAnimation = false;
                     }
