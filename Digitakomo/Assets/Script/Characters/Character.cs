@@ -269,6 +269,7 @@ public class Character : MonoBehaviour, IDamagable
     public void TakeDamage(float damage)
     {
         HP -= damage;
+        FloatingTextController.CreateFloatingText(damage.ToString(), transform.position);
     }
 
     public bool IsEnergyLeft(float energyToUse)
