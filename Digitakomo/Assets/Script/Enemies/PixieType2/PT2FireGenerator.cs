@@ -5,7 +5,7 @@ using UnityEngine;
 public class PT2FireGenerator : MonoBehaviour
 {
     [SerializeField]    // The Fire Prefab to Create when we hit the ground
-    GameObject firePrefab;
+    GameObject firePrefab = null;
 
 
     private void OnTriggerEnter2D(Collider2D collision)
