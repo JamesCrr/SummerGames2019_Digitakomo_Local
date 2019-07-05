@@ -409,7 +409,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SelectedType: 5
   moveAcceleration: 1500
-  maxMoveSpeed: 30
+  maxMoveSpeed: 20
   horizontalInput: 0
   isLockMovement: 0
   jumpAcceleration: 10

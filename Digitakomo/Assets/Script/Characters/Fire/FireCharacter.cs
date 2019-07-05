@@ -28,6 +28,35 @@ public class FireCharacter : Character
         GetAttackDirection();
     }
 
+    // Player Moving
+    // Override because need to slow down when in the air
+    public override void MoveHorizontal()
+    {
+        // Check if we need to change direction
+        if (horizontalInput > 0 && !facingRight)
+        {
+            facingRight = true;
+            Flip();
+        }
+        else if (horizontalInput < 0 && facingRight)
+        {
+            facingRight = false;
+            Flip();
+        }
+
+        // Check if we can continue to accelerate
+        if (horizontalInput * myRb2D.velocity.x < maxMoveSpeed)
+        {
+            if(isGrounded)
+                myRb2D.AddForce(Vector2.right * horizontalInput * moveAcceleration * Time.deltaTime);
+            else
+                myRb2D.AddForce(Vector2.right * horizontalInput * (moveAcceleration * 0.5f) * Time.deltaTime);
+        }
+
+        // Clamp the speed within the maxMoveSpeed
+        if (Mathf.Abs(myRb2D.velocity.x) > maxMoveSpeed)
+            myRb2D.velocity = new Vector2(Mathf.Sign(myRb2D.velocity.x) * maxMoveSpeed, myRb2D.velocity.y);
+    }
     public override void Jump()
     {
         base.Jump();
@@ -44,7 +73,10 @@ public class FireCharacter : Character
             // GetComponentInChildren<FireRocket>().SetEnabled(true);
         }
         // Jump
-        myRb2D.velocity = Vector2.up * jumpAcceleration;
+        Vector2 tempJump = myRb2D.velocity;
+        tempJump.x *= 0.8f;
+        tempJump.y = Vector2.up.y * jumpAcceleration;
+        myRb2D.velocity = tempJump;
 
         // Reduce number of jumps
         jumpsLeft--;
