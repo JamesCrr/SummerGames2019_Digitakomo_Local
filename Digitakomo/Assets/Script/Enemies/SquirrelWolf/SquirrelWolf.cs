@@ -1104,6 +1104,10 @@ public class SquirrelWolf : EnemyBaseClass
             // Add new status effect
             seManager.AddEffect("SW_BurningSE", ObjectPooler.Instance.FetchGO_Pos("SW_BurningSE", myRb2D.position).GetComponent<BaseStatusEffect>(), this);
         }
+        else if(type == AttackType.STEAM)
+        {
+            return;
+        }
 
         // Damage
         ModifyHealth(-weapon.GetActualDamage());

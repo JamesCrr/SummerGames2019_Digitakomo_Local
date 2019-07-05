@@ -117,12 +117,12 @@ MonoBehaviour:
   SmallBerry: 50
   MediumBerry: 35
   LargeBerry: 15
-  MinSmallBerry: 0
-  MinMediumBerry: 0
-  MinLargeBerry: 0
-  MaxSmallBerry: 20
-  MaxMediumBerry: 50
-  MaxLargeBerry: 70
+  MinSmallBerry: 50
+  MinMediumBerry: 100
+  MinLargeBerry: 200
+  MaxSmallBerry: 50
+  MaxMediumBerry: 100
+  MaxLargeBerry: 200
   size: 0
   AddHp: 0
 --- !u!50 &288916198

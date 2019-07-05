@@ -6,5 +6,6 @@
     ICE,
     ICE_JUMP,
     FIRE,
-    FIRE_JUMP
+    FIRE_JUMP,
+    STEAM
 }

@@ -35,6 +35,8 @@ public abstract class Weapon : MonoBehaviour
             case AttackType.FIRE:
             case AttackType.FIRE_JUMP:
                 return AttackType.FIRE;
+            case AttackType.STEAM:
+                return AttackType.STEAM;
         }
         return AttackType.UNKNOWN;
     }

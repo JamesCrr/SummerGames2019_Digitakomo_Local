@@ -144,7 +144,7 @@ public class PixieType1Script : EnemyBaseClass
         Weapon weapon = collision.gameObject.GetComponent<Weapon>();
         AttackType type = weapon.at;
         // if immune
-        if (type == AttackType.ICE || type == AttackType.ICE_JUMP || type == AttackType.Normal || type == AttackType.Electric)
+        if (type == AttackType.ICE || type == AttackType.ICE_JUMP || type == AttackType.Normal || type == AttackType.Electric || type == AttackType.STEAM)
             return;
 
         // One Hit Kill

@@ -502,16 +502,21 @@ public class AWScript : EnemyBaseClass
         Weapon weapon = collision.gameObject.GetComponent<Weapon>();
         AttackType type = weapon.at;
 
+        if(type == AttackType.STEAM)
+        {
+            return;
+        }
+
         // if special Ice attack
-        if (type == AttackType.ICE)
-        {
+        //if (type == AttackType.ICE)
+        //{
            
-        }
-        // if special Fire attack
-        else if (type == AttackType.FIRE)
-        {
+        //}
+        //// if special Fire attack
+        //else if (type == AttackType.FIRE)
+        //{
             
-        }
+        //}
 
         // Damage
         ModifyHealth(-weapon.GetActualDamage());

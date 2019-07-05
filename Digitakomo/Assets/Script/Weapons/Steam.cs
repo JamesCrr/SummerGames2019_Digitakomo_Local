@@ -114,6 +114,7 @@ public class Steam : Weapon
         if (collision.gameObject.tag == "Enemy")
         {
             StayEnemies.Add(collision.gameObject, Time.time);
+            return;
         }
 
         if (collision.gameObject.name == "AttackCollider")
