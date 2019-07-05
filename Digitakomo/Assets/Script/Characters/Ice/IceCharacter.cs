@@ -18,6 +18,20 @@ public class IceCharacter : Character
         myRb2D = GetComponent<Rigidbody2D>();
         // Calculate how many jumps we can do
         jumpsLeft = 1 + extraJumps;
+
+        // find malee attack time base on animation
+        AnimationClip[] clips = Animate.runtimeAnimatorController.animationClips;
+        foreach (AnimationClip clip in clips)
+        {
+            if (clip.name == "Ice_MaleeAttack")
+            {
+                maleeAttackClipTime = clip.length;
+            }
+            if (clip.name == "Ice_SpecialAttack")
+            {
+                specialAttackClipTime = clip.length;
+            }
+        }
     }
 
     // Fixed Update called every physics Update
@@ -62,14 +76,20 @@ public class IceCharacter : Character
         // Reduce number of jumps
         jumpsLeft--;
     }
-   
+
 
 
     protected override void Attack()
     {
+        base.Attack();
     }
 
     public override void SpecialAttack()
+    {
+        base.SpecialAttack();
+    }
+
+    public void Shoot()
     {
         int direction = GetAttackDirection();
         Vector3 createdPositon = GetCreatePosition();
@@ -103,23 +123,18 @@ public class IceCharacter : Character
                 break;
         }
 
-        if (nextSpecialFire <= Time.time)
+        if (!IsHasEnoughEnergy(enerygyPerSpecialAttack))
         {
-            if (!IsHasEnoughEnergy(enerygyPerSpecialAttack))
-            {
-                return;
-            }
-
-            ReduceEnergy(enerygyPerSpecialAttack);
-            GameObject go = ObjectPooler.Instance.FetchGO("IceMissile");
-            IceMissile icems = go.GetComponent<IceMissile>();
-            icems.Restart();
-            icems.transform.position = transform.position;
-            icems.SetRotation(rotation);
-            icems.SetMissileDirection(xDir, yDir);
-            nextSpecialFire = Time.time + SpecialFireRate;
+            return;
         }
 
+        ReduceEnergy(enerygyPerSpecialAttack);
+        GameObject go = ObjectPooler.Instance.FetchGO("IceMissile");
+        IceMissile icems = go.GetComponent<IceMissile>();
+        icems.Restart();
+        icems.transform.position = transform.position;
+        icems.SetRotation(rotation);
+        icems.SetMissileDirection(xDir, yDir);
     }
 
 

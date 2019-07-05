@@ -23,7 +23,6 @@ public class FireCharacter : Character
             if (clip.name == "Fire_SpecialAttack")
             {
                 specialAttackClipTime = clip.length;
-                Debug.Log(clip.length);
             }
         }
     }
