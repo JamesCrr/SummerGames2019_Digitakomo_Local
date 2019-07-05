@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ice_MaleeAttack
+  m_Name: Ice_Defensing
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -22,15 +22,6 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.2
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -39,17 +30,8 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.35
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.4
-        value: 0
+        time: 0.016666668
+        value: 1
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -60,28 +42,46 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: AttackCollider
-    classID: 61
+    path: ShieldController
+    classID: 70
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.016666668
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: ShieldController/Shield
+    classID: 212
     script: {fileID: 0}
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 04730703b9789ab44bbdac3a606d3824, type: 3}
-    - time: 0.05
-      value: {fileID: 21300000, guid: dd026885e79c0b848b2b9dddc365fa49, type: 3}
-    - time: 0.1
-      value: {fileID: 21300000, guid: ef5ece7f11209eb4293a0d54124b23a6, type: 3}
-    - time: 0.15
-      value: {fileID: 21300000, guid: e2b5d4ce490f1a541a9de2e92e5487c2, type: 3}
-    - time: 0.2
-      value: {fileID: 21300000, guid: 9e19a861b4b4b834cbc495c2a823a06a, type: 3}
-    - time: 0.25
-      value: {fileID: 21300000, guid: 71b6d257d5a8e5943bb858659183b39e, type: 3}
+      value: {fileID: 21300000, guid: 1ce4d5e5710dda947921098d4318b9ee, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 20
+  m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -89,10 +89,17 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 1943655107
+      path: 2629463692
       attribute: 3305885265
       script: {fileID: 0}
-      typeID: 61
+      typeID: 70
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 3704438899
+      attribute: 3305885265
+      script: {fileID: 0}
+      typeID: 212
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
@@ -103,18 +110,13 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 04730703b9789ab44bbdac3a606d3824, type: 3}
-    - {fileID: 21300000, guid: dd026885e79c0b848b2b9dddc365fa49, type: 3}
-    - {fileID: 21300000, guid: ef5ece7f11209eb4293a0d54124b23a6, type: 3}
-    - {fileID: 21300000, guid: e2b5d4ce490f1a541a9de2e92e5487c2, type: 3}
-    - {fileID: 21300000, guid: 9e19a861b4b4b834cbc495c2a823a06a, type: 3}
-    - {fileID: 21300000, guid: 71b6d257d5a8e5943bb858659183b39e, type: 3}
+    - {fileID: 21300000, guid: 1ce4d5e5710dda947921098d4318b9ee, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.4
+    m_StopTime: 0.016666668
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -135,15 +137,6 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.2
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -152,17 +145,8 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.35
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.4
-        value: 0
+        time: 0.016666668
+        value: 1
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -173,8 +157,36 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: AttackCollider
-    classID: 61
+    path: ShieldController
+    classID: 70
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.016666668
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: ShieldController/Shield
+    classID: 212
     script: {fileID: 0}
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0

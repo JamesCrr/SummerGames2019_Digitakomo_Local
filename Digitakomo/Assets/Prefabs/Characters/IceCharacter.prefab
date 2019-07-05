@@ -82,13 +82,13 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6119685696586432149}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.21, y: 0}
+  m_Offset: {x: 0.21, y: 0.01}
   m_Size: {x: 0.1, y: 0.2}
   m_Direction: 0
 --- !u!1 &6211367362814935740
@@ -369,9 +369,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 79c5dde7b36f5264e9e6cd48a14a9ac8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e15e008bad0ed794c8a8054e8d5f17e0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.16, y: 0.16}
@@ -457,6 +457,7 @@ MonoBehaviour:
   MaxHP: 500
   MaxEnergy: 200
   electricAttack: 0
+  Animate: {fileID: 0}
   player: 2
   IceMissile: {fileID: 8374536731700558200, guid: 0bc122d6f0e083c40b283f0e39bb065b,
     type: 3}

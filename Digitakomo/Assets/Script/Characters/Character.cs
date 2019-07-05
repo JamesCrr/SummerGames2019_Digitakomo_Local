@@ -63,7 +63,7 @@ public class Character : MonoBehaviour, IDamagable
     protected float specialAttackClipTime;
 
     // Animation
-    protected Animator Animate;
+    public Animator Animate;
 
     public int player = 1;
 

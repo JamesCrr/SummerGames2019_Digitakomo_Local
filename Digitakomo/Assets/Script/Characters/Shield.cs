@@ -26,11 +26,14 @@ public class Shield : MonoBehaviour, IDamagable
         {
             player.isLockMovement += 1;
             isShielding = true;
+            player.Animate.SetTrigger("preDefense");
+            player.Animate.SetBool("isDefensing", true);
         }
         if (InputManager.GetButtonUp("Player" + noPlayer + "Defense"))
         {
             player.isLockMovement -= 1;
             isShielding = false;
+            player.Animate.SetBool("isDefensing", false);
         }
         if (InputManager.GetButtonDown("Player" + noPlayer + "LookUp"))
         {
@@ -44,7 +47,7 @@ public class Shield : MonoBehaviour, IDamagable
 
     void FixedUpdate()
     {
-        SetShieldEnable(isShielding);
+        //SetShieldEnable(isShielding);
         SetRotation(isShieldUp);
     }
 
@@ -60,11 +63,11 @@ public class Shield : MonoBehaviour, IDamagable
         }
     }
 
-    private void SetShieldEnable(bool enable)
-    {
-        _Shield.enabled = enable;
-        Texture.enabled = enable;
-    }
+    //private void SetShieldEnable(bool enable)
+    //{
+    //    _Shield.enabled = enable;
+    //    Texture.enabled = enable;
+    //}
 
     public void TakeDamage(float damage)
     {
