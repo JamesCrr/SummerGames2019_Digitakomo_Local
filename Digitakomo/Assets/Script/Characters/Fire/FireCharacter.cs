@@ -20,6 +20,11 @@ public class FireCharacter : Character
             {
                 maleeAttackClipTime = clip.length;
             }
+            if (clip.name == "Fire_SpecialAttack")
+            {
+                specialAttackClipTime = clip.length;
+                Debug.Log(clip.length);
+            }
         }
     }
 
@@ -92,7 +97,7 @@ public class FireCharacter : Character
         jumpsLeft--;
     }
 
-    public override void Attack()
+    protected override void Attack()
     {
         base.Attack();
     }
@@ -104,7 +109,18 @@ public class FireCharacter : Character
 
     public override void SpecialAttack()
     {
+        base.SpecialAttack();
         // Animate.SetBool("f_SpecialAttack", true);
+    }
+
+    protected override void DoneSpecialAttack()
+    {
+        base.DoneSpecialAttack();
+        // Animate.SetBool("f_SpecialAttack", false);
+    }
+
+    public void Shoot()
+    {
         int direction = GetAttackDirection();
         Vector3 createdPositon = GetCreatePosition();
         bool isCreated = GetIsCreated();
@@ -137,28 +153,18 @@ public class FireCharacter : Character
                 break;
         }
 
-        if (NextSpecialFire <= Time.time)
+        if (!IsHasEnoughEnergy(enerygyPerSpecialAttack))
         {
-            if (!IsHasEnoughEnergy(enerygyPerSpecialAttack))
-            {
-                return;
-            }
-
-            ReduceEnergy(enerygyPerSpecialAttack);
-            GameObject go = ObjectPooler.Instance.FetchGO("FireProjectile");
-            FlameProjectile firep = go.GetComponent<FlameProjectile>();
-            firep.Restart();
-            firep.transform.position = transform.position;
-            firep.SetRotation(rotation);
-            firep.SetMissileDirection(xDir, yDir);
-            NextSpecialFire = Time.time + SpecialFireRate;
+            return;
         }
 
-    }
-
-    protected override void DoneSpecialAttack()
-    {
-        // Animate.SetBool("f_SpecialAttack", false);
+        ReduceEnergy(enerygyPerSpecialAttack);
+        GameObject go = ObjectPooler.Instance.FetchGO("FireProjectile");
+        FlameProjectile firep = go.GetComponent<FlameProjectile>();
+        firep.Restart();
+        firep.transform.position = transform.position;
+        firep.SetRotation(rotation);
+        firep.SetMissileDirection(xDir, yDir);
     }
 
     private Vector3 GetCreatePosition()

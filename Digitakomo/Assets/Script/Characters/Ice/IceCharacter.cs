@@ -89,8 +89,8 @@ public class IceCharacter : Character
             myRb2D.velocity = new Vector2(Mathf.Sign(myRb2D.velocity.x) * maxMoveSpeed, myRb2D.velocity.y);
     }
 
-    
-    public override void Attack()
+
+    protected override void Attack()
     {
     }
 
@@ -128,7 +128,7 @@ public class IceCharacter : Character
                 break;
         }
 
-        if (NextSpecialFire <= Time.time)
+        if (nextSpecialFire <= Time.time)
         {
             if (!IsHasEnoughEnergy(enerygyPerSpecialAttack))
             {
@@ -142,7 +142,7 @@ public class IceCharacter : Character
             icems.transform.position = transform.position;
             icems.SetRotation(rotation);
             icems.SetMissileDirection(xDir, yDir);
-            NextSpecialFire = Time.time + SpecialFireRate;
+            nextSpecialFire = Time.time + SpecialFireRate;
         }
 
     }

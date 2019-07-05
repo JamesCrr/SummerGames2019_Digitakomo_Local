@@ -46,6 +46,7 @@ public class Character : MonoBehaviour, IDamagable
     // Attack
     [Header("Attack")]
     protected bool isAttacking = false;
+    protected bool isSpecialAttacking = false;
     protected float nextPunchTime;
     // set in child because of different clip each character
     protected float maleeAttackClipTime;
@@ -56,7 +57,8 @@ public class Character : MonoBehaviour, IDamagable
     protected bool APressed = false;
     protected bool DPressed = false;
     protected int latestDirection = 4;
-    protected float NextSpecialFire;
+    protected float nextSpecialFire;
+    protected float specialAttackClipTime;
 
     // Animation
     protected Animator Animate;
@@ -122,6 +124,15 @@ public class Character : MonoBehaviour, IDamagable
                 nextPunchTime = Time.time + maleeAttackClipTime;
             }
         }
+
+        if (isSpecialAttacking)
+        {
+            if (Time.time >= nextSpecialFire)
+            {
+                Animate.SetTrigger("specialAttack");
+                nextSpecialFire = Time.time + specialAttackClipTime;
+            }
+        }
     }
 
     protected virtual void FixedUpdate()
@@ -175,7 +186,7 @@ public class Character : MonoBehaviour, IDamagable
     }
 
     // Attack (punch)
-    public virtual void Attack()
+    protected virtual void Attack()
     {
         isAttacking = true;
         nextPunchTime = Time.time;
@@ -184,12 +195,20 @@ public class Character : MonoBehaviour, IDamagable
     protected virtual void DoneAttack()
     {
         isAttacking = false;
+        Animate.SetTrigger("doneMaleeAttack");
     }
 
     // Special Attack
     public virtual void SpecialAttack()
     {
+        isSpecialAttacking = true;
+        nextSpecialFire = Time.time;
+    }
 
+    protected virtual void DoneSpecialAttack()
+    {
+        isSpecialAttacking = false;
+        Animate.SetTrigger("doneSpecialAttack");
     }
 
     // Set if player has enough energy before using special attack
@@ -346,18 +365,12 @@ public class Character : MonoBehaviour, IDamagable
         }
         if (InputManager.GetButtonDown("Player" + player + "SpecialAttack"))
         {
-            NextSpecialFire = Time.time;
             SpecialAttack();
         }
         else if (InputManager.GetButtonUp("Player" + player + "SpecialAttack"))
         {
             DoneSpecialAttack();
         }
-    }
-
-    protected virtual void DoneSpecialAttack()
-    {
-        throw new NotImplementedException();
     }
 
     private void HandleHP()
