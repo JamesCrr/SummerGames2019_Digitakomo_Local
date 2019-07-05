@@ -566,6 +566,16 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 118416330225928704, guid: aa0f83b1c4a68504b81b3b8079266c1b,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 12.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 118416330225928704, guid: aa0f83b1c4a68504b81b3b8079266c1b,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 7.48
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa0f83b1c4a68504b81b3b8079266c1b, type: 3}
 --- !u!4 &350637641 stripped
@@ -2008,7 +2018,7 @@ PrefabInstance:
     - target: {fileID: 7694618513308654793, guid: 34c54d08f5646904f95f5bdc39264c86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.92
+      value: 8.7
       objectReference: {fileID: 0}
     - target: {fileID: 7694618513308654793, guid: 34c54d08f5646904f95f5bdc39264c86,
         type: 3}
@@ -2068,7 +2078,7 @@ PrefabInstance:
     - target: {fileID: 7694618513308654793, guid: 34c54d08f5646904f95f5bdc39264c86,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.4684749
+      value: 3.363297
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34c54d08f5646904f95f5bdc39264c86, type: 3}
@@ -2955,10 +2965,10 @@ MonoBehaviour:
   listOfEnemies:
   - enemyToSpawn: {fileID: 1277917633}
     spawnInterval: 2
-    maxSpawnCount: 0
+    maxSpawnCount: 1
   - enemyToSpawn: {fileID: 1316040751}
     spawnInterval: 2
-    maxSpawnCount: 1
+    maxSpawnCount: 0
   centerPoint: {fileID: 1854742944}
   zoneDimensions: {x: 1, y: 1}
   renderDebugBox: 1
@@ -2971,7 +2981,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1854742942}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11, y: -5.8, z: 0}
+  m_LocalPosition: {x: 36.2, y: 2.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1377473382}
