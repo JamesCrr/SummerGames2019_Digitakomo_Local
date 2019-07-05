@@ -46,6 +46,7 @@ public class SquirrelWolf : EnemyBaseClass
     DetectBox bottomDetect = new DetectBox();   // How far to detect for jumping platform for bottom
     List<Collider2D> listOfPlatforms = new List<Collider2D>();    // Used to store the platforms that we can jump to
     static ContactFilter2D jumpingFilter = new ContactFilter2D();      // To prevent me calling new everytime
+    static ContactFilter2D platformFilter = new ContactFilter2D();      // To prevent me calling new everytime
     bool isGrounded = false;     // Used to check if we have reached the ground
     bool isJumped = false;       // Used to check if we are jumping
     static float YPosDifference = 2.0f; // The difference to check before we change state
@@ -118,6 +119,9 @@ public class SquirrelWolf : EnemyBaseClass
         // Set the player Filters
         playerFilter.SetLayerMask(LayerMask.GetMask("Player"));
         playerFilter.ClearDepth();
+        // Set the Platform Filters
+        platformFilter.SetLayerMask(LayerMask.GetMask("Ground"));
+        platformFilter.ClearDepth();
 
         // Calculate the percentage difference to scale the colliders
         Vector2 percentageDifference = Vector2.zero;
@@ -225,7 +229,7 @@ public class SquirrelWolf : EnemyBaseClass
                     if (!MoveWolf())
                     {
                         // If we don't find any platforms to jump to, then we turn back
-                        Vector2 platformEdgePos = FindNearestPlatform();
+                        Vector2 platformEdgePos = FindNearestJumpPoint();
                         if (platformEdgePos == Vector2.zero)
                         {
                             // Walk back
@@ -256,7 +260,7 @@ public class SquirrelWolf : EnemyBaseClass
                     // Move enemy
                     if(!MoveWolf())
                     {
-                        Vector2 platformEdgePos = FindPlatformBelow();
+                        Vector2 platformEdgePos = FindJumpPointBelow();
                         if (platformEdgePos != Vector2.zero)
                         {
                             // Set new target and jump there
@@ -264,12 +268,10 @@ public class SquirrelWolf : EnemyBaseClass
                             JumpWolf(moveTargetPos);
                             return;
                         }
-                        else
+                        else if(IsPlatformBelow())
                             MoveWolf(false);
                     }
 
-                    Debug.LogError("pos:" + transform.position);
-                    Debug.LogError("LocPos:" + transform.localPosition);
                     // Once close enough Y pos, 
                     float posDiff = transform.position.y - targetObject.transform.position.y;
                     if (posDiff < YPosDifference)
@@ -301,7 +303,7 @@ public class SquirrelWolf : EnemyBaseClass
                     // then jump
                     if (!MoveWolf())
                     {
-                        Vector2 platformEdgePos = FindPlatformBelow();
+                        Vector2 platformEdgePos = FindJumpPointBelow();
                         if (platformEdgePos != Vector2.zero)
                         {
                             // Set new target and jump there
@@ -443,7 +445,7 @@ public class SquirrelWolf : EnemyBaseClass
             case STATES.S_RUNAWAY:
                 {
                     // Check if we can jump up more
-                    Vector2 platformEdgePos = FindPlatformAbove();
+                    Vector2 platformEdgePos = FindJumpPointAbove();
                     if (platformEdgePos != Vector2.zero)
                     {
                         // Set new target and jump there
@@ -456,11 +458,11 @@ public class SquirrelWolf : EnemyBaseClass
                     if (!MoveWolf())
                     {
                         // If we don't find any platforms to jump to, then we just stay put
-                        platformEdgePos = FindFurtherestPlatform();
+                        platformEdgePos = FindFurtherestJumpPoint();
                         if (platformEdgePos == Vector2.zero)
                         {
                             // Check if we can jump below?
-                            platformEdgePos = FindPlatformBelow();
+                            platformEdgePos = FindJumpPointBelow();
                             if (platformEdgePos != Vector2.zero)
                             {
                                 // Set new target and jump there
@@ -515,7 +517,7 @@ public class SquirrelWolf : EnemyBaseClass
                                 if (!MoveWolf())
                                 {
                                     // Do we need to jump pass a platform?
-                                    Vector2 nextPos = FindNearestPlatform();
+                                    Vector2 nextPos = FindNearestJumpPoint();
                                     if (nextPos != Vector2.zero)
                                     {
                                         // Is the next platform very close, then just jump there
@@ -682,10 +684,10 @@ public class SquirrelWolf : EnemyBaseClass
     }
 
 
-    // Fills the list with platforms that are within the sideTopDetect
+    // Fills the list with jumpPoints that are within the sideTopDetect
     // Returns Vector2.zero if no Colliders Found
     // Returns the Position if found at least one Collider
-    int SearchPlatforms()
+    int SearchJumpPoint()
     {
         Vector2 newRight = transform.right;
         newRight.y = 1;
@@ -693,10 +695,10 @@ public class SquirrelWolf : EnemyBaseClass
         Debug.Log("Found: " + length);
         return length;
     }
-    // Fills the list with platforms that are within the bottomDetect
+    // Fills the list with jumpPoints that are within the bottomDetect
     // Returns Vector2.zero if no Colliders Found
     // Returns the Position if found at least one Collider
-    int SearchPlatforms_Below()
+    int SearchJumpPoint_Below()
     {
         Vector2 newRight = transform.right;
         newRight.y = 1;
@@ -704,29 +706,29 @@ public class SquirrelWolf : EnemyBaseClass
         Debug.Log("BottomFound: " + length);
         return length;
     }
-    // Finds platforms and returns Closest platform
-    Vector2 FindNearestPlatform()
+    // Finds jumpPoints and returns Closest jumpPoint
+    Vector2 FindNearestJumpPoint()
     {
         // Find the platforms
-        if (SearchPlatforms() == 0)
+        if (SearchJumpPoint() == 0)
             return Vector2.zero;
         // Return the closest after filtering
         return FilterPlatformDistance();
     }
-    // Finds platforms and returns Furtherest platform
-    Vector2 FindFurtherestPlatform()
+    // Finds jumpPoints and returns Furtherest jumpPoint
+    Vector2 FindFurtherestJumpPoint()
     {
         // Find the platforms
-        if (SearchPlatforms() == 0)
+        if (SearchJumpPoint() == 0)
             return Vector2.zero;
         // Return the closest after filtering
         return FilterPlatformDistance(false);
     }
-    // Finds platforms and returns Highest platform
-    Vector2 FindPlatformAbove()
+    // Finds jumpPoints and returns Highest jumpPoint
+    Vector2 FindJumpPointAbove()
     {
         // Find the platforms
-        if (SearchPlatforms() == 0)
+        if (SearchJumpPoint() == 0)
             return Vector2.zero;
 
         // get the highest platform
@@ -775,11 +777,11 @@ public class SquirrelWolf : EnemyBaseClass
             return Vector2.zero;
         return listOfPlatforms[selectedIndex].gameObject.transform.position;
     }
-    // Finds platforms and returns Lowest platform
-    Vector2 FindPlatformBelow()
+    // Finds jumpPoints and returns Lowest jumpPoint
+    Vector2 FindJumpPointBelow()
     {
         // Find the platforms
-        if (SearchPlatforms_Below() == 0)
+        if (SearchJumpPoint_Below() == 0)
             return Vector2.zero;
 
         // get the highest platform
@@ -812,7 +814,7 @@ public class SquirrelWolf : EnemyBaseClass
             return Vector2.zero;
         return listOfPlatforms[selectedIndex].gameObject.transform.position;
     }
-    // Removes all the platfrom from the list
+    // Removes all the jumpPoints from the list
     // Except for the furtherest of Closest depending on what you pass in
     Vector2 FilterPlatformDistance(bool closet = true)
     {
@@ -862,6 +864,22 @@ public class SquirrelWolf : EnemyBaseClass
         if(selectedIndex != -1)
             return listOfPlatforms[selectedIndex].gameObject.transform.position;
         return Vector2.zero;
+    }
+    // Checks if there are any platforms underneath me
+    bool IsPlatformBelow()
+    {
+        // Find all the platforms
+        Vector2 newRight = transform.right;
+        newRight.y = 1;
+        Physics2D.OverlapBox(myRb2D.position + (bottomDetect.detectOffset * newRight), bottomDetect.detectSize, 0.0f, platformFilter, listOfPlatforms);
+
+        // loop through all the platforms found
+        for (int i = 0; i < listOfPlatforms.Count; ++i)
+        {
+            if (listOfPlatforms[i].gameObject != groundCheckScript.platformStandingOn)
+                return true;
+        }
+        return false;
     }
 
 
@@ -1017,7 +1035,7 @@ public class SquirrelWolf : EnemyBaseClass
                     else    // Turn around
                     {
                         TurnWolfAround();
-                        Vector2 platformPos = FindPlatformAbove();
+                        Vector2 platformPos = FindJumpPointAbove();
                         if(platformPos == Vector2.zero) // Found no platforms, so we turn around again
                         {
                             TurnWolfAround();

@@ -28,7 +28,7 @@ public class Character : MonoBehaviour, IDamagable
     [SerializeField]
     float groundCheckRadius = 0.5f;     // The radius to detect the ground
     [SerializeField]
-    LayerMask whatIsGround;     // What layer to detect as ground
+    LayerMask whatIsGround = 0;     // What layer to detect as ground
     [SerializeField]
     protected int extraJumps = 1;       // How many extra jumps we get, not including default
     protected int jumpsLeft = 1;
