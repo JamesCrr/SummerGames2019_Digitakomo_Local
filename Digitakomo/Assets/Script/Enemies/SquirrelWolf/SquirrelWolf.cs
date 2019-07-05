@@ -459,9 +459,18 @@ public class SquirrelWolf : EnemyBaseClass
                         platformEdgePos = FindFurtherestPlatform();
                         if (platformEdgePos == Vector2.zero)
                         {
-                            // Go back to finding statew
-                            //currentState = STATES.S_EGG_DIFFERENTHEIGHT;
-                            StopVel();
+                            // Check if we can jump below?
+                            platformEdgePos = FindPlatformBelow();
+                            if (platformEdgePos != Vector2.zero)
+                            {
+                                // Set new target and jump there
+                                SetNewPosTarget(platformEdgePos);
+                                JumpWolf(moveTargetPos);
+                            }
+                            else    // Just Stop moving
+                            {
+                                StopVel();
+                            }
                         }
                         else
                         {
@@ -517,10 +526,18 @@ public class SquirrelWolf : EnemyBaseClass
                                             return;
                                         //}
                                     }
-
-
-                                    // maybe can check the distance if very small then can follow
-                                    currentState = STATES.S_EGG_DIFFERENTHEIGHT;
+                                    // check if we can shoot projectile at player, since we can't melee
+                                    else if (playerDist <= (maxShootingRange * maxShootingRange))
+                                    {
+                                        currentState = STATES.S_SHOOT_PLAYER;
+                                        StopVel();
+                                        myAnimator.SetBool("mb_Shoot", true);
+                                        return;
+                                    }
+                                    else
+                                    {
+                                        currentState = STATES.S_EGG_DIFFERENTHEIGHT;
+                                    }
                                 }
 
                                 // check if we can melee the player
@@ -538,6 +555,8 @@ public class SquirrelWolf : EnemyBaseClass
                                 // check if we can shoot projectile at player
                                 if (playerDist <= (maxShootingRange * maxShootingRange))
                                 {
+                                    // Do we need to flip the enemy to face the player
+                                    FlipEnemy();
                                     currentState = STATES.S_SHOOT_PLAYER;
                                     StopVel();
                                     myAnimator.SetBool("mb_Shoot", true);
@@ -562,15 +581,7 @@ public class SquirrelWolf : EnemyBaseClass
                         // Reset Bool
                         shootingDoneAnimation = false;
 
-
-                        // Is a player in range?
-                        //float temp = 0.0f;
-                        //if (!IsPlayerStillInRange(ref temp))
-                        //{
-                        //    currentState = STATES.S_EGG_DIFFERENTHEIGHT;
-                        //    myAnimator.SetBool("mb_Shoot", false);
-                        //}
-
+                        // Change State
                         currentState = STATES.S_RUNAWAY;
                         myAnimator.SetBool("mb_Shoot", false);
                         TurnWolfAround();
@@ -720,9 +731,15 @@ public class SquirrelWolf : EnemyBaseClass
 
         // get the highest platform
         int selectedIndex = -1;
-        float yPos = 0;
+        float yPos = YPosDifference;
         Vector2 testDirection = Vector2.zero;
         Vector3 platformPos;
+        // Dot Product
+        Vector2 horizontal;
+        float top;
+        float angle;
+
+
         for (int i = 0; i < listOfPlatforms.Count; ++i)
         {
             // Set the pos
@@ -731,10 +748,10 @@ public class SquirrelWolf : EnemyBaseClass
             testDirection = (platformPos - shootingPos.position);
            
             // Check dot product
-            Vector2 horizontal = testDirection.normalized;
+            horizontal = testDirection.normalized;
             horizontal.y = 0.0f;
-            float top = Vector2.Dot(testDirection.normalized, horizontal);
-            float angle = Mathf.Acos(top / 1);
+            top = Vector2.Dot(testDirection.normalized, horizontal);
+            angle = Mathf.Acos(top / 1);
             //Debug.LogWarning("Angle: " + (90 - (Mathf.Rad2Deg * angle)));
             if (1.5708f - angle <= 0.139626f)   // 1.5708 = 90.0Deg, 0.139626 = 8.0Deg
                 continue;
@@ -985,6 +1002,11 @@ public class SquirrelWolf : EnemyBaseClass
     // What to do when grounded
     public void HitGround()
     {
+        // Reset Falling Bool and go back to Idle
+        myAnimator.SetBool("mb_Fall", false);
+        if (!isJumped)
+            myAnimator.SetTrigger("mt_Fall2Idle");
+
         switch (currentState)
         {
             case STATES.S_RUNAWAY:
@@ -1011,11 +1033,6 @@ public class SquirrelWolf : EnemyBaseClass
                 }
                 break;
         }
-
-        // Reset Falling Bool and go back to Idle
-        myAnimator.SetBool("mb_Fall", false);
-        if(!isJumped)
-            myAnimator.SetTrigger("mt_Fall2Idle");
     }
     // Frozen Logic
     public void SetFrozen(bool frozen)
