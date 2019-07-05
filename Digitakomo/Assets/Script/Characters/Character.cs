@@ -10,6 +10,8 @@ public class Character : MonoBehaviour, IDamagable
     // Data that all characters share
     [Header("Common Data shared by all characters")]
     [SerializeField]
+    protected float initialMoveSpeed = 1f; // how the character move at first frame
+    [SerializeField]
     protected float moveAcceleration = 700.0f;    // How fast does the character move
     [SerializeField]
     protected float maxMoveSpeed = 5.0f;      // The max speed the player can move
@@ -156,6 +158,11 @@ public class Character : MonoBehaviour, IDamagable
         {
             facingRight = false;
             Flip();
+        }
+
+        if (horizontalInput * myRb2D.velocity.x < initialMoveSpeed)
+        {
+            myRb2D.velocity = new Vector2(initialMoveSpeed * horizontalInput, myRb2D.velocity.y);
         }
 
         // Check if we can continue to accelerate
