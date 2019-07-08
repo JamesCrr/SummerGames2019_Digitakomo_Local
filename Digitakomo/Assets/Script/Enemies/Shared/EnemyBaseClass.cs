@@ -155,16 +155,34 @@ public abstract class EnemyBaseClass : MonoBehaviour
             return true;
         return false;
     }
+    
+    // Sets the Defense for this enemy
+    public void SetDefense(int newDef)
+    {
+        defense = newDef;
+    }
+    // Modify the Defense for this enemy
+    public void ModifyDefense(int amountToModify)
+    {
+        defense += amountToModify;
+    }
+    // Gets the Defense for this enemy
+    public int GetDefense()
+    {
+        return defense;
+    }
+
 
     // Modify the Animator's Speed
     public void SetAnimatorSpeed(float newSpeed)
     {
         myAnimator.speed = newSpeed;
     }
-
     // Returns the Feet Position
     public Vector3 GetFeetPosition()
     {
         return feetPosition.position;
     }
+
+    
 }
