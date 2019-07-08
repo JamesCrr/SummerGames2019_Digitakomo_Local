@@ -344,7 +344,7 @@ public class AWScript : EnemyBaseClass
         // set new target
         Vector2 newtarget = targetObject.transform.position;
         Vector2 direction = newtarget - myRb2D.position;
-        newtarget += direction * 1.5f;
+        newtarget += direction.normalized * 8.5f;
         SetNewTarget(newtarget);
     }
     void StopCharge()
