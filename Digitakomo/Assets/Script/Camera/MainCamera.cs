@@ -25,59 +25,59 @@ public class MainCamera : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, CalculateCameraSize(characters), Time.deltaTime / smoothing);
+        float orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, CalculateCameraSize(characters), Time.deltaTime / smoothing);
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, CalculateCameraPosition(characters), Time.deltaTime / smoothing);
+
+        if (bounds)
+        {
+            // actual width and height of camera
+            float height = 2f * Camera.main.orthographicSize;
+            float width = height * Camera.main.aspect;
+            // camera box
+
+            // transform.position.y +- height; 
+            // transform.position.x +- width;
+            // Min X camera
+            float MinCameraX = smoothedPosition.x - (width / 2);
+            // Min X block
+            float MinOffsetX = ((cameraLimitCenter.x - cameraLimit.x) / 2);
+            float MaxCameraX = smoothedPosition.x + (width / 2);
+            float MaxOffsetX = ((cameraLimitCenter.x + cameraLimit.x) / 2);
+            // Check if lap
+            if (MinCameraX <= MinOffsetX)
+            {
+                // use old position and size
+                orthographicSize = Camera.main.orthographicSize;
+                smoothedPosition = Vector3.Lerp(transform.position, new Vector3(transform.position.x, smoothedPosition.y, smoothedPosition.z), 1);
+            }
+
+            // repeat but check for maximum
+            else if (MaxCameraX >= MaxOffsetX)
+            {
+                orthographicSize = Camera.main.orthographicSize;
+                smoothedPosition = Vector3.Lerp(transform.position, new Vector3(transform.position.x, smoothedPosition.y, smoothedPosition.z), 1);
+            }
+
+            // Max Y position
+            float MaxCameraY = smoothedPosition.y + (height / 2);
+            float MaxOffsetY = ((cameraLimitCenter.y + cameraLimit.y) / 2);
+            // Min Y positions
+            float MinCameraY = smoothedPosition.y - (height / 2);
+            float MinOffsetY = ((cameraLimitCenter.y - cameraLimit.y) / 2);
+            if (MaxCameraY >= MaxOffsetY)
+            {
+                orthographicSize = Camera.main.orthographicSize;
+                smoothedPosition = Vector3.Lerp(transform.position, new Vector3(smoothedPosition.x, transform.position.y, smoothedPosition.z), 1);
+            }
+            else if (MinCameraY <= MinOffsetY)
+            {
+                orthographicSize = Camera.main.orthographicSize;
+                smoothedPosition = Vector3.Lerp(transform.position, new Vector3(smoothedPosition.x, transform.position.y, smoothedPosition.z), 1);
+            }
+        }
+        Camera.main.orthographicSize = orthographicSize;
         transform.position = smoothedPosition;
-
-        //if (bounds)
-        //{
-        //    float height = 2f * Camera.main.orthographicSize;
-        //    float width = height * Camera.main.aspect;
-
-        //}
     }
-
-    //private void LateUpdate()
-    //{
-    //    Vector3 delta = Vector3.zero;
-    //    float boundX = cameraLimit.x;
-    //    float boundY = cameraLimit.y;
-
-    //    Vector3 lookAt = cameraLimitCenter;
-
-    //    float dx = lookAt.x - transform.position.x;
-
-    //    Debug.Log(dx);
-
-    //    if (dx > boundX || dx < -boundX)
-    //    {
-    //        if (transform.position.x < lookAt.x)
-    //        {
-    //            delta.x = dx - boundX;
-    //        }
-    //        else
-    //        {
-    //            delta.x = dx + boundX;
-    //        }
-    //    }
-
-    //    float dy = lookAt.y - transform.position.y;
-
-    //    if (dy > boundY || dx < -boundY)
-    //    {
-    //        if (transform.position.y < lookAt.y)
-    //        {
-    //            delta.y = dy - boundY;
-    //        }
-    //        else
-    //        {
-    //            delta.y = dy + boundY;
-    //        }
-    //    }
-
-    //    Debug.Log(delta);
-    //    transform.position = transform.position + delta;
-    //}
 
     Vector3 CalculateCameraPosition(GameObject[] characters)
     {

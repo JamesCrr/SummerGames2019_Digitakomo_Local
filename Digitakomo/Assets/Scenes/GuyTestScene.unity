@@ -566,7 +566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e48e1795b23f7748bbf8840975e3de2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterOffset: {x: 25, y: 20, z: 10}
+  characterOffset: {x: 50, y: 50, z: 10}
   smoothing: 0.2
   bounds: 1
   cameraLimit: {x: 110, y: 50, z: 0}
