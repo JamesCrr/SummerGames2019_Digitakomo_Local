@@ -92,6 +92,7 @@ public class SquirrelWolf : EnemyBaseClass
     #region Frozen
     bool isFrozen = false;
     #endregion
+
     // Unity Stuff
     // Get referrence to the target Object
     GameObject targetObject = null;
@@ -147,7 +148,7 @@ public class SquirrelWolf : EnemyBaseClass
     {
         // Status Effects
         seManager.Update();
-        //return;
+        return;
         // if I am frozen, return
         if (isFrozen)
             return;
@@ -1088,7 +1089,21 @@ public class SquirrelWolf : EnemyBaseClass
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Only accepts projectiles from players
+
+        // PT1 projectile
+        if(collision.gameObject.tag == "EnemyProj")
+        {
+            // Pixie Type 1 Projectile
+            if(collision.gameObject.GetComponent<PixieType1ProjectileScript>() != null)
+            {
+                // Add new status effect
+                seManager.AddEffect("SW_BuffBurningSE", ObjectPooler.Instance.FetchGO_Pos("SW_BuffBurningSE", myRb2D.position).GetComponent<BaseStatusEffect>(), this);
+                collision.gameObject.SetActive(false);
+                return;
+            }
+        }
+
+        // Player Projectile
         if (collision.gameObject.tag != "PlayerProj")
             return;
 

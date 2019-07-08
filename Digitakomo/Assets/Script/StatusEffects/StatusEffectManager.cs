@@ -43,6 +43,7 @@ public class StatusEffectManager
     }
 
     // Function to add or reapply a Status Effect
+    // Key should be the name of the prefab
     public bool AddEffect(string key, BaseStatusEffect newEffect, EnemyBaseClass newOwner)
     {
         // If status effect is already in, then reset and return
