@@ -77,6 +77,12 @@ public class AWScript : EnemyBaseClass
     List<Collider2D> listOfPlayers = new List<Collider2D>();    // Used to store the platforms that we can jump to
     ContactFilter2D contactFilter = new ContactFilter2D();      // To prevent me calling new everytime
     #endregion
+    #region
+    [Header("After Charge")]
+    [SerializeField]
+    float randWalkTime = 1.0f;
+    float randWalkTimer = 0.0f;
+    #endregion
 
 
 
@@ -95,6 +101,8 @@ public class AWScript : EnemyBaseClass
         detectSize.y *= percentageDifference.y;
         // Charging 
         chargingRange *= percentageDifference.x;
+        // After Charging
+        randWalkTimer = randWalkTime;
         // roaring
         roaringRange *= percentageDifference.x;
         // Shooting
@@ -151,13 +159,34 @@ public class AWScript : EnemyBaseClass
                 break;
             case STATES.S_WALKRAND:
                 {
-                    // Found a random position before here
+                    // Is a player in range?
+                    targetObject = IsPlayerInRange();
+                    if (targetObject != null)
+                    {
+                        SetNewTargetObject(targetObject);
+                        currentState = STATES.S_WALK;
+                        return;
+                    }
 
-                    // Walk towards it
+                    // Move towards target
+                    if (!MoveApe())
+                    {
+                        // set to idle
+                        StopApe();
+                        currentState = STATES.S_WALK;
+                        return;
+                    }
 
-                    // Check player
-
-                    // Once reach, walk back to egg.
+                    // Decrement the Timer
+                    randWalkTimer -= Time.deltaTime;
+                    if(randWalkTimer < 0.0f)
+                    {
+                        // Change state and reset timer
+                        currentState = STATES.S_WALK;
+                        randWalkTimer = randWalkTime;
+                    }
+                    // set to moving
+                    myAnimator.SetBool("mb_Move", true);
                 }
                 break;
             case STATES.S_CHARGE:
@@ -258,6 +287,27 @@ public class AWScript : EnemyBaseClass
         myAnimator.SetBool("mb_Melee", false);
         myAnimator.SetBool("mb_Shoot", false);
     }
+    void TurnApeAround()
+    {
+        // Do we need to switch direction?
+        if ((facingDirection == DIRECTION.D_RIGHT && moveDirection.x > -0.1f) ||
+            (facingDirection == DIRECTION.D_LEFT && moveDirection.x < 0.0f))
+        {
+            switch (facingDirection)
+            {
+                case DIRECTION.D_LEFT:
+                    facingDirection = DIRECTION.D_RIGHT;
+                    // Reverse the Object
+                    transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                    break;
+                case DIRECTION.D_RIGHT:
+                    facingDirection = DIRECTION.D_LEFT;
+                    // Reverse the Object
+                    transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+                    break;
+            }
+        }
+    }
     public void LandedGround()
     {
         isGrounded = true;
@@ -349,10 +399,15 @@ public class AWScript : EnemyBaseClass
     }
     void StopCharge()
     {
-        currentState = STATES.S_WALK;
+        //currentState = STATES.S_WALK;
         startCharge = false;
         // go back to idle
         myAnimator.SetBool("mb_Charge", false);
+
+        // Walk backwards
+        TurnApeAround();
+        moveDirection = -moveDirection;
+        currentState = STATES.S_WALKRAND;
     }
     // Roaring Logic
     public void Roar()
