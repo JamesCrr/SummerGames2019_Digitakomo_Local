@@ -71,4 +71,27 @@ public class MainMenuManager : MonoBehaviour
         MainMenu.SetActive(true);
     }
     #endregion
+
+    #region ExtraMenu
+    public void OnClick_Character_Extra()
+    {
+        ExtraMenu.SetActive(false);
+        ExtraCharacter.SetActive(true);
+    }
+
+    public void OnClick_Back_Extra()
+    {
+        ExtraMenu.SetActive(false);
+        MainMenu.SetActive(true);
+    }
+    #endregion 
+
+    #region ExtraCharacter
+
+    public void OnClick_Back_Extra_Character()
+    {
+        ExtraMenu.SetActive(true);
+        ExtraCharacter.SetActive(false);
+    }
+    #endregion 
 }
