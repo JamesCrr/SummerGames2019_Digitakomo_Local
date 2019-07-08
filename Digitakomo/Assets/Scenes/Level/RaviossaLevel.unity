@@ -392,7 +392,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterOffset: {x: 25, y: 20, z: 10}
   smoothing: 0.2
-  bounds: 0
+  bounds: 1
   cameraLimit: {x: 110, y: 100, z: 0}
   cameraLimitCenter: {x: 0, y: 0, z: 0}
 --- !u!1 &105386547
