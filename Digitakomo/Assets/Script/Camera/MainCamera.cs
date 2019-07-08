@@ -125,6 +125,9 @@ public class MainCamera : MonoBehaviour
         float minX = float.MaxValue;
         float maxX = float.MinValue;
 
+        float minY = float.MaxValue;
+        float maxY = float.MinValue;
+
         foreach (GameObject character in characters)
         {
             Vector3 leftbotOffset = character.transform.position - (characterOffset / 2);
@@ -138,13 +141,31 @@ public class MainCamera : MonoBehaviour
             {
                 maxX = righttopOffset.x;
             }
+            if (minY > leftbotOffset.y)
+            {
+                minY = leftbotOffset.y;
+            }
+            if (maxY < righttopOffset.y)
+            {
+                maxY = righttopOffset.y;
+            }
         }
 
         float width = maxX - minX;
+        float height = maxY - minY;
 
-        float size = width * Screen.height / Screen.width * 0.5f;
+        float screenRatio = (float)Screen.width / (float)Screen.height;
+        float targetRadio = width / height;
+        if (screenRatio >= targetRadio)
+        {
+            return height * 0.5f;
+        }
+        else
+        {
+            float size = width * Screen.height / Screen.width * 0.5f;
+            return size;
+        }
 
-        return size;
     }
 
     private void OnDrawGizmos()
