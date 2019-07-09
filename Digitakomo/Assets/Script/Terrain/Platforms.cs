@@ -65,7 +65,8 @@ public class Platforms : MonoBehaviour
     }
     public float GetPlatformSurface()
     {
-        return transform.position.y + (height * transform.localScale.y);
+        //return transform.position.y + (height * transform.localScale.y);
+        return myCollider.bounds.max.y;
     }
 
 
