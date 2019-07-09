@@ -15,8 +15,6 @@ public class MainMenuManager : MonoBehaviour
     public GameObject SettingMenu;
     public GameObject CreditMenu;
 
-    private bool isMultiplayer = false;
-
     #region MainMenu
     public void OnClick_Start()
     {
@@ -51,17 +49,15 @@ public class MainMenuManager : MonoBehaviour
     #region StartMenu
     public void OnClick_SinglePlayer()
     {
-        StartMenu.SetActive(false);
+        // StartMenu.SetActive(false);
         // StartMapSelection.SetActive(true);
-        isMultiplayer = false;
         SceneController._LoadSceneWithLoadingScreen("RaviossaLevel");
     }
 
     public void OnClick_MultiPlayer()
     {
-        StartMenu.SetActive(false);
+        // StartMenu.SetActive(false);
         // StartMapSelection.SetActive(true);
-        isMultiplayer = true;
         SceneController._LoadSceneWithLoadingScreen("RaviossaLevel");
     }
 
@@ -94,4 +90,12 @@ public class MainMenuManager : MonoBehaviour
         ExtraCharacter.SetActive(false);
     }
     #endregion 
+
+    #region SettingMenu
+    public void OnClick_Back_Setting()
+    {
+        SettingMenu.SetActive(false);
+        MainMenu.SetActive(true);
+    }
+    #endregion
 }

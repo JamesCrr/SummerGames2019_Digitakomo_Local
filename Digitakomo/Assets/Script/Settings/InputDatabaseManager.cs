@@ -29,4 +29,9 @@ public class InputDatabaseManager
         }
         return result;
     }
+
+    public bool IsDatabaseExist()
+    {
+        return true;
+    }
 }
