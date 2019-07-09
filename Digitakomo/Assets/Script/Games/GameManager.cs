@@ -10,11 +10,10 @@ public class GameManager : MonoBehaviour
     [Header("This should be initialize already on MainMenu")]
     [Header("In case you're in development scene")]
     public GameObject ManagersPrefab;
-    public GameObject SoundsPrefab;
     // Start is called before the first frame update
     void Start()
     {
-        // initialize the player somehow
+        // initialize the managers if on dev
         if (InputManager.Instance == null)
         {
             Instantiate(ManagersPrefab);
