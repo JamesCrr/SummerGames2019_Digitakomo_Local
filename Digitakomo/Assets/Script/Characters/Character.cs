@@ -74,7 +74,7 @@ public class Character : MonoBehaviour, IDamagable
     void Awake()
     {
         // initialize the keybinding
-        InputManager.Initialize(player);
+        // InputManager.Initialize(player);
 
         // get the attack collider
         Collider2D[] colliders = (GetComponentsInChildren<BoxCollider2D>());

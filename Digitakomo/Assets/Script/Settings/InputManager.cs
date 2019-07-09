@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InputManager : MonoBehaviour
 {
-    private static string[] actions = new string[17]
+    private string[] actions = new string[17]
     {
         "Player1ChangeCharcter",
         "Player1LookUp",
@@ -25,7 +26,7 @@ public class InputManager : MonoBehaviour
         "Player2MoveRight"
     };
 
-    private static KeyCode[,] keys = new KeyCode[17, 2]
+    private KeyCode[,] keys = new KeyCode[17, 2]
     {
         { KeyCode.C, KeyCode.None },
         { KeyCode.W, KeyCode.None },
@@ -46,25 +47,36 @@ public class InputManager : MonoBehaviour
         { KeyCode.RightArrow, KeyCode.None }
     };
 
-    private static Dictionary<string, KeyCode[]> keymaps = new Dictionary<string, KeyCode[]>();
+    private Dictionary<string, KeyCode[]> keymaps = new Dictionary<string, KeyCode[]>();
 
-    private static List<string> pressing = new List<string>();
+    private List<string> pressing = new List<string>();
 
-    public static void Initialize(int player)
+    public static InputManager Instance;
+
+    public bool UseDefaultKey = false;
+
+    void Awake()
     {
-        // if( noting in database )
+        if (Instance == null)
+        {
+            Instance = this;
+            if (!UseDefaultKey)
+            {
+                // if database exist
+
+                // load setting into variable
+
+            }
+            // initialize 
+            Initialize();
+        }
+    }
+
+    public void Initialize()
+    {
         // default value
         for (int i = 0; i < actions.Length; i++)
         {
-            if (!actions[i].Contains("Player" + player))
-            {
-                continue;
-            }
-            if(keymaps.ContainsKey(actions[i]))
-            {
-                // prevent same intialize;
-                continue;
-            }
             KeyCode[] keycodes = new KeyCode[2] { keys[i, 0], keys[i, 1] };
             keymaps.Add(actions[i], keycodes);
         }
@@ -72,40 +84,40 @@ public class InputManager : MonoBehaviour
 
     public static bool GetButtonDown(string name)
     {
-        bool isPressed = Input.GetKeyDown(keymaps[name][0]) || Input.GetKeyDown(keymaps[name][1]);
-        if (isPressed && !pressing.Contains(name))
+        bool isPressed = Input.GetKeyDown(InputManager.Instance.keymaps[name][0]) || Input.GetKeyDown(InputManager.Instance.keymaps[name][1]);
+        if (isPressed && !InputManager.Instance.pressing.Contains(name))
         {
-            pressing.Add(name);
+            InputManager.Instance.pressing.Add(name);
         }
         return isPressed;
     }
 
     public static bool GetButtonUp(string name)
     {
-        bool isPressed = Input.GetKeyUp(keymaps[name][0]) || Input.GetKeyUp(keymaps[name][1]);
-        if (isPressed && pressing.Contains(name))
+        bool isPressed = Input.GetKeyUp(InputManager.Instance.keymaps[name][0]) || Input.GetKeyUp(InputManager.Instance.keymaps[name][1]);
+        if (isPressed && InputManager.Instance.pressing.Contains(name))
         {
-            pressing.Remove(name);
+            InputManager.Instance.pressing.Remove(name);
         }
         return isPressed;
     }
 
     public static float GetAxisRaw(string name)
     {
-        return pressing.Contains(name) ? 1 : 0;
+        return InputManager.Instance.pressing.Contains(name) ? 1 : 0;
     }
 
     public static void SetKey(string action, KeyCode[] newKey)
     {
-        if (!keymaps.ContainsKey(action))
+        if (!InputManager.Instance.keymaps.ContainsKey(action))
         {
             throw new Exception("Key does not contain action " + action);
         }
-        keymaps[action] = newKey;
+        InputManager.Instance.keymaps[action] = newKey;
     }
 
     public static Dictionary<string, KeyCode[]> GetKeys()
     {
-        return keymaps;
+        return InputManager.Instance.keymaps;
     }
 }
