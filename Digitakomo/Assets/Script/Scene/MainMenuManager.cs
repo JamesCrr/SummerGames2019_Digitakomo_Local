@@ -90,4 +90,12 @@ public class MainMenuManager : MonoBehaviour
         ExtraCharacter.SetActive(false);
     }
     #endregion 
+
+    #region SettingMenu
+    public void OnClick_Back_Setting()
+    {
+        SettingMenu.SetActive(false);
+        MainMenu.SetActive(true);
+    }
+    #endregion
 }

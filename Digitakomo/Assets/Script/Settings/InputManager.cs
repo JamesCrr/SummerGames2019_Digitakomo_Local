@@ -107,17 +107,24 @@ public class InputManager : MonoBehaviour
         return InputManager.Instance.pressing.Contains(name) ? 1 : 0;
     }
 
-    public static void SetKey(string action, KeyCode[] newKey)
+    public static void SetKey(string action, KeyCode newKey, int index)
     {
         if (!InputManager.Instance.keymaps.ContainsKey(action))
         {
             throw new Exception("Key does not contain action " + action);
         }
-        InputManager.Instance.keymaps[action] = newKey;
+        InputManager.Instance.keymaps[action][index] = newKey;
+        // save to database
+        // TODO
     }
 
     public static Dictionary<string, KeyCode[]> GetKeys()
     {
         return InputManager.Instance.keymaps;
+    }
+
+    public static KeyCode GetKeyByName(string name, int index)
+    {
+        return InputManager.Instance.keymaps[name][index];
     }
 }

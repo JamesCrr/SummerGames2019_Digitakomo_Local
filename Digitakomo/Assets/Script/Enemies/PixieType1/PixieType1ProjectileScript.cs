@@ -42,11 +42,10 @@ public class PixieType1ProjectileScript : MonoBehaviour
         else if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             collision.gameObject.GetComponent<IDamagable>().TakeDamage(Random.Range(MinDamage, MaxDamage));
-        } 
+        }
         // hit player projectile
-        else if(collision.gameObject.tag == "PlayerProj")
+        else if (collision.gameObject.tag == "PlayerProj")
         {
-            Debug.Log(collision.gameObject.name);
             Weapon weapon = collision.gameObject.GetComponent<Weapon>();
             AttackType type = weapon.at;
             // if immune
