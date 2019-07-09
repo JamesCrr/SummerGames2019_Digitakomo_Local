@@ -1118,6 +1118,8 @@ public class SquirrelWolf : EnemyBaseClass
                 return;
             // Add new status effect
             seManager.AddEffect("SW_FrozenSE", ObjectPooler.Instance.FetchGO_Pos("SW_FrozenSE", myRb2D.position).GetComponent<BaseStatusEffect>(), this);
+            // Deactive the Ice Projectile
+            collision.gameObject.SetActive(false);
         }
         // if special Fire attack
         else if(type == AttackType.FIRE)

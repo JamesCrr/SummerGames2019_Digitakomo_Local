@@ -100,5 +100,8 @@ public class SWFrozenSE : BaseStatusEffect
         // Class Specific
         if (enemyClass.gameObject.GetComponent<SquirrelWolf>())
             enemyClass.gameObject.GetComponent<SquirrelWolf>().SetFrozen(false);
+
+        // Disable GameObject
+        gameObject.SetActive(false);
     }
 }
