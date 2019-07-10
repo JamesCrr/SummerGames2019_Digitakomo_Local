@@ -9,8 +9,8 @@ public class FireRocket : Weapon
         rocketCollider = gameObject.GetComponent<Collider2D>();
     }
 
-    public void SetEnabled(bool isEnabled)
-    {
-        rocketCollider.enabled = isEnabled;
-    }
+    // public void SetEnabled(bool isEnabled)
+    // {
+    //     rocketCollider.enabled = isEnabled;
+    // }
 }

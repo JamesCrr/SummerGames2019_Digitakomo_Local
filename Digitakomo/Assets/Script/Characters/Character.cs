@@ -418,28 +418,12 @@ public class Character : MonoBehaviour, IDamagable
     // TODO rework
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        // if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
-        // {
-        //     isGrounded = true;
-        // }
         BaseItem item = collision.gameObject.GetComponent<BaseItem>();
         if (item != null)
         {
             myRb2D.velocity = currentVelocity;
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.Log(other.gameObject.name);
-    }
-    // protected virtual void OnCollisionExit2D(Collision2D collision)
-    // {
-    //     if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
-    //     {
-    //         isGrounded = false;
-    //     }
-    // }
 
     protected virtual void handleMovementAnimation()
     {

@@ -115,6 +115,28 @@ public class Egg : MonoBehaviour, IDamagable
         return HP;
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("ProjWithGround") && other.gameObject.tag == "Enemy")
+        {
+            // Hit by enemy
+            EnemyBaseClass enemy = other.gameObject.GetComponentInParent<EnemyBaseClass>();
+            EnemyAttackType enemyat = enemy.GetCurrentAttackType();
+            switch (enemyat)
+            {
+                case EnemyAttackType.DRAGONSTALET: TakeDamage(enemy.damage); break;
+                case EnemyAttackType.BLOODYSHINGLER_NORMAL: TakeDamage(enemy.damage); break;
+                case EnemyAttackType.BLOODYSHINGLER_DASH: TakeDamage(enemy.GetComponent<PT2Script>().dartDamage); break;
+                case EnemyAttackType.APES_NORMAL: TakeDamage(enemy.damage); break;
+                case EnemyAttackType.APES_DASH: TakeDamage(enemy.GetComponent<AWScript>().Dash); break;
+                case EnemyAttackType.APES_ATTACK: TakeDamage(enemy.GetComponent<AWScript>().Attack); break;
+                case EnemyAttackType.APES_ROCK: TakeDamage(enemy.GetComponent<AWScript>().Rock); break;
+                case EnemyAttackType.APES_SHAKE: TakeDamage(enemy.GetComponent<AWScript>().Shake); break;
+            }
+        }
+    }
+
+
     #region Other Components
     public float GetStartingRadius()
     {

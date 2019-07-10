@@ -23,7 +23,7 @@ public abstract class EnemyBaseClass : MonoBehaviour
     protected int hp = 1;
     protected int originalHp = 1;
     [SerializeField]
-    protected int damage = 1;
+    public int damage = 1;
     [SerializeField]
     protected EnemyAttackType attackType;
     [SerializeField]
