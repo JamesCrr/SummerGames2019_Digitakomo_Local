@@ -11721,7 +11721,7 @@ GameObject:
   - component: {fileID: 1974047934}
   - component: {fileID: 1974047936}
   m_Layer: 5
-  m_Name: Text
+  m_Name: PlaceHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12714,6 +12714,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3507482482463207500, guid: cc0a8197bffe9264897a80b6de7dda4a,
+        type: 3}
+      propertyPath: UseDefaultKey
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc0a8197bffe9264897a80b6de7dda4a, type: 3}

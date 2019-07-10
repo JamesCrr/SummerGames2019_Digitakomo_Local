@@ -7,7 +7,7 @@ public class InputManager : MonoBehaviour
 {
     private string[] actions = new string[17]
     {
-        "Player1ChangeCharcter",
+        "Player1ChangeCharacter",
         "Player1LookUp",
         "Player1Jump",
         "Player1Attack",
@@ -54,21 +54,26 @@ public class InputManager : MonoBehaviour
     public static InputManager Instance;
 
     public bool UseDefaultKey = false;
+    public InputDatabaseManager DB;
+
 
     void Awake()
     {
+        DB = new InputDatabaseManager(Application.dataPath);
         if (Instance == null)
         {
             Instance = this;
+            // initialize 
+            Initialize();
             if (!UseDefaultKey)
             {
                 // if database exist
-
-                // load setting into variable
-
+                if (DB.IsDatabaseExist())
+                {
+                    // load setting into variable
+                    DB.SetUpKeyFromDb();
+                }
             }
-            // initialize 
-            Initialize();
         }
     }
 
@@ -107,15 +112,20 @@ public class InputManager : MonoBehaviour
         return InputManager.Instance.pressing.Contains(name) ? 1 : 0;
     }
 
-    public static void SetKey(string action, KeyCode newKey, int index)
+    public static void SetKeyNoSave(string action, KeyCode newKey, int index)
     {
         if (!InputManager.Instance.keymaps.ContainsKey(action))
         {
             throw new Exception("Key does not contain action " + action);
         }
         InputManager.Instance.keymaps[action][index] = newKey;
+    }
+
+    public static void SetKey(string action, KeyCode newKey, int index)
+    {
+        SetKeyNoSave(action, newKey, index);
         // save to database
-        // TODO
+        InputManager.Instance.DB.SaveKeyToDb();
     }
 
     public static Dictionary<string, KeyCode[]> GetKeys()
