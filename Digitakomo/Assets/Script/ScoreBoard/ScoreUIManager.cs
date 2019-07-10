@@ -20,6 +20,9 @@ public class ScoreUIManager : MonoBehaviour
     // The Text Prefab to use
     [SerializeField]
     GameObject text;
+    // Lists to store the TextObjects 
+    List<TextMeshProUGUI> nameTexts = new List<TextMeshProUGUI>();    // To Store the Name Texts
+    List<TextMeshProUGUI> scoreTexts = new List<TextMeshProUGUI>();    // To Store the Score Texts
 
     // Awake
     private void Awake()
@@ -30,6 +33,13 @@ public class ScoreUIManager : MonoBehaviour
             return;
         }
         Instance = this;
+        
+        // Get the Name and Score texts
+        for(int i = 0; i < namePanel.transform.childCount; ++i)
+        {
+            nameTexts.Add(namePanel.transform.GetChild(i).GetComponent<TextMeshProUGUI>());
+            scoreTexts.Add(scorePanel.transform.GetChild(i).GetComponent<TextMeshProUGUI>());
+        }
     }
     // Start
     private void Start()
@@ -61,27 +71,13 @@ public class ScoreUIManager : MonoBehaviour
     // Load Single Scores to UI
     public void LoadSingleScores()
     {
-        GameObject newTextObj = null;
-        //Text textCom = null;
-        TextMeshProUGUI textCom = null;
         List<ScoreSaveData> data = fileManager.Single_LoadScores();
 
-        foreach (ScoreSaveData item in data)
+        // Loop through the textObjects and assign the data
+        for(int i = 0; i < nameTexts.Count; ++i)
         {
-            // Instantiate new text and parent under Name Panel
-            newTextObj = Instantiate(text);
-            newTextObj.transform.parent = namePanel.transform;
-            textCom = newTextObj.GetComponent<TextMeshProUGUI>();
-            // Add the name
-            textCom.text += item.plyrName;
-
-            // Instantiate new text and parent under Score Panel
-            newTextObj = Instantiate(text);
-            newTextObj.transform.parent = scorePanel.transform;
-            textCom = newTextObj.GetComponent<TextMeshProUGUI>();
-            // Add the name
-            textCom.text += item.plyrScore.ToString();
+            nameTexts[i].text += data[i].plyrName;
+            scoreTexts[i].text += data[i].plyrScore;
         }
-
     }
 }
