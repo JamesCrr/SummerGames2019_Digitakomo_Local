@@ -118,8 +118,8 @@ MonoBehaviour:
   hp: 100
   damage: 20
   defense: 0
-  moveSpeed: 1
-  attackTime: 2
+  moveSpeed: 5
+  attackTime: 0.5
   feetPosition: {fileID: 0}
   minimumStopInterval: 3
   maxStopInterval: 10
