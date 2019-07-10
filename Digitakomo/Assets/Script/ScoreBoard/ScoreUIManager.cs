@@ -39,6 +39,21 @@ public class ScoreUIManager : MonoBehaviour
         fileManager.Single_SaveNewScore("wqwe", 1302);
         fileManager.Single_SaveNewScore("aszxczxc", 52);
 
+        fileManager.Single_SaveNewScore("wow,", 132);
+        fileManager.Single_SaveNewScore("wagw", 1322);
+        fileManager.Single_SaveNewScore("wqwe", 1302);
+        fileManager.Single_SaveNewScore("aszxczxc", 52);
+
+        fileManager.Single_SaveNewScore("wow,", 132);
+        fileManager.Single_SaveNewScore("wagw", 1322);
+        fileManager.Single_SaveNewScore("wqwe", 1302);
+        fileManager.Single_SaveNewScore("aszxczxc", 52);
+
+        fileManager.Single_SaveNewScore("wow,", 132);
+        fileManager.Single_SaveNewScore("wagw", 1322);
+        fileManager.Single_SaveNewScore("wqwe", 1302);
+        fileManager.Single_SaveNewScore("aszxczxc", 52);
+
         LoadSingleScores();
     }
 

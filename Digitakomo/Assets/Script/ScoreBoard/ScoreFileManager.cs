@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class ScoreFileManager : MonoBehaviour
 {
+    [SerializeField]    // The maximum number of scores to display
+    int maxScoreToDisplay = 12;
     // To store filePath for single Player
     static string singlePlayerFilePath;
     static List<ScoreSaveData> listOfScores = new List<ScoreSaveData>();
@@ -19,12 +21,17 @@ public class ScoreFileManager : MonoBehaviour
     // Saving Single Player Score
     public void Single_SaveNewScore(string newName, int newScore)
     {
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream stream = new FileStream(singlePlayerFilePath, FileMode.Create);
+        
         // If File already exists, then load existing data first
         if (!File.Exists(singlePlayerFilePath))
             Single_LoadScores();
-        
+        // If reached limit, then don't add more
+        if (listOfScores.Count >= maxScoreToDisplay)
+            return;
+
+        // BinaryFormatter and FileStream
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream stream = new FileStream(singlePlayerFilePath, FileMode.Create);
         // Convert raw data and add into list
         ScoreSaveData newData = new ScoreSaveData(newName, newScore);
         listOfScores.Add(newData);
