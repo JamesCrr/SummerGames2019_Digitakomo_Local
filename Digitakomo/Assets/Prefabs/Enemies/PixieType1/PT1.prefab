@@ -117,6 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 100
   damage: 20
+  attackType: 1
   defense: 0
   moveSpeed: 5
   attackTime: 0.5

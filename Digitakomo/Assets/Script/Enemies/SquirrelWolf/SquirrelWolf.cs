@@ -169,10 +169,10 @@ public class SquirrelWolf : EnemyBaseClass
                 isJumped = false;
                 myAnimator.SetBool("mb_Fall", true);
             }
-                
+
             return;
         }
-            
+
 
 
         switch (currentState)
@@ -260,7 +260,7 @@ public class SquirrelWolf : EnemyBaseClass
                     SetNewObjectTarget(Egg.Instance.gameObject);
                     // Move enemy
                     if (!MoveWolf())
-                    { 
+                    {
                         // Find platforms below
                         Vector2 platformEdgePos = FindJumpPointBelow();
                         if (platformEdgePos != Vector2.zero)
@@ -270,11 +270,11 @@ public class SquirrelWolf : EnemyBaseClass
                             JumpWolf(moveTargetPos);
                             return;
                         }
-                        else if(IsPlatformBelow())
+                        else if (IsPlatformBelow())
                         {
                             MoveWolf(false);
                         }
-                            
+
                     }
 
                     // Once close enough Y pos, 
@@ -295,7 +295,7 @@ public class SquirrelWolf : EnemyBaseClass
                         moveTargetPos = groundCheckScript.platformStandingOn.GetClosestPosition(moveTargetPos);
                         moveDirection = moveTargetPos - myRb2D.position;
                     }
-                    
+
                 }
                 break;
             case STATES.S_EGG_ONTOP:    // When we enter this state, we should already have a target to move to
@@ -334,7 +334,7 @@ public class SquirrelWolf : EnemyBaseClass
                     }
                 }
                 break;
-            
+
 
 
             case STATES.S_MELEE_EGG:
@@ -350,7 +350,7 @@ public class SquirrelWolf : EnemyBaseClass
                         {
                             // Is a player in range?
                             if (IsPlayerInRange())
-                            { 
+                            {
                                 SetNewObjectTarget(targetObject);
                             }
                             else
@@ -371,13 +371,13 @@ public class SquirrelWolf : EnemyBaseClass
                         //        myAnimator.SetBool("mb_Melee", false);
                         //    }
                         //}
-                        
+
                     }
                 }
                 break;
             case STATES.S_SHOOT_EGG:
                 {
-                    if(shootingDoneAnimation)
+                    if (shootingDoneAnimation)
                     {
                         // Reset Bool
                         shootingDoneAnimation = false;
@@ -500,7 +500,7 @@ public class SquirrelWolf : EnemyBaseClass
                 {
                     // check if player object is out of range
                     float playerDist = 0.0f;
-                    if(!IsTargetObjStillInRange(ref playerDist))
+                    if (!IsTargetObjStillInRange(ref playerDist))
                     {
                         float posDiff = myRb2D.position.y - Egg.Instance.transform.position.y;
                         if (posDiff < YPosDifference)
@@ -528,9 +528,9 @@ public class SquirrelWolf : EnemyBaseClass
                                         // Is the next platform very close, then just jump there
                                         //if ((myRb2D.position - nextPos).sqrMagnitude < 5.0f)
                                         //{
-                                            SetNewPosTarget(nextPos);
-                                            JumpWolf(nextPos);
-                                            return;
+                                        SetNewPosTarget(nextPos);
+                                        JumpWolf(nextPos);
+                                        return;
                                         //}
                                     }
                                     // check if we can shoot projectile at player, since we can't melee
@@ -578,7 +578,7 @@ public class SquirrelWolf : EnemyBaseClass
                                 }
                             }
                             break;
-                    }  
+                    }
                 }
                 break;
             case STATES.S_SHOOT_PLAYER:
@@ -632,7 +632,7 @@ public class SquirrelWolf : EnemyBaseClass
                                 SetNewPosTarget(groundCheckScript.platformStandingOn.GetRightsPoint());
                                 break;
                         }
-                        
+
                     }
                 }
                 break;
@@ -753,7 +753,7 @@ public class SquirrelWolf : EnemyBaseClass
             platformPos = listOfPlatforms[i].gameObject.transform.position;
             // Can I even jump there? or is it blocked by the platform itself
             testDirection = (platformPos - shootingPos.position);
-           
+
             // Check dot product
             horizontal = testDirection.normalized;
             horizontal.y = 0.0f;
@@ -771,7 +771,7 @@ public class SquirrelWolf : EnemyBaseClass
             if (platformPos.y - myRb2D.position.y < YPosDifference) // If we are on the same y
                 continue;
 
-            if(platformPos.y > yPos)
+            if (platformPos.y > yPos)
             {
                 selectedIndex = i;
                 yPos = platformPos.y;
@@ -846,7 +846,7 @@ public class SquirrelWolf : EnemyBaseClass
             // Check if distance is more than currently selected platform
             testingDist = testDirection.sqrMagnitude;
             // Closest or Furtherest
-            if(closet)
+            if (closet)
             {
                 if (testingDist < dist)
                 {
@@ -862,11 +862,11 @@ public class SquirrelWolf : EnemyBaseClass
                     dist = testingDist;
                 }
             }
-            
+
         }
 
         // If we found a platform we can jump to
-        if(selectedIndex != -1)
+        if (selectedIndex != -1)
             return listOfPlatforms[selectedIndex].gameObject.transform.position;
         return Vector2.zero;
     }
@@ -922,12 +922,12 @@ public class SquirrelWolf : EnemyBaseClass
             moveDirection.y = 0.0f;
             moveDirection.Normalize();
         }
-            
+
         // TESTING FLIP
         FlipEnemy();
 
         // Do we need to check if we can drop down
-        if(checkBelow)
+        if (checkBelow)
         {
             // Cast below us
             // Check if we can even move
@@ -993,7 +993,7 @@ public class SquirrelWolf : EnemyBaseClass
         if (((Vector2)targetObject.gameObject.transform.position - myRb2D.position).sqrMagnitude > (meleeDistance * meleeDistance))
             return;
 
-         Debug.LogWarning("Hit Player");
+        Debug.LogWarning("Hit Player");
     }
     public void DoneMelee()
     {
@@ -1007,7 +1007,7 @@ public class SquirrelWolf : EnemyBaseClass
         launchVelocity.y = -(-(newTarget.y - GetFeetPosition().y) + 0.5f * Physics2D.gravity.y * timeToHitTarget * timeToHitTarget) * timeToHitTarget;
 
         // Add the velocity to enemy
-        myRb2D.velocity = Vector2.zero; 
+        myRb2D.velocity = Vector2.zero;
         myRb2D.velocity = launchVelocity;
 
 
@@ -1037,13 +1037,13 @@ public class SquirrelWolf : EnemyBaseClass
             case STATES.S_RUNAWAY:
                 {
                     // Walk to end of platform
-                    if(Random.Range(0,2) == 0) // random chance to turn around
+                    if (Random.Range(0, 2) == 0) // random chance to turn around
                         SetNewPosTarget(groundCheckScript.platformStandingOn.GetFurtherestPosition(myRb2D.position));
                     else    // Turn around
                     {
                         TurnWolfAround();
                         Vector2 platformPos = FindJumpPointAbove();
-                        if(platformPos == Vector2.zero) // Found no platforms, so we turn around again
+                        if (platformPos == Vector2.zero) // Found no platforms, so we turn around again
                         {
                             TurnWolfAround();
                             SetNewPosTarget(groundCheckScript.platformStandingOn.GetFurtherestPosition(myRb2D.position));
@@ -1064,7 +1064,7 @@ public class SquirrelWolf : EnemyBaseClass
     {
         isFrozen = frozen;
     }
-    
+
 
 
     #region Overriden
@@ -1091,10 +1091,10 @@ public class SquirrelWolf : EnemyBaseClass
     {
 
         // PT1 projectile
-        if(collision.gameObject.tag == "EnemyProj")
+        if (collision.gameObject.tag == "EnemyProj")
         {
             // Pixie Type 1 Projectile
-            if(collision.gameObject.GetComponent<PixieType1ProjectileScript>() != null)
+            if (collision.gameObject.GetComponent<PixieType1ProjectileScript>() != null)
             {
                 // Add new status effect
                 seManager.AddEffect("SW_BuffBurningSE", ObjectPooler.Instance.FetchGO_Pos("SW_BuffBurningSE", myRb2D.position).GetComponent<BaseStatusEffect>(), this);
@@ -1109,9 +1109,9 @@ public class SquirrelWolf : EnemyBaseClass
 
         Weapon weapon = collision.gameObject.GetComponent<Weapon>();
         AttackType type = weapon.at;
-        
+
         // if special Ice attack
-        if (type == AttackType.ICE )
+        if (type == AttackType.ICE)
         {
             // Are we already frozen?
             if (seManager.EffectAlreadyIn("SW_FrozenSE"))
@@ -1122,7 +1122,7 @@ public class SquirrelWolf : EnemyBaseClass
             collision.gameObject.SetActive(false);
         }
         // if special Fire attack
-        else if(type == AttackType.FIRE)
+        else if (type == AttackType.FIRE)
         {
             // Add new status effect
             seManager.AddEffect("SW_BurningSE", ObjectPooler.Instance.FetchGO_Pos("SW_BurningSE", myRb2D.position).GetComponent<BaseStatusEffect>(), this);
@@ -1139,12 +1139,12 @@ public class SquirrelWolf : EnemyBaseClass
 
 
         // set attacked bool, if we are attacking the egg
-        if(currentState == STATES.S_SHOOT_EGG || currentState == STATES.S_MELEE_EGG
+        if (currentState == STATES.S_SHOOT_EGG || currentState == STATES.S_MELEE_EGG
              /*|| currentState == STATES.S_MELEE_PLAYER || currentState == STATES.S_SHOOT_PLAYER*/)
         {
             playerAttackedWolf = true;
         }
-        
+
     }
 
     private void OnDrawGizmos()

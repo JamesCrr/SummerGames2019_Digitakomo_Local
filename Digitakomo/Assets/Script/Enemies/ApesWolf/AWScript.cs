@@ -58,7 +58,7 @@ public class AWScript : EnemyBaseClass
     #region Melee
     [Header("Melee")]
     [SerializeField]         // The maximum range for melee
-    float meleeAttackRange = 1.0f;      
+    float meleeAttackRange = 1.0f;
     bool meleeDoneAnimation = false;    // Used to check if we have finished the Melee Animation
     #endregion
     #region Charging
@@ -84,6 +84,11 @@ public class AWScript : EnemyBaseClass
     float randWalkTimer = 0.0f;
     #endregion
 
+    [Header("Damage")]
+    public int Shake = 30;
+    public int Rock = 60;
+    public int Attack = 50;
+    public int Dash = 70;
 
 
     // Awake 
@@ -147,7 +152,7 @@ public class AWScript : EnemyBaseClass
                         return;
 
                     // Move towards target
-                    if(!MoveApe())
+                    if (!MoveApe())
                     {
                         // set to idle
                         StopApe();
@@ -179,7 +184,7 @@ public class AWScript : EnemyBaseClass
 
                     // Decrement the Timer
                     randWalkTimer -= Time.deltaTime;
-                    if(randWalkTimer < 0.0f)
+                    if (randWalkTimer < 0.0f)
                     {
                         // Change state and reset timer
                         currentState = STATES.S_WALK;
@@ -196,7 +201,7 @@ public class AWScript : EnemyBaseClass
                         return;
 
                     // Charge towards the target
-                    if(!ChargeApe())  // if we can't move anymore, then go back to egg
+                    if (!ChargeApe())  // if we can't move anymore, then go back to egg
                     {
                         StopCharge();
                         return;
@@ -221,7 +226,7 @@ public class AWScript : EnemyBaseClass
                         }
                         shootingDoneAnimation = false;
                     }
-                        
+
                 }
                 break;
             case STATES.S_MELEE:
@@ -239,7 +244,7 @@ public class AWScript : EnemyBaseClass
                     if (roaringDoneAnimation)
                     {
                         currentState = STATES.S_WALK;
-                        roaringDoneAnimation = false;   
+                        roaringDoneAnimation = false;
                     }
                 }
                 break;
@@ -314,7 +319,7 @@ public class AWScript : EnemyBaseClass
     }
     public void LeftGround()
     {
-        isGrounded = false; 
+        isGrounded = false;
     }
     // Returns the player Object if he is in Range
     // Player must be in Player Layer and Tag
@@ -439,8 +444,9 @@ public class AWScript : EnemyBaseClass
         {
             case ATTACK.A_CHARGE:
                 {
+                    attackType = EnemyAttackType.APES_DASH;
                     // Can we charge?
-                    if(distance < (chargingRange * chargingRange))
+                    if (distance < (chargingRange * chargingRange))
                     {
                         currentState = STATES.S_CHARGE;
                         // set to charge ani
@@ -452,6 +458,7 @@ public class AWScript : EnemyBaseClass
                 break;
             case ATTACK.A_SHOOT:
                 {
+                    attackType = EnemyAttackType.APES_ROCK;
                     // Can we shoot?
                     if (distance < (maxShootingRange * maxShootingRange))
                     {
@@ -465,8 +472,9 @@ public class AWScript : EnemyBaseClass
                 break;
             case ATTACK.A_MELEE:
                 {
+                    attackType = EnemyAttackType.APES_ATTACK;
                     // Can we melee?
-                    if (distance < (meleeAttackRange*meleeAttackRange))
+                    if (distance < (meleeAttackRange * meleeAttackRange))
                     {
                         currentState = STATES.S_MELEE;
                         // set to charge ani
@@ -478,6 +486,7 @@ public class AWScript : EnemyBaseClass
                 break;
             case ATTACK.A_ROAR:
                 {
+                    attackType = EnemyAttackType.APES_SHAKE;
                     // Can we roar?
                     if (distance < (roaringRange * roaringRange))
                     {
@@ -537,7 +546,7 @@ public class AWScript : EnemyBaseClass
     // Randomise attacking method
     void RandomiseAttack()
     {
-        currentAttack = (ATTACK)Random.Range((int)ATTACK.A_CHARGE, (int)ATTACK.A_ROAR+1);
+        currentAttack = (ATTACK)Random.Range((int)ATTACK.A_CHARGE, (int)ATTACK.A_ROAR + 1);
     }
     #endregion
 
@@ -561,7 +570,7 @@ public class AWScript : EnemyBaseClass
         Weapon weapon = collision.gameObject.GetComponent<Weapon>();
         AttackType type = weapon.at;
 
-        if(type == AttackType.STEAM)
+        if (type == AttackType.STEAM)
         {
             return;
         }
@@ -569,12 +578,12 @@ public class AWScript : EnemyBaseClass
         // if special Ice attack
         //if (type == AttackType.ICE)
         //{
-           
+
         //}
         //// if special Fire attack
         //else if (type == AttackType.FIRE)
         //{
-            
+
         //}
 
         // Damage
@@ -610,5 +619,5 @@ public class AWScript : EnemyBaseClass
         //Gizmos.DrawWireCube(meleeHitBox.center, meleeHitBox.size);
     }
 
-   
+
 }

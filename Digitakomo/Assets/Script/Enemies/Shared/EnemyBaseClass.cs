@@ -25,6 +25,8 @@ public abstract class EnemyBaseClass : MonoBehaviour
     [SerializeField]
     protected int damage = 1;
     [SerializeField]
+    protected EnemyAttackType attackType;
+    [SerializeField]
     protected int defense = 0;
     [SerializeField]
     protected float moveSpeed = 1.0f;
@@ -155,7 +157,7 @@ public abstract class EnemyBaseClass : MonoBehaviour
             return true;
         return false;
     }
-    
+
     // Sets the Defense for this enemy
     public void SetDefense(int newDef)
     {
@@ -184,5 +186,9 @@ public abstract class EnemyBaseClass : MonoBehaviour
         return feetPosition.position;
     }
 
-    
+    public EnemyAttackType GetCurrentAttackType()
+    {
+        return attackType;
+    }
+
 }

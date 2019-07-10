@@ -429,6 +429,10 @@ public class Character : MonoBehaviour, IDamagable
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log(other.gameObject.name);
+    }
     // protected virtual void OnCollisionExit2D(Collision2D collision)
     // {
     //     if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
