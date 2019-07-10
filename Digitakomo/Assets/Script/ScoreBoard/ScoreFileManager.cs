@@ -35,6 +35,7 @@ public class ScoreFileManager : MonoBehaviour
         // Convert raw data and add into list
         ScoreSaveData newData = new ScoreSaveData(newName, newScore);
         listOfScores.Add(newData);
+        SortDescending();   // Sort the list
         // Serialise into Binary File
         bf.Serialize(stream, listOfScores);
 
@@ -42,7 +43,6 @@ public class ScoreFileManager : MonoBehaviour
         stream.Close();
         return;
     }
-
 
     // Loading Single Player Scores
     public List<ScoreSaveData> Single_LoadScores()
@@ -59,6 +59,20 @@ public class ScoreFileManager : MonoBehaviour
         stream.Close();
 
         return listOfScores;
+    }
+
+
+    // Sort the List from Highest to Lowest
+    void SortDescending()
+    {
+        listOfScores.Sort(CompareScore);
+    }
+    // -1 if second is smaller
+    // 0 if equal
+    // 1 if second is larger
+    int CompareScore(ScoreSaveData first, ScoreSaveData second)
+    {
+        return -(first.plyrScore.CompareTo(second.plyrScore));
     }
 }
 
