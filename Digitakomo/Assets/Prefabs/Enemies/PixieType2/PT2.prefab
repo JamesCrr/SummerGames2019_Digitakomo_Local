@@ -118,6 +118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 100
   damage: 30
+  attackType: 3
   defense: 0
   moveSpeed: 10
   attackTime: 2
@@ -132,6 +133,7 @@ MonoBehaviour:
     min: 2
     max: 6
   dartingTime: 2
+  dartDamage: 40
   rotatingDir: 0
   currentRadAngle: 1.5708
 --- !u!58 &4641043061969283806

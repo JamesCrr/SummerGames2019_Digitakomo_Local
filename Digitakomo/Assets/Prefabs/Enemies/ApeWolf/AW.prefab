@@ -166,7 +166,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 300
-  damage: 1
+  damage: 0
+  attackType: 6
   defense: 0
   moveSpeed: 1
   attackTime: 2
@@ -185,6 +186,11 @@ MonoBehaviour:
   chargingRange: 15
   chargingSpeed: 15
   roaringRange: 11
+  randWalkTime: 1
+  Shake: 30
+  Rock: 60
+  Attack: 50
+  Dash: 70
 --- !u!114 &7034001944833682681
 MonoBehaviour:
   m_ObjectHideFlags: 0

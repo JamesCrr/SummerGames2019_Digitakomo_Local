@@ -425,6 +425,7 @@ MonoBehaviour:
   MaxHP: 500
   MaxEnergy: 200
   electricAttack: 0
+  Animate: {fileID: 0}
   player: 1
   flameThrower: {fileID: 7881657545065886293, guid: 83cfcb08460dfcd47b3df5982aec4950,
     type: 3}

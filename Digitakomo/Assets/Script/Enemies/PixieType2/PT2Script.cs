@@ -36,6 +36,7 @@ public class PT2Script : EnemyBaseClass
     float dartingTime = 1.0f;
     float dartingTimer = 0.0f;
     float dartSpeed = 0.0f;
+    public float dartDamage = 40f;
 
     [Header("Direction")]
     [SerializeField]
@@ -72,6 +73,7 @@ public class PT2Script : EnemyBaseClass
         {
             case STATES.S_NORMAL:
                 {
+                    attackType = EnemyAttackType.BLOODYSHINGLER_NORMAL;
                     // Move as usual
                     Move();
 
@@ -105,6 +107,7 @@ public class PT2Script : EnemyBaseClass
                 break;
             case STATES.S_CLOSE:
                 {
+                    attackType = EnemyAttackType.BLOODYSHINGLER_DASH;
                     // If haven't reached position, move
                     if (!ReachedTarget(0.5f))
                     {
