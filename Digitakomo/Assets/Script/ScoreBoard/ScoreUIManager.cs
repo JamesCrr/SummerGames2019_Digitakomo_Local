@@ -65,7 +65,7 @@ public class ScoreUIManager : MonoBehaviour
             newTextObj.transform.parent = scorePanel.transform;
             textCom = newTextObj.GetComponent<TextMeshProUGUI>();
             // Add the name
-            //textCom.text += item.plyrScore.ToString();
+            textCom.text += item.plyrScore.ToString();
         }
 
     }
