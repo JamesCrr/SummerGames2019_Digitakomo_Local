@@ -942,6 +942,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fileManager: {fileID: 2074538379}
+  inputField: {fileID: 5495268930687405279, guid: a1d32289eb677f24abb061156309c692,
+    type: 3}
   scorePanels:
     nameContainer: {fileID: 724608022}
     scoreContainer: {fileID: 715813938}
