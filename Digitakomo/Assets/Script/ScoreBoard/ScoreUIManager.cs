@@ -56,19 +56,18 @@ public class ScoreUIManager : MonoBehaviour
     // Start
     private void Start()
     {
+        //fileManager.Single_ClearData();
         //fileManager.Single_Save("Test", 1);
         //fileManager.Single_Save("Test2", 2);
         //fileManager.Single_Save("Test3", 3);
         //fileManager.Single_Save("Test4", 4);
         //fileManager.Single_Save("Test5", 5);
 
-        // CHECK HERE IF MULTIPAYER OR SINGLE
-        // Get Current Scores
-        currentScores = fileManager.Single_Load();
+        GetSingleScores();
         SortDescending();
         UpdateUI();
 
-        Single_SaveNewScore(10);
+        Single_SaveNewScore(8);
     }
 
 
@@ -85,7 +84,7 @@ public class ScoreUIManager : MonoBehaviour
         UpdateUI(newestData);
     }
     // Load Scores to UI from currentScores List
-    public void UpdateUI(ScoreSaveData newestData = null)
+    void UpdateUI(ScoreSaveData newestData = null)
     {
         // Deactivate all existing texts first
         DeactivateAllText();
@@ -128,6 +127,7 @@ public class ScoreUIManager : MonoBehaviour
     // Deactivate all Text Objects
     void DeactivateAllText()
     {
+        // Name
         foreach (TextMeshProUGUI item in nameTexts)
         {
             if (item.gameObject.activeSelf == false)
@@ -135,6 +135,7 @@ public class ScoreUIManager : MonoBehaviour
             item.transform.parent = null;
             item.gameObject.SetActive(false);
         }
+        // Score
         foreach (TextMeshProUGUI item in scoreTexts)
         {
             if (item.gameObject.activeSelf == false)
@@ -142,13 +143,16 @@ public class ScoreUIManager : MonoBehaviour
             item.transform.parent = null;
             item.gameObject.SetActive(false);
         }
+        // Input Field
+        inputField.gameObject.SetActive(false);
     }
 
     #region Sorting
     // Sort the List from Highest to Lowest
     void SortDescending()
     {
-        currentScores.Sort(CompareScore);
+        if(currentScores.Count > 1)
+            currentScores.Sort(CompareScore);
     }
     // -1 if second is smaller
     // 0 if equal
@@ -160,6 +164,8 @@ public class ScoreUIManager : MonoBehaviour
     #endregion
 
     #region Name Checking
+    // Returns true if name Exists
+    // Returns false if name doesn't exist
     public bool NameExists(string name)
     {
         foreach (ScoreSaveData item in currentScores)
@@ -197,4 +203,32 @@ public class ScoreUIManager : MonoBehaviour
         return null;
     }
     #endregion
+
+    #region Input Field
+    public void NameConfirm()
+    {
+        string newName = inputField.GetComponent<TMP_InputField>().text;
+
+        if (newName == "")      // Empty String?
+            return;
+        if (NameExists(newName))    // Name already exists?
+            return;
+        // Save into the binary file
+        newestData.plyrName = newName;
+        fileManager.Single_Save(newestData.plyrName, newestData.plyrScore);
+
+        // Update UI
+        GetSingleScores();
+        UpdateUI();
+    }
+    #endregion
+    
+
+    // Loads singleScores from the Binary File
+    void GetSingleScores()
+    {
+        // Get Current Scores
+        if(fileManager.Single_Load() != null)
+            currentScores = fileManager.Single_Load();
+    }
 }

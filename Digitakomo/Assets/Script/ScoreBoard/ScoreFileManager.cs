@@ -20,7 +20,7 @@ public class ScoreFileManager : MonoBehaviour
     public void Single_Save(string newName, int newScore)
     {    
         // If File already exists, then load existing data first
-        if (!File.Exists(singlePlayerFilePath))
+        if (File.Exists(singlePlayerFilePath))
             Single_Load();
 
         // BinaryFormatter and FileStream
@@ -52,7 +52,14 @@ public class ScoreFileManager : MonoBehaviour
         stream.Close();
 
         return listOfScores;
-    }    
+    }
+    
+    // Clear File
+    public void Single_ClearData()
+    {
+        if (File.Exists(singlePlayerFilePath))
+            File.Delete(singlePlayerFilePath);
+    }
 }
 
 
