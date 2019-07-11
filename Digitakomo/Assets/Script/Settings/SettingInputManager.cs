@@ -18,7 +18,8 @@ public class SettingInputManager : MonoBehaviour
         {
             string name = button.name.Split('-')[0];
             int index = Int16.Parse(button.name.Split('-')[1]);
-            button.GetComponentInChildren<Text>().text = InputManager.GetKeyByName(name, index).ToString();
+            string text = InputManager.GetKeyByName(name, index).ToString();
+            button.GetComponentInChildren<Text>().text = text == "None" ? "-" : text;
         }
     }
 
@@ -32,6 +33,10 @@ public class SettingInputManager : MonoBehaviour
         if (keyEvent.isKey && waitingForKey)
         {
             newKey = keyEvent.keyCode;
+            if (newKey == KeyCode.Escape)
+            {
+                newKey = KeyCode.None;
+            }
             waitingForKey = false;
         }
     }
@@ -69,6 +74,7 @@ public class SettingInputManager : MonoBehaviour
         InputManager.SetKey(name, newKey, index);
 
         // apply new key to button text
-        buttonText.text = InputManager.GetKeyByName(name, index).ToString();
+        string text = InputManager.GetKeyByName(name, index).ToString();
+        buttonText.GetComponentInChildren<Text>().text = text == "None" ? "-" : text;
     }
 }
