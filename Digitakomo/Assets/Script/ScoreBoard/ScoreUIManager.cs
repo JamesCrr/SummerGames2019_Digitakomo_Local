@@ -56,7 +56,7 @@ public class ScoreUIManager : MonoBehaviour
     // Start
     private void Start()
     {
-        //fileManager.Single_ClearData();
+        fileManager.Single_ClearData();
         //fileManager.Single_Save("Test", 1);
         //fileManager.Single_Save("Test2", 2);
         //fileManager.Single_Save("Test3", 3);
