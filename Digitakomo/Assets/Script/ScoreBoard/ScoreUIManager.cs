@@ -25,8 +25,8 @@ public class ScoreUIManager : MonoBehaviour
     public GameObject nameContainer = null;  
     public GameObject scoreContainer = null;
     // Lists to store the TextObjects
-    //public List<TextMeshProUGUI> nameTexts = new List<TextMeshProUGUI>();    // To Store the Name Texts
-    //public List<TextMeshProUGUI> scoreTexts = new List<TextMeshProUGUI>();    // To Store the Score Texts
+    public List<TextMeshProUGUI> nameTexts = new List<TextMeshProUGUI>();    // To Store the Name Texts
+    public List<TextMeshProUGUI> scoreTexts = new List<TextMeshProUGUI>();    // To Store the Score Texts
     int maxCount = 0;       // Used to record how many children text there are
     // String Builder for concatenation
     StringBuilder sb = new StringBuilder();
@@ -41,7 +41,17 @@ public class ScoreUIManager : MonoBehaviour
             return;
         }
         Instance = this;
-        maxCount = nameContainer.transform.childCount;
+
+        // add the texts into the list to keep track
+        foreach (Transform item in nameContainer.transform)
+        {
+            nameTexts.Add(item.GetComponent<TextMeshProUGUI>());
+        }
+        foreach (Transform item in scoreContainer.transform)
+        {
+            scoreTexts.Add(item.GetComponent<TextMeshProUGUI>());
+        }
+        maxCount = nameTexts.Count;
     }
     // Start
     private void Start()
@@ -75,13 +85,12 @@ public class ScoreUIManager : MonoBehaviour
         UpdateUI(newestData);
     }
     // Load Scores to UI from currentScores List
-    public bool UpdateUI(ScoreSaveData newestData = null)
+    public void UpdateUI(ScoreSaveData newestData = null)
     {
         // Deactivate all existing texts first
         DeactivateAllText();
 
         // Add everything back in
-        GameObject textObject = null;
         TextMeshProUGUI textCom = null;
         // Loop through the scores
         for(int i = 0; i < currentScores.Count; ++i)
@@ -89,38 +98,48 @@ public class ScoreUIManager : MonoBehaviour
             if (i >= maxCount)
                 break;
 
-            sb.Clear();
-            // Get the gameObject and text component NAME
-            textObject = nameContainer.transform.GetChild(i).gameObject;
-            textObject.SetActive(true);
-            textCom = textObject.GetComponent<TextMeshProUGUI>();
-            // Assign data
-            textCom.text = sb.Append("-  " + currentScores[i].plyrName).ToString();
+            // If found the newest score
+            if(currentScores[i] == newestData)
+            {
+                inputField.gameObject.SetActive(true);
+                inputField.parent = nameContainer.transform;
+            }
+            else
+            {   // Means that the newest score is just too low
+                sb.Clear();
+                // Get the text component NAME
+                textCom = GetNameText();
+                textCom.transform.parent = nameContainer.transform;
+                // Assign data
+                textCom.text = sb.Append("-  " + currentScores[i].plyrName).ToString();
+            }
+           
 
             sb.Clear();
-            // Get the gameObject and text component SCORE
-            textObject = scoreContainer.transform.GetChild(i).gameObject;
-            textObject.SetActive(true);
-            textCom = textObject.GetComponent<TextMeshProUGUI>();
+            // Get the text component SCORE
+            textCom = GetScoreText();
+            textCom.transform.parent = scoreContainer.transform;
             // Assign data
             textCom.text = sb.Append("-  " + currentScores[i].plyrScore).ToString();
         }
 
-        return false;
+        
     }
     // Deactivate all Text Objects
     void DeactivateAllText()
     {
-        foreach (Transform item in nameContainer.transform)
+        foreach (TextMeshProUGUI item in nameTexts)
         {
             if (item.gameObject.activeSelf == false)
                 continue;
+            item.transform.parent = null;
             item.gameObject.SetActive(false);
         }
-        foreach (Transform item in scoreContainer.transform)
+        foreach (TextMeshProUGUI item in scoreTexts)
         {
             if (item.gameObject.activeSelf == false)
                 continue;
+            item.transform.parent = null;
             item.gameObject.SetActive(false);
         }
     }
@@ -152,4 +171,30 @@ public class ScoreUIManager : MonoBehaviour
     }
     #endregion
 
+    #region Object Pooling
+    TextMeshProUGUI GetNameText()
+    {
+        foreach (TextMeshProUGUI item in nameTexts)
+        {
+            if(item.gameObject.activeSelf == false)
+            {
+                item.gameObject.SetActive(true);
+                return item;
+            }
+        }
+        return null;
+    }
+    TextMeshProUGUI GetScoreText()
+    {
+        foreach (TextMeshProUGUI item in scoreTexts)
+        {
+            if (item.gameObject.activeSelf == false)
+            {
+                item.gameObject.SetActive(true);
+                return item;
+            }
+        }
+        return null;
+    }
+    #endregion
 }
