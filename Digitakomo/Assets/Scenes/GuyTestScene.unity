@@ -1758,18 +1758,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34c54d08f5646904f95f5bdc39264c86, type: 3}
---- !u!114 &1723839570 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1656890101799623726, guid: 72569fce1f8af5b49873ac020eb6257e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1976238399018798496}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81b2b09e98305f4489801d7b48ed7c38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1827300548 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7694618513308654793, guid: 34c54d08f5646904f95f5bdc39264c86,
@@ -2316,25 +2304,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3574985740435204629, guid: 73e7015d83d3f1b46b78246ab70bf2f1,
-        type: 3}
-      propertyPath: character
-      value: 
-      objectReference: {fileID: 352553400}
-    - target: {fileID: 3574985738628737305, guid: 73e7015d83d3f1b46b78246ab70bf2f1,
-        type: 3}
-      propertyPath: character
-      value: 
-      objectReference: {fileID: 1634956425}
-    - target: {fileID: 1249029468, guid: 73e7015d83d3f1b46b78246ab70bf2f1, type: 3}
-      propertyPath: timer
-      value: 
-      objectReference: {fileID: 868005651}
-    - target: {fileID: 1139658768190511487, guid: 73e7015d83d3f1b46b78246ab70bf2f1,
-        type: 3}
-      propertyPath: stone
-      value: 
-      objectReference: {fileID: 1723839570}
     - target: {fileID: 518462359460145198, guid: 73e7015d83d3f1b46b78246ab70bf2f1,
         type: 3}
       propertyPath: m_AnchorMax.x
