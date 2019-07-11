@@ -52,7 +52,7 @@ public class Egg : MonoBehaviour, IDamagable
     {
         if (MaxHP * WarnPercentage / 100 >= HP)
         {
-            Debug.Log("Warning EGG HP LESS THAN " + WarnPercentage + " Percent");
+            // Debug.Log("Warning EGG HP LESS THAN " + WarnPercentage + " Percent");
         }
 
         if (HP <= 0)

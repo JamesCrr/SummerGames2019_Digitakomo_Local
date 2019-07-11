@@ -89,6 +89,10 @@ public class MainCamera : MonoBehaviour
 
         foreach (GameObject character in characters)
         {
+            if (!character.activeSelf)
+            {
+                continue;
+            }
             Vector3 leftbotOffset = character.transform.position - (characterOffset / 2);
             Vector3 righttopOffset = character.transform.position + (characterOffset / 2);
 
@@ -128,8 +132,14 @@ public class MainCamera : MonoBehaviour
         float minY = float.MaxValue;
         float maxY = float.MinValue;
 
+        int charactercount = 0;
         foreach (GameObject character in characters)
         {
+            if (!character.activeSelf)
+            {
+                continue;
+            }
+            charactercount++;
             Vector3 leftbotOffset = character.transform.position - (characterOffset / 2);
             Vector3 righttopOffset = character.transform.position + (characterOffset / 2);
 
@@ -158,11 +168,12 @@ public class MainCamera : MonoBehaviour
         float targetRadio = width / height;
         if (screenRatio >= targetRadio)
         {
-            return height * 0.5f;
+            float size = (height / charactercount);
+            return size;
         }
         else
         {
-            float size = width * Screen.height / Screen.width * 0.5f;
+            float size = width * Screen.height / Screen.width / charactercount;
             return size;
         }
 
