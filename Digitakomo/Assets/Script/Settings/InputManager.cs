@@ -59,22 +59,28 @@ public class InputManager : MonoBehaviour
 
     void Awake()
     {
-        DB = new InputDatabaseManager(Application.dataPath);
         if (Instance == null)
         {
             Instance = this;
-            // initialize 
-            Initialize();
-            if (!UseDefaultKey)
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+        DB = new InputDatabaseManager(Application.dataPath);
+        // initialize 
+        Initialize();
+        if (!UseDefaultKey)
+        {
+            // if database exist
+            if (DB.IsDatabaseExist())
             {
-                // if database exist
-                if (DB.IsDatabaseExist())
-                {
-                    // load setting into variable
-                    DB.SetUpKeyFromDb();
-                }
+                // load setting into variable
+                DB.SetUpKeyFromDb();
             }
         }
+
     }
 
     public void Initialize()

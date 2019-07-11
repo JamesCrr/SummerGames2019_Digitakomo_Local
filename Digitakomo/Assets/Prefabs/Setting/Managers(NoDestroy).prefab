@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3507482482463207507}
   - component: {fileID: 3507482482463207500}
+  - component: {fileID: 3507482482463207502}
   m_Layer: 0
   m_Name: Managers(NoDestroy)
-  m_TagString: Untagged
+  m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,4 +44,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5449e38b7b90a0c49a79f0a3e4159b60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UseDefaultKey: 1
+  UseDefaultKey: 0
+--- !u!114 &3507482482463207502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3507482482463207501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23c3333d40ee64d69932f0d7143cf383, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerCount: 2

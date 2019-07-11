@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerCount = GameObject.FindGameObjectWithTag("Manager").GetComponent<CrossScene>().PlayerCount;
         // initialize the managers if on dev
         if (InputManager.Instance == null)
         {
@@ -30,6 +31,9 @@ public class GameManager : MonoBehaviour
         }
         else if (PlayerCount == 1)
         {
+            IceCharacterObject.gameObject.SetActive(false);
+            FireCharacterObject.gameObject.SetActive(false);
+
             IceCharacterObject.player = 1;
             FireCharacterObject.player = 1;
             int randomedCharacter = Random.Range(0, 2);

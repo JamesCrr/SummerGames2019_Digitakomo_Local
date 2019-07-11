@@ -51,6 +51,8 @@ public class MainMenuManager : MonoBehaviour
     {
         // StartMenu.SetActive(false);
         // StartMapSelection.SetActive(true);
+
+        FindObjectOfType<CrossScene>().PlayerCount = 1;
         SceneController._LoadSceneWithLoadingScreen("RaviossaLevel");
     }
 
@@ -58,6 +60,8 @@ public class MainMenuManager : MonoBehaviour
     {
         // StartMenu.SetActive(false);
         // StartMapSelection.SetActive(true);
+
+        FindObjectOfType<CrossScene>().PlayerCount = 2;
         SceneController._LoadSceneWithLoadingScreen("RaviossaLevel");
     }
 
