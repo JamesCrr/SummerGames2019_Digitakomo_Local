@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class ScoreFileManager : MonoBehaviour
 {
-    [SerializeField]    // The maximum number of scores to display
-    int maxScoreToDisplay = 12;
     // To store filePath for single Player
     static string singlePlayerFilePath;
     static List<ScoreSaveData> listOfScores = new List<ScoreSaveData>();
@@ -19,15 +17,11 @@ public class ScoreFileManager : MonoBehaviour
 
     
     // Saving Single Player Score
-    public void Single_SaveNewScore(string newName, int newScore)
-    {
-        
+    public void Single_Save(string newName, int newScore)
+    {    
         // If File already exists, then load existing data first
         if (!File.Exists(singlePlayerFilePath))
-            Single_LoadScores();
-        // If reached limit, then don't add more
-        if (listOfScores.Count >= maxScoreToDisplay)
-            return;
+            Single_Load();
 
         // BinaryFormatter and FileStream
         BinaryFormatter bf = new BinaryFormatter();
@@ -35,7 +29,6 @@ public class ScoreFileManager : MonoBehaviour
         // Convert raw data and add into list
         ScoreSaveData newData = new ScoreSaveData(newName, newScore);
         listOfScores.Add(newData);
-        SortDescending();   // Sort the list
         // Serialise into Binary File
         bf.Serialize(stream, listOfScores);
 
@@ -45,7 +38,7 @@ public class ScoreFileManager : MonoBehaviour
     }
 
     // Loading Single Player Scores
-    public List<ScoreSaveData> Single_LoadScores()
+    public List<ScoreSaveData> Single_Load()
     {
         // If File does not exist, return false
         if (!File.Exists(singlePlayerFilePath))
@@ -59,21 +52,7 @@ public class ScoreFileManager : MonoBehaviour
         stream.Close();
 
         return listOfScores;
-    }
-
-
-    // Sort the List from Highest to Lowest
-    void SortDescending()
-    {
-        listOfScores.Sort(CompareScore);
-    }
-    // -1 if second is smaller
-    // 0 if equal
-    // 1 if second is larger
-    int CompareScore(ScoreSaveData first, ScoreSaveData second)
-    {
-        return -(first.plyrScore.CompareTo(second.plyrScore));
-    }
+    }    
 }
 
 
