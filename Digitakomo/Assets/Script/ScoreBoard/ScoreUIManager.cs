@@ -7,31 +7,27 @@ using TMPro;
 
 public class ScoreUIManager : MonoBehaviour
 {
-    [System.Serializable]
-    public class ScoreBoardPanels
-    {
-        public GameObject nameContainer = null;
-        public GameObject scoreContainer = null;
-        // Lists to store the TextObjects
-        //public List<TextMeshProUGUI> nameTexts = new List<TextMeshProUGUI>();    // To Store the Name Texts
-        //public List<TextMeshProUGUI> scoreTexts = new List<TextMeshProUGUI>();    // To Store the Score Texts
-    }
-
     // Public Instance
     public static ScoreUIManager Instance = null;
 
     [SerializeField]    // Used to access the binary files
     ScoreFileManager fileManager = null;
+    [SerializeField]    // Used to enter the new name
+    RectTransform inputField = null;
 
-    // The Score and Name Panel for singlePlayers
-    public ScoreBoardPanels scorePanels = new ScoreBoardPanels();
     // The Text Prefab to use
     [SerializeField]
     GameObject textPrefab = null;
     // The Current Score Save Data
     List<ScoreSaveData> currentScores = new List<ScoreSaveData>();
-    // All the text Objects
-    List<TextMeshProUGUI> listOfTextObj = new List<TextMeshProUGUI>();
+    ScoreSaveData newestData = null;    // To store the newest data
+    // Containers to store the scores
+    public GameObject nameContainer = null;  
+    public GameObject scoreContainer = null;
+    // Lists to store the TextObjects
+    public List<TextMeshProUGUI> nameTexts = new List<TextMeshProUGUI>();    // To Store the Name Texts
+    public List<TextMeshProUGUI> scoreTexts = new List<TextMeshProUGUI>();    // To Store the Score Texts
+    int maxCount = 0;       // Used to record how many children text there are
     // String Builder for concatenation
     StringBuilder sb = new StringBuilder();
 
@@ -45,25 +41,17 @@ public class ScoreUIManager : MonoBehaviour
             return;
         }
         Instance = this;
-        
 
-        GameObject newTextObj = null;
-        TextMeshProUGUI textCom = null;
-        // Create 20 inactive textMeshPro first
-        for (int i = 0; i < 20; i++)
+        // add the texts into the list to keep track
+        foreach (Transform item in nameContainer.transform)
         {
-            // Instantiate new text and Deactivate it first
-            newTextObj = Instantiate(textPrefab);
-            textCom = newTextObj.GetComponent<TextMeshProUGUI>();
-            listOfTextObj.Add(textCom);
-            textCom.gameObject.SetActive(false);
-            // Instantiate new text and Deactivate it first
-            newTextObj = Instantiate(textPrefab);
-            textCom = newTextObj.GetComponent<TextMeshProUGUI>();
-            listOfTextObj.Add(textCom);
-            textCom.gameObject.SetActive(false);
+            nameTexts.Add(item.GetComponent<TextMeshProUGUI>());
         }
-       
+        foreach (Transform item in scoreContainer.transform)
+        {
+            scoreTexts.Add(item.GetComponent<TextMeshProUGUI>());
+        }
+        maxCount = nameTexts.Count;
     }
     // Start
     private void Start()
@@ -89,54 +77,65 @@ public class ScoreUIManager : MonoBehaviour
     // Save a new Score to the File
     public void Single_SaveNewScore(int score)
     {
-        // Create new data and add into list
-        TextMeshProUGUI assignedText = null;
-        ScoreSaveData newData = new ScoreSaveData("", score);
-        currentScores.Add(newData);
+        newestData = new ScoreSaveData("", score);
+        currentScores.Add(newestData);
         // Sort it
         SortDescending();
-        // Update UI and get the text object for the name
-        assignedText = UpdateUI(newData);
-
-
+        // Update UI
+        UpdateUI(newestData);
     }
     // Load Scores to UI from currentScores List
-    public TextMeshProUGUI UpdateUI(ScoreSaveData newestData = null)
+    public void UpdateUI(ScoreSaveData newestData = null)
     {
         // Deactivate all existing texts first
         DeactivateAllText();
 
-        TextMeshProUGUI foundText = null;
         // Add everything back in
-        GameObject fetchedGO = null;
         TextMeshProUGUI textCom = null;
-        foreach (ScoreSaveData item in currentScores)
+        // Loop through the scores
+        for(int i = 0; i < currentScores.Count; ++i)
         {
-            sb.Clear();
-            // Name
-            fetchedGO = GetText();
-            fetchedGO.transform.parent = scorePanels.nameContainer.transform;
-            textCom = fetchedGO.GetComponent<TextMeshProUGUI>();
-            textCom.text = sb.Append("-  " + item.plyrName).ToString();
-            // Check if any item is the same as the newestData
-            if (item == newestData)
-                foundText = textCom;
+            if (i >= maxCount)
+                break;
 
+            // If found the newest score
+            if(currentScores[i] == newestData)
+            {
+                inputField.gameObject.SetActive(true);
+                inputField.parent = nameContainer.transform;
+            }
+            else
+            {   // Means that the newest score is just too low
+                sb.Clear();
+                // Get the text component NAME
+                textCom = GetNameText();
+                textCom.transform.parent = nameContainer.transform;
+                // Assign data
+                textCom.text = sb.Append("-  " + currentScores[i].plyrName).ToString();
+            }
+           
 
             sb.Clear();
-            // Score
-            fetchedGO = GetText();
-            fetchedGO.transform.parent = scorePanels.scoreContainer.transform;
-            textCom = fetchedGO.GetComponent<TextMeshProUGUI>();
-            textCom.text = sb.Append("-  " + item.plyrScore).ToString();
+            // Get the text component SCORE
+            textCom = GetScoreText();
+            textCom.transform.parent = scoreContainer.transform;
+            // Assign data
+            textCom.text = sb.Append("-  " + currentScores[i].plyrScore).ToString();
         }
 
-        return foundText;
+        
     }
     // Deactivate all Text Objects
     void DeactivateAllText()
     {
-        foreach (TextMeshProUGUI item in listOfTextObj)
+        foreach (TextMeshProUGUI item in nameTexts)
+        {
+            if (item.gameObject.activeSelf == false)
+                continue;
+            item.transform.parent = null;
+            item.gameObject.SetActive(false);
+        }
+        foreach (TextMeshProUGUI item in scoreTexts)
         {
             if (item.gameObject.activeSelf == false)
                 continue;
@@ -172,21 +171,30 @@ public class ScoreUIManager : MonoBehaviour
     }
     #endregion
 
-    #region Text Pooling
-    public GameObject GetText()
+    #region Object Pooling
+    TextMeshProUGUI GetNameText()
     {
-        foreach (TextMeshProUGUI item in listOfTextObj)
+        foreach (TextMeshProUGUI item in nameTexts)
+        {
+            if(item.gameObject.activeSelf == false)
+            {
+                item.gameObject.SetActive(true);
+                return item;
+            }
+        }
+        return null;
+    }
+    TextMeshProUGUI GetScoreText()
+    {
+        foreach (TextMeshProUGUI item in scoreTexts)
         {
             if (item.gameObject.activeSelf == false)
             {
                 item.gameObject.SetActive(true);
-                return item.gameObject;
+                return item;
             }
         }
-        // Create new Text
-        GameObject newText = Instantiate(textPrefab);
-        listOfTextObj.Add(newText.GetComponent<TextMeshProUGUI>());
-        return newText;
+        return null;
     }
     #endregion
 }
