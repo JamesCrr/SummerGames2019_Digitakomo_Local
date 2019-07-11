@@ -6,13 +6,7 @@ public class HUDPause : MonoBehaviour
 {
     private bool isPaused = false;
     private float defaultTimeScale;
-    private RawImage ri;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        ri = GetComponentInChildren<RawImage>(true);
-    }
+    public GameObject pauseObject;
 
     private void Update()
     {
@@ -26,21 +20,22 @@ public class HUDPause : MonoBehaviour
             {
                 Pause();
             }
-            isPaused = !isPaused;
         }
     }
 
     public void Resume()
     {
+        isPaused = false;
         Time.timeScale = defaultTimeScale;
-        ri.gameObject.SetActive(false);
+        pauseObject.SetActive(false);
     }
 
     private void Pause()
     {
+        isPaused = true;
         defaultTimeScale = Time.timeScale;
         Time.timeScale = 0;
-        ri.gameObject.SetActive(true);
+        pauseObject.SetActive(true);
     }
 
     public void Restart()
