@@ -132,7 +132,7 @@ public class IceCharacter : Character
         GameObject go = ObjectPooler.Instance.FetchGO("IceMissile");
         IceMissile icems = go.GetComponent<IceMissile>();
         icems.Restart();
-        icems.transform.position = transform.position;
+        icems.transform.position = createdPositon;
         icems.SetRotation(rotation);
         icems.SetMissileDirection(xDir, yDir);
     }
@@ -146,7 +146,7 @@ public class IceCharacter : Character
 
     private Vector3 GetCreatePosition()
     {
-        return transform.position;
+        return specialAttackPosition.position;
     }
 
     /**
@@ -156,46 +156,56 @@ public class IceCharacter : Character
      **/
     private int GetAttackDirection()
     {
-        if (!WPressed && !APressed && !DPressed)
+        if (InputManager.GetAxisRaw("Player" + player + "MoveLeft") == 0
+            && InputManager.GetAxisRaw("Player" + player + "MoveRight") == 0
+            && InputManager.GetAxisRaw("Player" + player + "LookUp") == 0)
         {
             return latestDirection;
         }
-        if (WPressed)
+        if (InputManager.GetAxisRaw("Player" + player + "MoveLeft") == 0
+            && InputManager.GetAxisRaw("Player" + player + "MoveRight") == 0
+            && InputManager.GetAxisRaw("Player" + player + "LookUp") == 1)
         {
-            if (APressed)
-            {
-                latestDirection = 1;
-                return latestDirection;
-            }
-            else if (DPressed)
-            {
-                latestDirection = 3;
-                return latestDirection;
-            }
-            else
-            {
-                latestDirection = 2;
-                return latestDirection;
-            }
+            // up
+            latestDirection = 2;
+            return 2;
         }
-        else
+        if (specialAttackPosition.position.x > transform.position.x)
         {
-            if (APressed)
+            // right
+            if (InputManager.GetAxisRaw("Player" + player + "LookUp") == 1)
             {
-                latestDirection = 0;
-                return latestDirection;
+                // upright
+                latestDirection = 3;
+                return 3;
             }
             else
             {
                 latestDirection = 4;
-                return latestDirection;
+                return 4;
+            }
+        }
+        else
+        {
+            // left
+            if (InputManager.GetAxisRaw("Player" + player + "LookUp") == 1)
+            {
+                // upleft
+                latestDirection = 1;
+                return 1;
+            }
+            else
+            {
+                latestDirection = 0;
+                return 0;
             }
         }
     }
 
     private bool GetIsCreated()
     {
-        if (APressed && DPressed)
+        if (InputManager.GetAxisRaw("Player" + player + "MoveLeft") == 1
+            && InputManager.GetAxisRaw("Player" + player + "MoveRight") == 1)
         {
             return false;
         }

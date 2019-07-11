@@ -87,23 +87,30 @@ public class InputManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        foreach (string keyname in keymaps.Keys)
+        {
+            if (GetButtonDown(keyname) && !pressing.Contains(keyname))
+            {
+                pressing.Add(keyname);
+            }
+            else if (GetButtonUp(keyname) && pressing.Contains(keyname))
+            {
+                pressing.Remove(keyname);
+            }
+        }
+    }
+
     public static bool GetButtonDown(string name)
     {
         bool isPressed = Input.GetKeyDown(InputManager.Instance.keymaps[name][0]) || Input.GetKeyDown(InputManager.Instance.keymaps[name][1]);
-        if (isPressed && !InputManager.Instance.pressing.Contains(name))
-        {
-            InputManager.Instance.pressing.Add(name);
-        }
         return isPressed;
     }
 
     public static bool GetButtonUp(string name)
     {
         bool isPressed = Input.GetKeyUp(InputManager.Instance.keymaps[name][0]) || Input.GetKeyUp(InputManager.Instance.keymaps[name][1]);
-        if (isPressed && InputManager.Instance.pressing.Contains(name))
-        {
-            InputManager.Instance.pressing.Remove(name);
-        }
         return isPressed;
     }
 

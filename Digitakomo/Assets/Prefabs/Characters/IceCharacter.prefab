@@ -365,6 +365,36 @@ MonoBehaviour:
   at: 1
   MinElectricDamage: 50
   MaxElectricDamage: 50
+--- !u!1 &7428265638159284978
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9075533450236666330}
+  m_Layer: 10
+  m_Name: SpecialAttackPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9075533450236666330
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7428265638159284978}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.57, y: 0.57, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7883997970962599784}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7883997970962599796
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,6 +431,7 @@ Transform:
   - {fileID: 6535676831129925125}
   - {fileID: 1729930252652561978}
   - {fileID: 664767437620344411}
+  - {fileID: 9075533450236666330}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -529,8 +560,10 @@ MonoBehaviour:
   MaxHP: 500
   MaxEnergy: 200
   electricAttack: 0
+  specialAttackPosition: {fileID: 9075533450236666330}
   Animate: {fileID: 0}
   player: 2
+  electricEffect: {fileID: 2100000, guid: c714d79cf1aa5c04394d4595ae283cdd, type: 2}
   IceMissile: {fileID: 8374536731700558200, guid: 0bc122d6f0e083c40b283f0e39bb065b,
     type: 3}
   icePlatform: {fileID: 6189928942897961021, guid: 20a8386fc65c10649b2ac71f49ec7a8d,

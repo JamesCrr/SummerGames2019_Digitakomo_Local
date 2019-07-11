@@ -55,12 +55,10 @@ public class Character : MonoBehaviour, IDamagable
     public bool electricAttack = false;
     protected float enerygyPerSpecialAttack;
     protected Collider2D AttackCollider;
-    protected bool WPressed = false;
-    protected bool APressed = false;
-    protected bool DPressed = false;
     protected int latestDirection = 4;
     protected float nextSpecialFire;
     protected float specialAttackClipTime;
+    public Transform specialAttackPosition;
 
     // Animation
     [HideInInspector]
@@ -155,18 +153,6 @@ public class Character : MonoBehaviour, IDamagable
     // Moving Horizontal, left and right
     public virtual void MoveHorizontal()
     {
-        // Check if we need to change direction
-        if (horizontalInput > 0 && !facingRight)
-        {
-            facingRight = true;
-            Flip();
-        }
-        else if (horizontalInput < 0 && facingRight)
-        {
-            facingRight = false;
-            Flip();
-        }
-
         if (horizontalInput * myRb2D.velocity.x < initialMoveSpeed)
         {
             myRb2D.velocity = new Vector2(initialMoveSpeed * horizontalInput, myRb2D.velocity.y);
@@ -189,6 +175,7 @@ public class Character : MonoBehaviour, IDamagable
         // Clear the existing Velocity
         myRb2D.velocity = new Vector2(myRb2D.velocity.x * 0.4f, myRb2D.velocity.y);
         // localScale.x *= -1;
+        transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
 
         // transform.localScale = localScale;
     }
@@ -317,18 +304,6 @@ public class Character : MonoBehaviour, IDamagable
         // Get latest Horizontal Input from player
         horizontalInput = moveRight - moveLeft;
 
-
-        if (horizontalInput == -1)
-        {
-            // Debug.Log("MoveLeft");
-            transform.rotation = Quaternion.Euler(0, 180, 0);
-        }
-        else if (horizontalInput == 1)
-        {
-            // Debug.Log("MoveRight");
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
-
         // If player wants to jump
         if (jump)
         {
@@ -345,30 +320,15 @@ public class Character : MonoBehaviour, IDamagable
             isLockMovement -= 1;
         }
 
-        if (lookUpPressed)
+        if (moveRight == 1 && !facingRight)
         {
-            WPressed = true;
+            facingRight = true;
+            Flip();
         }
-        else if (lookUpReleased)
+        else if (moveLeft == 1 && facingRight)
         {
-            WPressed = false;
-        }
-
-        if (InputManager.GetButtonDown("Player" + player + "MoveLeft"))
-        {
-            APressed = true;
-        }
-        else if (InputManager.GetButtonUp("Player" + player + "MoveLeft"))
-        {
-            APressed = false;
-        }
-        if (InputManager.GetButtonDown("Player" + player + "MoveRight"))
-        {
-            DPressed = true;
-        }
-        else if (InputManager.GetButtonUp("Player" + player + "MoveRight"))
-        {
-            DPressed = false;
+            facingRight = false;
+            Flip();
         }
 
         if (InputManager.GetButtonDown("Player" + player + "Attack"))
