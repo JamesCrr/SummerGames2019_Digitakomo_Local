@@ -1908,7 +1908,7 @@ PrefabInstance:
     - target: {fileID: 7883997970962599784, guid: 774623a0001b6e9478d7f2c375c10007,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 15.740614
+      value: 17.8
       objectReference: {fileID: 0}
     - target: {fileID: 7883997970962599784, guid: 774623a0001b6e9478d7f2c375c10007,
         type: 3}
@@ -1955,6 +1955,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7883997970962599787, guid: 774623a0001b6e9478d7f2c375c10007,
+        type: 3}
+      propertyPath: electricEffect
+      value: 
+      objectReference: {fileID: 2100000, guid: c714d79cf1aa5c04394d4595ae283cdd, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 774623a0001b6e9478d7f2c375c10007, type: 3}
 --- !u!1001 &1114693135
@@ -2891,6 +2896,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FireCharacter
       objectReference: {fileID: 0}
+    - target: {fileID: 8518456384201068771, guid: f88ee3a8773118c4fa2448c3bae6c870,
+        type: 3}
+      propertyPath: electricEffect
+      value: 
+      objectReference: {fileID: 2100000, guid: c714d79cf1aa5c04394d4595ae283cdd, type: 2}
     - target: {fileID: 403571385494849996, guid: f88ee3a8773118c4fa2448c3bae6c870,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2946,6 +2956,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1861100166517165517, guid: f88ee3a8773118c4fa2448c3bae6c870,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f88ee3a8773118c4fa2448c3bae6c870, type: 3}
 --- !u!1 &1807309574
@@ -3256,11 +3271,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PauseCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 6584787378532405832, guid: b83351c1bb385e9439f3d0d51a2296c7,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6584787378532405829, guid: b83351c1bb385e9439f3d0d51a2296c7,
         type: 3}

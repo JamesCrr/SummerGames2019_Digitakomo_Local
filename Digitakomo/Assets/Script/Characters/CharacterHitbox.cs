@@ -11,6 +11,10 @@ public class CharacterHitbox : MonoBehaviour
         {
             // Hit by enemy
             EnemyBaseClass enemy = other.gameObject.GetComponentInParent<EnemyBaseClass>();
+            if (enemy == null)
+            {
+                return;
+            }
             EnemyAttackType enemyat = enemy.GetCurrentAttackType();
             switch (enemyat)
             {

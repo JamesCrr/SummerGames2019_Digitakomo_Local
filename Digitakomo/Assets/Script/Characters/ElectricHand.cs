@@ -26,7 +26,7 @@ public class ElectricHand : Weapon
     public void setElectricHand(bool active)
     {
         isElectricHand = active;
-        character.electricAttack = active;
+        character.SetElectricAttack(active);
         if (active)
         {
             at = AttackType.Electric;

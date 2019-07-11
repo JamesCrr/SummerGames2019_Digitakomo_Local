@@ -63,12 +63,16 @@ public class Character : MonoBehaviour, IDamagable
     protected float specialAttackClipTime;
 
     // Animation
+    [HideInInspector]
     public Animator Animate;
 
     public int player = 1;
 
     // Current velocity
     protected Vector2 currentVelocity;
+
+    public Material electricEffect;
+    private Material defaultMaterial;
 
     // Start is called before the first frame update
     void Awake()
@@ -91,6 +95,9 @@ public class Character : MonoBehaviour, IDamagable
 
         // get the animation
         Animate = GetComponent<Animator>();
+
+        // save the default material
+        defaultMaterial = GetComponent<Renderer>().material;
 
         // get scale for flip
         localScale = transform.localScale;
@@ -331,6 +338,7 @@ public class Character : MonoBehaviour, IDamagable
         if (lockMovementDown)
         {
             isLockMovement += 1;
+            myRb2D.velocity = new Vector2(0, myRb2D.velocity.y);
         }
         if (lockMovementUp)
         {
@@ -456,5 +464,18 @@ public class Character : MonoBehaviour, IDamagable
             Animate.SetBool("isFalling", true);
         }
 
+    }
+
+    public void SetElectricAttack(bool isElectric)
+    {
+        electricAttack = isElectric;
+        if (isElectric)
+        {
+            GetComponent<Renderer>().material = electricEffect;
+        }
+        else
+        {
+            GetComponent<Renderer>().material = defaultMaterial;
+        }
     }
 }
