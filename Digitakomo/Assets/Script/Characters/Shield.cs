@@ -9,46 +9,41 @@ public class Shield : MonoBehaviour, IDamagable
     private Quaternion DefaultRotation;
 
     Character player;
-    private int noPlayer;
 
     void Awake()
     {
         _Shield = gameObject.GetComponentInChildren<Collider2D>();
         Texture = gameObject.GetComponentInChildren<SpriteRenderer>();
         player = gameObject.GetComponentInParent<Character>();
-        noPlayer = player.player;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (InputManager.GetButtonDown("Player" + noPlayer + "Defense"))
+        Debug.Log("update");
+        if (InputManager.GetButtonDown("Player" + player.player + "Defense"))
         {
+            Debug.Log("Defensing");
             player.isLockMovement += 1;
             isShielding = true;
             player.Animate.SetTrigger("preDefense");
             player.Animate.SetBool("isDefensing", true);
         }
-        if (InputManager.GetButtonUp("Player" + noPlayer + "Defense"))
+        if (InputManager.GetButtonUp("Player" + player.player + "Defense"))
         {
             player.isLockMovement -= 1;
             isShielding = false;
             player.Animate.SetBool("isDefensing", false);
         }
-        if (InputManager.GetButtonDown("Player" + noPlayer + "LookUp"))
+        if (isShielding && InputManager.GetAxisRaw("Player" + player.player + "LookUp") == 1)
         {
-            isShieldUp = true;
+            // Shield
+            SetRotation(true);
         }
-        if (InputManager.GetButtonUp("Player" + noPlayer + "LookUp"))
+        else if (isShielding && InputManager.GetAxisRaw("Player" + player.player + "LookUp") == 0)
         {
-            isShieldUp = false;
+            SetRotation(false);
         }
-    }
-
-    void FixedUpdate()
-    {
-        //SetShieldEnable(isShielding);
-        SetRotation(isShieldUp);
     }
 
     private void SetRotation(bool rotate)

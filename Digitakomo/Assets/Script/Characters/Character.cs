@@ -175,7 +175,8 @@ public class Character : MonoBehaviour, IDamagable
         // Clear the existing Velocity
         myRb2D.velocity = new Vector2(myRb2D.velocity.x * 0.4f, myRb2D.velocity.y);
         // localScale.x *= -1;
-        transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+        // transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+        transform.Rotate(0, 180, 0);
 
         // transform.localScale = localScale;
     }
