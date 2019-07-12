@@ -77,6 +77,7 @@ public class PT2Script : EnemyBaseClass
                     attackType = EnemyAttackType.BLOODYSHINGLER_NORMAL;
                     // Move as usual
                     Move();
+                    FaceEgg();
 
                     // Check if we need to change state
                     if (circleRadius < minRadius_Range.current)
@@ -120,6 +121,7 @@ public class PT2Script : EnemyBaseClass
                     else if (darting)  // if we just finished darting, reset rotation
                     {
                         transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+                        FaceEgg();
                         darting = false;   
                     }
 
@@ -133,6 +135,7 @@ public class PT2Script : EnemyBaseClass
                         dartingTimer = dartingTime;
                     }
                     myAnimator.SetBool("mb_Stop", true);
+                    
                 }
                 break;
         }
@@ -189,6 +192,19 @@ public class PT2Script : EnemyBaseClass
     void DartToTarget()
     {
         myRb2D.MovePosition(myRb2D.position + (moveTargetPos - myRb2D.position).normalized * dartSpeed * Time.deltaTime);
+    }
+    // Face Towards the egg
+    void FaceEgg()
+    {
+        Vector2 direction = Egg.Instance.GetPosition() - myRb2D.position;
+        if(direction.x < 0.0)
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, 180, transform.rotation.z));
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, 0, transform.rotation.z));
+        }
     }
 
 
