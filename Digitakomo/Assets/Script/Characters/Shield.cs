@@ -5,8 +5,6 @@ public class Shield : MonoBehaviour, IDamagable
     private Collider2D _Shield;
     private SpriteRenderer Texture;
     private bool isShielding = false;
-    private bool isShieldUp = false;
-    private Quaternion DefaultRotation;
 
     Character player;
 

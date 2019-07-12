@@ -12,6 +12,11 @@ public class SettingInputManager : MonoBehaviour
     Text buttonText;
     private void Start()
     {
+        AssignKeyTextToButtons();
+    }
+
+    private void AssignKeyTextToButtons()
+    {
         Button[] buttons = GetComponentsInChildren<Button>();
         // assign value to text 
         foreach (Button button in buttons)
@@ -76,5 +81,11 @@ public class SettingInputManager : MonoBehaviour
         // apply new key to button text
         string text = InputManager.GetKeyByName(name, index).ToString();
         buttonText.GetComponentInChildren<Text>().text = text == "None" ? "-" : text;
+    }
+
+    public void RestoreDefault()
+    {
+        InputManager.RestoreDefault();
+        AssignKeyTextToButtons();
     }
 }

@@ -26,7 +26,7 @@ public class InputManager : MonoBehaviour
         "Player2MoveRight"
     };
 
-    private KeyCode[,] keys = new KeyCode[17, 2]
+    private KeyCode[,] defaultKeys = new KeyCode[17, 2]
     {
         { KeyCode.C, KeyCode.None },
         { KeyCode.W, KeyCode.None },
@@ -88,7 +88,7 @@ public class InputManager : MonoBehaviour
         // default value
         for (int i = 0; i < actions.Length; i++)
         {
-            KeyCode[] keycodes = new KeyCode[2] { keys[i, 0], keys[i, 1] };
+            KeyCode[] keycodes = new KeyCode[2] { defaultKeys[i, 0], defaultKeys[i, 1] };
             keymaps.Add(actions[i], keycodes);
         }
     }
@@ -149,5 +149,12 @@ public class InputManager : MonoBehaviour
     public static KeyCode GetKeyByName(string name, int index)
     {
         return InputManager.Instance.keymaps[name][index];
+    }
+
+    public static void RestoreDefault()
+    {
+        InputManager.Instance.keymaps.Clear();
+        InputManager.Instance.Initialize();
+        InputManager.Instance.DB.SaveKeyToDb();
     }
 }
