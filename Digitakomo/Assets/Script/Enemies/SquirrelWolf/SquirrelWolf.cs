@@ -399,15 +399,9 @@ public class SquirrelWolf : EnemyBaseClass
                             myAnimator.SetBool("mb_Shoot", false);
                             playerAttackedWolf = false; // Reset attecked bool
                         }
-                        //else
-                        //{
-                        //    // Found Player
-                        //    if (targetObject != null)   
-                        //    {
-                        //        currentState = STATES.S_FOUNDPLAYER;
-                        //        myAnimator.SetBool("mb_Shoot", false);
-                        //    }
-                        //}
+
+                        // Reset Animation State
+                        myAnimator.Play("squirrelWolf_Shoot", -1, 0f);
                     }
                 }
                 break;
