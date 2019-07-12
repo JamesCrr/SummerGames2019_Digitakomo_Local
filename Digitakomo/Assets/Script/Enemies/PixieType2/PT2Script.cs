@@ -85,6 +85,7 @@ public class PT2Script : EnemyBaseClass
                             return;
 
                         currentState = STATES.S_CLOSE;
+                        myAnimator.SetTrigger("mt_Close");
                     }
                     else
                     {
@@ -111,7 +112,11 @@ public class PT2Script : EnemyBaseClass
                     // If haven't reached position, move
                     if (!ReachedTarget(0.5f))
                     {
+                        myAnimator.SetBool("mb_Stop", false);
                         DartToTarget();
+                        // Check if we have reached the target, reset rotation
+                        //if(ReachedTarget(0.6f))
+                        //    transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
                         return;
                     }
 
@@ -124,6 +129,7 @@ public class PT2Script : EnemyBaseClass
                         // Reset Timer
                         dartingTimer = dartingTime;
                     }
+                    myAnimator.SetBool("mb_Stop", true);
                 }
                 break;
         }
@@ -169,7 +175,11 @@ public class PT2Script : EnemyBaseClass
         moveTargetPos.x = centerPoint.x + Mathf.Cos(currentRadAngle) * circleRadius;
         moveTargetPos.y = centerPoint.y + Mathf.Sin(currentRadAngle) * circleRadius;
         // set the new speed
-        dartSpeed = (moveTargetPos - myRb2D.position).sqrMagnitude * 0.45f;
+        Vector2 direction = moveTargetPos - myRb2D.position;
+        dartSpeed = direction.sqrMagnitude * 0.45f;
+
+        // Face that direction
+        transform.rotation = Quaternion.Euler(0.0f, 0.0f, (Mathf.Atan2(direction.y, direction.y) * Mathf.Rad2Deg) - 90.0f);
     }
     // Move towards the dart target
     void DartToTarget()

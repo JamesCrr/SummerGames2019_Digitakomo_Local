@@ -179,8 +179,8 @@ MonoBehaviour:
   radiusDecreaseRate: 1
   minRadius_Range:
     current: 5
-    min: 2
-    max: 6
+    min: 3
+    max: 10
   dartingTime: 2
   dartDamage: 40
   rotatingDir: 0
