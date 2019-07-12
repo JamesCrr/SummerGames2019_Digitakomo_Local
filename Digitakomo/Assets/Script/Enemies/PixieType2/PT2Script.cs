@@ -37,6 +37,7 @@ public class PT2Script : EnemyBaseClass
     float dartingTimer = 0.0f;
     float dartSpeed = 0.0f;
     public float dartDamage = 40f;
+    bool darting = false;
 
     [Header("Direction")]
     [SerializeField]
@@ -114,10 +115,12 @@ public class PT2Script : EnemyBaseClass
                     {
                         myAnimator.SetBool("mb_Stop", false);
                         DartToTarget();
-                        // Check if we have reached the target, reset rotation
-                        //if(ReachedTarget(0.6f))
-                        //    transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
                         return;
+                    }
+                    else if (darting)  // if we just finished darting, reset rotation
+                    {
+                        transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+                        darting = false;   
                     }
 
                     // Decrement Timer
@@ -179,7 +182,8 @@ public class PT2Script : EnemyBaseClass
         dartSpeed = direction.sqrMagnitude * 0.45f;
 
         // Face that direction
-        transform.rotation = Quaternion.Euler(0.0f, 0.0f, (Mathf.Atan2(direction.y, direction.y) * Mathf.Rad2Deg) - 90.0f);
+        transform.rotation = Quaternion.Euler(0.0f, 0.0f, (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) - 90.0f);
+        darting = true;
     }
     // Move towards the dart target
     void DartToTarget()

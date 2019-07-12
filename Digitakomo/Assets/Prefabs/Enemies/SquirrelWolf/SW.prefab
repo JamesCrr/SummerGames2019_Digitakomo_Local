@@ -157,6 +157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 300
   damage: 1
+  attackType: 0
   defense: 0
   moveSpeed: 5
   attackTime: 2
@@ -165,11 +166,11 @@ MonoBehaviour:
   attackMethod: 1
   playerDetectionRange: 4
   sideTopDetect:
-    detectOffset: {x: 2, y: 0.84}
-    detectSize: {x: 3.4, y: 6.88}
+    detectOffset: {x: 3.48, y: 2.72}
+    detectSize: {x: 6.4, y: 9.88}
   bottomDetect:
-    detectOffset: {x: 2.08, y: -2.96}
-    detectSize: {x: 3.57, y: 4.17}
+    detectOffset: {x: 5.23, y: -4.96}
+    detectSize: {x: 9.79, y: 7.28}
   groundCheckScript: {fileID: 6738443519159129480}
   groundCast: {fileID: 122157824463116106}
   groundCastLength: 0.22
