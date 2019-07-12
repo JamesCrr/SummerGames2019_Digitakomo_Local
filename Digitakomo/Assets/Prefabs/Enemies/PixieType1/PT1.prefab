@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 3054573736784184883}
   - component: {fileID: 8915860995619676040}
   - component: {fileID: 740853999135367370}
+  - component: {fileID: 7020782910407066231}
   m_Layer: 9
   m_Name: PT1
   m_TagString: Enemy
@@ -119,7 +120,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7e92c804bfa0b6d409788549ce212bab, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1127a2652e6312748a7e373a386e755a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -191,3 +192,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.22}
   serializedVersion: 2
   m_Radius: 1.1247103
+--- !u!95 &7020782910407066231
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788284937499773471}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a745d82aeae4f884bbda908304120d10, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
