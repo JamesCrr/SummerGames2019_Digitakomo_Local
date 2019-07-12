@@ -20,7 +20,7 @@ public class Shield : MonoBehaviour, IDamagable
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("update");
+        // Debug.Log("update");
         if (InputManager.GetButtonDown("Player" + player.player + "Defense"))
         {
             Debug.Log("Defensing");
