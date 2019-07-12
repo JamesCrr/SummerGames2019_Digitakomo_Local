@@ -24,11 +24,13 @@ public class GameManager : MonoBehaviour
             Instantiate(ManagersPrefab);
         }
 
+        // if multiplayer active both of character
         if (PlayerCount == 2)
         {
             IceCharacterObject.gameObject.SetActive(true);
             FireCharacterObject.gameObject.SetActive(true);
         }
+        // if single player active one of character randomly
         else if (PlayerCount == 1)
         {
             IceCharacterObject.gameObject.SetActive(false);
@@ -52,21 +54,50 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (PlayerCount == 1 && InputManager.GetButtonDown("Player1ChangeCharacter"))
+        if (PlayerCount == 1)
         {
+            // automatic change when one of the character die.
             if (IsIceCharacter)
             {
-                FireCharacterObject.transform.position = IceCharacterObject.transform.position;
-                IceCharacterObject.gameObject.SetActive(false);
-                FireCharacterObject.gameObject.SetActive(true);
+                if (IceCharacterObject.GetCurrentHP() <= 0)
+                {
+                    ChangeCharacter();
+                }
             }
             else
             {
-                IceCharacterObject.transform.position = FireCharacterObject.transform.position;
-                FireCharacterObject.gameObject.SetActive(false);
-                IceCharacterObject.gameObject.SetActive(true);
+                if (FireCharacterObject.GetCurrentHP() <= 0)
+                {
+                    ChangeCharacter();
+                }
             }
-            IsIceCharacter = !IsIceCharacter;
+            // change the character manually
+            if (InputManager.GetButtonDown("Player1ChangeCharacter"))
+            {
+                ChangeCharacter();
+            }
         }
+
+        if (IceCharacterObject.GetCurrentHP() <= 0 && FireCharacterObject.GetCurrentHP() <= 0)
+        {
+            // Game End;
+        }
+    }
+
+    private void ChangeCharacter()
+    {
+        if (IsIceCharacter)
+        {
+            FireCharacterObject.transform.position = IceCharacterObject.transform.position;
+            IceCharacterObject.gameObject.SetActive(false);
+            FireCharacterObject.gameObject.SetActive(true);
+        }
+        else
+        {
+            IceCharacterObject.transform.position = FireCharacterObject.transform.position;
+            FireCharacterObject.gameObject.SetActive(false);
+            IceCharacterObject.gameObject.SetActive(true);
+        }
+        IsIceCharacter = !IsIceCharacter;
     }
 }

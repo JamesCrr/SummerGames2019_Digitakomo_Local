@@ -164,8 +164,8 @@ public class MainCamera : MonoBehaviour
         float width = maxX - minX;
         float height = maxY - minY;
 
-        float screenRatio = (float)Screen.width / (float)Screen.height;
         float targetRadio = width / height;
+        float screenRatio = (float)Screen.width / (float)Screen.height;
         if (screenRatio >= targetRadio)
         {
             float size = (height / charactercount);

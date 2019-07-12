@@ -116,9 +116,6 @@ public class Character : MonoBehaviour, IDamagable
         if (myRb2D.velocity.y < 0)
             myRb2D.velocity += Vector2.up * (Physics2D.gravity.y * fallingMultiplyer) * Time.deltaTime;
 
-        // handle HP if character dead
-        HandleHP();
-
         // get latest velocity
         currentVelocity = myRb2D.velocity;
 
@@ -347,14 +344,6 @@ public class Character : MonoBehaviour, IDamagable
         else if (InputManager.GetButtonUp("Player" + player + "SpecialAttack"))
         {
             DoneSpecialAttack();
-        }
-    }
-
-    private void HandleHP()
-    {
-        if (HP <= 0)
-        {
-            //SceneController.LoadEndScene(false);
         }
     }
 
