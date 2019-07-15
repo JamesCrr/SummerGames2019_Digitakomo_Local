@@ -49,20 +49,18 @@ public class MainMenuManager : MonoBehaviour
     #region StartMenu
     public void OnClick_SinglePlayer()
     {
-        // StartMenu.SetActive(false);
-        // StartMapSelection.SetActive(true);
+        StartMenu.SetActive(false);
+        StartMapSelection.SetActive(true);
 
         FindObjectOfType<CrossScene>().PlayerCount = 1;
-        SceneController._LoadSceneWithLoadingScreen("RaviossaLevel");
     }
 
     public void OnClick_MultiPlayer()
     {
-        // StartMenu.SetActive(false);
-        // StartMapSelection.SetActive(true);
+        StartMenu.SetActive(false);
+        StartMapSelection.SetActive(true);
 
         FindObjectOfType<CrossScene>().PlayerCount = 2;
-        SceneController._LoadSceneWithLoadingScreen("RaviossaLevel");
     }
 
     public void OnClick_Back_StartMenu()
@@ -70,6 +68,25 @@ public class MainMenuManager : MonoBehaviour
         StartMenu.SetActive(false);
         MainMenu.SetActive(true);
     }
+    #endregion
+
+    #region MapSelection
+
+    public void OnClick_Basic()
+    {
+        SceneController._LoadSceneWithLoadingScreen("RaviossaLevel");
+    }
+    public void OnClick_Advance()
+    {
+        SceneController._LoadSceneWithLoadingScreen("RaviossaLevel");
+    }
+
+    public void OnClick_Back_StartMapSelection()
+    {
+        StartMapSelection.SetActive(false);
+        StartMenu.SetActive(true);
+    }
+
     #endregion
 
     #region ExtraMenu
