@@ -282,7 +282,6 @@ public class Character : MonoBehaviour, IDamagable
     private void BlinkAndRed(float second)
     {
         BlinkUntil = Time.time + second;
-        NextBlinkTime = Time.time + BlinkInterval;
     }
 
     private void DoBlink()

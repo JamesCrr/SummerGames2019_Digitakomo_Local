@@ -162,7 +162,6 @@ public abstract class EnemyBaseClass : MonoBehaviour
     private void BlinkAndRed(float second)
     {
         BlinkUntil = Time.time + second;
-        NextBlinkTime = Time.time + BlinkInterval;
     }
 
     private void DoBlink()
