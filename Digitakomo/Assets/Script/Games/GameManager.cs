@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance = null;  // Used to access GameManager's Data
+
     public int PlayerCount = 2;
     public int score = 0;
 
@@ -14,6 +16,18 @@ public class GameManager : MonoBehaviour
     [Header("This should be initialize already on MainMenu")]
     [Header("In case you're in development scene")]
     public GameObject ManagersPrefab;
+
+
+    private void Awake()
+    {
+        if(Instance != null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        Instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
