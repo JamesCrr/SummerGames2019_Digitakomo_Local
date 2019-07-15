@@ -128,6 +128,21 @@ public class FireCharacter : Character
             case 4:
                 xDir = 1;
                 break;
+            case 5:
+                xDir = 1;
+                yDir = -1;
+                rotation = 135;
+                break;
+            case 6:
+                xDir = 0;
+                yDir = -1;
+                rotation = 90;
+                break;
+            case 7:
+                xDir = -1;
+                yDir = -1;
+                rotation = 45;
+                break;
         }
 
         if (!IsHasEnoughEnergy(enerygyPerSpecialAttack))
@@ -156,33 +171,51 @@ public class FireCharacter : Character
      **/
     private int GetAttackDirection()
     {
+        // no input from the keyboard
         if (InputManager.GetAxisRaw("Player" + player + "MoveLeft") == 0
             && InputManager.GetAxisRaw("Player" + player + "MoveRight") == 0
-            && InputManager.GetAxisRaw("Player" + player + "LookUp") == 0)
+            && InputManager.GetAxisRaw("Player" + player + "LookUp") == 0
+            && InputManager.GetAxisRaw("Player" + player + "LookDown") == 0)
         {
             return latestDirection;
         }
+
+        // lookup only
         if (InputManager.GetAxisRaw("Player" + player + "MoveLeft") == 0
             && InputManager.GetAxisRaw("Player" + player + "MoveRight") == 0
-            && InputManager.GetAxisRaw("Player" + player + "LookUp") == 1)
+            && InputManager.GetAxisRaw("Player" + player + "LookUp") == 1
+            && InputManager.GetAxisRaw("Player" + player + "LookDown") == 0)
         {
             // up
             latestDirection = 2;
-            return 2;
         }
-        if (specialAttackPosition.position.x > transform.position.x)
+
+        // lookdown only
+        else if (InputManager.GetAxisRaw("Player" + player + "MoveLeft") == 0
+            && InputManager.GetAxisRaw("Player" + player + "MoveRight") == 0
+            && InputManager.GetAxisRaw("Player" + player + "LookUp") == 0
+            && InputManager.GetAxisRaw("Player" + player + "LookDown") == 1)
+
+        {
+            latestDirection = 6;
+        }
+        else if (specialAttackPosition.position.x > transform.position.x)
         {
             // right
             if (InputManager.GetAxisRaw("Player" + player + "LookUp") == 1)
             {
                 // upright
                 latestDirection = 3;
-                return 3;
+            }
+            else if (InputManager.GetAxisRaw("Player" + player + "LookDown") == 1)
+            {
+                // downright
+                latestDirection = 5;
             }
             else
             {
+                // right
                 latestDirection = 4;
-                return 4;
             }
         }
         else
@@ -192,14 +225,20 @@ public class FireCharacter : Character
             {
                 // upleft
                 latestDirection = 1;
-                return 1;
+            }
+            else if (InputManager.GetAxisRaw("Player" + player + "LookDown") == 1)
+            {
+                // downleft
+                latestDirection = 7;
             }
             else
             {
+                // left
                 latestDirection = 0;
-                return 0;
             }
         }
+
+        return latestDirection;
     }
 
     private bool GetIsCreated()
