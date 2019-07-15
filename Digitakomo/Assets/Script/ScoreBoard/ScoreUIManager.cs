@@ -18,11 +18,14 @@ public class ScoreUIManager : MonoBehaviour
     [SerializeField]
     Image background = null;       // The background to display the sprites
 
+    [Header("File Manager")]
     [SerializeField]    // Used to access the binary files
     ScoreFileManager fileManager = null;
+    [Header("Input Field")]
     [SerializeField]    // Used to enter the new name
     RectTransform inputField = null;
 
+    [Header("UI Stuff")]
     // The Text Prefab to use
     [SerializeField]
     GameObject textPrefab = null;
@@ -30,14 +33,19 @@ public class ScoreUIManager : MonoBehaviour
     List<ScoreSaveData> currentScores = new List<ScoreSaveData>();
     ScoreSaveData newestData = null;    // To store the newest data
     // Containers to store the scores
-    public GameObject nameContainer = null;  
-    public GameObject scoreContainer = null;
+    [SerializeField]
+    GameObject nameContainer = null;
+    [SerializeField]
+    GameObject scoreContainer = null;
     // Lists to store the TextObjects
-    public List<TextMeshProUGUI> nameTexts = new List<TextMeshProUGUI>();    // To Store the Name Texts
-    public List<TextMeshProUGUI> scoreTexts = new List<TextMeshProUGUI>();    // To Store the Score Texts
+    List<TextMeshProUGUI> nameTexts = new List<TextMeshProUGUI>();    // To Store the Name Texts
+    List<TextMeshProUGUI> scoreTexts = new List<TextMeshProUGUI>();    // To Store the Score Texts
     int maxCount = 0;       // Used to record how many children text there are
     // String Builder for concatenation
     StringBuilder sb = new StringBuilder();
+    [Header("Clear Button")]    // Button to clear current HighScores
+    [SerializeField]
+    GameObject clearButton = null;
 
 
     // Awake
@@ -62,25 +70,22 @@ public class ScoreUIManager : MonoBehaviour
         maxCount = nameTexts.Count;
 
         // Check if we need to use the Single or Multiplayer Background Image
-        if (GameManager.Instance.PlayerCount == 2)
+        if(fileManager.plyrCount ==2 )//if (GameManager.Instance.PlayerCount == 2)
             background.sprite = multi;
         else
             background.sprite = single;
+
+        // Disable Clear Button
+        clearButton.SetActive(false);
     }
     // Start
     private void Start()
     {
-        //fileManager.Single_ClearData();
-        //fileManager.Single_Save("Test", 1);
-        //fileManager.Single_Save("Test2", 2);
-        //fileManager.Single_Save("Test3", 3);
-        //fileManager.Single_Save("Test4", 4);
-        //fileManager.Single_Save("Test5", 5);
-
         GetScores();
         SortDescending();
         UpdateUI();
-        //Single_InputNewScore(8);
+
+        InputNewScore(8);
     }
 
 
@@ -102,11 +107,21 @@ public class ScoreUIManager : MonoBehaviour
         // Get Current Scores
         if (fileManager.Load() != null)
             currentScores = fileManager.Load();
+        else
+            currentScores.Clear();
+    }
+    // Remove all Scores from the Binary file and UI
+    public void RemoveScores()
+    {
+        fileManager.ClearData();
+        GetScores();
+        UpdateUI();
     }
     #endregion
 
     #region UI
     // Load Scores to UI from currentScores List
+    // Pass in the newest score to attach a Input field to that name
     void UpdateUI(ScoreSaveData newestData = null)
     {
         // Deactivate all existing texts first
@@ -124,14 +139,14 @@ public class ScoreUIManager : MonoBehaviour
             if(currentScores[i] == newestData)
             {
                 inputField.gameObject.SetActive(true);
-                inputField.parent = nameContainer.transform;
+                inputField.SetParent(nameContainer.transform);
             }
             else
             {   // Means that the newest score is just too low
                 sb.Clear();
                 // Get the text component NAME
                 textCom = GetNameText();
-                textCom.transform.parent = nameContainer.transform;
+                textCom.transform.SetParent(nameContainer.transform);
                 // Assign data
                 textCom.text = sb.Append("-  " + currentScores[i].plyrName).ToString();
             }
@@ -140,7 +155,7 @@ public class ScoreUIManager : MonoBehaviour
             sb.Clear();
             // Get the text component SCORE
             textCom = GetScoreText();
-            textCom.transform.parent = scoreContainer.transform;
+            textCom.transform.SetParent(scoreContainer.transform);
             // Assign data
             textCom.text = sb.Append("-  " + currentScores[i].plyrScore).ToString();
         }
@@ -155,7 +170,7 @@ public class ScoreUIManager : MonoBehaviour
         {
             if (item.gameObject.activeSelf == false)
                 continue;
-            item.transform.parent = null;
+            item.transform.SetParent(null);
             item.gameObject.SetActive(false);
         }
         // Score
@@ -163,7 +178,7 @@ public class ScoreUIManager : MonoBehaviour
         {
             if (item.gameObject.activeSelf == false)
                 continue;
-            item.transform.parent = null;
+            item.transform.SetParent(null);
             item.gameObject.SetActive(false);
         }
         // Input Field
@@ -244,6 +259,9 @@ public class ScoreUIManager : MonoBehaviour
         // Update UI
         GetScores();
         UpdateUI();
+
+        // Enable Clear Button
+        clearButton.SetActive(true);
     }
     #endregion
     

@@ -7,7 +7,8 @@ using UnityEngine.UI;
 
 public class ScoreFileManager : MonoBehaviour
 {
-   
+    public int plyrCount = 2;
+    
     // To store filePath for save file
     static string saveFilePath;
     static List<ScoreSaveData> listOfScores = new List<ScoreSaveData>();
@@ -15,7 +16,7 @@ public class ScoreFileManager : MonoBehaviour
     private void Awake()
     {
         // Check if we need to use the Single or Multiplayer Path
-        if(GameManager.Instance.PlayerCount == 2)
+        if(plyrCount == 2)//if(GameManager.Instance.PlayerCount == 2)
             saveFilePath = Path.Combine(Application.persistentDataPath, "multiScoreData.sc");
         else
             saveFilePath = Path.Combine(Application.persistentDataPath, "singleScoreData.sc");
