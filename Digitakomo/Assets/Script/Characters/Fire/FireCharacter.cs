@@ -40,6 +40,10 @@ public class FireCharacter : Character
             }
         }
         GetAttackDirection();
+        if (Animate.GetBool("isFalling"))
+        {
+            SoundManager.instance.StopSound("NuuttipukkiRocketJump");
+        }
     }
 
     // Player Moving
@@ -62,7 +66,11 @@ public class FireCharacter : Character
             myRb2D.velocity = new Vector2(myRb2D.velocity.x, Vector2.up.y + additionSpecialJumpAcceleration);
             Animate.SetTrigger("specialJump");
             Animate.SetBool("isFalling", false);
-            // GetComponentInChildren<FireRocket>().SetEnabled(true);
+            SoundManager.instance.PlaySound("NuuttipukkiRocketJump");
+        }
+        else
+        {
+            SoundManager.instance.PlaySound("NuuttipukkiJump");
         }
         // Jump
         Vector2 tempJump = myRb2D.velocity;

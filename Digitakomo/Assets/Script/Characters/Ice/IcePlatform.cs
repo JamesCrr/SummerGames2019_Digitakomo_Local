@@ -35,7 +35,7 @@ public class IcePlatform : Weapon
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground") || collision.gameObject.tag == "Egg")
         {
             render.enabled = false;
             _collider.enabled = false;

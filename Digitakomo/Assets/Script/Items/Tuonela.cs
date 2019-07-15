@@ -9,6 +9,7 @@ public class Tuonela : BaseItem
         if (ic != null)
         {
             ic.AddEnergy(Energy);
+            SoundManager.instance.PlaySound("WaterBottleCollected");
             gameObject.SetActive(false);
         }
         else if (fc != null)

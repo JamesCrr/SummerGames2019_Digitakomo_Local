@@ -25,6 +25,12 @@ public class FlameProjectile : RangeWeapon
         }
     }
 
+    protected override void disableProjectile()
+    {
+        base.disableProjectile();
+        // SoundManager.instance.StopSound("Flamethrower");
+    }
+
     public override void Restart()
     {
         base.Restart();

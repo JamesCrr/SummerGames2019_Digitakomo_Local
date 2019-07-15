@@ -5654,17 +5654,17 @@ PrefabInstance:
     - target: {fileID: 3507482482463207507, guid: cc0a8197bffe9264897a80b6de7dda4a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 951.793
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3507482482463207507, guid: cc0a8197bffe9264897a80b6de7dda4a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 545.42395
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3507482482463207507, guid: cc0a8197bffe9264897a80b6de7dda4a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -463.99796
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3507482482463207507, guid: cc0a8197bffe9264897a80b6de7dda4a,
         type: 3}
@@ -5704,11 +5704,6 @@ PrefabInstance:
     - target: {fileID: 3507482482463207507, guid: cc0a8197bffe9264897a80b6de7dda4a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2161758867259526838, guid: cc0a8197bffe9264897a80b6de7dda4a,
-        type: 3}
-      propertyPath: sounds.Array.data[6].loop
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

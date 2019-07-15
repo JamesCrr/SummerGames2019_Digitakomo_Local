@@ -123,8 +123,8 @@ MonoBehaviour:
     loop: 0
   - name: Flamethrower
     type: 0
-    clip: {fileID: 8300000, guid: df5d12a769f768b4493cd78a20817066, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: 7c841fdf7250e374f96d6af46f533116, type: 3}
+    volume: 0.698
     pitch: 1
     randomVolume: 0.1
     randomPitch: 0.1

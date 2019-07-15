@@ -23,8 +23,13 @@ public class RangeWeapon : Weapon
     {
         if (currentTime + timeoutDestructor <= Time.time)
         {
-            gameObject.SetActive(false);
+            disableProjectile();
         }
+    }
+
+    protected virtual void disableProjectile()
+    {
+        gameObject.SetActive(false);
     }
 
     public void SetMissileDirection(int x, int y)
