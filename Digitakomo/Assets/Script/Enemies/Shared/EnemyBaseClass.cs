@@ -171,7 +171,6 @@ public abstract class EnemyBaseClass : MonoBehaviour
         {
             if (Time.time >= NextBlinkTime)
             {
-                Debug.Log("Changed");
                 // check color and change
                 if (isRed)
                 {

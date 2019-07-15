@@ -289,7 +289,6 @@ public class Character : MonoBehaviour, IDamagable
         {
             if (Time.time >= NextBlinkTime)
             {
-                Debug.Log("Changed");
                 // check color and change
                 if (isRed)
                 {
