@@ -97,6 +97,8 @@ public class Character : MonoBehaviour, IDamagable
         // save the default material
         defaultMaterial = GetComponent<Renderer>().material;
 
+        defaultColor = GetComponent<SpriteRenderer>().color;
+
         // get scale for flip
         localScale = transform.localScale;
         // flip because of sprite
@@ -145,6 +147,8 @@ public class Character : MonoBehaviour, IDamagable
         CheckGrounded();
 
         handleMovementAnimation();
+
+        DoBlink();
     }
 
     // Moving Horizontal, left and right
@@ -262,6 +266,48 @@ public class Character : MonoBehaviour, IDamagable
     {
         HP -= damage;
         // FloatingTextController.CreateFloatingText(damage.ToString("F0"), transform.position);
+
+        // blink with red color
+        BlinkAndRed(1);
+    }
+
+
+    private Color defaultColor;
+    private float BlinkUntil = -1f;
+    private float BlinkInterval = 0.1f;
+    private float NextBlinkTime;
+    private bool isRed = false;
+    private void BlinkAndRed(float second)
+    {
+        BlinkUntil = Time.time + second;
+        NextBlinkTime = Time.time + BlinkInterval;
+    }
+
+    private void DoBlink()
+    {
+        if (Time.time <= BlinkUntil)
+        {
+            if (Time.time >= NextBlinkTime)
+            {
+                Debug.Log("Changed");
+                // check color and change
+                if (isRed)
+                {
+                    GetComponent<SpriteRenderer>().color = defaultColor;
+                    isRed = false;
+                }
+                else
+                {
+                    GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.8f);
+                    isRed = true;
+                }
+                NextBlinkTime = Time.time + BlinkInterval;
+            }
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().color = defaultColor;
+        }
     }
 
     public bool IsEnergyLeft(float energyToUse)

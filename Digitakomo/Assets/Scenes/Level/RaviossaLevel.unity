@@ -284,10 +284,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listOfEnemies:
-  - enemyToSpawn: {fileID: 1277917633}
+  - SpawnOnStart: 0
+    enemyToSpawn: {fileID: 1277917633}
     spawnInterval: 2
     maxSpawnCount: 0
-  - enemyToSpawn: {fileID: 1316040751}
+  - SpawnOnStart: 0
+    enemyToSpawn: {fileID: 1316040751}
     spawnInterval: 60
     maxSpawnCount: 10
   centerPoint: {fileID: 47583351}
@@ -574,11 +576,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listOfEnemies:
-  - enemyToSpawn: {fileID: 587125289932397903, guid: 3ac46f4e189741a4fa43831f6f59ca8e,
+  - SpawnOnStart: 1
+    enemyToSpawn: {fileID: 587125289932397903, guid: 3ac46f4e189741a4fa43831f6f59ca8e,
       type: 3}
     spawnInterval: 2
     maxSpawnCount: 0
-  - enemyToSpawn: {fileID: 532834790551978396, guid: aa0f83b1c4a68504b81b3b8079266c1b,
+  - SpawnOnStart: 1
+    enemyToSpawn: {fileID: 532834790551978396, guid: aa0f83b1c4a68504b81b3b8079266c1b,
       type: 3}
     spawnInterval: 2
     maxSpawnCount: 0
@@ -3296,11 +3300,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listOfEnemies:
-  - enemyToSpawn: {fileID: 788284937499773471, guid: f8c3b997bfbcc194b9bbf2357174a7fa,
+  - SpawnOnStart: 1
+    enemyToSpawn: {fileID: 788284937499773471, guid: f8c3b997bfbcc194b9bbf2357174a7fa,
       type: 3}
     spawnInterval: 25
     maxSpawnCount: 30
-  - enemyToSpawn: {fileID: 686835902066373112, guid: 7924b9bbbceb56e409675054d6a4d533,
+  - SpawnOnStart: 1
+    enemyToSpawn: {fileID: 686835902066373112, guid: 7924b9bbbceb56e409675054d6a4d533,
       type: 3}
     spawnInterval: 25
     maxSpawnCount: 30
@@ -3493,10 +3499,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listOfEnemies:
-  - enemyToSpawn: {fileID: 1277917633}
+  - SpawnOnStart: 1
+    enemyToSpawn: {fileID: 1277917633}
     spawnInterval: 45
     maxSpawnCount: 10
-  - enemyToSpawn: {fileID: 1316040751}
+  - SpawnOnStart: 1
+    enemyToSpawn: {fileID: 1316040751}
     spawnInterval: 1
     maxSpawnCount: 0
   centerPoint: {fileID: 1357395794}
@@ -4834,6 +4842,21 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 1861100166517165517, guid: f88ee3a8773118c4fa2448c3bae6c870,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1861100166517165517, guid: f88ee3a8773118c4fa2448c3bae6c870,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1861100166517165517, guid: f88ee3a8773118c4fa2448c3bae6c870,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f88ee3a8773118c4fa2448c3bae6c870, type: 3}
 --- !u!1 &1854742942
@@ -4866,10 +4889,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listOfEnemies:
-  - enemyToSpawn: {fileID: 1277917633}
+  - SpawnOnStart: 1
+    enemyToSpawn: {fileID: 1277917633}
     spawnInterval: 60
     maxSpawnCount: 10
-  - enemyToSpawn: {fileID: 1316040751}
+  - SpawnOnStart: 1
+    enemyToSpawn: {fileID: 1316040751}
     spawnInterval: 80
     maxSpawnCount: 10
   centerPoint: {fileID: 1854742944}
@@ -5763,11 +5788,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listOfEnemies:
-  - enemyToSpawn: {fileID: 788284937499773471, guid: f8c3b997bfbcc194b9bbf2357174a7fa,
+  - SpawnOnStart: 1
+    enemyToSpawn: {fileID: 788284937499773471, guid: f8c3b997bfbcc194b9bbf2357174a7fa,
       type: 3}
     spawnInterval: 30
     maxSpawnCount: 30
-  - enemyToSpawn: {fileID: 686835902066373112, guid: 7924b9bbbceb56e409675054d6a4d533,
+  - SpawnOnStart: 1
+    enemyToSpawn: {fileID: 686835902066373112, guid: 7924b9bbbceb56e409675054d6a4d533,
       type: 3}
     spawnInterval: 30
     maxSpawnCount: 30

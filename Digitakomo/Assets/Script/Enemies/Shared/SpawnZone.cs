@@ -9,6 +9,7 @@ public class SpawnZone : MonoBehaviour
     [System.Serializable]
     class SpawningTemplate
     {
+        public bool SpawnOnStart = true;
         // The Enemy Prefab to spawn when timer reaches 0
         public GameObject enemyToSpawn = null;
         // How often to spawn the Enemy
@@ -40,6 +41,14 @@ public class SpawnZone : MonoBehaviour
             // Reset Timer
             spawnTimer = spawnInterval;
             return true;
+        }
+
+        public void UpdateTimerOnStart()
+        {
+            if (!SpawnOnStart)
+            {
+                spawnTimer = spawnInterval;
+            }
         }
         // Returns a random position from the spawning Zone, if provided.
         // If not, returns Vector3.zero;
@@ -87,6 +96,7 @@ public class SpawnZone : MonoBehaviour
         // Attach this's transform to all the templates
         foreach (SpawningTemplate item in listOfEnemies)
         {
+            item.UpdateTimerOnStart();
             item.spawningZone = this;
         }
     }
