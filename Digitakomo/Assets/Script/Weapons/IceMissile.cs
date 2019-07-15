@@ -21,4 +21,10 @@ public class IceMissile : RangeWeapon
             gameObject.SetActive(false);
         }
     }
+
+    public override void Restart()
+    {
+        base.Restart();
+        SoundManager.instance.PlaySound("IceMissile");
+    }
 }

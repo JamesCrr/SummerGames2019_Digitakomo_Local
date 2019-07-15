@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 3507482482463207507}
   - component: {fileID: 3507482482463207500}
   - component: {fileID: 3507482482463207502}
+  - component: {fileID: 2161758867259526838}
+  - component: {fileID: 1552828259}
   m_Layer: 0
   m_Name: Managers(NoDestroy)
   m_TagString: Manager
@@ -58,3 +60,124 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerCount: 2
+--- !u!114 &2161758867259526838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3507482482463207501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76685ebf27e46294e8d3a263e1e86ac4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: BirdWings
+    type: 0
+    clip: {fileID: 8300000, guid: 6aabb7427672ee9429ab4db4891c34a8, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0.1
+    randomPitch: 0.1
+    loop: 1
+  - name: FireFeatherCollected
+    type: 0
+    clip: {fileID: 8300000, guid: 55ea128f84d3d654ab37dd1ef86962b5, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0.1
+    randomPitch: 0.1
+    loop: 0
+  - name: WaterBottleCollected
+    type: 0
+    clip: {fileID: 8300000, guid: 6e8ad15ff07e2e6428d83aced6cfd0ed, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0.1
+    randomPitch: 0.1
+    loop: 0
+  - name: CrakingStone
+    type: 0
+    clip: {fileID: 8300000, guid: 450b7d4ecb8bbf1429b3dd5d6adbc986, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0.1
+    randomPitch: 0.1
+    loop: 0
+  - name: DyingBlow
+    type: 0
+    clip: {fileID: 8300000, guid: 9d4b1771938241146835c6fc4d616b9a, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0.1
+    randomPitch: 0.1
+    loop: 0
+  - name: FirePillar
+    type: 0
+    clip: {fileID: 8300000, guid: 5e6fc9aaac022b746b26916d9c38358f, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0.1
+    randomPitch: 0.1
+    loop: 0
+  - name: Flamethrower
+    type: 0
+    clip: {fileID: 8300000, guid: df5d12a769f768b4493cd78a20817066, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0.1
+    randomPitch: 0.1
+    loop: 0
+  - name: IceMissile
+    type: 0
+    clip: {fileID: 8300000, guid: 5acaf49f81b4c5c43bc91db8d77aad42, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0.1
+    randomPitch: 0.1
+    loop: 0
+  - name: IceBall
+    type: 0
+    clip: {fileID: 8300000, guid: c9ecc18498837de46b1e6e0d44494073, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0.1
+    randomPitch: 0.1
+    loop: 0
+  - name: NuuttipukkiJump
+    type: 0
+    clip: {fileID: 8300000, guid: 67a3bcd16d5648949be058f2468e474c, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0.1
+    randomPitch: 0.1
+    loop: 0
+  - name: NuuttipukkiRocketJump
+    type: 0
+    clip: {fileID: 8300000, guid: 8b5078e90f0b9b84ca80a981ad91a69c, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0.1
+    randomPitch: 0.1
+    loop: 0
+  - name: Victory
+    type: 0
+    clip: {fileID: 8300000, guid: 75cc9d6f5e3990e46a1d114a4957f065, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0.1
+    randomPitch: 0.1
+    loop: 0
+--- !u!114 &1552828259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3507482482463207501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a61761ae3db6146eca752a9e31cf270f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
