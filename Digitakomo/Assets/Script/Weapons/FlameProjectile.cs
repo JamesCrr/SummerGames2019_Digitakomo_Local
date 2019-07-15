@@ -29,6 +29,7 @@ public class FlameProjectile : RangeWeapon
     {
         base.Restart();
         this.transform.localScale = defaultScale;
+        SoundManager.instance.PlaySound("Flamethrower");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

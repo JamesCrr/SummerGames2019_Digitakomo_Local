@@ -128,7 +128,7 @@ MonoBehaviour:
     pitch: 1
     randomVolume: 0.1
     randomPitch: 0.1
-    loop: 1
+    loop: 0
   - name: IceMissile
     type: 0
     clip: {fileID: 8300000, guid: 5acaf49f81b4c5c43bc91db8d77aad42, type: 3}
