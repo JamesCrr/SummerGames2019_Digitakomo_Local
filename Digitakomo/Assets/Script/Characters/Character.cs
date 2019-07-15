@@ -116,9 +116,6 @@ public class Character : MonoBehaviour, IDamagable
         if (myRb2D.velocity.y < 0)
             myRb2D.velocity += Vector2.up * (Physics2D.gravity.y * fallingMultiplyer) * Time.deltaTime;
 
-        // handle HP if character dead
-        HandleHP();
-
         // get latest velocity
         currentVelocity = myRb2D.velocity;
 
@@ -175,7 +172,8 @@ public class Character : MonoBehaviour, IDamagable
         // Clear the existing Velocity
         myRb2D.velocity = new Vector2(myRb2D.velocity.x * 0.4f, myRb2D.velocity.y);
         // localScale.x *= -1;
-        transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+        // transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+        transform.Rotate(0, 180, 0);
 
         // transform.localScale = localScale;
     }
@@ -346,14 +344,6 @@ public class Character : MonoBehaviour, IDamagable
         else if (InputManager.GetButtonUp("Player" + player + "SpecialAttack"))
         {
             DoneSpecialAttack();
-        }
-    }
-
-    private void HandleHP()
-    {
-        if (HP <= 0)
-        {
-            //SceneController.LoadEndScene(false);
         }
     }
 

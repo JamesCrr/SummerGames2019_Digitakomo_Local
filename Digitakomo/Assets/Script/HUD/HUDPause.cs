@@ -8,6 +8,8 @@ public class HUDPause : MonoBehaviour
     private float defaultTimeScale;
     public GameObject pauseObject;
 
+    public GameObject settingMenu;
+
     private void Update()
     {
         if (Input.GetButtonDown("Cancel"))
@@ -53,5 +55,17 @@ public class HUDPause : MonoBehaviour
     {
         Resume();
         SceneController._LoadSceneWithLoadingScreen("MainMenu");
+    }
+
+    public void Setting()
+    {
+        pauseObject.SetActive(false);
+        settingMenu.SetActive(true);
+    }
+
+    public void SettingBack()
+    {
+        pauseObject.SetActive(true);
+        settingMenu.SetActive(false);
     }
 }

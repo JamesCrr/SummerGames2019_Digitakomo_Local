@@ -37,6 +37,7 @@ public class PT2Script : EnemyBaseClass
     float dartingTimer = 0.0f;
     float dartSpeed = 0.0f;
     public float dartDamage = 40f;
+    bool darting = false;
 
     [Header("Direction")]
     [SerializeField]
@@ -76,6 +77,7 @@ public class PT2Script : EnemyBaseClass
                     attackType = EnemyAttackType.BLOODYSHINGLER_NORMAL;
                     // Move as usual
                     Move();
+                    FaceEgg();
 
                     // Check if we need to change state
                     if (circleRadius < minRadius_Range.current)
@@ -85,6 +87,7 @@ public class PT2Script : EnemyBaseClass
                             return;
 
                         currentState = STATES.S_CLOSE;
+                        myAnimator.SetTrigger("mt_Close");
                     }
                     else
                     {
@@ -111,8 +114,15 @@ public class PT2Script : EnemyBaseClass
                     // If haven't reached position, move
                     if (!ReachedTarget(0.5f))
                     {
+                        myAnimator.SetBool("mb_Stop", false);
                         DartToTarget();
                         return;
+                    }
+                    else if (darting)  // if we just finished darting, reset rotation
+                    {
+                        transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+                        FaceEgg();
+                        darting = false;   
                     }
 
                     // Decrement Timer
@@ -124,6 +134,8 @@ public class PT2Script : EnemyBaseClass
                         // Reset Timer
                         dartingTimer = dartingTime;
                     }
+                    myAnimator.SetBool("mb_Stop", true);
+                    
                 }
                 break;
         }
@@ -169,12 +181,30 @@ public class PT2Script : EnemyBaseClass
         moveTargetPos.x = centerPoint.x + Mathf.Cos(currentRadAngle) * circleRadius;
         moveTargetPos.y = centerPoint.y + Mathf.Sin(currentRadAngle) * circleRadius;
         // set the new speed
-        dartSpeed = (moveTargetPos - myRb2D.position).sqrMagnitude * 0.45f;
+        Vector2 direction = moveTargetPos - myRb2D.position;
+        dartSpeed = direction.sqrMagnitude * 0.45f;
+
+        // Face that direction
+        transform.rotation = Quaternion.Euler(0.0f, 0.0f, (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) - 90.0f);
+        darting = true;
     }
     // Move towards the dart target
     void DartToTarget()
     {
         myRb2D.MovePosition(myRb2D.position + (moveTargetPos - myRb2D.position).normalized * dartSpeed * Time.deltaTime);
+    }
+    // Face Towards the egg
+    void FaceEgg()
+    {
+        Vector2 direction = Egg.Instance.GetPosition() - myRb2D.position;
+        if(direction.x < 0.0)
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, 180, transform.rotation.z));
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, 0, transform.rotation.z));
+        }
     }
 
 

@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 6855439048683128711}
   - component: {fileID: 8132193966910583592}
   - component: {fileID: 4641043061969283806}
+  - component: {fileID: 3202046218421595230}
   m_Layer: 9
   m_Name: PT2
   m_TagString: Enemy
@@ -120,8 +121,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 65b30e5951e7d804d832f69e9dccb921, type: 3}
-  m_Color: {r: 0.8301887, g: 0.16838734, b: 0.16838734, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 634741f845fa5004aa3f35f780fe8a5f, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -178,8 +179,8 @@ MonoBehaviour:
   radiusDecreaseRate: 1
   minRadius_Range:
     current: 5
-    min: 2
-    max: 6
+    min: 3
+    max: 10
   dartingTime: 2
   dartDamage: 40
   rotatingDir: 0
@@ -200,6 +201,25 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.17}
   serializedVersion: 2
   m_Radius: 1.14255
+--- !u!95 &3202046218421595230
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 686835902066373112}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3834f08ad8d3e91428fe6999c1164643, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4339752723275940234
 GameObject:
   m_ObjectHideFlags: 0
