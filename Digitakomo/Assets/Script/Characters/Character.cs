@@ -57,7 +57,7 @@ public class Character : MonoBehaviour, IDamagable
     public bool electricAttack = false;
     protected float enerygyPerSpecialAttack;
     protected Collider2D AttackCollider;
-    protected int latestDirection = 4;
+    protected int latestDirection = 0;
     protected float nextSpecialFire;
     protected float specialAttackClipTime;
     public Transform specialAttackPosition;
@@ -375,14 +375,14 @@ public class Character : MonoBehaviour, IDamagable
             Flip();
         }
 
-        if (InputManager.GetButtonDown("Player" + player + "Attack"))
-        {
-            Attack();
-        }
-        else if (InputManager.GetButtonUp("Player" + player + "Attack"))
-        {
-            DoneAttack();
-        }
+        // if (InputManager.GetButtonDown("Player" + player + "Attack"))
+        // {
+        //     Attack();
+        // }
+        // else if (InputManager.GetButtonUp("Player" + player + "Attack"))
+        // {
+        //     DoneAttack();
+        // }
         if (InputManager.GetButtonDown("Player" + player + "SpecialAttack"))
         {
             SpecialAttack();

@@ -5,43 +5,39 @@ using UnityEngine.UI;
 
 public class InputManager : MonoBehaviour
 {
-    private string[] actions = new string[17]
+    private string[] actions = new string[15]
     {
         "Player1ChangeCharacter",
         "Player1LookUp",
+        "Player1LookDown",
         "Player1Jump",
-        "Player1Attack",
         "Player1SpecialAttack",
-        "Player1Defense",
         "Player1LockMovement",
         "Player1MoveLeft",
         "Player1MoveRight",
         "Player2LookUp",
+        "Player2LookDown",
         "Player2Jump",
-        "Player2Attack",
         "Player2SpecialAttack",
-        "Player2Defense",
         "Player2LockMovement",
         "Player2MoveLeft",
         "Player2MoveRight"
     };
 
-    private KeyCode[,] defaultKeys = new KeyCode[17, 2]
+    private KeyCode[,] defaultKeys = new KeyCode[15, 2]
     {
         { KeyCode.C, KeyCode.None },
         { KeyCode.W, KeyCode.None },
-        { KeyCode.U, KeyCode.I },
-        { KeyCode.H, KeyCode.None },
+        { KeyCode.S, KeyCode.None },
         { KeyCode.J, KeyCode.None },
-        { KeyCode.E, KeyCode.None },
+        { KeyCode.H, KeyCode.None },
         { KeyCode.LeftShift, KeyCode.None },
         { KeyCode.A, KeyCode.None },
         { KeyCode.D, KeyCode.None },
         { KeyCode.UpArrow, KeyCode.None },
-        { KeyCode.Keypad8, KeyCode.Keypad9 },
-        { KeyCode.Keypad4, KeyCode.None },
-        { KeyCode.Keypad5, KeyCode.Keypad6 },
-        { KeyCode.Keypad7, KeyCode.None },
+        { KeyCode.DownArrow, KeyCode.None },
+        { KeyCode.Keypad6, KeyCode.None },
+        { KeyCode.Keypad5, KeyCode.None },
         { KeyCode.RightControl, KeyCode.None },
         { KeyCode.LeftArrow, KeyCode.None },
         { KeyCode.RightArrow, KeyCode.None }
