@@ -3,29 +3,35 @@ using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;   // To allow for access to binary files
 using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreFileManager : MonoBehaviour
 {
-    // To store filePath for single Player
-    static string singlePlayerFilePath;
+   
+    // To store filePath for save file
+    static string saveFilePath;
     static List<ScoreSaveData> listOfScores = new List<ScoreSaveData>();
 
     private void Awake()
     {
-        singlePlayerFilePath = Path.Combine(Application.persistentDataPath, "singleScoreData.sc");
+        // Check if we need to use the Single or Multiplayer Path
+        if(GameManager.Instance.PlayerCount == 2)
+            saveFilePath = Path.Combine(Application.persistentDataPath, "multiScoreData.sc");
+        else
+            saveFilePath = Path.Combine(Application.persistentDataPath, "singleScoreData.sc");
     }
 
-    
-    // Saving Single Player Score
-    public void Single_Save(string newName, int newScore)
-    {    
+
+    // Saving Score into file path
+    public void Save(string newName, int newScore)
+    {
         // If File already exists, then load existing data first
-        if (File.Exists(singlePlayerFilePath))
-            Single_Load();
+        if (File.Exists(saveFilePath))
+            Load();
 
         // BinaryFormatter and FileStream
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream stream = new FileStream(singlePlayerFilePath, FileMode.Create);
+        FileStream stream = new FileStream(saveFilePath, FileMode.Create);
         // Convert raw data and add into list
         ScoreSaveData newData = new ScoreSaveData(newName, newScore);
         listOfScores.Add(newData);
@@ -38,14 +44,14 @@ public class ScoreFileManager : MonoBehaviour
     }
 
     // Loading Single Player Scores
-    public List<ScoreSaveData> Single_Load()
+    public List<ScoreSaveData> Load()
     {
         // If File does not exist, return false
-        if (!File.Exists(singlePlayerFilePath))
+        if (!File.Exists(saveFilePath))
             return null;
 
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream stream = new FileStream(singlePlayerFilePath, FileMode.Open);
+        FileStream stream = new FileStream(saveFilePath, FileMode.Open);
         // Deserialize the Data and assign to list
         listOfScores = bf.Deserialize(stream) as List<ScoreSaveData>;
         // Close the stream
@@ -55,11 +61,13 @@ public class ScoreFileManager : MonoBehaviour
     }
     
     // Clear File
-    public void Single_ClearData()
+    public void ClearData()
     {
-        if (File.Exists(singlePlayerFilePath))
-            File.Delete(singlePlayerFilePath);
+        if (File.Exists(saveFilePath))
+            File.Delete(saveFilePath);
     }
+
+
 }
 
 

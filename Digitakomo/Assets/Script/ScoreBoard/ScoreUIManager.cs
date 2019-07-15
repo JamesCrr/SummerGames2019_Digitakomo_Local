@@ -10,6 +10,14 @@ public class ScoreUIManager : MonoBehaviour
     // Public Instance
     public static ScoreUIManager Instance = null;
 
+    [Header("Backgrounds")]     // To store the different backgrounds for Single or Muliplayer
+    [SerializeField]
+    Sprite single = null;
+    [SerializeField]
+    Sprite multi = null;
+    [SerializeField]
+    Image background = null;       // The background to display the sprites
+
     [SerializeField]    // Used to access the binary files
     ScoreFileManager fileManager = null;
     [SerializeField]    // Used to enter the new name
@@ -52,6 +60,12 @@ public class ScoreUIManager : MonoBehaviour
             scoreTexts.Add(item.GetComponent<TextMeshProUGUI>());
         }
         maxCount = nameTexts.Count;
+
+        // Check if we need to use the Single or Multiplayer Background Image
+        if (GameManager.Instance.PlayerCount == 2)
+            background.sprite = multi;
+        else
+            background.sprite = single;
     }
     // Start
     private void Start()
@@ -63,18 +77,17 @@ public class ScoreUIManager : MonoBehaviour
         //fileManager.Single_Save("Test4", 4);
         //fileManager.Single_Save("Test5", 5);
 
-        GetSingleScores();
+        GetScores();
         SortDescending();
         UpdateUI();
-
-        Single_SaveNewScore(8);
+        //Single_InputNewScore(8);
     }
 
 
 
-
-    // Save a new Score to the File
-    public void Single_SaveNewScore(int score)
+    #region File Manager Functions
+    // Input a new Score to the File and waits for a name to be inputed
+    public void InputNewScore(int score)
     {
         newestData = new ScoreSaveData("", score);
         currentScores.Add(newestData);
@@ -83,6 +96,16 @@ public class ScoreUIManager : MonoBehaviour
         // Update UI
         UpdateUI(newestData);
     }
+    // Load Scores from the Binary File
+    void GetScores()
+    {
+        // Get Current Scores
+        if (fileManager.Load() != null)
+            currentScores = fileManager.Load();
+    }
+    #endregion
+
+    #region UI
     // Load Scores to UI from currentScores List
     void UpdateUI(ScoreSaveData newestData = null)
     {
@@ -146,6 +169,7 @@ public class ScoreUIManager : MonoBehaviour
         // Input Field
         inputField.gameObject.SetActive(false);
     }
+    #endregion
 
     #region Sorting
     // Sort the List from Highest to Lowest
@@ -215,20 +239,22 @@ public class ScoreUIManager : MonoBehaviour
             return;
         // Save into the binary file
         newestData.plyrName = newName;
-        fileManager.Single_Save(newestData.plyrName, newestData.plyrScore);
+        fileManager.Save(newestData.plyrName, newestData.plyrScore);
 
         // Update UI
-        GetSingleScores();
+        GetScores();
         UpdateUI();
     }
     #endregion
     
 
-    // Loads singleScores from the Binary File
-    void GetSingleScores()
+
+    // Returns false if there are 2 players playing
+    // Returns true if there is only 1 player playing
+    bool IsSinglePlayer()
     {
-        // Get Current Scores
-        if(fileManager.Single_Load() != null)
-            currentScores = fileManager.Single_Load();
+        if (GameManager.Instance.PlayerCount == 2)
+            return false;
+        return true;
     }
 }
