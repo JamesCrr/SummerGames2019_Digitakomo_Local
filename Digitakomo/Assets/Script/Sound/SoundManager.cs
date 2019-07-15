@@ -25,6 +25,8 @@ public class Sound
     [Range(0f, 0.5f)]
     public float randomPitch = 0.1f;
 
+    public float masterVolume = 1f;
+
     public bool loop = false;
 
     private AudioSource source;
@@ -38,13 +40,14 @@ public class Sound
     public void Play()
     {
         source.loop = loop;
-        source.volume = volume * (1 + Random.Range(-randomVolume / 2f, randomVolume / 2f));
+        source.volume = volume * (1 + Random.Range(-randomVolume / 2f, randomVolume / 2f)) * masterVolume;
         source.pitch = pitch * (1 + Random.Range(-randomPitch / 2f, randomPitch / 2f));
         source.Play();
     }
 
     public void Stop()
     {
+        // I don't know why it's not working
         source.Stop();
     }
 
@@ -118,7 +121,7 @@ public class SoundManager : MonoBehaviour
         {
             if (sound.type == _type)
             {
-                sound.volume = _volume;
+                sound.masterVolume = _volume;
             }
         }
     }

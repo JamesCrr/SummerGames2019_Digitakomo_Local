@@ -10,6 +10,7 @@ public class GoldenFeather : BaseItem
         if (fc != null)
         {
             fc.AddEnergy(Energy);
+            SoundManager.instance.PlaySound("FireFeatherCollected");
             gameObject.SetActive(false);
         }
         else if (ic != null)
