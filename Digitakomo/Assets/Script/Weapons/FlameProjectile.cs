@@ -38,12 +38,12 @@ public class FlameProjectile : RangeWeapon
         SoundManager.instance.PlaySound("Flamethrower");
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.GetComponent<Steam>() != null)
-        {
-            // hit steam
-            gameObject.SetActive(false);
-        }
-    }
+    // private void OnTriggerEnter2D(Collider2D collision)
+    // {
+    //     if (collision.gameObject.GetComponent<Steam>() != null)
+    //     {
+    //         // hit steam
+    //         gameObject.SetActive(false);
+    //     }
+    // }
 }
