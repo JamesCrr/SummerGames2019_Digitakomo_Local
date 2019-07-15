@@ -58,6 +58,7 @@ public abstract class EnemyBaseClass : MonoBehaviour
         myAnimator = GetComponent<Animator>();
 
         seManager = new StatusEffectManager(this.gameObject);
+        defaultColor = GetComponent<SpriteRenderer>().color;
     }
 
 
@@ -71,6 +72,11 @@ public abstract class EnemyBaseClass : MonoBehaviour
         // Reset Position
         myRb2D.position = newPos;
         transform.position = newPos;
+    }
+
+    protected virtual void FixedUpdate()
+    {
+        DoBlink();
     }
 
     // Called to move 
@@ -143,8 +149,50 @@ public abstract class EnemyBaseClass : MonoBehaviour
         {
             // damage text
             FloatingTextController.CreateFloatingText(hp.ToString(), transform.position);
+            BlinkAndRed(1);
         }
     }
+
+
+    private Color defaultColor;
+    private float BlinkUntil = -1f;
+    private float BlinkInterval = 0.1f;
+    private float NextBlinkTime;
+    private bool isRed = false;
+    private void BlinkAndRed(float second)
+    {
+        BlinkUntil = Time.time + second;
+        NextBlinkTime = Time.time + BlinkInterval;
+    }
+
+    private void DoBlink()
+    {
+        if (Time.time <= BlinkUntil)
+        {
+            if (Time.time >= NextBlinkTime)
+            {
+                Debug.Log("Changed");
+                // check color and change
+                if (isRed)
+                {
+                    GetComponent<SpriteRenderer>().color = defaultColor;
+                    isRed = false;
+                }
+                else
+                {
+                    GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.8f);
+                    isRed = true;
+                }
+                NextBlinkTime = Time.time + BlinkInterval;
+            }
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().color = defaultColor;
+        }
+    }
+
+
     // Returns Hp
     public int GetCurrentHP()
     {

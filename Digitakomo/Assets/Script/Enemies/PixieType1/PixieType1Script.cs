@@ -40,8 +40,9 @@ public class PixieType1Script : EnemyBaseClass
         Move();
     }
 
-    void FixedUpdate()
+    protected override void FixedUpdate()
     {
+        base.FixedUpdate();
         attackTimer -= Time.deltaTime;
         if (attackTimer < 0.0f)
         {
