@@ -21,6 +21,8 @@ public class Character : MonoBehaviour, IDamagable
     // Jumping related
     [SerializeField]
     protected float jumpAcceleration = 10.0f;      // How much force does the character use to jump
+    [SerializeField]
+    protected float additionSpecialJumpAcceleration = 2.0f;
     public bool isGrounded = true;      // Whether this character is grounded
     private Vector3 localScale;
     [SerializeField]
@@ -268,7 +270,7 @@ public class Character : MonoBehaviour, IDamagable
         // FloatingTextController.CreateFloatingText(damage.ToString("F0"), transform.position);
 
         // blink with red color
-        BlinkAndRed(1);
+        BlinkAndRed(0.2f);
     }
 
 

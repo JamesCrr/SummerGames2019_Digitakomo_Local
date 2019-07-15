@@ -59,6 +59,7 @@ public class FireCharacter : Character
 
         if (GetAttackType() == AttackType.FIRE && jumpsLeft == 1)
         {
+            myRb2D.velocity = new Vector2(myRb2D.velocity.x, Vector2.up.y * additionSpecialJumpAcceleration);
             Animate.SetTrigger("specialJump");
             Animate.SetBool("isFalling", false);
             // GetComponentInChildren<FireRocket>().SetEnabled(true);

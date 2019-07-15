@@ -149,7 +149,7 @@ public abstract class EnemyBaseClass : MonoBehaviour
         {
             // damage text
             FloatingTextController.CreateFloatingText(hp.ToString(), transform.position);
-            BlinkAndRed(1);
+            BlinkAndRed(0.2f);
         }
     }
 
