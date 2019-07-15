@@ -4772,6 +4772,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: FireCharacter
       objectReference: {fileID: 0}
+    - target: {fileID: 8518456384201068771, guid: f88ee3a8773118c4fa2448c3bae6c870,
+        type: 3}
+      propertyPath: additionSpecialJumpAcceleration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518456384201068771, guid: f88ee3a8773118c4fa2448c3bae6c870,
+        type: 3}
+      propertyPath: jumpAcceleration
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 403571385494849996, guid: f88ee3a8773118c4fa2448c3bae6c870,
         type: 3}
       propertyPath: m_LocalPosition.x
