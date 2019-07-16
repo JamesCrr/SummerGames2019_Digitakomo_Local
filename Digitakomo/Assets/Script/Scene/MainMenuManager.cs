@@ -12,6 +12,8 @@ public class MainMenuManager : MonoBehaviour
     public GameObject ExtraMenu;
     public GameObject ExtraArt;
     public GameObject ExtraCharacter;
+    public GameObject ExtraCharacterFay;
+    public GameObject ExtraCharacterBag;
     public GameObject SettingMenu;
     public GameObject CreditMenu;
 
@@ -109,6 +111,30 @@ public class MainMenuManager : MonoBehaviour
     {
         ExtraMenu.SetActive(true);
         ExtraCharacter.SetActive(false);
+    }
+
+    public void OnClick_Extra_Fay()
+    {
+        ExtraCharacterFay.SetActive(true);
+        ExtraCharacter.SetActive(false);
+    }
+
+    public void OnClick_Extra_Bag()
+    {
+        ExtraCharacterBag.SetActive(true);
+        ExtraCharacter.SetActive(false);
+    }
+
+    public void OnClick_Back_Extra_Fay()
+    {
+        ExtraCharacter.SetActive(true);
+        ExtraCharacterFay.SetActive(false);
+    }
+
+    public void OnClick_Back_Extra_Bag()
+    {
+        ExtraCharacter.SetActive(true);
+        ExtraCharacterBag.SetActive(false);
     }
     #endregion 
 

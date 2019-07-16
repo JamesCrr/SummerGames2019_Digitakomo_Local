@@ -72,6 +72,7 @@ public class IceCharacter : Character
 
         // Jump
         myRb2D.velocity = Vector2.up * jumpAcceleration;
+        SoundManager.instance.PlaySound("FayJump");
 
         // Reduce number of jumps
         jumpsLeft--;

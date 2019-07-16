@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class SettingVolumeManager : MonoBehaviour
@@ -8,18 +6,6 @@ public class SettingVolumeManager : MonoBehaviour
     public Slider MasterSlider;
     public Slider GameSlider;
     public Slider MusicSlider;
-
-    private float MasterVolume = 1f;
-    private float GameVolume = 1f;
-    private float MusicVolume = 1f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        // load from PlayerPref
-        MasterSlider.value = PlayerPrefs.GetFloat("MasterVolume");
-        GameSlider.value = PlayerPrefs.GetFloat("GameVolume");
-        MusicSlider.value = PlayerPrefs.GetFloat("MusicVolume");
-    }
 
     public void OnValueChange(string name)
     {
