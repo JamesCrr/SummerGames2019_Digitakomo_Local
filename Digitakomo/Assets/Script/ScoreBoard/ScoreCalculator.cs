@@ -22,7 +22,6 @@ public class ScoreCalculator : MonoBehaviour
 
         SQWOLF_DIE,
         SQWOLF_ACID,
-        SQWOLF_SLIDE,
 
         ST_NONE,
     }
@@ -66,7 +65,6 @@ public class ScoreCalculator : MonoBehaviour
             case SCORE_TYPE.PT2_DIE:
             case SCORE_TYPE.APEWOLF_ROCKS:
             case SCORE_TYPE.SQWOLF_ACID:
-            case SCORE_TYPE.SQWOLF_SLIDE:
                 amount = 10;
                 break;
             case SCORE_TYPE.PT1_POISON:        // 1 Points

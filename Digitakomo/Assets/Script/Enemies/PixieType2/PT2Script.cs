@@ -271,6 +271,9 @@ public class PT2Script : EnemyBaseClass
 
         // One Hit Kill
         ModifyHealth(-weapon.GetActualDamage());
+        // If Killed, add to point
+        if (IsDead())
+            ScoreCalculator.Instance.AddScore(ScoreCalculator.SCORE_TYPE.PT2_DIE);
     }
 
 

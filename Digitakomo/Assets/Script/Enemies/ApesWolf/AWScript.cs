@@ -588,6 +588,9 @@ public class AWScript : EnemyBaseClass
 
         // Damage
         ModifyHealth(-weapon.GetActualDamage());
+        // If Killed, add to point
+        if (IsDead())
+            ScoreCalculator.Instance.AddScore(ScoreCalculator.SCORE_TYPE.APEWOLF_DIE);
     }
 
     private void OnDrawGizmos()

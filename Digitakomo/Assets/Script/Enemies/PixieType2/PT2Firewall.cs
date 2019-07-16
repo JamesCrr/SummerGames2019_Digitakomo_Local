@@ -17,6 +17,7 @@ public class PT2Firewall : MonoBehaviour
                 return;
 
             gameObject.SetActive(false);
+            ScoreCalculator.Instance.AddScore(ScoreCalculator.SCORE_TYPE.PT2_FIRE);
         }
         // hit player
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))

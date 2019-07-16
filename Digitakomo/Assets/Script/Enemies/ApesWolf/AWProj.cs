@@ -21,11 +21,11 @@ public class AWProj : MonoBehaviour
                 Weapon weapon = collision.gameObject.GetComponent<Weapon>();
                 if (weapon.at == AttackType.ICE)
                 {
-                    //gameObject.SetActive(false);
-
                     GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                     GetComponent<Rigidbody2D>().isKinematic = false;
                     frozen = true;
+                    // Add to point
+                    ScoreCalculator.Instance.AddScore(ScoreCalculator.SCORE_TYPE.APEWOLF_ROCKS);
                 }
             }
             else if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))

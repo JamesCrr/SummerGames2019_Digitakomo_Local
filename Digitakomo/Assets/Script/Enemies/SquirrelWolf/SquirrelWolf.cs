@@ -1130,11 +1130,13 @@ public class SquirrelWolf : EnemyBaseClass
 
         // Damage
         ModifyHealth(-weapon.GetActualDamage());
+        // If Killed, add to point
+        if (IsDead())
+            ScoreCalculator.Instance.AddScore(ScoreCalculator.SCORE_TYPE.SQWOLF_DIE);
 
 
         // set attacked bool, if we are attacking the egg
-        if (currentState == STATES.S_SHOOT_EGG || currentState == STATES.S_MELEE_EGG
-             /*|| currentState == STATES.S_MELEE_PLAYER || currentState == STATES.S_SHOOT_PLAYER*/)
+        if (currentState == STATES.S_SHOOT_EGG || currentState == STATES.S_MELEE_EGG)
         {
             playerAttackedWolf = true;
         }

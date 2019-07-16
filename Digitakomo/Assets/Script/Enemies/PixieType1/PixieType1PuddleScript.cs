@@ -16,6 +16,7 @@ public class PixieType1PuddleScript : MonoBehaviour
             if (weapon.at == AttackType.FIRE)
             {
                 gameObject.SetActive(false);
+                ScoreCalculator.Instance.AddScore(ScoreCalculator.SCORE_TYPE.PT1_POISON);
             }
         }
         // hit player
