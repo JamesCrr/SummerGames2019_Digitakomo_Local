@@ -5,10 +5,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class ScoreUIManager : MonoBehaviour
+public class ScoreBoardUI : MonoBehaviour
 {
     // Public Instance
-    public static ScoreUIManager Instance = null;
+    public static ScoreBoardUI Instance = null;
 
     [Header("Backgrounds")]     // To store the different backgrounds for Single or Muliplayer
     [SerializeField]
@@ -43,9 +43,11 @@ public class ScoreUIManager : MonoBehaviour
     int maxCount = 0;       // Used to record how many children text there are
     // String Builder for concatenation
     StringBuilder sb = new StringBuilder();
-    [Header("Clear Button")]    // Button to clear current HighScores
-    [SerializeField]
+    [Header("Buttons")]   
+    [SerializeField]         // Button to clear current HighScores
     GameObject clearButton = null;
+    [SerializeField]         // Button to move on to next Scene
+    GameObject continueButton = null;
 
 
     // Awake
@@ -75,8 +77,9 @@ public class ScoreUIManager : MonoBehaviour
         else
             background.sprite = single;
 
-        // Disable Clear Button
+        // Disable Buttons
         clearButton.SetActive(false);
+        continueButton.SetActive(false);
     }
     // Start
     private void Start()
@@ -99,7 +102,12 @@ public class ScoreUIManager : MonoBehaviour
         // Sort it
         SortDescending();
         // Update UI
-        UpdateUI(newestData);
+        if (!UpdateUI(newestData))
+        {
+            // Buttons
+            clearButton.SetActive(true);
+            continueButton.SetActive(true);
+        }
     }
     // Load Scores from the Binary File
     void GetScores()
@@ -122,13 +130,15 @@ public class ScoreUIManager : MonoBehaviour
     #region UI
     // Load Scores to UI from currentScores List
     // Pass in the newest score to attach a Input field to that name
-    void UpdateUI(ScoreSaveData newestData = null)
+    // Returns whether the newest Data is on the HighScore or if it's too low to even appear
+    bool UpdateUI(ScoreSaveData newestData = null)
     {
         // Deactivate all existing texts first
         DeactivateAllText();
 
         // Add everything back in
         TextMeshProUGUI textCom = null;
+        bool foundScore = false;
         // Loop through the scores
         for(int i = 0; i < currentScores.Count; ++i)
         {
@@ -138,8 +148,9 @@ public class ScoreUIManager : MonoBehaviour
             // If found the newest score
             if(currentScores[i] == newestData)
             {
-                inputField.gameObject.SetActive(true);
+                inputField.gameObject.SetActive(true);  // Enable the Input Field
                 inputField.SetParent(nameContainer.transform);
+                foundScore = true;
             }
             else
             {   // Means that the newest score is just too low
@@ -160,7 +171,7 @@ public class ScoreUIManager : MonoBehaviour
             textCom.text = sb.Append("-  " + currentScores[i].plyrScore).ToString();
         }
 
-        
+        return foundScore;
     }
     // Deactivate all Text Objects
     void DeactivateAllText()
@@ -260,8 +271,9 @@ public class ScoreUIManager : MonoBehaviour
         GetScores();
         UpdateUI();
 
-        // Enable Clear Button
+        // Buttons
         clearButton.SetActive(true);
+        continueButton.SetActive(true);
     }
     #endregion
     
