@@ -122,19 +122,20 @@ public class FireCharacter : Character
             case 1:
                 xDir = -1;
                 yDir = 1;
-                rotation = 135;
+                rotation = -45;
                 break;
             case 2:
                 yDir = 1;
-                rotation = 90;
+                rotation = -90;
                 break;
             case 3:
                 xDir = 1;
                 yDir = 1;
-                rotation = 45;
+                rotation = -135;
                 break;
             case 4:
                 xDir = 1;
+                rotation = 180;
                 break;
             case 5:
                 xDir = 1;
@@ -161,8 +162,9 @@ public class FireCharacter : Character
         ReduceEnergy(enerygyPerSpecialAttack);
         GameObject go = ObjectPooler.Instance.FetchGO("FireProjectile");
         FlameProjectile firep = go.GetComponent<FlameProjectile>();
-        firep.Restart();
         firep.transform.position = createdPositon;
+        // firep.transform.SetParent(this.specialAttackPosition);
+        firep.Restart();
         firep.SetRotation(rotation);
         firep.SetMissileDirection(xDir, yDir);
     }
