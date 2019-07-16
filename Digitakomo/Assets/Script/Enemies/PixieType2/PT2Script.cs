@@ -122,7 +122,7 @@ public class PT2Script : EnemyBaseClass
                     {
                         transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
                         FaceEgg();
-                        darting = false;   
+                        darting = false;
                     }
 
                     // Decrement Timer
@@ -135,7 +135,7 @@ public class PT2Script : EnemyBaseClass
                         dartingTimer = dartingTime;
                     }
                     myAnimator.SetBool("mb_Stop", true);
-                    
+
                 }
                 break;
         }
@@ -197,7 +197,7 @@ public class PT2Script : EnemyBaseClass
     void FaceEgg()
     {
         Vector2 direction = Egg.Instance.GetPosition() - myRb2D.position;
-        if(direction.x < 0.0)
+        if (direction.x < 0.0)
         {
             transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, 180, transform.rotation.z));
         }
@@ -226,6 +226,9 @@ public class PT2Script : EnemyBaseClass
 
         // Hmm maybe can randomise the radius modify rates
         RandomiseData();
+
+        // play sound
+        SoundManager.instance.PlaySound("BirdWings");
     }
     #endregion
     // randomise data values 
@@ -279,5 +282,15 @@ public class PT2Script : EnemyBaseClass
         moveTargetPos.x = centerPoint.x + Mathf.Cos(currentRadAngle) * circleRadius;
         moveTargetPos.y = centerPoint.y + Mathf.Sin(currentRadAngle) * circleRadius;
         Gizmos.DrawLine(centerPoint, moveTargetPos);
+    }
+
+    public override bool IsDead()
+    {
+        bool isDead = base.IsDead();
+        if (isDead)
+        {
+            SoundManager.instance.StopSound("Batwings");
+        }
+        return isDead;
     }
 }
