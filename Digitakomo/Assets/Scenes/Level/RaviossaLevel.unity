@@ -1408,22 +1408,22 @@ PrefabInstance:
     - target: {fileID: 7105603151223021455, guid: ccf10c1d2accfa04bb051660b4034153,
         type: 3}
       propertyPath: FirstEnergyItemSpawn
-      value: 30
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7105603151223021455, guid: ccf10c1d2accfa04bb051660b4034153,
         type: 3}
       propertyPath: NextEnergyItemSpawn
-      value: 15
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7105603151223021455, guid: ccf10c1d2accfa04bb051660b4034153,
         type: 3}
       propertyPath: FirstHPItemSpawn
-      value: 30
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7105603151223021455, guid: ccf10c1d2accfa04bb051660b4034153,
         type: 3}
       propertyPath: NextHPItemSpawn
-      value: 15
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7105603151223021455, guid: ccf10c1d2accfa04bb051660b4034153,
         type: 3}
