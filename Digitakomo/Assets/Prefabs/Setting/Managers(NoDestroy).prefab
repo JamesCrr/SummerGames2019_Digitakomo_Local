@@ -76,10 +76,11 @@ MonoBehaviour:
   - name: BirdWings
     type: 0
     clip: {fileID: 8300000, guid: 6aabb7427672ee9429ab4db4891c34a8, type: 3}
-    volume: 1
+    volume: 0.3
     pitch: 1
     randomVolume: 0.1
     randomPitch: 0.1
+    masterVolume: 1
     loop: 1
   - name: FireFeatherCollected
     type: 0
@@ -88,6 +89,7 @@ MonoBehaviour:
     pitch: 1
     randomVolume: 0.1
     randomPitch: 0.1
+    masterVolume: 1
     loop: 0
   - name: WaterBottleCollected
     type: 0
@@ -96,6 +98,7 @@ MonoBehaviour:
     pitch: 1
     randomVolume: 0.1
     randomPitch: 0.1
+    masterVolume: 1
     loop: 0
   - name: CrakingStone
     type: 0
@@ -104,6 +107,7 @@ MonoBehaviour:
     pitch: 1
     randomVolume: 0.1
     randomPitch: 0.1
+    masterVolume: 1
     loop: 0
   - name: DyingBlow
     type: 0
@@ -112,6 +116,7 @@ MonoBehaviour:
     pitch: 1
     randomVolume: 0.1
     randomPitch: 0.1
+    masterVolume: 1
     loop: 0
   - name: FirePillar
     type: 0
@@ -120,6 +125,7 @@ MonoBehaviour:
     pitch: 1
     randomVolume: 0.1
     randomPitch: 0.1
+    masterVolume: 1
     loop: 0
   - name: Flamethrower
     type: 0
@@ -128,6 +134,7 @@ MonoBehaviour:
     pitch: 1
     randomVolume: 0.1
     randomPitch: 0.1
+    masterVolume: 1
     loop: 0
   - name: IceMissile
     type: 0
@@ -136,6 +143,7 @@ MonoBehaviour:
     pitch: 1
     randomVolume: 0.1
     randomPitch: 0.1
+    masterVolume: 1
     loop: 0
   - name: IceBall
     type: 0
@@ -144,6 +152,7 @@ MonoBehaviour:
     pitch: 1
     randomVolume: 0.1
     randomPitch: 0.1
+    masterVolume: 1
     loop: 0
   - name: NuuttipukkiJump
     type: 0
@@ -152,6 +161,7 @@ MonoBehaviour:
     pitch: 1
     randomVolume: 0.1
     randomPitch: 0.1
+    masterVolume: 1
     loop: 0
   - name: NuuttipukkiRocketJump
     type: 0
@@ -160,6 +170,7 @@ MonoBehaviour:
     pitch: 1
     randomVolume: 0.1
     randomPitch: 0.1
+    masterVolume: 1
     loop: 0
   - name: Victory
     type: 0
@@ -168,6 +179,7 @@ MonoBehaviour:
     pitch: 1
     randomVolume: 0.1
     randomPitch: 0.1
+    masterVolume: 1
     loop: 0
 --- !u!114 &1552828259
 MonoBehaviour:
