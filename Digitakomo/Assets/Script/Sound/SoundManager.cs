@@ -4,6 +4,7 @@ public enum SoundType
 {
     GAME,
     MUSIC,
+    MASTER
 }
 
 [System.Serializable]
@@ -51,6 +52,18 @@ public class Sound
         source.Stop();
     }
 
+    public void SetVolume(float _volume)
+    {
+        source.volume = _volume * (1 + Random.Range(-randomVolume / 2f, randomVolume / 2f)) * masterVolume;
+        volume = _volume;
+    }
+
+    public void SetMasterVolume(float _masterVolume)
+    {
+        source.volume = volume * (1 + Random.Range(-randomVolume / 2f, randomVolume / 2f)) * _masterVolume;
+        masterVolume = _masterVolume;
+    }
+
 }
 
 public class SoundManager : MonoBehaviour
@@ -70,6 +83,15 @@ public class SoundManager : MonoBehaviour
         else
         {
             instance = this;
+        }
+
+        // if never set any volume
+        if (!PlayerPrefs.HasKey("MasterVolume"))
+        {
+            // Set volume by default
+            PlayerPrefs.SetFloat("MasterVolume", 1.0f);
+            PlayerPrefs.SetFloat("GameVolume", 1.0f);
+            PlayerPrefs.SetFloat("MusicVolume", 1.0f);
         }
     }
 
@@ -121,8 +143,16 @@ public class SoundManager : MonoBehaviour
         {
             if (sound.type == _type)
             {
-                sound.masterVolume = _volume;
+                sound.SetVolume(_volume);
             }
+        }
+    }
+
+    public void SetMasterVolume(float _volume)
+    {
+        foreach (Sound sound in sounds)
+        {
+            sound.SetMasterVolume(_volume);
         }
     }
 }
