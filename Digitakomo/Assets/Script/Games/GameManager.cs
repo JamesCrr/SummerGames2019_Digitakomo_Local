@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
+        DontDestroyOnLoad(this);
     }
 
     // Start is called before the first frame update
