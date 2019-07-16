@@ -1,0 +1,2280 @@
+[33mcommit e7cd09a186734442db04e56fb21bf7770fc9cff6[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: c4429b8 51ced8b
+Author: Wei <g0546699m@gmail.com>
+Date:   Tue Jul 16 13:27:26 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit c4429b828476522b79eedc01f1ee86e8b1fe097e[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Tue Jul 16 13:27:09 2019 +0300
+
+    Added Singleton to GameManager
+
+[33mcommit 51ced8b417608079d24a02cb6278b69e40d1b9f0[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jul 16 13:23:02 2019 +0300
+
+    Update FireCharacter.prefab
+
+[33mcommit 4c5eaf3b34a2645b2b84a2d57f45439d125645dd[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jul 16 12:15:24 2019 +0300
+
+    Add item prefabs sprite
+
+[33mcommit a87f8074e64efcae8aa415294b11087662074b8c[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jul 16 12:09:35 2019 +0300
+
+    Add fire character animation
+
+[33mcommit 2a134d7d5fc0ad2c83b94988df93065d9eab2e78[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jul 16 11:17:38 2019 +0300
+
+    Added Firepillar sound
+
+[33mcommit 1fde3c83bc08f1835dabb0ad41fbbc2afe81d786[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Tue Jul 16 11:09:14 2019 +0300
+
+    Added Score Adding
+
+[33mcommit 30f30524ccacabc3f26688db854d220e10ea3d56[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Tue Jul 16 10:57:17 2019 +0300
+
+    Added Score Tracking
+
+[33mcommit 209bbb02b8a054a6713c9fd874137a565697aaff[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Tue Jul 16 10:25:36 2019 +0300
+
+    Added Score Calculator Script to MainMenu Scene
+
+[33mcommit 234600d6eefda39624d7d3a16b83c71b916e92ed[m
+Merge: 02ba50c 8c94f81
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jul 16 10:08:40 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit 02ba50cfb4ee1cbd8addbf0071f396756231eda2[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jul 16 10:07:17 2019 +0300
+
+    Add pixie 2 sound
+
+[33mcommit 8c94f812162a64cab179f232d6f10e8c3308ceea[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Tue Jul 16 10:06:48 2019 +0300
+
+    Added Continue Button for Highscore Page
+
+[33mcommit d377383f8b04c17f556af9ac63465da191a8e702[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jul 16 10:03:38 2019 +0300
+
+    Stop playing sound when pixie is dead
+
+[33mcommit f01226201bdbc585cece517527acce9248fda8f6[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jul 16 09:38:46 2019 +0300
+
+    add animated mainmenu
+
+[33mcommit 8c4efaf94501d41f55a259c77eb3454e14b09681[m
+Author: atzka <51910218+atzka@users.noreply.github.com>
+Date:   Mon Jul 15 16:58:07 2019 +0300
+
+    bushi bushi
+
+[33mcommit 46b2733c920ab6c92ac7b168df1e1b4c4dbeda97[m
+Merge: 5102a76 d60b569
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 15 16:22:01 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit 5102a769951a137f27c4bb79650c7b1ab126de22[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 15 16:21:50 2019 +0300
+
+    remove steam
+
+[33mcommit d60b5694df255da520d2ffc21d530c19f445e89c[m
+Merge: e804b3d 38f9cf3
+Author: atzka <51910218+atzka@users.noreply.github.com>
+Date:   Mon Jul 15 16:16:19 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit e804b3d9767ea7956932f7621e02788b95ddc4d0[m
+Author: atzka <51910218+atzka@users.noreply.github.com>
+Date:   Mon Jul 15 16:15:59 2019 +0300
+
+    pushi pushi
+
+[33mcommit 38f9cf37ccd32099b3d4eb118ceab26acf436eea[m
+Merge: 9ecdc15 b0c9366
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 15 16:14:44 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit 9ecdc15e385900a5696a32c2ae8166587581bda2[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 15 16:14:31 2019 +0300
+
+    Add more sound
+
+[33mcommit b0c93669ef03f9c3f3242dcca0d3a278637b56c0[m
+Merge: e1ef286 0988f10
+Author: Jaana Kauppila <32157509+JaanaK@users.noreply.github.com>
+Date:   Mon Jul 15 16:06:10 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit e1ef28679ee650a6e1d7231cef2f490c504a91b0[m
+Author: Jaana Kauppila <32157509+JaanaK@users.noreply.github.com>
+Date:   Mon Jul 15 16:06:06 2019 +0300
+
+    Level making
+
+[33mcommit 0988f10bd4b715d40edba80f6c7085d1a5ea71ce[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 15 15:35:15 2019 +0300
+
+    Added sound for projectile
+
+[33mcommit bc889560928adecdb92e4d70dd11747c8190d3d3[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 15 15:15:05 2019 +0300
+
+    Added SoundManager
+
+[33mcommit 9f87e556ab96f9478924cac58bd16d62b3e7b6eb[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 15 14:36:23 2019 +0300
+
+    Adding sound and puddle animation
+
+[33mcommit 604b278966bc01e75a21ea88216f00eb4c333fbe[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 15 12:40:36 2019 +0300
+
+    Added 8 direction attack
+
+[33mcommit 7e6b576054f364b6c26868235ef24c5e470ea008[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 15 12:31:56 2019 +0300
+
+    Fix the key input
+
+[33mcommit 132cf49418aef73d97b3566f47f535d3c6b20f3f[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 15 12:20:12 2019 +0300
+
+    add border
+
+[33mcommit d36563d6cd5ce974eb159f86c19d73bf6c364233[m
+Merge: 5107adf d25d647
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 15 12:19:43 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit d25d647e6b543deae8797154fef46fc18152a7e9[m
+Author: atzka <51910218+atzka@users.noreply.github.com>
+Date:   Mon Jul 15 11:58:43 2019 +0300
+
+    pixie stage
+
+[33mcommit 5107adf681664df30351056b2678b15275f2ee0d[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 15 11:54:55 2019 +0300
+
+    Fix blink effect
+
+[33mcommit b3c61b45415ef04f9e0773b8d2a214887e4f21f8[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 15 11:48:57 2019 +0300
+
+    Add fire pillar
+
+[33mcommit 7768d1dad5d201d697b4e94ffaca10b7ff9af933[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 15 11:38:05 2019 +0300
+
+    Add level selection
+
+[33mcommit bc6c0f42f4fc21a22bb79ec639c899c38177c95d[m
+Author: atzka <51910218+atzka@users.noreply.github.com>
+Date:   Mon Jul 15 10:54:13 2019 +0300
+
+    Basic level design
+
+[33mcommit 3f5e85ce768366e3969484072b72dd8657e7b000[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 15 10:51:00 2019 +0300
+
+    Fix specialJump
+
+[33mcommit 71437b977d453b0138ca35b8ce8803eddaf997a4[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 15 10:46:30 2019 +0300
+
+    Change Blink duration and add fire addition jump higher
+
+[33mcommit df8ed6fc322fd340c6dc1645b23954278d0fdc6f[m
+Author: atzka <51910218+atzka@users.noreply.github.com>
+Date:   Mon Jul 15 10:45:36 2019 +0300
+
+    Basic level design
+
+[33mcommit a2b096e24739a6319488dee0c593d09046dfac7d[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 15 10:31:40 2019 +0300
+
+    remove debug.log
+
+[33mcommit 5e33f353ef4d9d291e201e1a379564746b6874e8[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 15 10:30:23 2019 +0300
+
+    add Blink effect on enemy, Remove normal attack and defense
+
+[33mcommit 1b949bc95ef704f4e5d7128e1001a4f39988ec00[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 15 10:18:41 2019 +0300
+
+    add blink character on take damage
+
+[33mcommit 8dfcd09e38fbb773aad03151a6205ac894a05379[m
+Author: JamesCrr <g0546699m@gmail.com>
+Date:   Mon Jul 15 15:05:20 2019 +0800
+
+    Added Single and Multiplayer Save Files and Clear Button for them
+
+[33mcommit d6407ff49b4ef94337e88f31184c0f12a4090154[m
+Author: Jaana Kauppila <32157509+JaanaK@users.noreply.github.com>
+Date:   Mon Jul 15 09:37:43 2019 +0300
+
+    fix
+
+[33mcommit 6d1692aee530e808339692782821e1697bc4ad76[m
+Merge: 4ed4236 5aaf53e
+Author: Jaana Kauppila <32157509+JaanaK@users.noreply.github.com>
+Date:   Mon Jul 15 09:37:29 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit 4ed4236caada044e134785ea879fd9303a421ab6[m
+Author: Jaana Kauppila <32157509+JaanaK@users.noreply.github.com>
+Date:   Mon Jul 15 09:36:28 2019 +0300
+
+    make level
+
+[33mcommit 5aaf53e8090414245eac1bb7ed151352e0ec4606[m
+Author: JamesCrr <g0546699m@gmail.com>
+Date:   Mon Jul 15 14:28:16 2019 +0800
+
+    Adding multiplayer ScoreBoard
+
+[33mcommit 04aeef29aee783864d5e2cede6f443f9026a651e[m
+Author: JamesCrr <g0546699m@gmail.com>
+Date:   Mon Jul 15 14:05:05 2019 +0800
+
+    Added Public Static Instance to GameManager
+
+[33mcommit 85db012e0f55efb24313b735cb1cf0f69d2aa85a[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Fri Jul 12 14:06:25 2019 +0300
+
+    Enabled Enemy Spawners in Scene
+
+[33mcommit 1d94fabcfb87511a20e0602eaec91575f78c0627[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Fri Jul 12 13:38:46 2019 +0300
+
+    Fixed PixieType 2 rotating bug and make them face towards egg
+
+[33mcommit 4c223110cebc7dec816dfb930f1f11fb01f3ac0b[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jul 12 12:01:48 2019 +0300
+
+    Freeze apewolf Z position
+
+[33mcommit e3a6a898fac89136e93b43120341184186fd4833[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jul 12 11:56:12 2019 +0300
+
+    Fix Pause canvas can't see the setting
+
+[33mcommit 113f58e53e4f4c5464ccf950aac14c35c69b04e7[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jul 12 11:53:42 2019 +0300
+
+    Input now can set while in game
+
+[33mcommit db8a528af9b81b3311fe4a2bb0e1595a9f60691a[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jul 12 11:48:37 2019 +0300
+
+    Bring main menu back
+
+[33mcommit 88d73285e349e116c761bb464cff3561ea5369d6[m
+Merge: 6dc05ff 17ecb86
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jul 12 11:47:35 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit 6dc05ff48e4f643ab1206e499b588cfba7a2de20[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jul 12 11:47:20 2019 +0300
+
+    Restore default setting
+
+[33mcommit 17ecb8601f3948508c139b4314f87c8d97d0d1e4[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Fri Jul 12 11:46:04 2019 +0300
+
+    Fixed SquirrelWolf detection bug and PixieType2 Rotation bug
+
+[33mcommit 28453b46ff744ab39d9c1a772695578b26ec6e8e[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jul 12 11:33:15 2019 +0300
+
+    Add auto toggle when one of the character die
+    
+    Single player
+
+[33mcommit b4a2bee726806e1569f47a02c76097251a2f1ac5[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Fri Jul 12 11:10:09 2019 +0300
+
+    Trying to rotate the PixieType2
+
+[33mcommit d07717190d650ff41070fb3e7ceb319b65571af6[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jul 12 11:00:00 2019 +0300
+
+    Update scene
+
+[33mcommit 87fc12fb50861d946eb9a01ea4718e5aca044e5f[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jul 12 10:49:12 2019 +0300
+
+    fix shield rotation
+
+[33mcommit f351b422de74f3455b5ff4e4785d86581504069d[m
+Merge: 2ab2b67 976378d
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jul 12 10:06:27 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit 2ab2b67c391e4767e7b37bf41f4dbc4e49322401[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jul 12 10:06:24 2019 +0300
+
+    Add more ground sprite
+
+[33mcommit 976378d2bc8c9da425f7a9463daf0dad270bef98[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Fri Jul 12 09:50:41 2019 +0300
+
+    Moved PT1 projectile
+
+[33mcommit c2651fb2ec2e4d688658fade9e3d32789a5cfe68[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Fri Jul 12 09:49:40 2019 +0300
+
+    Added clips of PT2
+
+[33mcommit 7607177df9bd5b7bda31f3385ceee755bb69add3[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Fri Jul 12 09:46:10 2019 +0300
+
+    Added firePixie Sprites
+
+[33mcommit 2042d0337165fe5d96da9b28e9976617235e935b[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Fri Jul 12 09:41:12 2019 +0300
+
+    More gitBash Testing
+
+[33mcommit 1dffeb58cd8a5b7d5c4bab7b2db2a9a4a56d8c05[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Fri Jul 12 09:36:20 2019 +0300
+
+    Trying out git bash
+
+[33mcommit 1a7f97b3a3c71da76d5bd6e491b91ff016ca68fb[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Thu Jul 11 17:13:41 2019 +0300
+
+    Update ScoreUIManager.cs
+
+[33mcommit 934b04ebad0aad8132aa580bcf5fc91682511f59[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Thu Jul 11 17:13:28 2019 +0300
+
+    added charcter limit
+
+[33mcommit 24e04b7c16331ae25d9f8e8051aef32f4dd18b38[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Thu Jul 11 16:12:44 2019 +0300
+
+    added saving using your name and fixed loading bug
+
+[33mcommit 32938871e56a4519311e8bc35e80cec705fce58a[m
+Author: thitiwat thongbor <thitiwat.thongbor@gmail.com>
+Date:   Thu Jul 11 15:55:57 2019 +0300
+
+    fix animation platform
+
+[33mcommit 050b4e38c232037c96df85878b1661296f06a512[m
+Author: thitiwat thongbor <thitiwat.thongbor@gmail.com>
+Date:   Thu Jul 11 15:52:10 2019 +0300
+
+    fix item spawning point
+
+[33mcommit 749678611ab67b9adea8a9453beb9321c4d71922[m
+Merge: d9bed56 646765d
+Author: thitiwat thongbor <thitiwat.thongbor@gmail.com>
+Date:   Thu Jul 11 15:48:48 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit d9bed562e93c80bcfa0e5cf0da2d3a250105b187[m
+Author: thitiwat thongbor <thitiwat.thongbor@gmail.com>
+Date:   Thu Jul 11 15:48:38 2019 +0300
+
+    Add single player
+
+[33mcommit 646765db126eeaeffde064e784008fe32a56bb19[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Thu Jul 11 15:27:31 2019 +0300
+
+    added input field
+
+[33mcommit 2b284ede66f5e969b562c4b82325bd34f9658156[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Thu Jul 11 14:53:27 2019 +0300
+
+    Update SaveTest.unity
+
+[33mcommit 15af6ea047f820c9b914edacef48a8c782b1dbfc[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Thu Jul 11 14:53:10 2019 +0300
+
+    changed back to non scrolling
+
+[33mcommit 363adb8794e9517a73dfcb7c83cf5d005a4f003f[m
+Author: thitiwat thongbor <thitiwat.thongbor@gmail.com>
+Date:   Thu Jul 11 14:41:47 2019 +0300
+
+    remove floating text on take damage
+
+[33mcommit 4b1beaacf418919c13dd487f7105b23786478372[m
+Author: thitiwat thongbor <thitiwat.thongbor@gmail.com>
+Date:   Thu Jul 11 14:14:55 2019 +0300
+
+    add camera when on of player dead
+
+[33mcommit 3ec720c1d4c7f278157401cfc22cb2db0ddfa2a2[m
+Author: thitiwat thongbor <thitiwat.thongbor@gmail.com>
+Date:   Thu Jul 11 13:58:26 2019 +0300
+
+    fix HUD position
+
+[33mcommit 0705fb4984eea55f936ae44add9d875ca32412de[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Thu Jul 11 13:33:14 2019 +0300
+
+    working on scrollable highscores
+
+[33mcommit 517e17189bea8e3584d228a53c5eb293d95d620c[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Thu Jul 11 12:24:18 2019 +0300
+
+    add for rav
+
+[33mcommit 62f6dc511125707b80e93b11d0bdffdfa375ebc6[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Thu Jul 11 12:23:51 2019 +0300
+
+    Fix Attack direction
+
+[33mcommit dfee98cdb5fafd33a833ef77e7ac24dfb6fe8b3a[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Thu Jul 11 11:23:43 2019 +0300
+
+    Add more setting
+
+[33mcommit eb67bd8fdd9ffe0e436e9990d121a568320604be[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Thu Jul 11 10:49:32 2019 +0300
+
+    Add electric attack renderer and pause canvas
+
+[33mcommit 664fab3b134315f7ee189737d60fb4ca80797ff6[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Thu Jul 11 10:18:12 2019 +0300
+
+    add pause canvas more likely
+
+[33mcommit 55ed45dda8f6014c799a53cdcfde2eacebfb0547[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Wed Jul 10 16:53:06 2019 +0300
+
+    added mulltiplayer background
+
+[33mcommit 8ea3591c76014b7efacf5a1a67ff607e9b1bae15[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Wed Jul 10 16:02:34 2019 +0300
+
+    changed to created in scene instead of instaniating
+
+[33mcommit e8c1f9c11e197368a5d68e0fd6e793c6e5bdac17[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Wed Jul 10 15:30:47 2019 +0300
+
+    added sorting to list
+
+[33mcommit b08ac6fcc4eb8c8714518caefb3ff45af6a6e2c5[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Wed Jul 10 15:09:49 2019 +0300
+
+    added limit to score count
+
+[33mcommit a0aac8337db66484df5214553153dd30368bc76e[m
+Merge: ca523a0 b991e73
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jul 10 14:40:31 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit ca523a028d569cede4d209cc18b0a42d5527c0d9[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jul 10 14:40:18 2019 +0300
+
+    add beatiful pixie projectile
+
+[33mcommit b991e73682ddd64a0ffd00844ccdbf32d08b8396[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Wed Jul 10 14:34:02 2019 +0300
+
+    changed text color
+
+[33mcommit 767bdc90159488b34a18a93625c6bbefa9d5d5b0[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Wed Jul 10 14:25:39 2019 +0300
+
+    added title for scoreBoard
+
+[33mcommit f28b6e4ed252aee23b244a69ac34b85fcf8fead9[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Wed Jul 10 13:59:30 2019 +0300
+
+    added textmeshpro and testing scoreboard
+
+[33mcommit b2d195d756310d727d142ec4ad053cfdaedf6148[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jul 10 12:29:50 2019 +0300
+
+    Add Damage on collider player
+
+[33mcommit db266cfb641b3b0e96a583d48586f55f8756e2d8[m
+Merge: 11aa965 08c2fde
+Author: atzka <51910218+atzka@users.noreply.github.com>
+Date:   Wed Jul 10 11:26:00 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit 11aa96509bfa9a6c5f9be458e7fc22093caafe71[m
+Author: atzka <51910218+atzka@users.noreply.github.com>
+Date:   Wed Jul 10 11:25:49 2019 +0300
+
+    Update RaviossaLevel.unity
+
+[33mcommit 08c2fde0ecaf0f3895704268bf712d804ae69d9c[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jul 10 11:23:57 2019 +0300
+
+    Add Damage type for enemy
+
+[33mcommit d27640badb342ad1ed44d926b24f7fed718c56cb[m
+Author: atzka <51910218+atzka@users.noreply.github.com>
+Date:   Wed Jul 10 11:22:14 2019 +0300
+
+    Zone and pixie changes
+
+[33mcommit 75e602585ba714842737e40465ffe28b98fac8cb[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jul 10 10:05:35 2019 +0300
+
+    Read/Write Input to Database
+
+[33mcommit 115ae638baa24125bf11205e4ad9d3f002f09720[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jul 9 15:17:24 2019 +0300
+
+    add back btn
+
+[33mcommit 1141c0860cdfc3638528006040bb392737be4be7[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jul 9 14:58:53 2019 +0300
+
+    clean some
+
+[33mcommit 25686e51af2602a4db2103179f528ed61e83cdb5[m
+Merge: ea0af43 5b12d1c
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jul 9 14:55:48 2019 +0300
+
+    Merge branch 'settings'
+
+[33mcommit 5b12d1c784a79661b105e594c44105514e827127[m[33m ([m[1;31morigin/settings[m[33m)[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jul 9 14:55:32 2019 +0300
+
+    Add Game manager for dev
+
+[33mcommit ea0af433930521dc4d42b2c917eedecccf0c70f9[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Tue Jul 9 14:54:29 2019 +0300
+
+    changed frozenblock from item to projecWithGround for collision with enemy
+
+[33mcommit fd50e129785b6833e6e905ab244e9430f8d58a44[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jul 9 14:30:52 2019 +0300
+
+    setting GUI
+
+[33mcommit a74f77c436de845c09a04ffeebd681ff3a0273b0[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jul 9 11:59:18 2019 +0300
+
+    update
+
+[33mcommit 09d09d46259f99e6ad07edf2da81cb1b1d91e758[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Tue Jul 9 10:27:37 2019 +0300
+
+    fixed fire wall bug
+
+[33mcommit 8eef03539fbfd02cee653b4a90d34d903f42e126[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 8 15:51:19 2019 +0300
+
+    fix health bar scale
+
+[33mcommit 5fa92e15ea320ca26efa4a745c0cfa1e609418dc[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 8 14:44:35 2019 +0300
+
+    Fix camera when ratio is not right
+
+[33mcommit 1bce59efeb2ca9ba0c6359b8157f0fcf14b48b9b[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 8 14:35:33 2019 +0300
+
+    Update HUD
+
+[33mcommit 0fcb58bf9bc6f153b3d08caf9aad1f155ce3fe74[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 8 13:21:58 2019 +0300
+
+    Update RaviossaLevel.unity
+
+[33mcommit 35ae222d7219174d867ffb8aa3f969e7f2e9f285[m
+Merge: bbddbf1 d7d6c93
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 8 12:11:04 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit bbddbf11a3f552f2665f35bdd69a6b84cce38dbf[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 8 12:10:52 2019 +0300
+
+    Add More mainmenu
+
+[33mcommit d7d6c93835ca592a30d5be998eb54191b77a07d2[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Mon Jul 8 12:00:09 2019 +0300
+
+    added fireBuff for squirrelWolf
+
+[33mcommit 21c94e16694a53dc937c46412ba67daa69592bce[m
+Merge: 3cd8783 8588a93
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 8 11:54:04 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit 3cd878390c06750bc7578c876b7b0fd6b11be515[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 8 11:54:00 2019 +0300
+
+    Add MainMenu
+
+[33mcommit 8588a93be8c5286a8ed86f64b2d39ee5b7cec42d[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Mon Jul 8 11:23:32 2019 +0300
+
+    Update AWScript.cs
+
+[33mcommit d9fb74154360819f9ea9e2a3242220dfdcaf02b4[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Mon Jul 8 10:44:35 2019 +0300
+
+    added platform for apeWolf
+
+[33mcommit e2aa998eec92f3e14e751fb22905e989740d4d88[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 8 10:01:41 2019 +0300
+
+    Add camera offset
+
+[33mcommit a0d15d2a61ca4aef3ac3b2be22ab7c28846832a1[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 8 09:58:15 2019 +0300
+
+    Add Camera box
+
+[33mcommit 9e58c580099375fcfa2172ad02e9446d014a54f9[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Fri Jul 5 16:16:07 2019 +0300
+
+    checked charging for apewolf
+
+[33mcommit 5c74d61af312ba3c51a93039a1cca925ffa9bc7b[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Fri Jul 5 16:08:17 2019 +0300
+
+    testing ape wolf animation
+
+[33mcommit ddea6fc45e01db97f9ed1bd065d3504a31e80606[m
+Merge: 5060999 8ff7bda
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jul 5 16:01:46 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit 50609991337c92684a0be9d012edff997c7e3d30[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jul 5 16:01:44 2019 +0300
+
+    fix iceplatform bug
+
+[33mcommit 8ff7bda4fede9def6003003e53de2f765b0aa53f[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Fri Jul 5 15:21:57 2019 +0300
+
+    added back guy changes
+
+[33mcommit 5d09fc282a0e1d0d8b548a9ddd06c9bd03f9edd1[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jul 5 15:13:15 2019 +0300
+
+    fire wall and puddle destory only on weapon
+
+[33mcommit ff2326594813eac27d9cbf44ec5dc1168d7adced[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jul 5 14:57:17 2019 +0300
+
+    Update GuyTestScene.unity
+
+[33mcommit ac536aaa1eb21d00dfebc9fb0db0bb6de426e3b0[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jul 5 14:55:44 2019 +0300
+
+    Add Fay Animation
+
+[33mcommit f50c679e1c77d0a8c0eb453c512eb95fb900a97e[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jul 5 13:59:55 2019 +0300
+
+    add Floating on damaged
+
+[33mcommit 972028a8d80413b9699faa0392e777290b162e67[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jul 5 13:44:59 2019 +0300
+
+    Steam not taking any damage unless it does electric
+
+[33mcommit cc50954d3bb1bb706f1c3d40680da708f08307cd[m
+Merge: e4362ee 0d118e9
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jul 5 13:26:47 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit e4362eeba7129b19493b34384866389623e49700[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jul 5 13:26:03 2019 +0300
+
+    add hp and damage
+
+[33mcommit 0d118e92ead89c169ecac44f8f968761c3a0a23d[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Fri Jul 5 13:21:02 2019 +0300
+
+    removed warnings
+
+[33mcommit d838b3e63763f1d497e435fb891b709088f9bc21[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Fri Jul 5 13:12:53 2019 +0300
+
+    added platform detecting for wolf
+
+[33mcommit b8bd9ec5fa0219350fc0c6c15123eb1be10f3c55[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jul 5 12:07:43 2019 +0300
+
+    balance thing
+
+[33mcommit f37e49f6c25067bd1dbc7329965201a357cab807[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Fri Jul 5 11:35:59 2019 +0300
+
+    more updates to squirrelWolf
+
+[33mcommit 52a11be5edba77979f8cef7509d4c1073fe9b6c2[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jul 5 11:13:21 2019 +0300
+
+    balance things
+
+[33mcommit 6e14f1df15b12130ac6bc68b5d84743076374046[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jul 5 10:57:51 2019 +0300
+
+    add initial move speed
+
+[33mcommit cfb7fa0fd02468213e72ceaf4f6b4aed6c06c4f4[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jul 5 10:50:35 2019 +0300
+
+    Fix default player
+
+[33mcommit 0d37d90b2faea234933e53bb342de96e925017be[m
+Merge: b6a7008 f9d9061
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jul 5 10:50:06 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit b6a700859008a87d149b70231316314fb5beff3f[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jul 5 10:50:01 2019 +0300
+
+    Add Ice Animation
+
+[33mcommit f9d9061a6e4decff3b16b4907af5ffa8a1000d1d[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Fri Jul 5 10:33:42 2019 +0300
+
+    discovered random collision are happening for some reason, and moved groundCast Position to back of squirrel for better detection
+
+[33mcommit d6a8a046dc48e9f2c30a0e80f1267698fbbc88e8[m
+Merge: fed4de2 406b214
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jul 5 10:13:44 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit fed4de239a16f0b8d59a6f0b6f96e3d25f5eb92c[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jul 5 10:13:36 2019 +0300
+
+    Add Fire Special Attack Animation
+
+[33mcommit bfc37caa57279a3af890c9d32c85ba1c8a702530[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jul 5 09:55:15 2019 +0300
+
+    remvoe Debug.log
+
+[33mcommit e646f5b5818eed1e6c934bdcfe39162eac22e3e3[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jul 5 09:49:27 2019 +0300
+
+    Add Attack animation fire
+
+[33mcommit 406b214833496e3c98e491a77f404737a2f82e69[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Fri Jul 5 09:36:24 2019 +0300
+
+    added safety net for objects that fall off the map
+
+[33mcommit 0d20555076a75c1cca5e460be7791b3e41d9e81d[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Fri Jul 5 09:01:46 2019 +0300
+
+    trying to modify the moving velocity when jumping
+
+[33mcommit 276ff5c763df1d553c401a106d033152ca037b0a[m[33m ([m[1;31morigin/rework-character[m[33m)[m
+Author: thitiwat thongbor <thitiwat.thongbor@gmail.com>
+Date:   Thu Jul 4 23:57:21 2019 +0300
+
+    fire repeatly
+
+[33mcommit 68847b9e49c9c49608f8c46dde2c084a3dca5d5e[m
+Author: thitiwat thongbor <thitiwat.thongbor@gmail.com>
+Date:   Thu Jul 4 23:55:30 2019 +0300
+
+    rework animation
+
+[33mcommit 56d36f29645c660537602b7e61d6c9127b491c47[m
+Author: thitiwat thongbor <thitiwat.thongbor@gmail.com>
+Date:   Thu Jul 4 22:17:06 2019 +0300
+
+    add 2d sprite outliner
+
+[33mcommit 98a85e9aabfabede61110528774bc33d170b2b8a[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Thu Jul 4 17:03:13 2019 +0300
+
+    added the respective elements counters and damage for enemies and their projectiles
+
+[33mcommit 7ea81e7b3ede34345317ba85f7ddc5894c436590[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Thu Jul 4 16:44:14 2019 +0300
+
+    changed contact filter to static for faster access
+
+[33mcommit 400522e24751dff27012c8499f79dacc505bd78b[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Thu Jul 4 16:09:43 2019 +0300
+
+    changed back to item layer
+
+[33mcommit 18da64a4649bef01f213136203de3e16dea10509[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Thu Jul 4 16:08:53 2019 +0300
+
+    can jump on frozen wolf now and added fire jump
+
+[33mcommit f6d4511f60e93de68ccb875276db01da439f2324[m[33m ([m[1;31morigin/ice-animation[m[33m)[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Thu Jul 4 15:25:09 2019 +0300
+
+    Add fire animation preparation
+
+[33mcommit 16f54e7b0115ced3255cbe6902a45d19baaf6a10[m
+Merge: 736ec75 a41c8a3
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Thu Jul 4 14:26:53 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit 736ec75a30f388c74deba65eef479900c8302106[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Thu Jul 4 14:26:02 2019 +0300
+
+    Clean up and fire character animation jump
+
+[33mcommit a41c8a3318fd0445c0614e3522a24c6ec8d00d38[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Thu Jul 4 14:01:01 2019 +0300
+
+    added hitbox manager for fire
+
+[33mcommit 2855c2fa20d5461454658f5d04de04bcb64ec251[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Thu Jul 4 13:47:20 2019 +0300
+
+    removed some useless code for wolf
+
+[33mcommit 0167db91554785b5c761f6c822893170d825cd56[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Thu Jul 4 11:26:01 2019 +0300
+
+    create Canvas Object to track
+
+[33mcommit 0ed055028f8bcf6d4fe75f3c84af9bccbaae1f59[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Thu Jul 4 11:22:36 2019 +0300
+
+    remove Debug.log
+
+[33mcommit db61af526fe1001306b49552cbc6582b8973dfec[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Thu Jul 4 11:21:14 2019 +0300
+
+    Add damage popup text
+
+[33mcommit 9e90ac5ed3052dbcec4d23c6537239b78fc1aa9a[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Thu Jul 4 11:12:13 2019 +0300
+
+    fixed wolf jumping bug
+
+[33mcommit acbb4b2544269512b2e177a5280b14a4a21a3aad[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Thu Jul 4 10:28:16 2019 +0300
+
+    fixed platform jumping bug
+
+[33mcommit 4a83f57b950ad9d784724ccf2f504b8e75f4e717[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Thu Jul 4 09:31:59 2019 +0300
+
+    fixed ape shooting bug
+
+[33mcommit af2dbad38552a38fa770994c6c86ccebce834ac7[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Wed Jul 3 17:19:59 2019 +0300
+
+    prepare for tmr
+
+[33mcommit 1c4c74d287a56007e910ccd688c2c871efc99332[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jul 3 16:20:32 2019 +0300
+
+    Change Method name
+
+[33mcommit 72cf0f2ba32093fcfaa18c9f3dcf3478f0778e11[m
+Merge: ba9c0db 41e7946
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jul 3 16:19:45 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit ba9c0dbcd9e55b070634a072aedf088f52e7ccae[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jul 3 16:19:33 2019 +0300
+
+    Egg change sprite according to HP
+
+[33mcommit 41e7946ea157ab1fee8322dd269164b1db45a40c[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Wed Jul 3 16:13:01 2019 +0300
+
+    added burning to squirrelWolf
+
+[33mcommit 2185156cea51a9bca1051245a03180858d97b550[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jul 3 16:01:36 2019 +0300
+
+    Add animation preparation and fix rock images
+
+[33mcommit 85f4ac879601929181dadbb966342ee73be96914[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jul 3 15:43:39 2019 +0300
+
+    prepare running animation
+
+[33mcommit 111b7daf068e241b79c4b4a2582fd45df5a0bf1d[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jul 3 15:41:20 2019 +0300
+
+    add jump state prepare for animation
+
+[33mcommit daf78995fb65f6bc02720b8c24c699c6549e8c9d[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jul 3 15:34:50 2019 +0300
+
+    add egg sprite
+
+[33mcommit 477ec4a6234418cd08c8e6540dd57665c8e79fcc[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jul 3 15:01:24 2019 +0300
+
+    remove duplicate code
+
+[33mcommit 5a96e8b525abfcb74066fbc98379216e5e825f01[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Wed Jul 3 14:34:46 2019 +0300
+
+    changed the skybox for debugging
+
+[33mcommit d3092f5747df0b144b5c6f2c07d1f467f219fd05[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Wed Jul 3 14:04:44 2019 +0300
+
+    added freezing of ape's projectile
+
+[33mcommit bcefef833a6fdf31519f92203e5f3eb08720ed5f[m
+Merge: 58cb21d 6aef870
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jul 3 13:56:56 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit 58cb21dc9fa51f3faaf2b2aceb63254425580460[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jul 3 13:51:27 2019 +0300
+
+    Add firerocket
+
+[33mcommit 6aef870a70d567c8af9eb4d958edaf9c2ac0622a[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Wed Jul 3 13:41:05 2019 +0300
+
+    fixed levitating bug
+
+[33mcommit 0a46b9e174a6d2add73d21f5256f7dca969f5121[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Wed Jul 3 12:24:00 2019 +0300
+
+    added rock throwing for ape
+
+[33mcommit 2a4895346725de94b6d8726ba7dd0783a3f56584[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Wed Jul 3 11:54:50 2019 +0300
+
+    Update AWScript.cs
+
+[33mcommit 1771934f39b37e296ca92b483f5cd3937e29efae[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Wed Jul 3 11:20:37 2019 +0300
+
+    added melee for ape
+
+[33mcommit 090f29bbe770c78386f12745985ed28d7635e483[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jul 3 11:14:42 2019 +0300
+
+    fixed falling velocity bug on moving horizontal
+
+[33mcommit ae176f0df75bf8b215dd908c58d36d332c6f1702[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jul 3 11:04:37 2019 +0300
+
+    remove unused code
+
+[33mcommit b766aa16006bb68f9a1198b0095113af03b26c1b[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jul 3 11:02:41 2019 +0300
+
+    add more extrajump on ice character
+
+[33mcommit ea04525960b089e21fae643a5a3ba77cf4a2f7ef[m
+Author: atzka <51910218+atzka@users.noreply.github.com>
+Date:   Wed Jul 3 10:53:43 2019 +0300
+
+    update ice
+
+[33mcommit 69848f9119022f79e3f9d6072b8df8bf96166a6d[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jul 3 10:50:59 2019 +0300
+
+    fix ice jumping
+
+[33mcommit 4ffe516e8947eab9e4de6bf86ab3f00b89c1c830[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jul 3 10:24:18 2019 +0300
+
+    add skybox
+
+[33mcommit 4e3ca4506d6efeeea33d05917aaf37af3fc12a0c[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jul 3 10:08:01 2019 +0300
+
+    change to assets
+
+[33mcommit cd3f253235d47d150ee43f3791fc2b6773422a0f[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jul 3 09:49:05 2019 +0300
+
+    add asset
+
+[33mcommit 2c080d56e0c746e37c0aedb61bc9478f8739e435[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jul 3 09:20:08 2019 +0300
+
+    Add sprite
+
+[33mcommit 61c5b01c992673873a10e4c43530d14ad373b9ed[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jul 2 16:40:09 2019 +0300
+
+    Disabled Script
+
+[33mcommit 85f74ed1d5b3c17628a3e34d07bb02f3dc0f64b0[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Tue Jul 2 16:32:30 2019 +0300
+
+    added more to charging for ape
+
+[33mcommit 0866aea2c2039b674d1f22f178caaf63cc78cea3[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Tue Jul 2 16:21:32 2019 +0300
+
+    added some sort of charging to ape
+
+[33mcommit f1d3a8288fa73a3f856c890f6b940c854d7a1e5e[m
+Merge: 4f3fba6 9c6675e
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jul 2 14:17:18 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit 4f3fba65c1d47b94c500c0c0b50588eec4234521[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jul 2 14:17:08 2019 +0300
+
+    Add MainMenu button on pause
+
+[33mcommit 9c6675ea22dc51830c851ccb379fab5060b1246a[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Tue Jul 2 14:12:14 2019 +0300
+
+    added more to ape wolf
+
+[33mcommit 8d789e834eb86410225ab7634794b743fa12f98e[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jul 2 14:05:30 2019 +0300
+
+    add userinput text file as database
+
+[33mcommit cba3eda368ad553f36f80d09b7e5bf4ca1aa3a7e[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jul 2 13:05:40 2019 +0300
+
+    Change input to our own InputManager
+
+[33mcommit f6775e515b698b1b6fa1af755a7bdc5b37e718cf[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Tue Jul 2 11:35:02 2019 +0300
+
+    for freezing for wolf
+
+[33mcommit a35a45b81cf044810f4f6d14b4b57984a0d94ddd[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Tue Jul 2 11:17:24 2019 +0300
+
+    added sliding ice block
+
+[33mcommit a32352780fce88a83995407a532ae2d5313c80cd[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Tue Jul 2 10:58:55 2019 +0300
+
+    fixed frozen bug
+
+[33mcommit 23a01726fed947ddcb00b17f71fd2e03040c1090[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Tue Jul 2 10:21:24 2019 +0300
+
+    Update RaviossaLevel.unity
+
+[33mcommit 22dfe038ff1cadf4b58e01d208e1bf5a8999fc0d[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Tue Jul 2 10:20:20 2019 +0300
+
+    added freezing to wolf
+
+[33mcommit 230a0d7616b2ac065bca6251b78c2be5a339bcf4[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jul 2 10:17:24 2019 +0300
+
+    add pause to main scene
+
+[33mcommit eb9fa69bc57da6ae9826ef2f4bad277ee3828958[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jul 2 10:11:14 2019 +0300
+
+    fix visualization
+
+[33mcommit ba4148f5fcaad6d76bf6fff61c6325f5ceee9945[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jul 2 10:10:36 2019 +0300
+
+    add pause game and loading scene
+
+[33mcommit 4c32acbee6fee3573ffb85864d873c8bc47c9222[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Mon Jul 1 17:20:13 2019 +0300
+
+    added defense for enemy and removed extra modify Hp for enemy
+
+[33mcommit 3183b46dc054fdb04f47b16a2d8806469bf29b0b[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 1 16:58:09 2019 +0300
+
+    Prepare for explosion
+
+[33mcommit a032fa107bb32e5a949a2efebd54d6efe0c25649[m
+Merge: 789053f 12d6c5c
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 1 16:54:55 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit 789053f6dc47dd0b07ed2ac8939af649b771a456[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 1 16:54:53 2019 +0300
+
+    Steam deals damages every second to every collide enemy
+
+[33mcommit 12d6c5ccfb587dfabc1a9d93244e6f7164845a3a[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Mon Jul 1 16:15:16 2019 +0300
+
+    added apeWolf Prefab
+
+[33mcommit e5ed3b057e44cb1f0ce0987cb061a9a52a2d6d63[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 1 16:02:12 2019 +0300
+
+    saved for pausing
+
+[33mcommit 96924bc9c17cd7e226a7541f4768acb8f2357df0[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 1 14:00:40 2019 +0300
+
+    FIX HP HUD
+
+[33mcommit cda906bf2ddeb1069947554a5a7c7e0e981ed3fe[m
+Merge: a565fe0 ffe3a0a
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 1 13:43:38 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit a565fe0376005679d8dcfdf9555d53d9a12a66d2[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 1 13:43:28 2019 +0300
+
+    working on Menus
+
+[33mcommit ffe3a0a2823fa1aed07cab7ce873005941a7212d[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Mon Jul 1 13:41:27 2019 +0300
+
+    changed wolf attacking animation calling
+
+[33mcommit b6c9547c3b7e5240a6c88273cca8ca48f82c856f[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 1 12:43:50 2019 +0300
+
+    add more alt key for testing
+
+[33mcommit b8d2b3ebc2a293421b9d0d0a43167fd905ea932b[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 1 11:37:21 2019 +0300
+
+    fix characters attack toggled when start
+
+[33mcommit 96f586f480ff722bb4e42c3f3b40c33c6d8bdcbd[m
+Merge: 3b94834 5cb8e92
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 1 11:35:22 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit 3b94834d93e2a773c955520c58fcf9bf4fe1e1b6[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 1 11:35:19 2019 +0300
+
+    add Health Indicator to pixies
+
+[33mcommit 5cb8e92afd67ee52df5c22355abd7c6961f82ddc[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Mon Jul 1 10:57:28 2019 +0300
+
+    enemy run away after attacking player
+
+[33mcommit 5550e4e531853dd97136aa10d61f432963bed00d[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 1 10:54:39 2019 +0300
+
+    implementing camera
+
+[33mcommit 3a74934950e623e9c1458350754a9d9ace4d2611[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 1 10:47:49 2019 +0300
+
+    fix iceplatform falling bug
+
+[33mcommit bfefe0da14b536d7cef278b944f532b7adea72f6[m
+Merge: 9b7a77f 7a5d1be
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 1 10:40:54 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit 9b7a77fd14ce4e9dbdf903ca6eb5c2d78e33ffdd[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 1 10:40:51 2019 +0300
+
+    add camera script
+
+[33mcommit 7a5d1bea73bc2aaf62c2b073fb8e83d2401d453a[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Mon Jul 1 10:13:30 2019 +0300
+
+    fixed animation bug for shooting wolf
+
+[33mcommit d9418723dea13e01ac683e5ecdeefb47103e2967[m
+Merge: c925774 9e0b236
+Author: thitiwat thongbor <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 1 09:35:11 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit c9257749a65853ab59dd60ab227b267d2edfa0b1[m
+Author: thitiwat thongbor <thitiwat.thongbor@gmail.com>
+Date:   Mon Jul 1 09:35:05 2019 +0300
+
+    prepare camera
+
+[33mcommit 9e0b236a3ca1f26f936d60c34d4df2063ef80708[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Mon Jul 1 09:32:14 2019 +0300
+
+    added some animation changes to wolf
+
+[33mcommit 81e29f319f7d74a4061dabf2c03a7811c54007ca[m
+Author: JamesCrr <g0546699m@gmail.com>
+Date:   Sat Jun 29 18:10:34 2019 +0800
+
+    melee animaton placeholder
+
+[33mcommit d19c2672ddd2704e5b962c56d9e7809920304e68[m
+Author: JamesCrr <g0546699m@gmail.com>
+Date:   Sat Jun 29 18:00:58 2019 +0800
+
+    added some basic color animation for wolf to prepare for future animation
+
+[33mcommit 01393926e39294920c66d9aa8569f40d713fbf45[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jun 28 16:26:36 2019 +0300
+
+    fix cleaning bug
+
+[33mcommit d7b2de9e403e83a7eb4dc9944c1969feb196084c[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jun 28 16:15:28 2019 +0300
+
+    add firewall damage
+
+[33mcommit 94b51ee70ba6b9704f5889565895393ac148803b[m
+Merge: 506b35f 1d46fb0
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jun 28 16:09:25 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit 506b35fd5e40fa7d70ca84abdcdff3a0bf554ba8[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jun 28 16:09:15 2019 +0300
+
+    use ActualDamage Instead of one hit kill
+
+[33mcommit 1d46fb06aeac28df06b2a550a3ce77dd6e2af84e[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Fri Jun 28 16:06:59 2019 +0300
+
+    filled out some guidelines for melee wolf
+
+[33mcommit 9a8e4dae5ca8323e107154a7a1214979647f9074[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Fri Jun 28 15:51:57 2019 +0300
+
+    commented out debugs
+
+[33mcommit 1a025e3820a422caec083a0938133a34ea7435b8[m
+Merge: e8f26ec 0bdef7d
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jun 28 15:40:32 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit e8f26ec0b2c87737f69e56eb70f322e14452e93d[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jun 28 15:40:29 2019 +0300
+
+    fix blink color
+
+[33mcommit 0bdef7dbf9f28c8161eed03bff8958879a740a5b[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Fri Jun 28 15:32:59 2019 +0300
+
+    added angle checking for platform detecting for wolf
+
+[33mcommit c2990ca60edb5ca52d54bcf00675a5d85dff9d48[m
+Merge: 5d7300a fb7af90
+Author: Wei <g0546699m@gmail.com>
+Date:   Fri Jun 28 13:55:32 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit 5d7300af1d346cce78025cf9c0f64afec6f5eaf7[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Fri Jun 28 13:55:22 2019 +0300
+
+    arrhhh, trying to fix the jump issue of wolf
+
+[33mcommit fb7af90b6e2c8ac4aadce44cf4182e3144d11056[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jun 28 13:41:19 2019 +0300
+
+    Add Blink annimation as warning
+
+[33mcommit 8704894ce33519ff7464139a4eac3eef9250c3c4[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jun 28 13:16:45 2019 +0300
+
+    fix type
+
+[33mcommit d53a78cc1404a6371e8c1c55fb2979f316cecf25[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jun 28 13:11:52 2019 +0300
+
+    pixie type 1 damage received
+
+[33mcommit e1486b1c20eeefcc6f918f036b313e20a4e6bde1[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jun 28 12:52:55 2019 +0300
+
+    remove animation since it's not using
+
+[33mcommit dedbb71efd92d70494055221483f61987a15e05b[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jun 28 12:51:21 2019 +0300
+
+    Move some weapon to range weapon
+
+[33mcommit 26b94caaf3799adbeb45ba1f3a33bf6d03d30193[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Fri Jun 28 10:36:11 2019 +0300
+
+    changed sprite render order
+
+[33mcommit 11697df566ac7d34ae7a9732785d3a174d52cb7c[m
+Merge: a65aa91 d2e830b
+Author: Wei <g0546699m@gmail.com>
+Date:   Fri Jun 28 10:33:50 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit a65aa913606864fd2da307c6c13d5e2762376b05[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Fri Jun 28 10:33:38 2019 +0300
+
+    added melee for egg attack
+
+[33mcommit d2e830bfb547d1613cd199fd3155b0c2ab77cdf7[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jun 28 10:26:15 2019 +0300
+
+    ADD stone HP UI
+
+[33mcommit 547ae2a3ccda02f2026aeed92e3ab12bce513af8[m
+Merge: ca3468f 8605826
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jun 28 10:07:42 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit ca3468f98c9ebdf69a775f995057b21edd29861b[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jun 28 10:07:18 2019 +0300
+
+    fix attack box
+
+[33mcommit 86058264f5e90b2166cc87de89178f957bbde129[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Fri Jun 28 10:04:27 2019 +0300
+
+    reseted PT2 when die
+
+[33mcommit ec266f63022cc205eed85b2a06678a3f77727341[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jun 28 10:01:55 2019 +0300
+
+    remove duplicated image XD
+
+[33mcommit ddd595a248788eb78177fa97f31b2c45bd92ac8a[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jun 28 10:00:31 2019 +0300
+
+    remove debug.log
+
+[33mcommit 3a641cfca8b7cf89be8d22110f8b2ae3aebd6d6e[m
+Merge: 1dadc18 5cb86d8
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jun 28 09:58:13 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit 1dadc18a9ff99f2a9e205b0972c1fc5e3d23d773[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jun 28 09:58:01 2019 +0300
+
+    add sprite images
+
+[33mcommit 5cb86d8cfb569ff63b5ce7494fcba297e5f93bb1[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Fri Jun 28 09:57:54 2019 +0300
+
+    PT2 can die now
+
+[33mcommit 16719a803c4300a7bf8976317cfd3f0eda747647[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Fri Jun 28 09:46:51 2019 +0300
+
+    added PT1 Death
+
+[33mcommit 13f2084aa42f346399fddf7b5ea2ed153dd496d6[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Fri Jun 28 09:37:39 2019 +0300
+
+    added in the eneny sprites
+
+[33mcommit 2bce7760653db86b1fe99e1dcfadcd6847da9d88[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Fri Jun 28 09:34:35 2019 +0300
+
+    implement shield not taking any damage
+
+[33mcommit 4423cd70f94134ee3ad48dc2ba85781b193b12e1[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Fri Jun 28 09:20:37 2019 +0300
+
+    changed steam tag, added more projectile type into attack types
+
+[33mcommit ac27d621709130e84f48504cdd6b49362f8f2f0e[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Thu Jun 27 17:22:36 2019 +0300
+
+    changed layer of moving platform so that it won't collide with wolf anymore
+
+[33mcommit a966028081bcc073475ee24e2ca090be96f16e1c[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Thu Jun 27 17:14:18 2019 +0300
+
+    disabled the jump points for one of the moving platform
+
+[33mcommit eff52a548dd6588dfb21b13bc0a2a64aaca01428[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Thu Jun 27 17:07:46 2019 +0300
+
+    idk anymore
+
+[33mcommit 0d58097379b1ca14accdbd335b24b25188c39422[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Thu Jun 27 15:10:50 2019 +0300
+
+    more wolf updates
+
+[33mcommit df2e5b301a354cc725cf4a25b517870ebb24c6d6[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Thu Jun 27 14:45:51 2019 +0300
+
+    move animation platform as parent, fix animator
+
+[33mcommit ee387a555e25ff1a5f8af8825147bb9bc9a2309b[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Thu Jun 27 14:34:04 2019 +0300
+
+    platform needs to be parent
+
+[33mcommit 1acd5c22a0d336911c3e44f57262bf7b2549c17d[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Thu Jun 27 12:12:05 2019 +0300
+
+    more wolf stuff aaaaaa
+
+[33mcommit aabbdd642657e73fc2ce24a0619b09b7facccb17[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Thu Jun 27 11:27:55 2019 +0300
+
+    added wolf to testing map
+
+[33mcommit 2335acab69a5444efc2b904bced47a43bfe1f20b[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Thu Jun 27 10:14:38 2019 +0300
+
+    Update RaviossaLevel.unity
+
+[33mcommit 379ea5eccd766cfaf1539d75a0b342d7bd5fda97[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Thu Jun 27 10:12:07 2019 +0300
+
+    add egg
+
+[33mcommit 00949a1db4aa1030682e9ee90195dab39f26e651[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Thu Jun 27 10:08:19 2019 +0300
+
+    fix iceplatform falling bug
+
+[33mcommit 4e60f79bb593b071aa40f43fa3b09fc57bc48582[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Thu Jun 27 10:06:37 2019 +0300
+
+    add RaviossaLevel
+
+[33mcommit 5b4fd395e2ffe30e90cd1046605e1b7a2288b897[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Wed Jun 26 17:11:38 2019 +0300
+
+    added more random in pixieType2
+
+[33mcommit a62970e033852341ff51996d49e629f7057e1bd6[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Wed Jun 26 17:03:53 2019 +0300
+
+    trying to randomise the pixieType2 data values
+
+[33mcommit 1aa68d50da30ec0d146824e1553721386b4aebfd[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jun 26 16:48:16 2019 +0300
+
+    If egg hp <= 0 then die
+
+[33mcommit ec09642cdb5049aa9c17072c62ac96d108e04f4b[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Wed Jun 26 16:15:19 2019 +0300
+
+    added the fire creating when touch platform
+
+[33mcommit e5e367b52e3aec15f909a9179ca626f98b24c80a[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Wed Jun 26 15:18:37 2019 +0300
+
+    added more to pixietype 2
+
+[33mcommit 4e0c06635d704afa5a7cb3a144c73d4e9c9c52e6[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jun 26 15:02:18 2019 +0300
+
+    fixed bug on spawn, Forget to call restart
+
+[33mcommit ca84780aa8ea6c05e3cedbf088c5d0fa33dc3810[m
+Merge: cb201be 3b6fb70
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jun 26 12:57:55 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit cb201bec830a8ba6d15236b62f2239d7fe0c66f9[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jun 26 12:57:52 2019 +0300
+
+    Move to folder, and Player Took Damagable
+
+[33mcommit 3b6fb700d262e3a1cc81c0e5d95d381552a796e6[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Wed Jun 26 11:20:06 2019 +0300
+
+    pixieType 2 now rotates around egg
+
+[33mcommit 4cf097fd2dd7b81846f139f09fabf29534bcd514[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Wed Jun 26 11:02:33 2019 +0300
+
+    Update PT2Script.cs
+
+[33mcommit 1060136ee8a6e3c8d12bbb67f6e78e9d08457a89[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Wed Jun 26 10:48:48 2019 +0300
+
+    modified egg prefab for pixieType2 enemy
+
+[33mcommit 88811c5f9773d4afbff4a31a7cf89c7eb1d5d9e8[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jun 26 10:44:39 2019 +0300
+
+    Fix steam bug
+
+[33mcommit 35cad1bd0b0327ae386399d473424644aee2db50[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jun 26 10:14:47 2019 +0300
+
+    Add Timemanager and end scene
+
+[33mcommit 693c93fdc4a855d26856c2e9fcc36116d6d15b6a[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Tue Jun 25 17:11:05 2019 +0300
+
+    added empty pixietype 2 scirpt
+
+[33mcommit 57a643c0b1c0bcf5eee8dd5bb2fe10c20f69130c[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Tue Jun 25 16:32:31 2019 +0300
+
+    Update GameScene.unity
+
+[33mcommit c1708f02ef18338e5a64b8aa46e42a5ed13a4d8f[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Tue Jun 25 16:18:23 2019 +0300
+
+    shooting player
+
+[33mcommit e1312942771b7c98dcf268a0ea1deb7169f35a2b[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jun 25 16:17:02 2019 +0300
+
+    add auto spawn on customize time
+
+[33mcommit 5547020351161453aeaeb6207c9fa806ded8c417[m
+Merge: 9cd5e29 a94e6bc
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jun 25 15:56:11 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit 9cd5e29b0b1041f44247d928e2a865cef4ba2853[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jun 25 15:56:08 2019 +0300
+
+    Fix velocity bug and add RB to items
+
+[33mcommit a94e6bc664da34a3fadd7f32756acd3c272bddd7[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Tue Jun 25 14:42:45 2019 +0300
+
+    Update GameScene.unity
+
+[33mcommit ccce46423b9f2a0877979d5194ecbea044e25d4b[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Tue Jun 25 14:42:23 2019 +0300
+
+    made wolf movement more responsive
+
+[33mcommit 3fe243154740bcd10f64695cedc24f7f1baa6002[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Tue Jun 25 13:55:30 2019 +0300
+
+    wolf can traverse map better
+
+[33mcommit 18f5e7127006111288465ffd32b446d2eb2f614a[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jun 25 13:54:44 2019 +0300
+
+    Add items
+
+[33mcommit 550ada150c70c4956ec163e0b0648fc3794d3f28[m
+Merge: 281728d 10c2397
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jun 25 11:41:00 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit 281728d1414cc2033319be568c97555b64b623f6[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jun 25 11:40:50 2019 +0300
+
+    Change collider
+
+[33mcommit 10c2397e5748e8967e6d008fe5ed696fae9f63dd[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Tue Jun 25 11:35:54 2019 +0300
+
+    updated more of wolf to jump up while runing
+
+[33mcommit c12c703ba0c14d8d2d4ce443dcfc9d082328ecb0[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jun 25 11:29:36 2019 +0300
+
+    add item layer
+
+[33mcommit 063d561260ac1b8649a7f78f446227e2f2510c44[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jun 25 11:23:00 2019 +0300
+
+    fix scene size
+
+[33mcommit 8dda4da775679d32820896e232487750386671fd[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jun 25 11:22:36 2019 +0300
+
+    Update HUD.prefab
+
+[33mcommit 8577412ef2da172ec133d2fb1b53a63047280b99[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jun 25 11:22:20 2019 +0300
+
+    add electric indicator
+
+[33mcommit c4bdbdc285470e63f42d09df2d3bdd5354186e93[m
+Merge: f582ba3 50b75d9
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jun 25 11:09:54 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit f582ba3b01cc9dea52c7d20b4bbc0eaebc32786d[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jun 25 11:09:51 2019 +0300
+
+    fix steam bug
+
+[33mcommit 50b75d9b0344242ecb66d105c2c3fe2465e3b5c1[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Tue Jun 25 10:44:26 2019 +0300
+
+    added spawning from spawners
+
+[33mcommit 56eba291a8db7a566bfed155fd18f4c12e449f6b[m
+Merge: ad06883 a04727d
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jun 25 10:36:01 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit ad068833c2f48dafc38c49ed733455c492c7e5d8[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Tue Jun 25 10:35:57 2019 +0300
+
+    Steam
+
+[33mcommit a04727d76d2afdca3cadacbcc47fccd123265d25[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Tue Jun 25 10:31:06 2019 +0300
+
+    updates range for wolf
+
+[33mcommit 6ff606a0c5ef70428d315d86d7135a7a96ecbe55[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Tue Jun 25 10:18:08 2019 +0300
+
+    Update SquirrelWolf.cs
+
+[33mcommit 984a0063013dbc3f574c3dd16b2e82c9afc14c03[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Tue Jun 25 10:09:55 2019 +0300
+
+    added more to wolf
+
+[33mcommit e992409f5c8b642e8ae17d17cca9cddc4a9a4eca[m
+Author: JamesCrr <g0546699m@gmail.com>
+Date:   Tue Jun 25 02:33:44 2019 +0800
+
+    ADDED STUCKED ON SAME X AXIS BUG
+
+[33mcommit 9906ae6d25e7c3036617c549497c45fabb5858ea[m
+Author: JamesCrr <g0546699m@gmail.com>
+Date:   Tue Jun 25 01:24:05 2019 +0800
+
+    added statemachine code even though not using it for now also cleaned up the wolf script abit
+
+[33mcommit 4ca7e08b428cbbd66b13b5208f1fca9cefab0b4e[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Mon Jun 24 16:45:45 2019 +0300
+
+    testing
+
+[33mcommit 9a3566fe2551b6857d617aee6aab0e9783a58be4[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Mon Jun 24 16:34:00 2019 +0300
+
+    preparing for tmr's transfer to stateMachine
+
+[33mcommit 5c1d5a8d185ad506aafbbe7fa2273b646bae0c63[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jun 24 15:05:08 2019 +0300
+
+    add Items but not usable right now
+
+[33mcommit 44928f40ccae19cce0fcc0d0bfa8ef328236c04e[m
+Merge: 1933c1e d691a5b
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jun 24 14:35:49 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit 1933c1e8fce7693730379cbd82d7f1a87ef7f74c[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jun 24 14:35:09 2019 +0300
+
+    add electric mechanic
+
+[33mcommit d691a5b4f2e40facd60ace06d16eb6eaac4d7ca7[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Mon Jun 24 14:13:12 2019 +0300
+
+    changed way wolf detecting ground
+
+[33mcommit 5bdf30381cdf3c1f0b76e283cd7316fa4eaee219[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jun 24 14:05:17 2019 +0300
+
+    Fixed Shield Bug
+
+[33mcommit 49d1c2d2bd81a3e18b109159d72ba9bddcefd478[m
+Merge: db7996d 97a4adc
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jun 24 13:57:22 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit db7996d83675954cc41ffbba20bcc22a1a67c419[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jun 24 13:57:17 2019 +0300
+
+    create steam on specialattack collapse
+
+[33mcommit 97a4adc9da1fe6742daf1b71ead47cfffbd06a25[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Mon Jun 24 12:42:19 2019 +0300
+
+    added crappy jump for wolf, not done
+
+[33mcommit a69a66c6d159684082c718952db1523e6768dd02[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Mon Jun 24 12:21:26 2019 +0300
+
+    forgot
+
+[33mcommit 44b1b973a72f74bd335253f659d5d00e7f0af7bf[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Mon Jun 24 12:20:53 2019 +0300
+
+    added more code for wolf jumping
+
+[33mcommit 2bd370093c1be679ab187ee749f16740cf3472ab[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Mon Jun 24 11:28:59 2019 +0300
+
+    added platform prefab needed for jumping ai and also platform detection for enemy
+
+[33mcommit 220b9be69107344258fef8b0637542f9b3561525[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jun 24 10:53:53 2019 +0300
+
+    remove Debug.Log
+
+[33mcommit 8f59867acfeeedc02e14aca8c191fe60c32c8c31[m
+Merge: 76def6d 0f16d35
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jun 24 10:53:22 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit 76def6d43c2d3714b87f78f92645a98b378151d1[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Mon Jun 24 10:53:20 2019 +0300
+
+    falling iceplatform
+
+[33mcommit 0f16d357ddd893c870a357acf4429cd3e316d5e9[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Mon Jun 24 10:14:59 2019 +0300
+
+    added basic movement for monkey
+
+[33mcommit 96d0ac28e49b039213ec3b2f0f18a306dd718e2d[m
+Author: JamesCrr <g0546699m@gmail.com>
+Date:   Fri Jun 21 15:00:35 2019 +0800
+
+    fixed projectile shooting
+
+[33mcommit 8d92d6bfa28af1d17203fed75cad318cd6d817e3[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Thu Jun 20 17:15:59 2019 +0300
+
+    forgot
+
+[33mcommit 6248bd2b39a34c6e3d982fccd76de79ee9a4878d[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Thu Jun 20 17:13:20 2019 +0300
+
+    added some throwing
+
+[33mcommit 3fa31019ff3f6863be85c965f74e84855eac5934[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Thu Jun 20 16:13:45 2019 +0300
+
+    add animation
+
+[33mcommit 95db5bc56174354a6ed22b65183fd9cceebec512[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Thu Jun 20 14:46:12 2019 +0300
+
+    added more movement to enemy wolf
+
+[33mcommit c49ba123357963298c0aa5f07abf897c30e02ad1[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Thu Jun 20 14:38:01 2019 +0300
+
+    Animation
+
+[33mcommit ddd71f56f7585c6afaa9f24fc6a6a2c9b0deb85b[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Thu Jun 20 14:13:22 2019 +0300
+
+    add artist scene
+
+[33mcommit ff1bcff51e5546ecb2db08703fa31068627bcecd[m
+Merge: b22c574 78eca59
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Thu Jun 20 13:54:56 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit b22c574cbee1613732812f695baa78800ae25f38[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Thu Jun 20 13:54:44 2019 +0300
+
+    Add energy system
+
+[33mcommit 78eca599eedfdb5d7985795defbfb1f7d43e650e[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Thu Jun 20 13:52:53 2019 +0300
+
+    added basic movement to wolf enemy
+
+[33mcommit 6093c194cdaf08d55ccfbdbc2f30474c04117db7[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Thu Jun 20 13:23:02 2019 +0300
+
+    added testing egg
+
+[33mcommit e6822492bd48e214b123b463dac687a28802f7f3[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Thu Jun 20 13:01:18 2019 +0300
+
+    added egg
+
+[33mcommit a531a9670540ab20e59673d90d4149facfb23024[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Thu Jun 20 11:29:12 2019 +0300
+
+    remove debug.log
+
+[33mcommit 55e3347fc8db0f6a8c6d69e17d53ecaf4600757b[m
+Merge: 2783092 e168b59
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Thu Jun 20 11:22:08 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit 2783092a4531b87a40b19795c3398b73e00163a2[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Thu Jun 20 11:22:04 2019 +0300
+
+    finish input 2 players
+
+[33mcommit e168b598aebf5ed1281fdd3c01f73afee42f7a71[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Thu Jun 20 10:32:23 2019 +0300
+
+    Changed enemy manager
+
+[33mcommit 895eeab69797f448e6fb42116a48f445935e909b[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Thu Jun 20 10:18:54 2019 +0300
+
+    update GuyScene
+
+[33mcommit 84657ce0ed454798c84e203e96710a56232a5350[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Thu Jun 20 10:18:32 2019 +0300
+
+    add FireProjectile on FireCharacter
+
+[33mcommit 37f4864d00c4c8682de12e41e40812b2397ad260[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Wed Jun 19 17:07:24 2019 +0300
+
+    added script
+
+[33mcommit 484e29925eeb6e9137d9ebcb6fbf4537c752de79[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Wed Jun 19 16:29:54 2019 +0300
+
+    added the puddles
+
+[33mcommit c26d6bdfb54828e972f8560abd39c76e0292527e[m
+Merge: fe9542f 27e4822
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jun 19 16:15:02 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit fe9542fda023418c5c2efefd4efbb7163c81e173[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jun 19 16:14:39 2019 +0300
+
+    Ice Platform
+
+[33mcommit 27e4822727d32c23827731b0540c45bbc76645ab[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Wed Jun 19 16:00:19 2019 +0300
+
+    added back the tags
+
+[33mcommit 8d8174c09af7ff89b1ccc4f601265974b7470d02[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Wed Jun 19 15:17:47 2019 +0300
+
+    added back pixieType1
+
+[33mcommit bd5c0b74b4cf7d6e64aed1a8e54c5765099dc062[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jun 19 15:03:46 2019 +0300
+
+    iceplatform
+
+[33mcommit bc9b11d12f6da6dc4dd6aee93a1f5cd7a448391d[m
+Merge: 98954a4 82a3de4
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jun 19 14:39:49 2019 +0300
+
+    Merge branch 'master' of https://github.com/JamesCrr/SummerGames2019_Digitakomo_Local
+
+[33mcommit 98954a40f6601ff4660cd846682e787349674d0b[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jun 19 14:39:03 2019 +0300
+
+    IceCharacter
+
+[33mcommit 82a3de4f8d3f98dc6e0a5959ebd9c184479fad28[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Wed Jun 19 13:18:18 2019 +0300
+
+    added back the layers
+
+[33mcommit 8c4cd6b30addc339512775a59a9ec0b3f56915a6[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Wed Jun 19 13:11:33 2019 +0300
+
+    added back level
+
+[33mcommit 21ed9d28023044731985218f1accd9219797f67a[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Wed Jun 19 13:03:14 2019 +0300
+
+    forogt
+
+[33mcommit a4dfd191e579b8d9ec36d108bf3d685fdf21343f[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Wed Jun 19 13:01:52 2019 +0300
+
+    added my stuff
+
+[33mcommit d66165ed0616fe8455f7d40047264b9bc70f200d[m
+Author: ziveso <thitiwat.thongbor@gmail.com>
+Date:   Wed Jun 19 12:49:51 2019 +0300
+
+    my initialize code
+
+[33mcommit 88d7586ca544c5bc4d2a44445adf7bd6ffd6687d[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Wed Jun 19 12:43:59 2019 +0300
+
+    added folders and scenes
+
+[33mcommit 5d8d0f0866045608ee2b98f232db755f6c081c5a[m
+Author: Wei <g0546699m@gmail.com>
+Date:   Wed Jun 19 12:43:04 2019 +0300
+
+    added project
+
+[33mcommit a951c3eb30b7aead34c7bab1a2b01c0c1d08841f[m
+Author: Wx <g0546699m@gmail.com>
+Date:   Wed Jun 19 12:38:08 2019 +0300
+
+    Initial commit
