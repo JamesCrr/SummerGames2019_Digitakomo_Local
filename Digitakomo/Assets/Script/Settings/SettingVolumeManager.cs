@@ -7,6 +7,13 @@ public class SettingVolumeManager : MonoBehaviour
     public Slider GameSlider;
     public Slider MusicSlider;
 
+    private void Start()
+    {
+        MasterSlider.value = PlayerPrefs.GetFloat("MasterVolume");
+        GameSlider.value = PlayerPrefs.GetFloat("GameVolume");
+        MusicSlider.value = PlayerPrefs.GetFloat("MusicVolume");
+    }
+
     public void OnValueChange(string name)
     {
         switch (name)

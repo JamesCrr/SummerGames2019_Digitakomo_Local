@@ -37,10 +37,11 @@ public class Berry : BaseItem
             gameObject.SetActive(false);
         }
     }
-    
+
 
     public override void Restart()
     {
+        base.Restart();
         // random the size
         BerrySize size = RandomSize(SmallBerry, MediumBerry, LargeBerry);
         this.size = size;

@@ -6435,7 +6435,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1406783793
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9599,7 +9599,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2089926725
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10046,46 +10046,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2161758867259526838, guid: cc0a8197bffe9264897a80b6de7dda4a,
-        type: 3}
-      propertyPath: sounds.Array.size
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 2161758867259526838, guid: cc0a8197bffe9264897a80b6de7dda4a,
-        type: 3}
-      propertyPath: sounds.Array.data[12].name
-      value: FayJump
-      objectReference: {fileID: 0}
-    - target: {fileID: 2161758867259526838, guid: cc0a8197bffe9264897a80b6de7dda4a,
-        type: 3}
-      propertyPath: sounds.Array.data[12].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: ef9d52ff31dbedb449e512ec16282dfe, type: 3}
-    - target: {fileID: 2161758867259526838, guid: cc0a8197bffe9264897a80b6de7dda4a,
-        type: 3}
-      propertyPath: sounds.Array.data[12].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2161758867259526838, guid: cc0a8197bffe9264897a80b6de7dda4a,
-        type: 3}
-      propertyPath: sounds.Array.data[12].pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2161758867259526838, guid: cc0a8197bffe9264897a80b6de7dda4a,
-        type: 3}
-      propertyPath: sounds.Array.data[12].randomVolume
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2161758867259526838, guid: cc0a8197bffe9264897a80b6de7dda4a,
-        type: 3}
-      propertyPath: sounds.Array.data[12].randomPitch
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2161758867259526838, guid: cc0a8197bffe9264897a80b6de7dda4a,
-        type: 3}
-      propertyPath: sounds.Array.data[12].masterVolume
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc0a8197bffe9264897a80b6de7dda4a, type: 3}

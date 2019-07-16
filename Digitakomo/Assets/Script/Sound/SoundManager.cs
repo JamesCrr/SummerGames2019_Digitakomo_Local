@@ -27,6 +27,7 @@ public class Sound
     public float randomPitch = 0.1f;
 
     public float masterVolume = 1f;
+    public float settingVolume = 1f;
 
     public bool loop = false;
 
@@ -41,7 +42,7 @@ public class Sound
     public void Play()
     {
         source.loop = loop;
-        source.volume = volume * (1 + Random.Range(-randomVolume / 2f, randomVolume / 2f)) * masterVolume;
+        source.volume = volume * (1 + Random.Range(-randomVolume / 2f, randomVolume / 2f)) * masterVolume * settingVolume;
         source.pitch = pitch * (1 + Random.Range(-randomPitch / 2f, randomPitch / 2f));
         source.Play();
     }
@@ -54,13 +55,13 @@ public class Sound
 
     public void SetVolume(float _volume)
     {
-        source.volume = _volume * (1 + Random.Range(-randomVolume / 2f, randomVolume / 2f)) * masterVolume;
-        volume = _volume;
+        source.volume = volume * (1 + Random.Range(-randomVolume / 2f, randomVolume / 2f)) * masterVolume * settingVolume;
+        settingVolume = _volume;
     }
 
     public void SetMasterVolume(float _masterVolume)
     {
-        source.volume = volume * (1 + Random.Range(-randomVolume / 2f, randomVolume / 2f)) * _masterVolume;
+        source.volume = volume * (1 + Random.Range(-randomVolume / 2f, randomVolume / 2f)) * _masterVolume * settingVolume;
         masterVolume = _masterVolume;
     }
 
