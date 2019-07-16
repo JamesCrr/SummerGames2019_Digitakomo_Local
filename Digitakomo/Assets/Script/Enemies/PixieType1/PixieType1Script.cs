@@ -155,10 +155,23 @@ public class PixieType1Script : EnemyBaseClass
     // Reset Function
     public override void ResetEnemy(SpawnZone newSpawnZone, Vector3 newPos)
     {
+        // play sound
+        SoundManager.instance.PlaySound("BirdWings");
+
         // Reset Shared Data
         base.ResetEnemy(newSpawnZone, newPos);
 
         // Get your new waypoint here..
         SetWaypointGroup(newSpawnZone.GetComponent<SpawnZone>().GetRandomPath());
+    }
+
+    public override bool IsDead()
+    {
+        bool isDead = base.IsDead();
+        if (isDead)
+        {
+            SoundManager.instance.StopSound("BirdWings");
+        }
+        return isDead;
     }
 }

@@ -137,7 +137,7 @@ public abstract class EnemyBaseClass : MonoBehaviour
             modifyAmt += defense;
 
         hp += modifyAmt;
-        if (hp < 1)
+        if (IsDead())
         {
             // damage text
             FloatingTextController.CreateFloatingText("0", transform.position);
@@ -196,8 +196,9 @@ public abstract class EnemyBaseClass : MonoBehaviour
     {
         return hp;
     }
+
     // Returns Bool if enemy has died
-    public bool IsDead()
+    public virtual bool IsDead()
     {
         if (hp <= 0)
             return true;
@@ -209,11 +210,13 @@ public abstract class EnemyBaseClass : MonoBehaviour
     {
         defense = newDef;
     }
+
     // Modify the Defense for this enemy
     public void ModifyDefense(int amountToModify)
     {
         defense += amountToModify;
     }
+
     // Gets the Defense for this enemy
     public int GetDefense()
     {
