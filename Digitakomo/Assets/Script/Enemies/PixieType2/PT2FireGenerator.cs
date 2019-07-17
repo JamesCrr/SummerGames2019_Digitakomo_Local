@@ -29,6 +29,6 @@ public class PT2FireGenerator : MonoBehaviour
 
         // parent the fire under the platform
         // just in case the platform is moving
-        newObj.transform.parent = collision.gameObject.transform;
+        //newObj.transform.parent = collision.gameObject.transform;
     }
 }
