@@ -169,6 +169,11 @@ public class SquirrelWolf : EnemyBaseClass
                 isJumped = false;
                 myAnimator.SetBool("mb_Fall", true);
             }
+            // if we are close enough to the target, then stop, incase we overshoot
+            if ((groundCast.position.y > moveTargetPos.y) &&(moveTargetPos - myRb2D.position).sqrMagnitude < 2.0f)
+            {
+                StopHorizontalVel();
+            }
 
             return;
         }
@@ -523,7 +528,7 @@ public class SquirrelWolf : EnemyBaseClass
                                         //if ((myRb2D.position - nextPos).sqrMagnitude < 5.0f)
                                         //{
                                         SetNewPosTarget(nextPos);
-                                        JumpWolf(nextPos);
+                                        JumpWolf(moveTargetPos);
                                         return;
                                         //}
                                     }
@@ -1045,7 +1050,7 @@ public class SquirrelWolf : EnemyBaseClass
                         else
                         {
                             SetNewPosTarget(platformPos);
-                            JumpWolf(platformPos);
+                            JumpWolf(moveTargetPos);
                         }
                     }
 
@@ -1057,6 +1062,13 @@ public class SquirrelWolf : EnemyBaseClass
     public void SetFrozen(bool frozen)
     {
         isFrozen = frozen;
+    }
+    // Stop Horizontal Velocity
+    void StopHorizontalVel()
+    {
+        Vector3 newVel = myRb2D.velocity;
+        newVel.x = 0.0f;
+        myRb2D.velocity = newVel;
     }
 
 

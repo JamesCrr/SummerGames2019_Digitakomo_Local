@@ -25,14 +25,8 @@ public class Platforms : MonoBehaviour
         height = myCollider.size.y / 2;
 
         // 0.8f, and 0.5f for how much to move 
-        float xRatio = (0.22f * (transform.localScale.x / 1f));
-        float yRatio = (0.5f * (transform.localScale.y / 1f));
-        //// X Axis
-        //leftPoint.x = (gameObject.transform.position.x + myCollider.offset.x) - (width * transform.localScale.x) + xRatio;
-        //rightPoint.x = (gameObject.transform.position.x + myCollider.offset.x) + (width * transform.localScale.x) - xRatio;
-        //// Y Axis
-        //leftPoint.y = (gameObject.transform.position.y + myCollider.offset.y) + (height * transform.localScale.y) + yRatio;
-        //rightPoint.y = (gameObject.transform.position.y + myCollider.offset.y) + (height * transform.localScale.y) + yRatio;
+        float xRatio = (0.2f * (transform.localScale.x / 1f));
+        float yRatio = (0.35f * (transform.localScale.y / 1f));
 
         leftPoint.y = myCollider.bounds.max.y + yRatio;
         rightPoint.y = myCollider.bounds.max.y + yRatio;
@@ -41,8 +35,10 @@ public class Platforms : MonoBehaviour
         rightPoint.x = myCollider.bounds.max.x - xRatio;
 
         // set the collider's position
-        leftCollider.gameObject.transform.position = leftPoint;
-        rightCollider.gameObject.transform.position = rightPoint;
+        if(leftCollider != null)
+            leftCollider.gameObject.transform.position = leftPoint;
+        if(rightCollider != null)
+            rightCollider.gameObject.transform.position = rightPoint;
     }
 
 
@@ -65,7 +61,6 @@ public class Platforms : MonoBehaviour
     }
     public float GetPlatformSurface()
     {
-        //return transform.position.y + (height * transform.localScale.y);
         return myCollider.bounds.max.y;
     }
 
@@ -102,11 +97,4 @@ public class Platforms : MonoBehaviour
             return leftPoint;
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.blue;
-
-    //    Gizmos.DrawWireSphere(leftPoint, 0.3f);
-    //    Gizmos.DrawWireSphere(rightPoint, 0.3f);
-    //}
 }
