@@ -4843,6 +4843,7 @@ MonoBehaviour:
   timeoutDestructor: 2
   enerygyPerSpecialAttack: 1
   firerate: 1
+  partical: {fileID: 3470016700703821542}
 --- !u!212 &9139729193879875436
 SpriteRenderer:
   m_ObjectHideFlags: 0
