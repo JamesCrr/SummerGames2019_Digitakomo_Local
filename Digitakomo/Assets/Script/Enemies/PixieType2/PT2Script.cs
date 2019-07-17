@@ -122,7 +122,7 @@ public class PT2Script : EnemyBaseClass
                 {
                     attackType = EnemyAttackType.BLOODYSHINGLER_DASH;
                     // If haven't reached position, move
-                    if (!ReachedTarget(0.5f))
+                    if (!ReachedTarget(2.0f))
                     {
                         myAnimator.SetBool("mb_Stop", false);
                         DartToTarget();
@@ -192,6 +192,7 @@ public class PT2Script : EnemyBaseClass
         moveTargetPos.y = centerPoint.y + Mathf.Sin(currentRadAngle) * circleRadius;
         // set the new speed
         Vector2 direction = moveTargetPos - myRb2D.position;
+        moveTargetPos += (direction.normalized * 2);
         dartSpeed = direction.sqrMagnitude * 0.45f;
 
         // Face that direction
