@@ -221,11 +221,11 @@ public class PT2Script : EnemyBaseClass
         // Move to top of Circle again
         moveTargetPos.x = centerPoint.x + Mathf.Cos(currentRadAngle) * circleRadius;
         moveTargetPos.y = centerPoint.y + Mathf.Sin(currentRadAngle) * circleRadius;
-        // Reset Timers
-        radiusDecreaseTimer = radiusDecreaseTime_Range.current;
-
         // Hmm maybe can randomise the radius modify rates
         RandomiseData();
+        // Reset Timers
+        radiusDecreaseTimer = radiusDecreaseTime_Range.current;
+        currentState = STATES.S_NORMAL;
 
         // play sound
         SoundManager.instance.PlaySound("BirdWings");
