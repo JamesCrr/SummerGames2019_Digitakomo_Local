@@ -64,6 +64,7 @@ public class IceCharacter : Character
         {
             myRb2D.velocity = new Vector2(myRb2D.velocity.x, 0);
             CreateIcePlatform();
+            SoundManager.instance.PlaySound("FaySpecialJump");
             jumpsLeft--;
             return;
         }
