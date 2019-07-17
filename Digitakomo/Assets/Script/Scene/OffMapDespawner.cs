@@ -26,6 +26,10 @@ public class OffMapDespawner : MonoBehaviour
         {
             collidedObj.GetComponent<EnemyBaseClass>().ModifyHealth(-collidedObj.gameObject.GetComponent<EnemyBaseClass>().GetCurrentHP());
         }
+        else if (collidedObj.GetComponent<Character>() != null)
+        {
+            collidedObj.GetComponent<Character>().TakeDamage(collidedObj.GetComponent<Character>().GetCurrentHP());
+        }
         else
         {
             collidedObj.SetActive(false);
