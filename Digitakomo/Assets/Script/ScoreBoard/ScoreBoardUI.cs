@@ -289,8 +289,6 @@ public class ScoreBoardUI : MonoBehaviour
     // Returns true if there is only 1 player playing
     bool IsSinglePlayer()
     {
-        if (GameManager.Instance.PlayerCount == 2)
-            return false;
-        return true;
+        return FindObjectOfType<CrossScene>().PlayerCount == 1;
     }
 }
