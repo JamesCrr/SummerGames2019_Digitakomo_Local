@@ -40,4 +40,9 @@ public class SettingVolumeManager : MonoBehaviour
         }
     }
 
+    public void Click()
+    {
+        SoundManager.instance.PlaySound("Click");
+    }
+
 }
