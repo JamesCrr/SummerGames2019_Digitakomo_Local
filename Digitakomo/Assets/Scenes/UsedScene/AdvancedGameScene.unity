@@ -3074,6 +3074,7 @@ MonoBehaviour:
   score: 0
   IceCharacterObject: {fileID: 1563397168}
   FireCharacterObject: {fileID: 438835803}
+  stone: {fileID: 1458629903}
   ManagersPrefab: {fileID: 3507482482463207501, guid: cc0a8197bffe9264897a80b6de7dda4a,
     type: 3}
 --- !u!114 &1599688661

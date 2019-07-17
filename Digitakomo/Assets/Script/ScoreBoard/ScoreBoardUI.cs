@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ScoreBoardUI : MonoBehaviour
 {
@@ -43,7 +44,7 @@ public class ScoreBoardUI : MonoBehaviour
     int maxCount = 0;       // Used to record how many children text there are
     // String Builder for concatenation
     StringBuilder sb = new StringBuilder();
-    [Header("Buttons")]   
+    [Header("Buttons")]
     [SerializeField]         // Button to clear current HighScores
     GameObject clearButton = null;
     [SerializeField]         // Button to move on to next Scene
@@ -53,7 +54,7 @@ public class ScoreBoardUI : MonoBehaviour
     // Awake
     private void Awake()
     {
-        if(Instance != null)
+        if (Instance != null)
         {
             Destroy(this.gameObject);
             return;
@@ -72,7 +73,7 @@ public class ScoreBoardUI : MonoBehaviour
         maxCount = nameTexts.Count;
 
         // Check if we need to use the Single or Multiplayer Background Image
-        if(fileManager.plyrCount ==2 )//if (GameManager.Instance.PlayerCount == 2)
+        if (fileManager.plyrCount == 2)//if (GameManager.Instance.PlayerCount == 2)
             background.sprite = multi;
         else
             background.sprite = single;
@@ -140,13 +141,13 @@ public class ScoreBoardUI : MonoBehaviour
         TextMeshProUGUI textCom = null;
         bool foundScore = false;
         // Loop through the scores
-        for(int i = 0; i < currentScores.Count; ++i)
+        for (int i = 0; i < currentScores.Count; ++i)
         {
             if (i >= maxCount)
                 break;
 
             // If found the newest score
-            if(currentScores[i] == newestData)
+            if (currentScores[i] == newestData)
             {
                 inputField.gameObject.SetActive(true);  // Enable the Input Field
                 inputField.SetParent(nameContainer.transform);
@@ -161,7 +162,7 @@ public class ScoreBoardUI : MonoBehaviour
                 // Assign data
                 textCom.text = sb.Append("-  " + currentScores[i].plyrName).ToString();
             }
-           
+
 
             sb.Clear();
             // Get the text component SCORE
@@ -172,6 +173,11 @@ public class ScoreBoardUI : MonoBehaviour
         }
 
         return foundScore;
+    }
+
+    public void Continue()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
     // Deactivate all Text Objects
     void DeactivateAllText()
@@ -201,7 +207,7 @@ public class ScoreBoardUI : MonoBehaviour
     // Sort the List from Highest to Lowest
     void SortDescending()
     {
-        if(currentScores.Count > 1)
+        if (currentScores.Count > 1)
             currentScores.Sort(CompareScore);
     }
     // -1 if second is smaller
@@ -223,7 +229,7 @@ public class ScoreBoardUI : MonoBehaviour
             if (item.plyrName == name)
                 return true;
         }
-        return false;   
+        return false;
     }
     #endregion
 
@@ -232,7 +238,7 @@ public class ScoreBoardUI : MonoBehaviour
     {
         foreach (TextMeshProUGUI item in nameTexts)
         {
-            if(item.gameObject.activeSelf == false)
+            if (item.gameObject.activeSelf == false)
             {
                 item.gameObject.SetActive(true);
                 return item;
@@ -276,7 +282,7 @@ public class ScoreBoardUI : MonoBehaviour
         continueButton.SetActive(true);
     }
     #endregion
-    
+
 
 
     // Returns false if there are 2 players playing

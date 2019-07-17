@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     public IceCharacter IceCharacterObject;
     public FireCharacter FireCharacterObject;
+    public Egg stone;
     private bool IsIceCharacter;
 
     [Header("This should be initialize already on MainMenu")]
@@ -98,9 +100,20 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        if (IceCharacterObject.GetCurrentHP() <= 0 && FireCharacterObject.GetCurrentHP() <= 0)
+        if (IceCharacterObject.GetCurrentHP() <= 0)
+        {
+            IceCharacterObject.gameObject.SetActive(false);
+        }
+
+        if (FireCharacterObject.GetCurrentHP() <= 0)
+        {
+            FireCharacterObject.gameObject.SetActive(false);
+        }
+
+        if ((IceCharacterObject.GetCurrentHP() <= 0 && FireCharacterObject.GetCurrentHP() <= 0) || stone.GetCurrentHP() <= 0)
         {
             // Game End;
+            SceneManager.LoadScene("SaveTest");
         }
     }
 

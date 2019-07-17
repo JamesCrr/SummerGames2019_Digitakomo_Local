@@ -523,6 +523,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: FireCharacter
       objectReference: {fileID: 0}
+    - target: {fileID: 8518456384201068771, guid: f88ee3a8773118c4fa2448c3bae6c870,
+        type: 3}
+      propertyPath: jumpAcceleration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518456384201068771, guid: f88ee3a8773118c4fa2448c3bae6c870,
+        type: 3}
+      propertyPath: isGrounded
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518456384201068771, guid: f88ee3a8773118c4fa2448c3bae6c870,
+        type: 3}
+      propertyPath: additionSpecialJumpAcceleration
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 403571385494849996, guid: f88ee3a8773118c4fa2448c3bae6c870,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -592,21 +607,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8518456384201068771, guid: f88ee3a8773118c4fa2448c3bae6c870,
-        type: 3}
-      propertyPath: jumpAcceleration
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8518456384201068771, guid: f88ee3a8773118c4fa2448c3bae6c870,
-        type: 3}
-      propertyPath: isGrounded
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8518456384201068771, guid: f88ee3a8773118c4fa2448c3bae6c870,
-        type: 3}
-      propertyPath: additionSpecialJumpAcceleration
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f88ee3a8773118c4fa2448c3bae6c870, type: 3}
@@ -1315,6 +1315,7 @@ MonoBehaviour:
   score: 0
   IceCharacterObject: {fileID: 138263293}
   FireCharacterObject: {fileID: 1451097098}
+  stone: {fileID: 885304212}
   ManagersPrefab: {fileID: 3507482482463207501, guid: cc0a8197bffe9264897a80b6de7dda4a,
     type: 3}
 --- !u!114 &705148354
