@@ -112,6 +112,7 @@ public class GameManager : MonoBehaviour
 
         if ((IceCharacterObject.GetCurrentHP() <= 0 && FireCharacterObject.GetCurrentHP() <= 0) || stone.GetCurrentHP() <= 0)
         {
+            SoundManager.instance.StopAllSound();
             // Game End;
             SceneManager.LoadScene("SaveTest");
         }

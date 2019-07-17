@@ -156,4 +156,12 @@ public class SoundManager : MonoBehaviour
             sound.SetMasterVolume(_volume);
         }
     }
+
+    public void StopAllSound()
+    {
+        foreach (Sound sound in sounds)
+        {
+            sound.Stop();
+        }
+    }
 }
