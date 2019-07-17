@@ -82,15 +82,6 @@ public class ScoreBoardUI : MonoBehaviour
         clearButton.SetActive(false);
         continueButton.SetActive(false);
     }
-    // Start
-    private void Start()
-    {
-        GetScores();
-        SortDescending();
-        UpdateUI();
-
-        InputNewScore(8);
-    }
 
 
 
@@ -200,6 +191,15 @@ public class ScoreBoardUI : MonoBehaviour
         }
         // Input Field
         inputField.gameObject.SetActive(false);
+    }
+
+    // Sets old Data to UI
+    public void RetrieveExistingData()
+    {
+        // Get Existing Scores
+        GetScores();
+        SortDescending();
+        UpdateUI();
     }
     #endregion
 
