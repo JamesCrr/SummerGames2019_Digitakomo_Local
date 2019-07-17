@@ -108,14 +108,20 @@ public class GameManager : MonoBehaviour
         if (FireCharacterObject.GetCurrentHP() <= 0)
         {
             FireCharacterObject.gameObject.SetActive(false);
+            SoundManager.instance.StopSound("Flamethrower");
         }
 
         if ((IceCharacterObject.GetCurrentHP() <= 0 && FireCharacterObject.GetCurrentHP() <= 0) || stone.GetCurrentHP() <= 0)
         {
             SoundManager.instance.StopAllSound();
             // Game End;
-            SceneManager.LoadScene("SaveTest");
+            EndGame();
         }
+    }
+
+    public void EndGame()
+    {
+        SceneManager.LoadScene("SaveTest");
     }
 
     private void ChangeCharacter()

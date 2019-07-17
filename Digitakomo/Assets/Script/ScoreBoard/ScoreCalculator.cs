@@ -48,7 +48,9 @@ public class ScoreCalculator : MonoBehaviour
         if (scene.name != "SaveTest")
             return;
         // Input new Score
-        GameObject.FindGameObjectWithTag("GameController").GetComponent<ScoreBoardUI>().InputNewScore(score);
+        ScoreBoardUI scoreBoard = GameObject.FindGameObjectWithTag("GameController").GetComponent<ScoreBoardUI>();
+        scoreBoard.RetrieveExistingData();
+        scoreBoard.InputNewScore(score);
         // Clear the Score
         ClearScore();
     }
