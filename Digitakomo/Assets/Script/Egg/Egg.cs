@@ -86,15 +86,15 @@ public class Egg : MonoBehaviour, IDamagable
         {
             damaged = Damaged.Level1;
         }
-        if (GetHPPercentage() <= 40)
+        if (GetHPPercentage() <= 30)
         {
             damaged = Damaged.Level2;
         }
-        if (GetHPPercentage() <= 20)
+        if (GetHPPercentage() <= 15)
         {
             damaged = Damaged.Level3;
         }
-        if (GetHPPercentage() <= 10)
+        if (GetHPPercentage() <= 1)
         {
             damaged = Damaged.Level4;
         }
