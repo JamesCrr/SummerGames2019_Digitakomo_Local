@@ -24,7 +24,7 @@ public class PT2Firewall : MonoBehaviour
 
     void Update()
     {
-        if(gameObject.transform.localScale != endingSize)
+        if (gameObject.transform.localScale != endingSize)
         {
             gameObject.transform.localScale = Vector3.Lerp(startingSize, endingSize, (growTimer * growTime));
             growTimer += Time.deltaTime;

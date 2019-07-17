@@ -292,7 +292,7 @@ public class PT2Script : EnemyBaseClass
         bool isDead = base.IsDead();
         if (isDead)
         {
-            SoundManager.instance.StopSound("Batwings");
+            SoundManager.instance.StopSound("Birdwings");
         }
         return isDead;
     }

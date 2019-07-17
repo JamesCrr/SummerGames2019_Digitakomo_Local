@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2902105325568863203}
-  - component: {fileID: 7710343430927917569}
+  - component: {fileID: 6416963916080041628}
+  - component: {fileID: 592610705955019383}
   m_Layer: 0
   m_Name: PT2Fire
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7710343430927917569
+--- !u!114 &6416963916080041628
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -49,6 +50,32 @@ MonoBehaviour:
   growTime: 0.2
   MinDamage: 15
   MaxDamage: 20
+--- !u!61 &592610705955019383
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6871317847090861856}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.10724732, y: 2.06}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4, y: 7}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.7115578, y: 3.5765934}
+  m_EdgeRadius: 0
 --- !u!1 &7353901674676505450
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,7 +164,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7353901674676505450}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
