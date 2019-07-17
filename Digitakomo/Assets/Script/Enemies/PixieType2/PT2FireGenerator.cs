@@ -16,6 +16,7 @@ public class PT2FireGenerator : MonoBehaviour
 
         Vector2 newPos = transform.position;
         GameObject newObj = ObjectPooler.Instance.FetchGO(firePrefab.name);
+        newObj.GetComponent<PT2Firewall>().ResetFlame();
         Platforms platformComponent = collision.GetComponent<Platforms>();
         SoundManager.instance.PlaySound("FirePillar");
 
