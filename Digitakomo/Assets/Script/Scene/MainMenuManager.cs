@@ -76,11 +76,11 @@ public class MainMenuManager : MonoBehaviour
 
     public void OnClick_Basic()
     {
-        SceneController._LoadSceneWithLoadingScreen("Circlesoffire");
+        SceneController._LoadSceneWithLoadingScreen("BasicGameScene");
     }
     public void OnClick_Advance()
     {
-        SceneController._LoadSceneWithLoadingScreen("RaviossaLevel");
+        SceneController._LoadSceneWithLoadingScreen("AdvancedGameScene");
     }
 
     public void OnClick_Back_StartMapSelection()

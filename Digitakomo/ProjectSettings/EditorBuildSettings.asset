@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Level/RaviossaLevel.unity
     guid: 8fb1cc21d806e7b4a85069436ec56fc3
   - enabled: 1
-    path: Assets/Scenes/Level/Circlesoffire.unity
+    path: Assets/Scenes/UsedScene/AdvancedGameScene.unity
     guid: 6ee00bec18806ac46a665d6751e38f9a
   - enabled: 1
     path: Assets/Scenes/SaveTest.unity
