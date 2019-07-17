@@ -4840,7 +4840,7 @@ MonoBehaviour:
   MaxDamage: 34
   at: 3
   speed: 14
-  timeoutDestructor: 1
+  timeoutDestructor: 2
   enerygyPerSpecialAttack: 1
   firerate: 1
 --- !u!212 &9139729193879875436

@@ -648,7 +648,7 @@ MonoBehaviour:
   maxMoveSpeed: 15
   horizontalInput: 0
   isLockMovement: 0
-  jumpAcceleration: 10
+  jumpAcceleration: 11
   additionSpecialJumpAcceleration: 2
   isGrounded: 1
   groundCheck: {fileID: 674469736992286390}

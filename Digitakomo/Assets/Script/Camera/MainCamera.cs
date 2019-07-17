@@ -11,17 +11,12 @@ public class MainCamera : MonoBehaviour
     public Vector3 cameraLimitCenter;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         // Get All character
         characters = GameObject.FindGameObjectsWithTag("Player");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     private void FixedUpdate()
     {
@@ -159,6 +154,11 @@ public class MainCamera : MonoBehaviour
             {
                 maxY = righttopOffset.y;
             }
+        }
+
+        if (charactercount == 0)
+        {
+            return 10;
         }
 
         float width = maxX - minX;
