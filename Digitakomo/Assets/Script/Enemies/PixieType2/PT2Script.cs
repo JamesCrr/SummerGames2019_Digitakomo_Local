@@ -18,10 +18,9 @@ public class PT2Script : EnemyBaseClass
     }
     STATES currentState = STATES.S_NORMAL;
     [Header("Pixie Type 2 Class")]
-    //[SerializeField]    // The Center point to rotate around 
     Vector2 centerPoint = Vector2.zero;
-    //[SerializeField]    // The Radius of the Circle to start with
     float circleRadius = 10.0f;
+    bool reachedTopOfCirle = false;
 
     [SerializeField]    // How often to decrease the radius
     RandomRangeValue radiusDecreaseTime_Range = new RandomRangeValue();
@@ -91,10 +90,9 @@ public class PT2Script : EnemyBaseClass
                     }
                     else
                     {
-                        // Check if we need to get new target
-                        if (ReachedTarget())
+                        if (reachedTopOfCirle)
                         {
-                            // Count down the timer
+                            // Count down the timer to decrease radius
                             radiusDecreaseTimer -= Time.deltaTime;
                             if (radiusDecreaseTimer < 0.0f)
                             {
@@ -102,9 +100,21 @@ public class PT2Script : EnemyBaseClass
                                 // Reset Timers
                                 radiusDecreaseTimer = radiusDecreaseTime_Range.current;
                             }
-                            // Get the next target
-                            CalNextCirPos();
+
+                            if (ReachedTarget())
+                                // Get the next target
+                                CalNextCirPos();
                         }
+                        else
+                        {
+                            // Check if we need to get new target
+                            if (ReachedTarget())
+                            {
+                                if (!reachedTopOfCirle)
+                                    reachedTopOfCirle = true;
+                            }
+                        }
+                           
                     }
                 }
                 break;
@@ -226,6 +236,7 @@ public class PT2Script : EnemyBaseClass
         // Reset Timers
         radiusDecreaseTimer = radiusDecreaseTime_Range.current;
         currentState = STATES.S_NORMAL;
+        reachedTopOfCirle = false;
 
         // play sound
         SoundManager.instance.PlaySound("BirdWings");
