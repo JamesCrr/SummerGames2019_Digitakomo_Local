@@ -33,7 +33,7 @@ public class ScoreCalculator : MonoBehaviour
     private void Awake()
     {
         // Attach Instance
-        if(Instance != null)
+        if (Instance != null)
         {
             Destroy(this.gameObject);
             return;
