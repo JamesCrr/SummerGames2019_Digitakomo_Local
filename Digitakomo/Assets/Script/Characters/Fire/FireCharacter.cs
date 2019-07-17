@@ -95,12 +95,14 @@ public class FireCharacter : Character
     public override void SpecialAttack()
     {
         base.SpecialAttack();
+        SoundManager.instance.PlaySound("Flamethrower");
         // Animate.SetBool("f_SpecialAttack", true);
     }
 
     protected override void DoneSpecialAttack()
     {
         base.DoneSpecialAttack();
+        SoundManager.instance.StopSound("Flamethrower");
         // Animate.SetBool("f_SpecialAttack", false);
     }
 

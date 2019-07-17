@@ -30,22 +30,11 @@ public class FlameProjectile : RangeWeapon
     protected override void disableProjectile()
     {
         base.disableProjectile();
-        // SoundManager.instance.StopSound("Flamethrower");
     }
 
     public override void Restart()
     {
         base.Restart();
         this.transform.localScale = defaultScale;
-        SoundManager.instance.PlaySound("Flamethrower");
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.GetComponent<Steam>() != null)
-        {
-            // hit steam
-            gameObject.SetActive(false);
-        }
     }
 }
