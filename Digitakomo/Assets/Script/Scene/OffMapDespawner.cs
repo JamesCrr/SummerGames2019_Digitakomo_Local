@@ -29,6 +29,7 @@ public class OffMapDespawner : MonoBehaviour
         else if (collidedObj.GetComponent<Character>() != null)
         {
             collidedObj.GetComponent<Character>().TakeDamage(collidedObj.GetComponent<Character>().GetCurrentHP());
+            collidedObj.SetActive(false);
         }
         else
         {

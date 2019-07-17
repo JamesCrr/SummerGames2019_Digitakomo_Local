@@ -74,6 +74,9 @@ public class Character : MonoBehaviour, IDamagable
     public Material electricEffect;
     private Material defaultMaterial;
 
+    public bool moveLeftAble = true;
+    public bool moveRightAble = true;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -156,6 +159,15 @@ public class Character : MonoBehaviour, IDamagable
     // Moving Horizontal, left and right
     public virtual void MoveHorizontal()
     {
+        if (horizontalInput == -1 && !moveLeftAble)
+        {
+            return;
+        }
+
+        if (horizontalInput == 1 && !moveRightAble)
+        {
+            return;
+        }
         if (horizontalInput * myRb2D.velocity.x < initialMoveSpeed)
         {
             myRb2D.velocity = new Vector2(initialMoveSpeed * horizontalInput, myRb2D.velocity.y);

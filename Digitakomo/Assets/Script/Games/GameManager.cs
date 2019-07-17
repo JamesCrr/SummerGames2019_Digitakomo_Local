@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance != null)
+        if (Instance != null)
         {
             Destroy(this.gameObject);
             return;
@@ -91,6 +91,11 @@ public class GameManager : MonoBehaviour
             {
                 ChangeCharacter();
             }
+        }
+
+        if (IceCharacterObject == null)
+        {
+            return;
         }
 
         if (IceCharacterObject.GetCurrentHP() <= 0 && FireCharacterObject.GetCurrentHP() <= 0)
