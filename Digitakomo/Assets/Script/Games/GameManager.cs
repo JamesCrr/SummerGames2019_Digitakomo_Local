@@ -115,8 +115,13 @@ public class GameManager : MonoBehaviour
         {
             SoundManager.instance.StopAllSound();
             // Game End;
-            SceneManager.LoadScene("SaveTest");
+            EndGame();
         }
+    }
+
+    public void EndGame()
+    {
+        SceneManager.LoadScene("SaveTest");
     }
 
     private void ChangeCharacter()
