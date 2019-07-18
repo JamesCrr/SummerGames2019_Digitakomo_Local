@@ -126,8 +126,8 @@ public class SquirrelWolf : EnemyBaseClass
 
         // Calculate the percentage difference to scale the colliders
         Vector2 percentageDifference = Vector2.zero;
-        percentageDifference.x = transform.localScale.x / 3.25f;
-        percentageDifference.y = transform.localScale.y / 7.0975f;
+        percentageDifference.x = transform.localScale.x / 1.0f;
+        percentageDifference.y = transform.localScale.y / 1.0f;
         // Multiply ranges with scale
         // Platform detecting
         sideTopDetect.detectOffset *= percentageDifference;
