@@ -4981,7 +4981,7 @@ MonoBehaviour:
   - SpawnOnStart: 0
     enemyToSpawn: {fileID: 587125289932397903, guid: 3ac46f4e189741a4fa43831f6f59ca8e,
       type: 3}
-    spawnInterval: 60
+    spawnInterval: 30
     maxSpawnCount: 30
   centerPoint: {fileID: 337935665}
   zoneDimensions: {x: 1, y: 1}
@@ -20504,7 +20504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e48e1795b23f7748bbf8840975e3de2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterOffset: {x: 25, y: 25, z: 0}
+  characterOffset: {x: 35, y: 35, z: 0}
   smoothing: 0.2
   bounds: 0
   cameraLimit: {x: 0, y: 0, z: 0}
@@ -25117,7 +25117,7 @@ MonoBehaviour:
   - SpawnOnStart: 0
     enemyToSpawn: {fileID: 587125289932397903, guid: 3ac46f4e189741a4fa43831f6f59ca8e,
       type: 3}
-    spawnInterval: 60
+    spawnInterval: 30
     maxSpawnCount: 30
   centerPoint: {fileID: 1599265815}
   zoneDimensions: {x: 1, y: 1}
@@ -25170,7 +25170,7 @@ MonoBehaviour:
   - SpawnOnStart: 1
     enemyToSpawn: {fileID: 532834790551978396, guid: aa0f83b1c4a68504b81b3b8079266c1b,
       type: 3}
-    spawnInterval: 30
+    spawnInterval: 60
     maxSpawnCount: 30
   centerPoint: {fileID: 1607660402}
   zoneDimensions: {x: 1, y: 1}
