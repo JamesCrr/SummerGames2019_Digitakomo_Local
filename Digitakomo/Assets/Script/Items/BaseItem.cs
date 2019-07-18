@@ -36,5 +36,7 @@ public abstract class BaseItem : MonoBehaviour
     public virtual void Restart()
     {
         createdTime = Time.time;
+        GetComponent<SpriteRenderer>().color = defaultColor;
+        animate.SetBool("Blink", false);
     }
 }
