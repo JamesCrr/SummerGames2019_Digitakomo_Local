@@ -50,6 +50,7 @@ public class SquirrelWolf : EnemyBaseClass
     bool isGrounded = false;     // Used to check if we have reached the ground
     bool isJumped = false;       // Used to check if we are jumping
     static float YPosDifference = 2.0f; // The difference to check before we change state
+    bool jumpSlowed = false;        // Used to signify whether we have slowed down the jumping when we are close to jumpPoint
     [SerializeField]
     groundCheck groundCheckScript = null;   // Script used to check if have reached the ground when jumping
     [Header("GroundCasting")]
@@ -59,6 +60,11 @@ public class SquirrelWolf : EnemyBaseClass
     [SerializeField]
     float groundCastLength = 0.09f;
     RaycastHit2D rayhit2D = new RaycastHit2D();
+    // Back Cast
+    [SerializeField]
+    Transform backCast = null;
+    [SerializeField]
+    float backCastLength = 1.0f;
     #endregion
 
     #region Melee
@@ -169,11 +175,15 @@ public class SquirrelWolf : EnemyBaseClass
                 isJumped = false;
                 myAnimator.SetBool("mb_Fall", true);
             }
-            // if we are close enough to the target, then stop, incase we overshoot
-            if ((groundCast.position.y > moveTargetPos.y) &&(moveTargetPos - myRb2D.position).sqrMagnitude < 2.0f)
+            if (!jumpSlowed)    // Have we slowed down the jumping yet?
             {
-                SlowHorizontalVel();
+                // if we are close enough to the target, then stop, incase we overshoot
+                if ((groundCast.position.y > moveTargetPos.y) && (moveTargetPos - myRb2D.position).sqrMagnitude < 2.0f)
+                {
+                    SlowJumpHorVel();
+                }
             }
+           
 
             return;
         }
@@ -270,6 +280,11 @@ public class SquirrelWolf : EnemyBaseClass
                         Vector2 platformEdgePos = FindJumpPointBelow();
                         if (platformEdgePos != Vector2.zero)
                         {
+                            if (!CanDrop())     // if our collider is too big, then need to move more before can drop
+                            {
+                                MoveWolf(false);
+                                return;
+                            }
                             // Set new target and jump there
                             SetNewPosTarget(platformEdgePos);
                             JumpWolf(moveTargetPos);
@@ -316,6 +331,11 @@ public class SquirrelWolf : EnemyBaseClass
                         Vector2 platformEdgePos = FindJumpPointBelow();
                         if (platformEdgePos != Vector2.zero)
                         {
+                            if (!CanDrop())     // if our collider is too big, then need to move more before can drop
+                            {
+                                MoveWolf(false);
+                                return;
+                            }
                             // Set new target and jump there
                             SetNewPosTarget(platformEdgePos);
                             JumpWolf(moveTargetPos);
@@ -469,6 +489,11 @@ public class SquirrelWolf : EnemyBaseClass
                             platformEdgePos = FindJumpPointBelow();
                             if (platformEdgePos != Vector2.zero)
                             {
+                                if (!CanDrop())     // if our collider is too big, then need to move more before can drop
+                                {
+                                    MoveWolf(false);
+                                    return;
+                                }
                                 // Set new target and jump there
                                 SetNewPosTarget(platformEdgePos);
                                 JumpWolf(moveTargetPos);
@@ -885,6 +910,16 @@ public class SquirrelWolf : EnemyBaseClass
         }
         return false;
     }
+    // Checks if the back GroundCast has hit the JumpHitPoint yet
+    bool CanDrop()
+    {
+        // Cast line
+        if (Physics2D.Linecast(backCast.position, backCast.position + (Vector3.down * backCastLength), LayerMask.GetMask("JumpPointLayer")))
+        {
+            return true;
+        }
+        return false;
+    }
 
 
 
@@ -1009,10 +1044,19 @@ public class SquirrelWolf : EnemyBaseClass
         myRb2D.velocity = Vector2.zero;
         myRb2D.velocity = launchVelocity;
 
-
         isJumped = true;
+        jumpSlowed = false;
         myAnimator.SetTrigger("mt_Jump");
         myAnimator.ResetTrigger("mt_Fall2Idle");
+    }
+    // Slow down Horizontal Velocity when jumping
+    void SlowJumpHorVel()
+    {
+        Vector3 newVel = myRb2D.velocity;
+        newVel.x *= 0.1f;
+        myRb2D.velocity = newVel;
+
+        jumpSlowed = true;
     }
     // Grounded Logic
     public void SetGrounded()
@@ -1063,13 +1107,7 @@ public class SquirrelWolf : EnemyBaseClass
     {
         isFrozen = frozen;
     }
-    // Slow down Horizontal Velocity
-    void SlowHorizontalVel()
-    {
-        Vector3 newVel = myRb2D.velocity;
-        newVel.x *= 0.5f;
-        myRb2D.velocity = newVel;
-    }
+
 
 
 
@@ -1157,8 +1195,9 @@ public class SquirrelWolf : EnemyBaseClass
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        // Player detect range
         Gizmos.DrawLine(groundCast.position, groundCast.position + (Vector3.down * groundCastLength));
+        Gizmos.DrawLine(backCast.position, backCast.position + (Vector3.down * backCastLength));
+        // Player detect range
         Gizmos.DrawWireSphere(transform.position, playerDetectionRange);
         // Shooting range
         Gizmos.color = Color.green;
