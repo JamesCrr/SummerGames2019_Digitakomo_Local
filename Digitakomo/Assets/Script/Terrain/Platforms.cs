@@ -26,7 +26,7 @@ public class Platforms : MonoBehaviour
 
         // 0.8f, and 0.5f for how much to move 
         float xRatio = (0.2f * (transform.localScale.x / 1f));
-        float yRatio = (0.35f * (transform.localScale.y / 1f));
+        float yRatio = (1.75f * (transform.localScale.y / 1f));
 
         leftPoint.y = myCollider.bounds.max.y + yRatio;
         rightPoint.y = myCollider.bounds.max.y + yRatio;

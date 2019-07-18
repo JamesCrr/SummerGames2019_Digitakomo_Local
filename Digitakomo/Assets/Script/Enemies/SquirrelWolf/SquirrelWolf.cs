@@ -172,7 +172,7 @@ public class SquirrelWolf : EnemyBaseClass
             // if we are close enough to the target, then stop, incase we overshoot
             if ((groundCast.position.y > moveTargetPos.y) &&(moveTargetPos - myRb2D.position).sqrMagnitude < 2.0f)
             {
-                StopHorizontalVel();
+                SlowHorizontalVel();
             }
 
             return;
@@ -1063,11 +1063,11 @@ public class SquirrelWolf : EnemyBaseClass
     {
         isFrozen = frozen;
     }
-    // Stop Horizontal Velocity
-    void StopHorizontalVel()
+    // Slow down Horizontal Velocity
+    void SlowHorizontalVel()
     {
         Vector3 newVel = myRb2D.velocity;
-        newVel.x = 0.0f;
+        newVel.x *= 0.5f;
         myRb2D.velocity = newVel;
     }
 
@@ -1095,7 +1095,6 @@ public class SquirrelWolf : EnemyBaseClass
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
         // PT1 projectile
         if (collision.gameObject.tag == "EnemyProj")
         {

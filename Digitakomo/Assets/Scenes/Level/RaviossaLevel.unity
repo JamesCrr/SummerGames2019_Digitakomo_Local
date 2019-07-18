@@ -256,7 +256,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &47583351
 Transform:
   m_ObjectHideFlags: 0
@@ -580,7 +580,7 @@ MonoBehaviour:
     enemyToSpawn: {fileID: 587125289932397903, guid: 3ac46f4e189741a4fa43831f6f59ca8e,
       type: 3}
     spawnInterval: 2
-    maxSpawnCount: 0
+    maxSpawnCount: 1
   - SpawnOnStart: 1
     enemyToSpawn: {fileID: 532834790551978396, guid: aa0f83b1c4a68504b81b3b8079266c1b,
       type: 3}
@@ -818,6 +818,7 @@ MonoBehaviour:
   score: 0
   IceCharacterObject: {fileID: 1920779315}
   FireCharacterObject: {fileID: 379761304}
+  stone: {fileID: 1731334274}
   ManagersPrefab: {fileID: 3507482482463207501, guid: cc0a8197bffe9264897a80b6de7dda4a,
     type: 3}
 --- !u!4 &245756222
@@ -949,11 +950,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1513449076862413582, guid: aa0f83b1c4a68504b81b3b8079266c1b,
-        type: 3}
-      propertyPath: timeToHitTarget
-      value: 7.03
-      objectReference: {fileID: 0}
     - target: {fileID: 6242723550740004439, guid: aa0f83b1c4a68504b81b3b8079266c1b,
         type: 3}
       propertyPath: m_Sprite
@@ -994,6 +990,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.y
       value: 7.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 1513449076862413582, guid: aa0f83b1c4a68504b81b3b8079266c1b,
+        type: 3}
+      propertyPath: timeToHitTarget
+      value: 7.03
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa0f83b1c4a68504b81b3b8079266c1b, type: 3}
@@ -2103,6 +2104,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3574985739005670467, guid: 73e7015d83d3f1b46b78246ab70bf2f1,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3574985740435204628, guid: 73e7015d83d3f1b46b78246ab70bf2f1,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -2162,11 +2168,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3574985739005670467, guid: 73e7015d83d3f1b46b78246ab70bf2f1,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73e7015d83d3f1b46b78246ab70bf2f1, type: 3}
@@ -2576,12 +2577,12 @@ PrefabInstance:
     - target: {fileID: 7883997970962599784, guid: 774623a0001b6e9478d7f2c375c10007,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.45
+      value: 4.7
       objectReference: {fileID: 0}
     - target: {fileID: 7883997970962599784, guid: 774623a0001b6e9478d7f2c375c10007,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 17.8
+      value: -10.2
       objectReference: {fileID: 0}
     - target: {fileID: 7883997970962599784, guid: 774623a0001b6e9478d7f2c375c10007,
         type: 3}
@@ -3336,7 +3337,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1260073701
 Transform:
   m_ObjectHideFlags: 0
@@ -3535,7 +3536,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1357395794
 Transform:
   m_ObjectHideFlags: 0
@@ -4879,7 +4880,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1854742943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5774,7 +5775,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2088970238
 MonoBehaviour:
   m_ObjectHideFlags: 0
