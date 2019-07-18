@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cf789fe32ad4fc4ea4d6378e937b27c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Energy: 50
+  Energy: 75
   ExpiredTime: 15
   WarnningTime: 5
   SmallBerry: 50

@@ -169,7 +169,7 @@ MonoBehaviour:
   attackType: 1
   defense: 0
   moveSpeed: 5
-  attackTime: 1
+  attackTime: 3
   feetPosition: {fileID: 0}
   minimumStopInterval: 3
   maxStopInterval: 10
