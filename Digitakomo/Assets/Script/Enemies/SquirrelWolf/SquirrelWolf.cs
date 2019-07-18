@@ -784,7 +784,7 @@ public class SquirrelWolf : EnemyBaseClass
             top = Vector2.Dot(testDirection.normalized, horizontal);
             angle = Mathf.Acos(top / 1);
             //Debug.LogWarning("Angle: " + (90 - (Mathf.Rad2Deg * angle)));
-            if (1.5708f - angle <= 0.139626f)   // 1.5708 = 90.0Deg, 0.139626 = 8.0Deg
+            if (angle <= 1.0472f)   // 1.5708 = 90.0Deg, 0.349066 = 20.0Deg, 1.0472f = 60.0f;
                 continue;
             // Check Ray cast
             rayhit2D = Physics2D.Raycast(shootingPos.position, testDirection.normalized, sideTopDetect.detectSize.y, LayerMask.GetMask("Ground"));
