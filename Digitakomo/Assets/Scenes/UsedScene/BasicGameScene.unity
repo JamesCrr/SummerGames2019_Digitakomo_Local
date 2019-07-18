@@ -5938,46 +5938,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 403571385494849996, guid: f88ee3a8773118c4fa2448c3bae6c870,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 403571385494849996, guid: f88ee3a8773118c4fa2448c3bae6c870,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 403571385494849996, guid: f88ee3a8773118c4fa2448c3bae6c870,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8518456384201068771, guid: f88ee3a8773118c4fa2448c3bae6c870,
-        type: 3}
-      propertyPath: jumpAcceleration
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8518456384201068771, guid: f88ee3a8773118c4fa2448c3bae6c870,
-        type: 3}
-      propertyPath: isGrounded
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8518456384201068771, guid: f88ee3a8773118c4fa2448c3bae6c870,
-        type: 3}
-      propertyPath: additionSpecialJumpAcceleration
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8518456384201068771, guid: f88ee3a8773118c4fa2448c3bae6c870,
-        type: 3}
-      propertyPath: MaxEnergy
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 1861100166517165517, guid: f88ee3a8773118c4fa2448c3bae6c870,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f88ee3a8773118c4fa2448c3bae6c870, type: 3}
 --- !u!1 &409389484
