@@ -338,7 +338,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: fd84dae42648dff47b1e9680ca7a7b51, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -416,7 +416,7 @@ MonoBehaviour:
   horizontalInput: 0
   isLockMovement: 0
   jumpAcceleration: 10
-  additionSpecialJumpAcceleration: 10
+  additionSpecialJumpAcceleration: 3
   isGrounded: 1
   groundCheck: {fileID: 3966814791592898978}
   groundCheckRadius: 0.69
@@ -426,7 +426,7 @@ MonoBehaviour:
   extraJumps: 1
   fallingMultiplyer: 2
   MaxHP: 500
-  MaxEnergy: 200
+  MaxEnergy: 100
   electricAttack: 0
   specialAttackPosition: {fileID: 5047507253542465687}
   Animate: {fileID: 0}
@@ -436,6 +436,7 @@ MonoBehaviour:
   moveRightAble: 1
   flameThrower: {fileID: 7881657545065886293, guid: 83cfcb08460dfcd47b3df5982aec4950,
     type: 3}
+  tailJump: {fileID: 7247844475465241893}
 --- !u!95 &872955862779810576
 Animator:
   serializedVersion: 3

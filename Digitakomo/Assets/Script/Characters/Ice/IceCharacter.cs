@@ -105,6 +105,7 @@ public class IceCharacter : Character
         {
             case 0:
                 xDir = -1;
+                rotation = 180;
                 break;
             case 1:
                 xDir = -1;
@@ -126,17 +127,17 @@ public class IceCharacter : Character
             case 5:
                 xDir = 1;
                 yDir = -1;
-                rotation = 135;
+                rotation = -45;
                 break;
             case 6:
                 xDir = 0;
                 yDir = -1;
-                rotation = 90;
+                rotation = -90;
                 break;
             case 7:
                 xDir = -1;
                 yDir = -1;
-                rotation = 45;
+                rotation = -135;
                 break;
         }
 

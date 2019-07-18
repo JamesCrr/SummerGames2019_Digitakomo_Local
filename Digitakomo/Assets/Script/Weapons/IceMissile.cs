@@ -2,29 +2,17 @@
 
 public class IceMissile : RangeWeapon
 {
-    // private void OnTriggerEnter2D(Collider2D collision)
-    // {
-    //     if (collision.gameObject.GetComponent<FlameProjectile>() != null)
-    //     {
-    //         // TODO // if player far enough
-
-    //         // Create Steam
-    //         GameObject go = ObjectPooler.Instance.FetchGO("Steam");
-    //         go.transform.position = transform.position;
-    //         Steam steam = go.GetComponent<Steam>();
-    //         steam.Restart();
-    //     }
-
-    //     if (collision.gameObject.GetComponent<Steam>() != null)
-    //     {
-    //         // hit steam
-    //         gameObject.SetActive(false);
-    //     }
-    // }
+    public GameObject partical;
 
     public override void Restart()
     {
         base.Restart();
         SoundManager.instance.PlaySound("IceMissile");
+    }
+
+    public override void SetRotation(int rotation)
+    {
+        base.SetRotation(rotation);
+        partical.transform.rotation = Quaternion.Euler(0, 0, rotation);
     }
 }

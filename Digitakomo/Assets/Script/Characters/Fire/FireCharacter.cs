@@ -5,6 +5,7 @@ public class FireCharacter : Character
     [Header("Weapon")]
     public FlameProjectile flameThrower;
     private float SpecialFireRate;
+    public GameObject tailJump;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +45,10 @@ public class FireCharacter : Character
         {
             SoundManager.instance.StopSound("NuuttipukkiRocketJump");
         }
+        if (isGrounded)
+        {
+            tailJump.SetActive(false);
+        }
     }
 
     // Player Moving
@@ -67,6 +72,7 @@ public class FireCharacter : Character
             Animate.SetTrigger("specialJump");
             Animate.SetBool("isFalling", false);
             SoundManager.instance.PlaySound("NuuttipukkiRocketJump");
+            tailJump.SetActive(true);
         }
         else
         {

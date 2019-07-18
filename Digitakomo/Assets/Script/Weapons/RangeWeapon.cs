@@ -37,7 +37,7 @@ public class RangeWeapon : Weapon
         rb.velocity = new Vector2(x * speed, y * speed);
     }
 
-    public void SetRotation(int rotation)
+    public virtual void SetRotation(int rotation)
     {
         transform.rotation = Quaternion.Euler(0, 0, rotation);
     }
