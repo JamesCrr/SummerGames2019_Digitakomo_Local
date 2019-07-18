@@ -1640,9 +1640,9 @@ RectTransform:
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -8.5, y: -239.62518}
-  m_SizeDelta: {x: -66.5, y: 479.24902}
+  m_AnchorMax: {x: 0.97802496, y: 0.9385009}
+  m_AnchoredPosition: {x: -359.39502, y: -203.21492}
+  m_SizeDelta: {x: -63.63, y: 479.24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &350407823
 MonoBehaviour:
@@ -1679,40 +1679,39 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "<b>Real name</b>: Unknown\r\n\r\n<b>Called name</b>: Beggargoat, All time
     beggargoat, Birchbark face, Fire Bastard, Bird- head, Cheeky shaman\r\n\r\n<b>Personality</b>:
-    Goofy and curious with a kleptomaniac behavior, thinking that there is will be
-    a time for that founded item. Before that, he hoards it in one of his hideouts
-    that is guarded by someone of his \u201Cacquaintances\u201D. He doesn\xB4t act
-    too seriously and always tries to light the mood at the tight moments, but might
-    get very serious himself, when it comes to his work, goals or people that he might
-    put in dangers or get involved in the one way or another. He is always on the
-    route and eager to learn new think, specially about the medication. He likes music,
-    nature, different cultures, unseen items, owls and his favorite food is Vegetable
-    soup and kiwi. Then he hates meat from the animals because his stomach cannot
-    melt them and then thinks called \u201CThe sources of the hiis\u201D. Alongside
-    the sources, he fears the being called \u201CThe Great- his\u201D, unexpected
-    death and \u201CThe \u201CBig goat\u201D.\r\n\r\nAs a habit he sings, play kantele,
+    Goofy and curious with a kleptomaniac behavior, thinking that for every item he
+    finds has a use for him in the future in one way or another. Before that, he hoards
+    all these items in one of his hideouts that is guarded by someone of his \u201Cacquaintances\u201D.
+    He doesn\xB4t act too seriously and always tries to light the mood at the tight
+    moments, but might get very serious himself, when it comes to his work, goals
+    or people that he might put in dangers or somehow get involved. He is always on
+    the route and eager to learn new thinks, specially about the medication. He likes
+    music, nature, different cultures, unseen items, owls and his favorite food is
+    Vegetable soup and kiwi. Then he hates meat from the animals because his stomach
+    cannot melt them and then thinks called \u201CThe sources of the hiis\u201D. Alongside
+    the sources, he fears the being called \u201CThe Great- hiis\u201D, unexpected
+    death and \u201CThe \u201CBig goat\u201D.\r\n\r\nAs a habit, he sings, play kantele,
     \u201Ccollect\u201D all kinds of things and try to get to be part of different
-    culture as well as possible.\r\n\r\n<b>Abilities</b>: He can lead heat from his
-    hands. His fingers work as a lighter by clicking them. With his walking stick,
-    which is very strong and stretchy, and his \u201CWitch lantern\u201D, he can lead
-    heat to the stick and when it gets to the lantern, it can be release as the flames,
-    becoming the flamethrower, rocket kind of jetpack and with the \u201CSongsinger\u201D
-    sheet, it can become a strong shield for different attacks. However, he needs
-    something to burn in the lantern as a fuel. He uses \u201CThe golden feathers\u201D
-    that by setting on fire unleash a huge amount of energy.\r\n\r\nBeggargoat also
-    has a huge knowledge of the medication and about the Hiis and how it works. He
-    has created a lot of medicines for disease caused by Hiis in one way or another.
-    He also knows a lot of languages from his trips, mostly neighboring counties and
-    some of the dialects.\r\n\r\n<b>Backstory</b>: There is not so much about where
-    he came. He came in public when he became a student of the Academia of Sammonvarja
-    for creations and crafts, place where people use a goth masks made of Birchbark
-    when they graduate. Later, he was given a name, \u201CAll time beggargoat\u201D
-    because he started this use the mask all the time. People told stories about the
-    Beggargoat that travelled all around the world learning more about the medication
-    and how the Hiis works also been on the secret mission that no one knew nothing.
-    He still got a lot of enemies and people that did not like his way of doing things,
-    specially some of the older graduate people of that certain academia. The ones
-    that Beggargoat calls \u201Cbig goats.\u201D \r\n\r\n\r\n"
+    cultures and groups as much as possible.\r\n\r\n<b>Abilities</b>: He can lead
+    heat from his hands. His fingers work as a lighter by clicking them. With his
+    walking stick, which is very strong and stretchy and together with his \u201CWitch
+    lantern\u201D, he can lead heat to the stick and when it gets to the lantern,
+    it can be released as flames, becoming the flamethrower or rocket kind of jetpack.
+    However, he needs something to burn in the lantern as a fuel. He uses \u201CThe
+    golden feathers\u201D that by setting on fire unleash a huge amount of energy.\r\n\r\nBeggargoat
+    also has a huge knowledge of the medication, Hiis and how it works. He has created
+    a lot of medicines for disease caused by Hiis. He also knows a lot of languages
+    from his trips, mostly neighboring counties and some of their dialects.\r\n\r\n<b>Backstory</b>:
+    There is not so much information about where he came. He came in public when,
+    as a \"shaman\", became a student of the Academia of Sammonvarja for creations
+    and crafts, place where people use a goat masks made of Birchbark when they celebrate
+    or graduate. Later, he was given a name, \u201CAll time beggargoat\u201D because
+    he started this use the mask all the time. People told stories about the Beggargoat
+    that travelled all around the world learning more about the medication and how
+    the Hiis works also been on the secret mission that no one knew nothing. He still
+    got a lot of enemies and people that did not like his way of doing things, specially
+    some of the older graduate people of that certain academia. The ones that Beggargoat
+    calls \u201CBig goats.\u201D \r\n\r\n\r\n"
 --- !u!222 &350407824
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3179,7 +3178,7 @@ MonoBehaviour:
   m_Text: "<b>Full name</b>: Fay Juho\xB4s Daughter\r\n\n<b>Call name</b>: The Frost
     Witch\r\n\n<b>Personality</b>: Spend most of her time alone as a hermit and make
     social contact when it is necessary. She does not hesitate to kill in order to
-    survive. In any situation, she tries get the most benefit in fair or in unfair
+    survive. In any situation, she tries to get the most benefit in fair or in unfair
     ways possible. It is hard to gain her trust, but as a comrade she is dangerous
     ally, but valuable.\r\n\nShe likes scaring people, music, other people\xB4s misfortunes
     and \u201CKalakukko\u201D as her favourite food. She hates people, mostly fanatic
@@ -3187,29 +3186,34 @@ MonoBehaviour:
     and some of her own group\xB4s \u201CFrost\xB4s Gatherings\u201D members, animals
     and Cabbage box as her most disliked food. She fears mostly to be set on fire
     on the pile or just witnessing it.\r\n\n<b>Abilities</b>: Realising cold air out
-    of her hands and legs. Within that she can create ice missiles, platforms and
-    shields. For this, she must drink liquid called \u201CTuonela\xB4s water\u201D
-    that gives her cells ability to release her sweat as a cold air. The effect depends
-    on her emotional mood state that make changes in her body temperature, which make
-    it nether easier or harder to control.\r\n\nWith a hard training all the way from
+    of her hands and legs. With that she can create ice missiles, platforms and shields.
+    For this, she must drink liquid called \u201CTuonela\xB4s water\u201D that gives
+    her cells ability to release her sweat as a cold air. The effect depends on her
+    emotional mood state that make changes in her body temperature, which make it
+    nether easier or harder to control.\r\n\nWith a hard training all the way from
     her childhood, she managed to gain great hearing and sensitive touch in her hands
     and feet, that she doesn\xB4t need to see.\r\n\n<b>Backstory</b>\r\nShe was raised
     by the witch group called \u201CPain drinkers\u201D after her father, Juho V\xE4in\xF6\xB4s
-    son, was burned on the pile sentenced on charges of witchcraft while Fay looking
-    it. Fay had a very special cells that gave her resistance for a cold, a gift from
-    her mother that she never met. The Witches solder her the Tuonela\xB4s water,
-    that made her powers stronger, but made her alter on blind. \r\n\nThe way how
-    people talk about her, as a devil or unholy being and how they killed her father
-    just because they believed the rumors about her mother and her origins as the
-    living frost in human form. She even believed that her own raiser gave out her
-    father for a mob that they can have her.\r\n\nAfter the training she started her
-    on group, called \u201CThe frosts gathering.\u201D Whit the group, she tried to
-    find information and objects of hiis and mostly the stone of hiis, that she heard
-    from \u201Cthe Carbon \u201CMaiden and Wretched Eagle\u201D. She called the stone
-    of hiis as \u201CThe Egg\u201D as the code name, in playfully way. As making trades
-    of their founded and stolen items she became more aware of people blind hate of
-    the ones like her and made her more pitter and pitter toward them, even her own
-    kind thinking that anyone might try to kill her in fear.\r\n\r\n\n"
+    son, was burned on the pile sentenced on charges of witchcraft while Fay was witnessing
+    it when she was 4 years old. Fay had a very special cells that gave her resistance
+    for a cold, a gift from her mother that she never met. The Witches solder her
+    the Tuonela\xB4s water, that made her powers stronger, but as a side effect made
+    her alter on blind. \r\n\nWhen years went by and she trusted more on her hearing
+    it became harder for her to ignore people talking. The way how they talk about
+    her, as a devil or unholy being. By passing the town were his father was killed,
+    she heard often about how villagers killed her father just because they believed
+    the rumors about her mother and her origins as the living frost in human form.
+    She even believed that her own raisers gave out her father for a mob that the
+    Pain drinkers can take \"care\" of her.\r\n\nAfter the training, she started her
+    on group, called \u201CThe frost\xB4s gathering.\u201D With the group, she tried
+    to find the information and objects of hiis and mostly the Stone of hiis, that
+    she heard from story called \u201Cthe Carbon Maiden\" and \"Wretched Eagle\u201D.
+    She called the stone of hiis as \u201CThe Egg\u201D as the code name, in playfully
+    way. As making trades of their founded and stolen items she became more aware
+    of people blind hate of the ones like her and made her more pitter and pitter
+    toward them, even her own kind thinking that anyone might try to kill her in fear.\r
+    All she wanted was to be feared, using people\xB4s fears against them in order
+    to survive and for that she wanted to find \"the Egg\".\n\r\n\n"
 --- !u!222 &786270580
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3342,7 +3346,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 886795372}
   m_Direction: 2
   m_Value: 1.0000014
-  m_Size: 0.40778548
+  m_Size: 0.4121264
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3679,7 +3683,7 @@ RectTransform:
   m_Father: {fileID: 1411074691}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5922145}
+  m_AnchorMin: {x: 0, y: 0.5878736}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -7934,8 +7938,8 @@ RectTransform:
   m_Father: {fileID: 1192516756}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5922145}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0.4279439}
+  m_AnchorMax: {x: 1, y: 0.9999999}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8427,8 +8431,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1760346027}
   m_HandleRect: {fileID: 1760346026}
   m_Direction: 2
-  m_Value: 1.0000014
-  m_Size: 0.40778545
+  m_Value: 1.0000002
+  m_Size: 0.5720561
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
