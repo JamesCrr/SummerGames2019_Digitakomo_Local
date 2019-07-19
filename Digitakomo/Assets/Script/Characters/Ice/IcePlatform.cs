@@ -52,5 +52,7 @@ public class IcePlatform : Weapon
         _collider.enabled = true;
         ice_rb.isKinematic = true;
         createdTime = Time.time;
+        bool flip = Random.Range(0, 2) == 0;
+        GetComponent<SpriteRenderer>().flipX = flip;
     }
 }
