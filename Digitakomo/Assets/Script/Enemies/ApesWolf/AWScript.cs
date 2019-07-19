@@ -29,7 +29,7 @@ public class AWScript : EnemyBaseClass
     #endregion
     [Header("Ape Wolf Class")]
     [SerializeField]
-    Vector2 detectSize = new Vector2(5, 2);     // The maximum range that we can detect the player
+    float detectPlayerRange = 10.0f;     // The maximum range that we can detect the player
     GameObject targetObject = null;     // Used to store the Targeted Object, can be player or egg
     Collider2D result = null;       // To store the overlap circle cast
     #region GroundCasting
@@ -102,8 +102,7 @@ public class AWScript : EnemyBaseClass
         percentageDifference.y = transform.localScale.y / 1.0f;
         // Multiply ranges with scale
         // Platform detecting
-        detectSize.x *= percentageDifference.x;
-        detectSize.y *= percentageDifference.y;
+        detectPlayerRange *= percentageDifference.x;
         // Charging 
         chargingRange *= percentageDifference.x;
         // After Charging
@@ -234,10 +233,14 @@ public class AWScript : EnemyBaseClass
                 {
                     if (meleeDoneAnimation)
                     {
-                        // Are we still in range? or do we need to change state
-                        currentState = STATES.S_WALK;
+                        // Can we still attack?
+                        if (!AttackStillInRange())
+                        {
+                            // Are we still in range? or do we need to change state
+                            currentState = STATES.S_WALK;
+                            RandomiseAttack();  // Randomise a new attacking method
+                        }
                         meleeDoneAnimation = false;
-                        RandomiseAttack();  // Randomise a new attacking method
                     }
                 }
                 break;
@@ -330,26 +333,56 @@ public class AWScript : EnemyBaseClass
     GameObject IsPlayerInRange()
     {
         // Get if we have hit anything, player or egg
-        result = Physics2D.OverlapBox(myRb2D.position, detectSize, 0.0f, LayerMask.GetMask("Player"));
-        if (result == null)
-            return null;
-        if (result.gameObject.tag != "Player")
-            return null;
-        // check are we actually in range or we just hit the collider
-        if (((Vector2)result.gameObject.transform.position - myRb2D.position).sqrMagnitude > (detectSize.x * detectSize.x))
-            return null;
-        // raycast to check if we can actually go to player
-        Vector2 testDirection = (Vector2)result.gameObject.transform.position - myRb2D.position;
-        rayhit2D = Physics2D.Raycast(shootingPos.position, testDirection.normalized, 5, LayerMask.GetMask("Ground"));
-        if (rayhit2D.collider != null)  // If we hit smth, return null
-        {
-            Debug.DrawLine(shootingPos.position, (Vector2)shootingPos.position + testDirection.normalized * 5, Color.yellow);
-            return null;
-        }
-        else
-            Debug.DrawLine(shootingPos.position, (Vector2)shootingPos.position + testDirection.normalized * 5, Color.red);
+        Physics2D.OverlapCircle(myRb2D.position, detectPlayerRange, contactFilter, listOfPlayers);
 
-        return result.gameObject;
+        Vector2 testDirection;
+        foreach (Collider2D result in listOfPlayers)
+        {
+            if (result == null)
+                continue;
+            if (result.gameObject.tag != "Player")
+                continue;
+            // check are we actually in range or we just hit the collider
+            if (((Vector2)result.gameObject.transform.position - myRb2D.position).sqrMagnitude > (detectPlayerRange * detectPlayerRange))
+                continue;
+            // raycast to check if we can actually go to player
+            testDirection = (Vector2)result.gameObject.transform.position - myRb2D.position;
+            rayhit2D = Physics2D.Raycast(shootingPos.position, testDirection.normalized, detectPlayerRange, LayerMask.GetMask("Ground"));
+
+            if (rayhit2D.collider != null)  // If we hit smth, return null
+            {
+                Debug.DrawLine(shootingPos.position, (Vector2)shootingPos.position + testDirection.normalized * detectPlayerRange, Color.yellow);
+                continue;
+            }
+            else
+            {
+                Debug.DrawLine(shootingPos.position, (Vector2)shootingPos.position + testDirection.normalized * detectPlayerRange, Color.red);
+                return result.gameObject;
+            }    
+        }
+        return null;
+
+        //// Get if we have hit anything, player or egg
+        //result = Physics2D.OverlapBox(myRb2D.position, detectSize, 0.0f, LayerMask.GetMask("Player"));
+        //if (result == null)
+        //    return null;
+        //if (result.gameObject.tag != "Player")
+        //    return null;
+        //// check are we actually in range or we just hit the collider
+        //if (((Vector2)result.gameObject.transform.position - myRb2D.position).sqrMagnitude > (detectSize.x * detectSize.x))
+        //    return null;
+        //// raycast to check if we can actually go to player
+        //Vector2 testDirection = (Vector2)result.gameObject.transform.position - myRb2D.position;
+        //rayhit2D = Physics2D.Raycast(shootingPos.position, testDirection.normalized, 5, LayerMask.GetMask("Ground"));
+        //if (rayhit2D.collider != null)  // If we hit smth, return null
+        //{
+        //    Debug.DrawLine(shootingPos.position, (Vector2)shootingPos.position + testDirection.normalized * 5, Color.yellow);
+        //    return null;
+        //}
+        //else
+        //    Debug.DrawLine(shootingPos.position, (Vector2)shootingPos.position + testDirection.normalized * 5, Color.red);
+
+        //return result.gameObject;
     }
 
     // Set new target for direction
@@ -416,6 +449,8 @@ public class AWScript : EnemyBaseClass
         TurnApeAround();
         moveDirection = -moveDirection;
         currentState = STATES.S_WALKRAND;
+
+        RandomiseAttack();  // Randomise a new attacking method
     }
     // Roaring Logic
     public void Roar()
@@ -600,7 +635,8 @@ public class AWScript : EnemyBaseClass
     {
         // Player Detect Range
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube(transform.position, detectSize);
+        //Gizmos.DrawWireCube(transform.position, detectSize);
+        Gizmos.DrawWireSphere(transform.position, detectPlayerRange);
         // Shooting range
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, maxShootingRange);

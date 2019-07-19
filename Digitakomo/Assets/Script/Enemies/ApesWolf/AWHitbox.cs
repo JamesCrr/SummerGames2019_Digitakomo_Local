@@ -10,7 +10,9 @@ public class AWHitbox : MonoBehaviour
         if (collision.gameObject.layer != LayerMask.NameToLayer("Player"))
             return;
 
-        Debug.LogWarning("HIT PLAYER");
+        //Debug.LogWarning("HIT PLAYER");
+
+        collision.gameObject.GetComponent<IDamagable>().TakeDamage(9);
     }
 
 }

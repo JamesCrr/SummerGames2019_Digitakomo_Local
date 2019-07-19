@@ -450,7 +450,7 @@ public class SquirrelWolf : EnemyBaseClass
             case STATES.S_FOUNDPLAYER:  // Assume that targetObject here will always be player
                 {
                     // check if we can ATTACK player or need to walk there
-                    int chance = Random.Range(0, 2);
+                    int chance = Random.Range(1, 2);
 
                     // Flee from player
                     if (chance == 0)
@@ -473,7 +473,7 @@ public class SquirrelWolf : EnemyBaseClass
                         currentState = STATES.S_WALK_PLAYER;
                         SetNewObjectTarget(targetObject);
                         // Randomise way of attacking
-                        attackMethod = (ATTACK)Random.Range((int)ATTACK.A_MELEE, (int)ATTACK.A_SHOOT+1);
+                        //attackMethod = (ATTACK)Random.Range((int)ATTACK.A_MELEE, (int)ATTACK.A_SHOOT+1);
                     }
 
 
@@ -723,7 +723,7 @@ public class SquirrelWolf : EnemyBaseClass
         Vector2 newRight = transform.right;
         newRight.y = 1;
         int length = Physics2D.OverlapBox(myRb2D.position + (sideTopDetect.detectOffset * newRight), sideTopDetect.detectSize, 0.0f, jumpingFilter, listOfPlatforms);
-        Debug.Log("Found: " + length);
+        //Debug.Log("Found: " + length);
         return length;
     }
     // Fills the list with jumpPoints that are within the bottomDetect
@@ -734,7 +734,7 @@ public class SquirrelWolf : EnemyBaseClass
         Vector2 newRight = transform.right;
         newRight.y = 1;
         int length = Physics2D.OverlapBox(myRb2D.position + (bottomDetect.detectOffset * newRight), bottomDetect.detectSize, 0.0f, jumpingFilter, listOfPlatforms);
-        Debug.Log("BottomFound: " + length);
+        //Debug.Log("BottomFound: " + length);
         return length;
     }
     // Finds jumpPoints and returns Closest jumpPoint
@@ -1029,7 +1029,8 @@ public class SquirrelWolf : EnemyBaseClass
         if (((Vector2)targetObject.gameObject.transform.position - myRb2D.position).sqrMagnitude > (meleeDistance * meleeDistance))
             return;
 
-        Debug.LogWarning("Hit Player");
+        targetObject.GetComponent<IDamagable>().TakeDamage(6);
+        //Debug.LogWarning("Hit Player");
     }
     public void DoneMelee()
     {
