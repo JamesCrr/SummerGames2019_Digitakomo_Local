@@ -1124,6 +1124,7 @@ public class SquirrelWolf : EnemyBaseClass
     #region Overriden
     public override void ResetEnemy(SpawnZone newSpawnZone, Vector3 newPos)
     {
+        base.ResetEnemy(newSpawnZone, newPos);
         spawningZone = newSpawnZone;
         // Reset Position and Velocity
         transform.position = newPos;
