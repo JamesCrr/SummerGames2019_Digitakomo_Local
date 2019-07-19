@@ -178,12 +178,26 @@ public class SquirrelWolf : EnemyBaseClass
             if (!jumpSlowed)    // Have we slowed down the jumping yet?
             {
                 // if we are close enough to the target, then stop, incase we overshoot
-                if ((GetFeetPosition().y >= moveTargetPos.y) && (moveTargetPos - myRb2D.position).sqrMagnitude < 2.0f)
+                if ((myRb2D.position.y >= moveTargetPos.y) && (moveTargetPos - myRb2D.position).sqrMagnitude < 2.0f)
                 {
                     SlowJumpHorVel();
                 }
             }
-           
+
+            // Update Timers
+            switch (currentState)
+            {
+                case STATES.S_RUNAWAY:
+                    {
+                        fleeTimer -= Time.deltaTime;
+                        if (fleeTimer < 0.0f)
+                        {
+                            currentState = STATES.S_EGG_DIFFERENTHEIGHT;
+                            fleeTimer = fleeTime;
+                        }
+                    }
+                    break;
+            }
 
             return;
         }
@@ -510,13 +524,6 @@ public class SquirrelWolf : EnemyBaseClass
                             JumpWolf(moveTargetPos);
                             return;
                         }
-                    }
-
-                    fleeTimer -= Time.deltaTime;
-                    if (fleeTimer < 0.0f)
-                    {
-                        currentState = STATES.S_EGG_DIFFERENTHEIGHT;
-                        fleeTimer = fleeTime;
                     }
                 }
                 break;
