@@ -463,7 +463,7 @@ public class AWScript : EnemyBaseClass
             if (((Vector2)listOfPlayers[i].transform.position - myRb2D.position).sqrMagnitude > (roaringRange * roaringRange))
                 continue;
 
-            Debug.LogWarning("ROAAR DAMAGED");
+            //Debug.LogWarning("ROAAR DAMAGED");
         }
     }
     public void DoneRoar()

@@ -152,6 +152,8 @@ public class SquirrelWolf : EnemyBaseClass
     // Update is called once per frame
     protected override void FixedUpdate()
     {
+        //Debug.Log(myRb2D.velocity);
+
         base.FixedUpdate();
         // Status Effects
         seManager.Update();
@@ -450,7 +452,7 @@ public class SquirrelWolf : EnemyBaseClass
             case STATES.S_FOUNDPLAYER:  // Assume that targetObject here will always be player
                 {
                     // check if we can ATTACK player or need to walk there
-                    int chance = Random.Range(1, 2);
+                    int chance = Random.Range(0, 2);
 
                     // Flee from player
                     if (chance == 0)
@@ -509,7 +511,7 @@ public class SquirrelWolf : EnemyBaseClass
                                 }
                                 // Set new target and jump there
                                 SetNewPosTarget(platformEdgePos);
-                                JumpWolf_MinimumHeight(moveTargetPos, 0.5f);
+                                JumpWolf_MinimumHeight(moveTargetPos, 0.7f);
                             }
                             else    // Just Stop moving
                             {
@@ -1043,8 +1045,9 @@ public class SquirrelWolf : EnemyBaseClass
         launchVelocity.x = (newTarget.x - GetFeetPosition().x) * timeToHitTarget;    // Initial velocity in X axis
         launchVelocity.y = -(-(newTarget.y - GetFeetPosition().y) + 0.5f * Physics2D.gravity.y * timeToHitTarget * timeToHitTarget) * timeToHitTarget;
 
+        //if(myRb2D.velocity.y < 0.0f)
+        //    launchVelocity.y += myRb2D.velocity.y;
         // Add the velocity to enemy
-        myRb2D.velocity = Vector2.zero;
         myRb2D.velocity = launchVelocity;
 
         isJumped = true;
@@ -1052,14 +1055,14 @@ public class SquirrelWolf : EnemyBaseClass
         myAnimator.SetTrigger("mt_Jump");
         myAnimator.ResetTrigger("mt_Fall2Idle");
     }
-    void JumpWolf_MinimumHeight(Vector2 newTarget, float heightToAdd)
+    void JumpWolf_MinimumHeight(Vector2 newTarget, float heightToAddInTime)
     {
-        newTarget.y -= heightToAdd;
         Vector2 newVel = myRb2D.velocity;
         float xDist = newTarget.x - GetFeetPosition().x;
         float timeToFall = 0.0f;
-        newVel.y = -(0.5f * Physics2D.gravity.y * timeToHitTarget * timeToHitTarget) * timeToHitTarget;  // Distance travelled 
+        newVel.y = -(0.5f * Physics2D.gravity.y * heightToAddInTime * heightToAddInTime) * heightToAddInTime;  // Distance travelled from falling
 
+        newTarget.y -= heightToAddInTime;
         timeToFall = (GetFeetPosition().y - newTarget.y) * 0.1020f;  // time to fall,  0.1020f = 1/9.8
 
         newVel.x = Mathf.Sign(xDist) * (Mathf.Abs(xDist) / timeToFall);    // Initial velocity in X axis
@@ -1101,7 +1104,7 @@ public class SquirrelWolf : EnemyBaseClass
             case STATES.S_RUNAWAY:
                 {
                     // Walk to end of platform
-                    if (Random.Range(0, 2) == 0) // random chance to turn around
+                    if (Random.Range(0, 0) == 0) // random chance to turn around
                         SetNewPosTarget(groundCheckScript.platformStandingOn.GetFurtherestPosition(myRb2D.position));
                     else    // Turn around
                     {
