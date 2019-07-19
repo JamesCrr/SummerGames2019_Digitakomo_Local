@@ -4734,22 +4734,25 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "<size><b>Hiis</b></size>\n\r\nIt lives, it learns and try to find a way
-    to survive there, where it is forced to be. It lives inside animals, nature and
-    even common folk, but by generations to generations, it fades away. People and
-    animals were sacrificed in places called the Hiis, a place like nature\xB4s own
-    sanctuary, where this energy got later its name. These \u201Cmakers\u201D crafted
-    creatures from the stories and folktales, making the monsters in flesh and bones
-    by Hiis to serve them as long as they lasted, they lived, obeyed and stayed on
-    their \u201Cmakers\u201D side, like a guard dog or bodyguard, until the maker
-    was gone or out of their reach or the creature melted away.\r\nThey managed to
-    add this Hiis to objects with the wanted ability that the Hiis had learn to hold
-    and with the object, it was manages to get in use.\r\nBut there were \u201Ca source\u201D
-    that breath the undying Hiis right from its core and if someone became one with
-    it, got the never- ending source of Hiis, able to make creatures that lasted longer
-    and manage to multiply.\r\nThere were also objects and natural materials that
-    manage to sink Hiis inside themselves and materials that were used to seal the
-    Hiis inside permanently.\r\n\r\n<color=\"#ff0000ff\">Or so it is said.</color>\r\n\r\n"
+  m_Text: "Hiis\r\n\r\nIt lives, it learns and try to find a way to survive there,
+    where it is forced to be. It lives inside animals, nature and common folk, but
+    through generation to generation, it fades away. People and animals were sacrificed
+    in places called the Hiis, places like a nature\xB4s own sanctuaries. From these
+    sanctuaries this energy got later its name. \r\n\n\u201CMakers\u201D that used
+    Hiis that they collected from the sanctuaries, crafted creatures from the stories
+    and folktales, making the monsters in flesh and bones to serve them as long as
+    they lasted. They lived, obeyed and stayed on their Makers side, like guard dogs
+    or bodyguards, until the maker was gone or out of their reach or the creatures
+    melted away.\r\n\nHiis can learn different abilities from another being or elemental
+    reactions. If Makers wanted to use this Hiis\xB4 learned ability, Maker fused
+    this Hiis with objects.\r\n\n\u201CA Sources\u201D were known to breath the undying
+    Hiis right from its core and if someone became one with it, that one got the never-
+    ending source of Hiis, able to make creatures that lasted longer and manage to
+    multiply. That Hiis also changed the person as something else. Something that
+    people called unhuman, \u201CThe Great- Hiis\u201D.\r\n\nThere were also objects
+    and nature\xB4s own materials that manage to soak up Hiis inside themselves and
+    materials that were used to seal the Hiis inside permanently.\r\n\nOr so it is
+    said.\r\n"
 --- !u!222 &946116562
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7569,7 +7572,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1406783793
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10536,7 +10539,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1953690077
 RectTransform:
   m_ObjectHideFlags: 0
