@@ -21,7 +21,7 @@ public class SWFrozenSE : BaseStatusEffect
         enemyClass.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
         enemyClass.SetAnimatorSpeed(0.0f);
         // parent the enemy 
-        enemyClass.gameObject.transform.parent = transform;
+        //enemyClass.gameObject.transform.parent = transform;
 
         // Class Specific
         if (newEnemy.gameObject.GetComponent<SquirrelWolf>())
@@ -47,6 +47,9 @@ public class SWFrozenSE : BaseStatusEffect
         // if we just ended, then return
         if (!base.UpdateEffect())
             return false;
+
+        // Make the enemy follow my position
+        enemyClass.transform.position = transform.position;
 
         return true;
     }
@@ -88,7 +91,7 @@ public class SWFrozenSE : BaseStatusEffect
     void DeFrost()
     {
         // remove enemy from child list
-        enemyClass.gameObject.transform.parent = null;
+        //enemyClass.gameObject.transform.parent = null;
         // Disable Collider
         GetComponent<Collider2D>().enabled = false;
             
