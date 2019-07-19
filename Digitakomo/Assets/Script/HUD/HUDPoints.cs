@@ -12,7 +12,8 @@ public class HUDPoints : MonoBehaviour
     private void Start()
     {
         pointsText = GetComponent<Text>();
-        currentScore = ScoreCalculator.Instance.GetScore();
+        // currentScore = ScoreCalculator.Instance.GetScore();
+        currentScore = 0;
     }
 
     private void FixedUpdate()
