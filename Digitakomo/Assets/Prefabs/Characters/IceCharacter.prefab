@@ -126,7 +126,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4272730105838331026}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.96, y: 0.3, z: 0}
+  m_LocalPosition: {x: 0.2, y: 0.3, z: 0}
   m_LocalScale: {x: 1, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 7883997970962599784}
@@ -147,9 +147,8 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
-  radius: {x: 1, y: 5, z: 0}
   isHit: 0
-  character: {fileID: 0}
+  size: {x: 0.2, y: 1.8, z: 0}
 --- !u!1 &5958909138661154362
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,7 +174,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5958909138661154362}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.82, y: 0.3, z: 0}
+  m_LocalPosition: {x: -1.33, y: 0.3, z: 0}
   m_LocalScale: {x: 1, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 7883997970962599784}
@@ -196,9 +195,8 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
-  radius: {x: 1, y: 5, z: 0}
   isHit: 0
-  character: {fileID: 0}
+  size: {x: 0.2, y: 1.8, z: 0}
 --- !u!1 &6119685696586432149
 GameObject:
   m_ObjectHideFlags: 0
