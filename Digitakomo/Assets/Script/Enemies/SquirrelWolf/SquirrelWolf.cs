@@ -509,7 +509,7 @@ public class SquirrelWolf : EnemyBaseClass
                                 }
                                 // Set new target and jump there
                                 SetNewPosTarget(platformEdgePos);
-                                JumpWolf(moveTargetPos);
+                                JumpWolf_MinimumHeight(moveTargetPos, 0.5f);
                             }
                             else    // Just Stop moving
                             {
@@ -863,7 +863,7 @@ public class SquirrelWolf : EnemyBaseClass
         {
             // Can I even jump there? or is it blocked by the platform itself
             testDirection = (listOfPlatforms[i].gameObject.transform.position - shootingPos.position);
-            rayhit2D = Physics2D.Raycast(shootingPos.position, testDirection.normalized, sideTopDetect.detectSize.x, LayerMask.GetMask("Ground"));
+            rayhit2D = Physics2D.Raycast(shootingPos.position, testDirection.normalized, testDirection.magnitude, LayerMask.GetMask("Ground"));
             Debug.DrawLine(shootingPos.position, (Vector2)shootingPos.position + testDirection.normalized * sideTopDetect.detectSize.x, Color.yellow);
             if (rayhit2D.collider != null)   // We hit smth
                 continue;
@@ -1037,7 +1037,7 @@ public class SquirrelWolf : EnemyBaseClass
         meleeDoneAnimation = true;
     }
     // Jumping Logic
-    private void JumpWolf(Vector2 newTarget)
+    void JumpWolf(Vector2 newTarget)
     {
         Vector2 launchVelocity = Vector2.zero;
         launchVelocity.x = (newTarget.x - GetFeetPosition().x) * timeToHitTarget;    // Initial velocity in X axis
@@ -1046,6 +1046,24 @@ public class SquirrelWolf : EnemyBaseClass
         // Add the velocity to enemy
         myRb2D.velocity = Vector2.zero;
         myRb2D.velocity = launchVelocity;
+
+        isJumped = true;
+        jumpSlowed = false;
+        myAnimator.SetTrigger("mt_Jump");
+        myAnimator.ResetTrigger("mt_Fall2Idle");
+    }
+    void JumpWolf_MinimumHeight(Vector2 newTarget, float heightToAdd)
+    {
+        newTarget.y -= heightToAdd;
+        Vector2 newVel = myRb2D.velocity;
+        float xDist = newTarget.x - GetFeetPosition().x;
+        float timeToFall = 0.0f;
+        newVel.y = -(0.5f * Physics2D.gravity.y * timeToHitTarget * timeToHitTarget) * timeToHitTarget;  // Distance travelled 
+
+        timeToFall = (GetFeetPosition().y - newTarget.y) * 0.1020f;  // time to fall,  0.1020f = 1/9.8
+
+        newVel.x = Mathf.Sign(xDist) * (Mathf.Abs(xDist) / timeToFall);    // Initial velocity in X axis
+        myRb2D.velocity = newVel;
 
         isJumped = true;
         jumpSlowed = false;
