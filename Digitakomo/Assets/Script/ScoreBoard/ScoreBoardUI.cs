@@ -166,6 +166,7 @@ public class ScoreBoardUI : MonoBehaviour
         return foundScore;
     }
 
+    // When we are done with scoreBoard Scene
     public void Continue()
     {
         SceneManager.LoadScene("MainMenu");
