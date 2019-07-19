@@ -1984,6 +1984,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7883997970962599787, guid: 774623a0001b6e9478d7f2c375c10007,
+        type: 3}
+      propertyPath: MaxEnergy
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 774623a0001b6e9478d7f2c375c10007, type: 3}
 --- !u!1 &745297215
@@ -3237,7 +3242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df10002f98854054284840228fbe2edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeToWin: 300
+  TimeToWin: 150
 --- !u!4 &1599688662
 Transform:
   m_ObjectHideFlags: 0
@@ -3648,6 +3653,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FireCharacter
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518456384201068771, guid: f88ee3a8773118c4fa2448c3bae6c870,
+        type: 3}
+      propertyPath: MaxEnergy
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 403571385494849996, guid: f88ee3a8773118c4fa2448c3bae6c870,
         type: 3}
