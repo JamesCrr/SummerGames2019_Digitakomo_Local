@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         PlayerCount = GameObject.FindGameObjectWithTag("Manager").GetComponent<CrossScene>().PlayerCount;
+        ScoreCalculator.Instance.ClearScore();
         // initialize the managers if on dev
         if (InputManager.Instance == null)
         {
