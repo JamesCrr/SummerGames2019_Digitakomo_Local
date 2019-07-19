@@ -14,6 +14,9 @@ public class MainMenuManager : MonoBehaviour
     public GameObject ExtraCharacter;
     public GameObject ExtraCharacterFay;
     public GameObject ExtraCharacterBag;
+    public GameObject ExtraWorld;
+
+    public GameObject ExtraProlog;
     public GameObject SettingMenu;
     public GameObject CreditMenu;
 
@@ -98,6 +101,18 @@ public class MainMenuManager : MonoBehaviour
         ExtraCharacter.SetActive(true);
     }
 
+    public void OnClick_Prolog_Extra()
+    {
+        ExtraProlog.SetActive(true);
+        ExtraMenu.SetActive(false);
+    }
+
+    public void OnClick_World_Extra()
+    {
+        ExtraWorld.SetActive(true);
+        ExtraMenu.SetActive(false);
+    }
+
     public void OnClick_Back_Extra()
     {
         ExtraMenu.SetActive(false);
@@ -143,6 +158,22 @@ public class MainMenuManager : MonoBehaviour
     {
         SettingMenu.SetActive(false);
         MainMenu.SetActive(true);
+    }
+    #endregion
+
+    #region Extra_World_Menu
+    public void OnClick_Back_World()
+    {
+        ExtraMenu.SetActive(true);
+        ExtraWorld.SetActive(false);
+    }
+    #endregion
+
+    #region Extra_Prolog_Menu
+    public void OnClick_Back_Prolog()
+    {
+        ExtraProlog.SetActive(false);
+        ExtraMenu.SetActive(true);
     }
     #endregion
 }

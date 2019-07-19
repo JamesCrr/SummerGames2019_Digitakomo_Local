@@ -1106,6 +1106,9 @@ public class SquirrelWolf : EnemyBaseClass
     public void SetFrozen(bool frozen)
     {
         isFrozen = frozen;
+        // Stop all Velocity
+        myRb2D.velocity = Vector2.zero;
+        myRb2D.angularVelocity = 0.0f;
     }
 
 

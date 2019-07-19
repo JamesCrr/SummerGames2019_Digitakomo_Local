@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 587125289932397903}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2366, y: 1.2366, z: 1}
+  m_LocalScale: {x: 1.9, y: 1.9, z: 1}
   m_Children:
   - {fileID: 122157824463116106}
   - {fileID: 2956252539333690064}
@@ -140,10 +140,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.031449497, y: -0.25827587}
+  m_Offset: {x: -0.031449497, y: -0.04}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.48, y: 0.5}
+    pivot: {x: 0.48, y: 0.4}
     oldSize: {x: 4.347826, y: 2.6086957}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
@@ -183,7 +183,7 @@ MonoBehaviour:
     detectSize: {x: 11.95, y: 19.29}
   groundCheckScript: {fileID: 6738443519159129480}
   groundCast: {fileID: 122157824463116106}
-  groundCastLength: 0.48
+  groundCastLength: 0.2
   backCast: {fileID: 2956252539333690064}
   backCastLength: 1.45
   meleeDistance: 1.31
@@ -355,7 +355,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -2.4, y: -2.5243511}
+  m_Offset: {x: -2.4, y: -0.96}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
