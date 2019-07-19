@@ -221,7 +221,7 @@ public class AWScript : EnemyBaseClass
                         if (!AttackStillInRange())
                         {
                             currentState = STATES.S_WALK;
-                            //RandomiseAttack();  // Randomise a new attacking method
+                            RandomiseAttack();  // Randomise a new attacking method
                             myAnimator.SetBool("mb_Shoot", false);
                             myAnimator.SetBool("mb_Move", true);
                         }
@@ -237,6 +237,7 @@ public class AWScript : EnemyBaseClass
                         // Are we still in range? or do we need to change state
                         currentState = STATES.S_WALK;
                         meleeDoneAnimation = false;
+                        RandomiseAttack();  // Randomise a new attacking method
                     }
                 }
                 break;
@@ -246,6 +247,7 @@ public class AWScript : EnemyBaseClass
                     {
                         currentState = STATES.S_WALK;
                         roaringDoneAnimation = false;
+                        RandomiseAttack();  // Randomise a new attacking method
                     }
                 }
                 break;

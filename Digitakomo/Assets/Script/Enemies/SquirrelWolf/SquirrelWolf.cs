@@ -450,14 +450,12 @@ public class SquirrelWolf : EnemyBaseClass
             case STATES.S_FOUNDPLAYER:  // Assume that targetObject here will always be player
                 {
                     // check if we can ATTACK player or need to walk there
-                    int chance = Random.Range(1, 1);
+                    int chance = Random.Range(0, 2);
 
                     // Flee from player
                     if (chance == 0)
                     {
                         currentState = STATES.S_RUNAWAY;    // get the furtherest Point from the player on the platform we are standing on
-                        // SetNewPosTarget(groundCheckScript.platformStandingOn.GetFurtherestPosition(targetObject.transform.position));
-
                         TurnWolfAround();
                         switch (facingDirection)
                         {
@@ -475,7 +473,7 @@ public class SquirrelWolf : EnemyBaseClass
                         currentState = STATES.S_WALK_PLAYER;
                         SetNewObjectTarget(targetObject);
                         // Randomise way of attacking
-                        //attackMethod = (ATTACK)Random.Range((int)ATTACK.A_MELEE, (int)ATTACK.A_SHOOT+1);
+                        attackMethod = (ATTACK)Random.Range((int)ATTACK.A_MELEE, (int)ATTACK.A_SHOOT+1);
                     }
 
 
@@ -557,13 +555,9 @@ public class SquirrelWolf : EnemyBaseClass
                                     Vector2 nextPos = FindNearestJumpPoint();
                                     if (nextPos != Vector2.zero)
                                     {
-                                        // Is the next platform very close, then just jump there
-                                        //if ((myRb2D.position - nextPos).sqrMagnitude < 5.0f)
-                                        //{
                                         SetNewPosTarget(nextPos);
                                         JumpWolf(moveTargetPos);
                                         return;
-                                        //}
                                     }
                                     // check if we can shoot projectile at player, since we can't melee
                                     else if (playerDist <= (maxShootingRange * maxShootingRange))
