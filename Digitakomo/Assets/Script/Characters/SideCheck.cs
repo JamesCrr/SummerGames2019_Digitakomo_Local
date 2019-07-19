@@ -5,10 +5,11 @@ using UnityEngine;
 public class SideCheck : MonoBehaviour
 {
     [SerializeField]
-    LayerMask whatIsGround = 0;     // What layer to detect as ground    public bool isBack = true;
-    public Vector3 radius;
+    LayerMask whatIsGround;
+    // public Vector3 radius;
     public bool isHit;
-    public Character character;
+    Character character;
+    public Vector3 size;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,15 +20,23 @@ public class SideCheck : MonoBehaviour
     void Update()
     {
         // isHit = Physics2D.OverlapCircle(transform.position, groundCheckRadius, whatIsGround);
-        Collider2D[] collides = Physics2D.OverlapBoxAll(transform.position, transform.localScale / 2, whatIsGround);
-        isHit = false;
-        foreach (Collider2D col in collides)
-        {
-            if (col.gameObject.layer == LayerMask.NameToLayer("Ground"))
-            {
-                isHit = true;
-            }
-        }
+        // Physics2D.OverlapArea(new Vector2(transform.position.x + ) )
+
+
+        // Collider2D[] collides = Physics2D.OverlapBoxAll(transform.position, transform.localScale / 2, whatIsGround);
+
+
+
+        isHit = Physics2D.OverlapArea(transform.position - size, transform.position + size, whatIsGround);
+        Debug.DrawLine(transform.position - size, transform.position + size);
+        // Debug.Log(Physics2D.OverlapArea(transform.position - size, transform.position + size, whatIsGround));
+        // foreach (Collider2D col in collides)
+        // {
+        //     if (col.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        //     {
+        //         isHit = true;
+        //     }
+        // }
 
         // // if left
         if (character.transform.position.x > this.transform.position.x)
@@ -55,12 +64,4 @@ public class SideCheck : MonoBehaviour
             }
         }
     }
-
-    // void OnDrawGizmos()
-    // {
-    //     Gizmos.color = Color.red;
-    //     //Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
-    //     //Draw a cube where the OverlapBox is (positioned where your GameObject is as well as a size)
-    //     Gizmos.DrawWireCube(transform.position, transform.localScale);
-    // }
 }

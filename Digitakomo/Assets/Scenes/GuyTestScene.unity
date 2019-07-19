@@ -1967,7 +1967,7 @@ PrefabInstance:
     - target: {fileID: 3507482482463207502, guid: cc0a8197bffe9264897a80b6de7dda4a,
         type: 3}
       propertyPath: PlayerCount
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc0a8197bffe9264897a80b6de7dda4a, type: 3}
@@ -2730,11 +2730,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FireCharacter
-      objectReference: {fileID: 0}
-    - target: {fileID: 5324440216470088059, guid: f88ee3a8773118c4fa2448c3bae6c870,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 403571385494849996, guid: f88ee3a8773118c4fa2448c3bae6c870,
         type: 3}
