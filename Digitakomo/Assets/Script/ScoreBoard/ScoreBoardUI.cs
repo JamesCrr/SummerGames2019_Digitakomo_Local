@@ -73,7 +73,8 @@ public class ScoreBoardUI : MonoBehaviour
         maxCount = nameTexts.Count;
 
         // Check if we need to use the Single or Multiplayer Background Image
-        if (fileManager.plyrCount == 2)//if (GameManager.Instance.PlayerCount == 2)
+        // if (fileManager.plyrCount == 2)
+        if (!IsSinglePlayer())
             background.sprite = multi;
         else
             background.sprite = single;
