@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class GameManager : MonoBehaviour
     public IceCharacter IceCharacterObject;
     public FireCharacter FireCharacterObject;
     public Egg stone;
+
+    public GameObject EndGameCanvas;
+    public Text EndGameText;
     private bool IsIceCharacter;
 
     [Header("This should be initialize already on MainMenu")]
@@ -115,11 +119,29 @@ public class GameManager : MonoBehaviour
         {
             SoundManager.instance.StopAllSound();
             // Game End;
-            EndGame();
+            EndGame(false);
         }
     }
 
-    public void EndGame()
+    public void EndGame(bool isWin)
+    {
+        if (EndGameCanvas.activeSelf)
+        {
+            return;
+        }
+        if (isWin)
+        {
+            EndGameText.text = "Victory";
+        }
+        else
+        {
+            EndGameText.text = "Game Over";
+        }
+        EndGameCanvas.SetActive(true);
+        EndGameCanvas.GetComponent<Animator>().SetTrigger("Play");
+    }
+
+    public void LoadSaveTest()
     {
         SceneManager.LoadScene("SaveTest");
     }

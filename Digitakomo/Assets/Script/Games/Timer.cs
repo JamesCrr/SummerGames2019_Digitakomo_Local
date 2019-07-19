@@ -16,7 +16,7 @@ public class Timer : MonoBehaviour
     {
         if (Time.time >= winTime)
         {
-            GameManager.Instance.EndGame();
+            GameManager.Instance.EndGame(true);
         }
     }
 
