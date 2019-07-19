@@ -112,6 +112,8 @@ public class Egg : MonoBehaviour, IDamagable
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+
+        Debug.Log(other.gameObject.name);
         if (other.gameObject.layer == LayerMask.NameToLayer("ProjWithGround") && other.gameObject.tag == "Enemy")
         {
             // Hit by enemy
