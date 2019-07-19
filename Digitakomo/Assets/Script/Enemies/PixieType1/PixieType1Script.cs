@@ -34,15 +34,16 @@ public class PixieType1Script : EnemyBaseClass
 
 
     // Update is called once per frame
-    void Update()
-    {
-        // Move
-        Move();
-    }
+    // void Update()
+    // {
+    //     // Move
+    //     Move();
+    // }
 
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
+        Move();
         attackTimer -= Time.deltaTime;
         if (attackTimer < 0.0f)
         {

@@ -150,8 +150,9 @@ public class SquirrelWolf : EnemyBaseClass
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void FixedUpdate()
     {
+        base.FixedUpdate();
         // Status Effects
         seManager.Update();
         // return;

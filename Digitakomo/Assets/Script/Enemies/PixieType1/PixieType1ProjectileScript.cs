@@ -22,7 +22,7 @@ public class PixieType1ProjectileScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // Fall
         myRb2D.MovePosition(myRb2D.position + (Vector2.down * fallSpeed * Time.deltaTime));

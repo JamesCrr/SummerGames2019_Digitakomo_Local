@@ -123,8 +123,9 @@ public class AWScript : EnemyBaseClass
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void FixedUpdate()
     {
+        base.FixedUpdate();
         if (!isGrounded)
             return;
 

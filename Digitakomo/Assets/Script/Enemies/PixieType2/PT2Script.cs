@@ -62,10 +62,12 @@ public class PT2Script : EnemyBaseClass
 
 
     // Update is called once per frame
-    void Update()
+    protected override void FixedUpdate()
     {
+        base.FixedUpdate();
         UpdateStates();
     }
+
     // Update our State Machine
     void UpdateStates()
     {
@@ -114,7 +116,7 @@ public class PT2Script : EnemyBaseClass
                                     reachedTopOfCirle = true;
                             }
                         }
-                           
+
                     }
                 }
                 break;

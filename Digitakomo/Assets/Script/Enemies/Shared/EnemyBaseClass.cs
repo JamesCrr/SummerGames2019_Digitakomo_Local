@@ -82,6 +82,7 @@ public abstract class EnemyBaseClass : MonoBehaviour
     // Called to move 
     protected virtual void Move()
     {
+
         moveDirection = moveTargetPos - myRb2D.position;
         // Flip the enemy?
         FlipEnemy();
