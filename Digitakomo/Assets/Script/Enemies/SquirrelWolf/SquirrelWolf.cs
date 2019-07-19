@@ -178,7 +178,7 @@ public class SquirrelWolf : EnemyBaseClass
             if (!jumpSlowed)    // Have we slowed down the jumping yet?
             {
                 // if we are close enough to the target, then stop, incase we overshoot
-                if ((groundCast.position.y > moveTargetPos.y) && (moveTargetPos - myRb2D.position).sqrMagnitude < 2.0f)
+                if ((GetFeetPosition().y >= moveTargetPos.y) && (moveTargetPos - myRb2D.position).sqrMagnitude < 2.0f)
                 {
                     SlowJumpHorVel();
                 }
@@ -784,7 +784,7 @@ public class SquirrelWolf : EnemyBaseClass
             top = Vector2.Dot(testDirection.normalized, horizontal);
             angle = Mathf.Acos(top / 1);
             //Debug.LogWarning("Angle: " + (90 - (Mathf.Rad2Deg * angle)));
-            if (angle <= 1.0472f)   // 1.5708 = 90.0Deg, 0.349066 = 20.0Deg, 1.0472f = 60.0f;
+            if (angle > 1.0472f)   // 1.5708 = 90.0Deg, 0.349066 = 20.0Deg, 1.0472f = 60.0f;
                 continue;
             // Check Ray cast
             rayhit2D = Physics2D.Raycast(shootingPos.position, testDirection.normalized, sideTopDetect.detectSize.y, LayerMask.GetMask("Ground"));
