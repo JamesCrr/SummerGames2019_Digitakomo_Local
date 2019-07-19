@@ -14,9 +14,9 @@ public abstract class BaseItem : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
-        Restart();
-        animate = GetComponent<Animator>();
         defaultColor = GetComponent<SpriteRenderer>().color;
+        animate = GetComponent<Animator>();
+        Restart();
     }
 
     protected virtual void FixedUpdate()
@@ -36,7 +36,7 @@ public abstract class BaseItem : MonoBehaviour
     public virtual void Restart()
     {
         createdTime = Time.time;
-        GetComponent<SpriteRenderer>().color = defaultColor;
-        animate.SetBool("Blink", false);
+        // GetComponent<SpriteRenderer>().color = defaultColor;
+        // animate.SetBool("Blink", false);
     }
 }
