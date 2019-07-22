@@ -483,6 +483,15 @@ public class SquirrelWolf : EnemyBaseClass
                 break;
             case STATES.S_RUNAWAY:
                 {
+                    // Reduce Timer
+                    fleeTimer -= Time.deltaTime;
+                    if (fleeTimer < 0.0f)
+                    {
+                        currentState = STATES.S_EGG_DIFFERENTHEIGHT;
+                        fleeTimer = fleeTime;
+                        return;
+                    }
+
                     // Check if we can jump up more
                     Vector2 platformEdgePos = FindJumpPointAbove();
                     if (platformEdgePos != Vector2.zero)

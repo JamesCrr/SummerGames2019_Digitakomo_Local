@@ -169,7 +169,7 @@ MonoBehaviour:
   damage: 1
   attackType: 0
   defense: 0
-  moveSpeed: 5
+  moveSpeed: 8
   attackTime: 2
   feetPosition: {fileID: 4195387432310829182}
   currentState: 0
@@ -192,7 +192,7 @@ MonoBehaviour:
   shootingPos: {fileID: 7892370062263806189}
   maxShootingRange: 10
   timeToHitTarget: 1
-  fleeTime: 5
+  fleeTime: 3
 --- !u!1 &6177340992118250097
 GameObject:
   m_ObjectHideFlags: 0
