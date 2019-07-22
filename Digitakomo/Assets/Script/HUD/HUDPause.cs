@@ -43,6 +43,7 @@ public class HUDPause : MonoBehaviour
     public void Restart()
     {
         Resume();
+        SoundManager.instance.StopAllSound();
         SceneController._LoadSceneWithLoadingScreen(SceneManager.GetActiveScene().name);
     }
 
@@ -54,6 +55,7 @@ public class HUDPause : MonoBehaviour
     public void MainMenu()
     {
         Resume();
+        SoundManager.instance.StopAllSound();
         SceneController._LoadSceneWithLoadingScreen("MainMenu");
     }
 
