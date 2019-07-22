@@ -176,4 +176,12 @@ public class MainMenuManager : MonoBehaviour
         ExtraMenu.SetActive(true);
     }
     #endregion
+
+    #region Credit_Menu
+    public void OnClick_Back_Credit()
+    {
+        CreditMenu.SetActive(false);
+        MainMenu.SetActive(true);
+    }
+    #endregion
 }
