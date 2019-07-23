@@ -118,7 +118,7 @@ public class GameManager : MonoBehaviour
 
         if ((IceCharacterObject.GetCurrentHP() <= 0 && FireCharacterObject.GetCurrentHP() <= 0) || stone.GetCurrentHP() <= 0)
         {
-            SoundManager.instance.StopAllSound();
+            SoundManager.instance.StopAllSound(SoundType.GAME);
             // Game End;
             EndGame(false);
         }
@@ -133,10 +133,12 @@ public class GameManager : MonoBehaviour
         if (isWin)
         {
             EndGameText.text = "Victory";
+            SoundManager.instance.PlaySound("Victory");
         }
         else
         {
             EndGameText.text = "Game Over";
+            SoundManager.instance.PlaySound("Gameover");
         }
         EndGameCanvas.SetActive(true);
         EndGameCanvas.GetComponent<Animator>().SetTrigger("Play");

@@ -26,7 +26,9 @@ public class Sound
     [Range(0f, 0.5f)]
     public float randomPitch = 0.1f;
 
+    [HideInInspector]
     public float masterVolume = 1f;
+    [HideInInspector]
     public float settingVolume = 1f;
 
     public bool loop = false;
@@ -49,7 +51,6 @@ public class Sound
 
     public void Stop()
     {
-        // I don't know why it's not working
         source.Stop();
     }
 
@@ -59,6 +60,7 @@ public class Sound
         settingVolume = _volume;
     }
 
+    // call in the audio setting
     public void SetMasterVolume(float _masterVolume)
     {
         source.volume = volume * (1 + Random.Range(-randomVolume / 2f, randomVolume / 2f)) * _masterVolume * settingVolume;
@@ -162,6 +164,15 @@ public class SoundManager : MonoBehaviour
         foreach (Sound sound in sounds)
         {
             sound.Stop();
+        }
+    }
+
+    public void StopAllSound(SoundType type)
+    {
+        foreach (Sound sound in sounds)
+        {
+            if (sound.type == type)
+                sound.Stop();
         }
     }
 }

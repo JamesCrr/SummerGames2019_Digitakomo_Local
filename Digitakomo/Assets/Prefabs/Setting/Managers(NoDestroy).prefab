@@ -264,9 +264,9 @@ MonoBehaviour:
     settingVolume: 1
     loop: 0
   - name: Victory
-    type: 0
+    type: 1
     clip: {fileID: 8300000, guid: 75cc9d6f5e3990e46a1d114a4957f065, type: 3}
-    volume: 1
+    volume: 0.5
     pitch: 1
     randomVolume: 0.1
     randomPitch: 0.1
@@ -274,9 +274,9 @@ MonoBehaviour:
     settingVolume: 1
     loop: 0
   - name: Gameover
-    type: 0
-    clip: {fileID: 8300000, guid: ee2306d4fc2ef5a4db9c8f0726cfd058, type: 3}
-    volume: 1
+    type: 1
+    clip: {fileID: 8300000, guid: 3738a04222335db43b8fee8cdd5b4dda, type: 3}
+    volume: 0.5
     pitch: 1
     randomVolume: 0.1
     randomPitch: 0.1
