@@ -62,6 +62,10 @@ public class Egg : MonoBehaviour, IDamagable
     {
         if (this.IsWarning != IsWarning)
         {
+            if (IsWarning)
+            {
+                SoundManager.instance.PlaySound("PumpingStone");
+            }
             animator.SetBool("IsPumping", IsWarning);
             this.IsWarning = IsWarning;
         }
@@ -80,6 +84,7 @@ public class Egg : MonoBehaviour, IDamagable
                 case Damaged.Level4: GetComponentInChildren<SpriteRenderer>().sprite = Level4; break;
             }
             oldState = damaged;
+            SoundManager.instance.PlaySound("CrackingStone");
         }
     }
 
@@ -101,6 +106,7 @@ public class Egg : MonoBehaviour, IDamagable
         if (GetHPPercentage() <= 1)
         {
             damaged = Damaged.Level4;
+            SoundManager.instance.StopSound("PumpingStone");
         }
     }
 

@@ -223,6 +223,26 @@ MonoBehaviour:
     masterVolume: 1
     settingVolume: 1
     loop: 0
+  - name: CrackingStone
+    type: 0
+    clip: {fileID: 8300000, guid: 450b7d4ecb8bbf1429b3dd5d6adbc986, type: 3}
+    volume: 0.3
+    pitch: 1
+    randomVolume: 0.1
+    randomPitch: 0.1
+    masterVolume: 1
+    settingVolume: 1
+    loop: 0
+  - name: PumpingStone
+    type: 0
+    clip: {fileID: 8300000, guid: f804051b00e3f5a4ab2f7aebf11409c2, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0.1
+    randomPitch: 0.1
+    masterVolume: 1
+    settingVolume: 1
+    loop: 1
 --- !u!114 &1552828259
 MonoBehaviour:
   m_ObjectHideFlags: 0
