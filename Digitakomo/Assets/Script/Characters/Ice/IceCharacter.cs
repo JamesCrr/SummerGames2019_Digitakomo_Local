@@ -264,4 +264,12 @@ public class IceCharacter : Character
             myRb2D.velocity = currentVelocity;
         }
     }
+
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+
+        // play sound;
+        SoundManager.instance.PlaySound("IceHurt");
+    }
 }

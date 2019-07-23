@@ -279,4 +279,12 @@ public class FireCharacter : Character
             jumpsLeft = extraJumps + 1;
         }
     }
+
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+
+        // play sound;
+        SoundManager.instance.PlaySound("FireHurt");
+    }
 }

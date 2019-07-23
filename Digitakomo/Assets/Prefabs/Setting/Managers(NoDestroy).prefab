@@ -243,6 +243,26 @@ MonoBehaviour:
     masterVolume: 1
     settingVolume: 1
     loop: 1
+  - name: FireHurt
+    type: 0
+    clip: {fileID: 8300000, guid: 60bf3bcbbb3d17b4ab305b966d707112, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0.1
+    randomPitch: 0.1
+    masterVolume: 1
+    settingVolume: 1
+    loop: 0
+  - name: IceHurt
+    type: 0
+    clip: {fileID: 8300000, guid: b35cb9f89ea61f3418808e917a2e3ff7, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0.1
+    randomPitch: 0.1
+    masterVolume: 1
+    settingVolume: 1
+    loop: 0
 --- !u!114 &1552828259
 MonoBehaviour:
   m_ObjectHideFlags: 0

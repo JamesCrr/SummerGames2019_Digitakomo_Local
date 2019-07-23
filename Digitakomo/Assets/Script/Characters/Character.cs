@@ -276,7 +276,7 @@ public class Character : MonoBehaviour, IDamagable
         return SelectedType;
     }
 
-    public void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage)
     {
         HP -= damage;
         // FloatingTextController.CreateFloatingText(damage.ToString("F0"), transform.position);
