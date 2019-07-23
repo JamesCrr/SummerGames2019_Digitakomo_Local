@@ -20,6 +20,9 @@ public class Egg : MonoBehaviour, IDamagable
     public Sprite Level3;
     public Sprite Level4;
 
+    public Animator animator;
+    private bool IsWarning = false;
+
     // Instance
     public static Egg Instance = null;
     // Stats
@@ -50,12 +53,18 @@ public class Egg : MonoBehaviour, IDamagable
     // Update is called once per frame
     void Update()
     {
-        if (MaxHP * WarnPercentage / 100 >= HP)
-        {
-            // Debug.Log("Warning EGG HP LESS THAN " + WarnPercentage + " Percent");
-        }
+        SetWarning(MaxHP * WarnPercentage / 100 >= HP);
 
         HandleStateChanged();
+    }
+
+    private void SetWarning(bool IsWarning)
+    {
+        if (this.IsWarning != IsWarning)
+        {
+            animator.SetBool("IsPumping", IsWarning);
+            this.IsWarning = IsWarning;
+        }
     }
 
     private void HandleStateChanged()
